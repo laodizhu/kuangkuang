@@ -1,26 +1,3 @@
-<?php
-    //获取token的函数
-    function send_post($url, $post_data) {
-        $url = 'https://aip.baidubce.com/oauth/2.0/token';
-        $post_data = array(
-            'grant_type' => 'client_credentials',
-            'client_id' => 'hoDxPk2OXQPHLUYCkTwYNvwM',
-            'client_secret' => '0928fTmr3blrSf20gBNoQW6wF6xlymyL'
-        );
-        $postdata = http_build_query($post_data);
-        $options = array(
-            'http' => array(
-                'method' => 'POST',
-                'header' => 'Content-type:application/x-www-form-urlencoded',
-                'content' => $postdata,
-                'timeout' => 15 * 60 // 超时时间（单位:s）
-            )
-        );
-        $context = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-        return $result;
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
