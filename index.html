@@ -68,31 +68,31 @@
             <div class="css-left">
                 <div class="css-one">left:<input class="css-t" type="text" id="left" /></div>
                 <div class="css-one">margin-left:<input class="css-t" type="text" id="margin-left" /></div>
-                <div class="css-one">border-left:<input class="css-t" type="text" id="border-left" /></div>
+                <div class="css-one">border-left:<input class="css-t" type="text" id="border-left" value="1px solid #" /></div>
                 <div class="css-one">padding-left:<input class="css-t" type="text" id="padding-left" /></div>
             </div>
             <div class="css-right">
                 <div class="css-one">right:<input class="css-t" type="text" id="right" /></div>
                 <div class="css-one">margin-right:<input class="css-t" type="text" id="margin-right" /></div>
-                <div class="css-one">border-right:<input class="css-t" type="text" id="border-right" /></div>
+                <div class="css-one">border-right:<input class="css-t" type="text" id="border-right" value="1px solid #" /></div>
                 <div class="css-one">padding-right:<input class="css-t" type="text" id="padding-right" /></div>
             </div>
             <div class="css-top">
                 <div class="css-one">top:<input class="css-t" type="text" id="top" /></div>
                 <div class="css-one">margin-top:<input class="css-t" type="text" id="margin-top" /></div>
-                <div class="css-one">border-top:<input class="css-t" type="text" id="border-top" /></div>
+                <div class="css-one">border-top:<input class="css-t" type="text" id="border-top" value="1px solid #" /></div>
                 <div class="css-one">padding-top:<input class="css-t" type="text" id="padding-top" /></div>
             </div>
             <div class="css-bottom">
                 <div class="css-one">padding-bottom:<input class="css-t" type="text" id="padding-bottom" /></div>
-                <div class="css-one">border-bottom:<input class="css-t" type="text" id="border-bottom" /></div>
+                <div class="css-one">border-bottom:<input class="css-t" type="text" id="border-bottom" value="1px solid #" /></div>
                 <div class="css-one">margin-bottom:<input class="css-t" type="text" id="margin-bottom" /></div>
                 <div class="css-one">bottom:<input class="css-t" type="text" id="bottom" /></div>
             </div>
             <div class="css-center">
                 <div class="css-one">font-size:<input class="css-t" type="text" id="font-size" /></div>
                 <div class="css-one">color:<input class="css-t" type="text" id="color" value="#" /></div>
-                <div class="css-one">line-height:<input class="css-t" type="text" id="line-height" /></div>
+                <div class="css-one">line-height:<input class="css-t" type="text" id="line-height" value="1." /></div>
                 <div class="css-one">
                     text-align:
                     <select class="css-t" id="text-align">
@@ -165,7 +165,7 @@
                 </div>
             </div>
             <div class="css-right-top">
-                <div class="css-one">transition:<input class="css-t" type="text" id="transition" value="all" /></div>
+                <div class="css-one">transition:<input class="css-t" type="text" id="transition" value="all .3ss" /></div>
                 <div class="css-one">transform:<input class="css-t" type="text" id="transform" value="translate()" /></div>
                 <div class="css-one">opacity:<input class="css-t" type="text" id="opacity" /></div>
                 <div class="css-one">
@@ -188,17 +188,17 @@
                 </div>
             </div>
             <div class="css-left-bottom">
-                <div class="css-one">width:<input class="css-t" type="text" id="width" /></div>
+                <div class="css-one">width:<input class="css-t" type="text" id="width" value="100%%" /></div>
                 <div class="css-one">height:<input class="css-t" type="text" id="height" /></div>
                 <div class="css-one">padding:<input class="css-t" type="text" id="padding" /></div>
-                <div class="css-one">border:<input class="css-t" type="text" id="border" /></div>
-                <div class="css-one">margin:<input class="css-t" type="text" id="margin" /></div>
-                <div class="css-one">border-radius:<input class="css-t" type="text" id="border-radius" /></div>
+                <div class="css-one">border:<input class="css-t" type="text" id="border" value="1px solid #" /></div>
+                <div class="css-one">margin:<input class="css-t" type="text" id="margin" value="0 autoo" /></div>
+                <div class="css-one">border-radius:<input class="css-t" type="text" id="border-radius" value="50%%" /></div>
             </div>
             <div class="css-right-bottom">
                 <div class="css-one">background-color:<input class="css-t" type="text" id="background-color" value="#" /></div>
                 <div class="css-one">background-image:<input class="css-t" type="text" id="background-image" value="url(../images/)" /></div>
-                <div class="css-one">background-size:<input class="css-t" type="text" id="background-size" /></div>
+                <div class="css-one">background-size:<input class="css-t" type="text" id="background-size" value="coverr" /></div>
                 <div class="css-one">
                     background-position:
                     <select class="css-t" id="background-position">
@@ -1283,8 +1283,28 @@
                         $(this).val('#')
                     }else if(attr=="background-color"){
                         $(this).val('#')
+                    }else if(attr=="border-top"){
+                        $(this).val('1px solid #')
+                    }else if(attr=="border-right"){
+                        $(this).val('1px solid #')
+                    }else if(attr=="border-bottom"){
+                        $(this).val('1px solid #')
+                    }else if(attr=="border-left"){
+                        $(this).val('1px solid #')
+                    }else if(attr=="border"){
+                        $(this).val('1px solid #')
+                    }else if(attr=="margin"){
+                        $(this).val('0 autoo')
+                    }else if(attr=="width"){
+                        $(this).val('100%%')
+                    }else if(attr=="border-radius"){
+                        $(this).val('50%%')
                     }else if(attr=="transition"){
-                        $(this).val('all')
+                        $(this).val('all .3ss')
+                    }else if(attr=="background-size"){
+                        $(this).val('coverr')
+                    }else if(attr=="line-height"){
+                        $(this).val('1.')
                     }else{
                         $(this).val('')
                     }
@@ -1302,7 +1322,7 @@
                 if(v){
                     b[attr] = v
                 }
-                if(v=='url(../images/)' || v=='translate()' || v=='#' || v=='all'){
+                if(['url(../images/)','translate()','#','all .3ss','1px solid #','0 autoo','100%%','50%%','coverr','1.'].indexOf(v) !=-1){
                     b[attr] = ''
                 }
             })
@@ -1313,7 +1333,6 @@
             }else{
                 d[i][8] = ''
             }
-            console.log(d)
             c.removeClass("show")
         })
 
