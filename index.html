@@ -9,7 +9,7 @@
 <body>
     <div id="main">
         <div id="mainBox">
-            <img id="img" src="images/联系我们.jpg" alt="">
+            <img id="img" src="" alt="">
             <canvas id="cv"></canvas>
             <div id="rectList"></div>
             <div id="measureList"></div>
@@ -68,31 +68,31 @@
             <div class="css-left">
                 <div class="css-one">left:<input class="css-t" type="text" id="left" /></div>
                 <div class="css-one">margin-left:<input class="css-t" type="text" id="margin-left" /></div>
-                <div class="css-one">border-left:<input class="css-t" type="text" id="border-left" value="1px solid #" /></div>
+                <div class="css-one">border-left:<input class="css-t" type="text" id="border-left" /></div>
                 <div class="css-one">padding-left:<input class="css-t" type="text" id="padding-left" /></div>
             </div>
             <div class="css-right">
                 <div class="css-one">right:<input class="css-t" type="text" id="right" /></div>
                 <div class="css-one">margin-right:<input class="css-t" type="text" id="margin-right" /></div>
-                <div class="css-one">border-right:<input class="css-t" type="text" id="border-right" value="1px solid #" /></div>
+                <div class="css-one">border-right:<input class="css-t" type="text" id="border-right" /></div>
                 <div class="css-one">padding-right:<input class="css-t" type="text" id="padding-right" /></div>
             </div>
             <div class="css-top">
                 <div class="css-one">top:<input class="css-t" type="text" id="top" /></div>
                 <div class="css-one">margin-top:<input class="css-t" type="text" id="margin-top" /></div>
-                <div class="css-one">border-top:<input class="css-t" type="text" id="border-top" value="1px solid #" /></div>
+                <div class="css-one">border-top:<input class="css-t" type="text" id="border-top" /></div>
                 <div class="css-one">padding-top:<input class="css-t" type="text" id="padding-top" /></div>
             </div>
             <div class="css-bottom">
                 <div class="css-one">padding-bottom:<input class="css-t" type="text" id="padding-bottom" /></div>
-                <div class="css-one">border-bottom:<input class="css-t" type="text" id="border-bottom" value="1px solid #" /></div>
+                <div class="css-one">border-bottom:<input class="css-t" type="text" id="border-bottom" /></div>
                 <div class="css-one">margin-bottom:<input class="css-t" type="text" id="margin-bottom" /></div>
                 <div class="css-one">bottom:<input class="css-t" type="text" id="bottom" /></div>
             </div>
             <div class="css-center">
                 <div class="css-one">font-size:<input class="css-t" type="text" id="font-size" /></div>
-                <div class="css-one">color:<input class="css-t" type="text" id="color" value="#" /></div>
-                <div class="css-one">line-height:<input class="css-t" type="text" id="line-height" value="1." /></div>
+                <div class="css-one">color:<input class="css-t" type="text" id="color" /></div>
+                <div class="css-one">line-height:<input class="css-t" type="text" id="line-height" /></div>
                 <div class="css-one">
                     text-align:
                     <select class="css-t" id="text-align">
@@ -165,8 +165,8 @@
                 </div>
             </div>
             <div class="css-right-top">
-                <div class="css-one">transition:<input class="css-t" type="text" id="transition" value="all .3ss" /></div>
-                <div class="css-one">transform:<input class="css-t" type="text" id="transform" value="translate()" /></div>
+                <div class="css-one">transition:<input class="css-t" type="text" id="transition" /></div>
+                <div class="css-one">transform:<input class="css-t" type="text" id="transform" /></div>
                 <div class="css-one">opacity:<input class="css-t" type="text" id="opacity" /></div>
                 <div class="css-one">
                     visibility:
@@ -188,17 +188,17 @@
                 </div>
             </div>
             <div class="css-left-bottom">
-                <div class="css-one">width:<input class="css-t" type="text" id="width" value="100%%" /></div>
+                <div class="css-one">width:<input class="css-t" type="text" id="width" /></div>
                 <div class="css-one">height:<input class="css-t" type="text" id="height" /></div>
                 <div class="css-one">padding:<input class="css-t" type="text" id="padding" /></div>
-                <div class="css-one">border:<input class="css-t" type="text" id="border" value="1px solid #" /></div>
-                <div class="css-one">margin:<input class="css-t" type="text" id="margin" value="0 autoo" /></div>
-                <div class="css-one">border-radius:<input class="css-t" type="text" id="border-radius" value="50%%" /></div>
+                <div class="css-one">border:<input class="css-t" type="text" id="border" /></div>
+                <div class="css-one">margin:<input class="css-t" type="text" id="margin" /></div>
+                <div class="css-one">border-radius:<input class="css-t" type="text" id="border-radius" /></div>
             </div>
             <div class="css-right-bottom">
-                <div class="css-one">background-color:<input class="css-t" type="text" id="background-color" value="#" /></div>
-                <div class="css-one">background-image:<input class="css-t" type="text" id="background-image" value="url(../images/)" /></div>
-                <div class="css-one">background-size:<input class="css-t" type="text" id="background-size" value="coverr" /></div>
+                <div class="css-one">background-color:<input class="css-t" type="text" id="background-color" /></div>
+                <div class="css-one">background-image:<input class="css-t" type="text" id="background-image" /></div>
+                <div class="css-one">background-size:<input class="css-t" type="text" id="background-size" /></div>
                 <div class="css-one">
                     background-position:
                     <select class="css-t" id="background-position">
@@ -339,32 +339,64 @@
 </script>
 <script>
     $(()=>{
-        var imgName = decodeURI(GetUrlParam("name"))
+        //获取url参数
+        const getUrlPara = paraName=>{
+            let a = document.location.toString().split('?')
+            if (a.length) {
+                let b = a[1].split('&')
+                for (let i = 0; i < b.length; i++) {
+                    let c = b[i].split('=')
+                    if (c[0] == paraName) {
+                        return c[1]
+                    }
+                }
+            }
+            return ''
+        }
+        var imgName = decodeURI(getUrlPara('name'))
         if (imgName){
-            $("#img").attr("src","./images/"+imgName+"."+GetUrlParam("type"))
-            $("title").text(imgName)
+            $('#img').attr('src','./images/'+imgName+'.'+getUrlPara('type'))
+            $('title').text(imgName)
         }
         //文档网址：https://cloud.baidu.com/product/ocr/general
         const token = '24.009ac366dc24ae35f5e2ea0f5afd524a.2592000.1620182269.282335-23477754'
         const url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token
         // const url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=' + token
-        const cv = document.getElementById("cv")
-        const ctx = cv.getContext("2d")
-        const main = $("#main")[0]
-        const rt = $("#result")
-        const rd = $("#render")
-        const img = $("#img")[0]
-        const rectList = $("#rectList")
-        const rectListC = $("#rectListC")
-        const measureList = $("#measureList")
-        const imgs = $("#imgs")
-        const op = $("#op")
-        const opC = $("#opce")
+        const cv = document.getElementById('cv')
+        const ctx = cv.getContext('2d')
+        const main = $('#main')[0]
+        const rt = $('#result')
+        const rd = $('#render')
+        const img = $('#img')[0]
+        const rectList = $('#rectList')
+        const rectListC = $('#rectListC')
+        const measureList = $('#measureList')
+        const imgs = $('#imgs')
+        const op = $('#op')
+        const opC = $('#opce')
+        const cssObj = {
+            'background-image': 'url(../images/)',
+            'transform': 'translate()',
+            'color': '#',
+            'background-color': '#',
+            'border-top': '1px solid #',
+            'border-right': '1px solid #',
+            'border-bottom': '1px solid #',
+            'border-left': '1px solid #',
+            'border': '1px solid #',
+            'margin': '0 autoo',
+            'width': '100%%',
+            'border-radius': '50%%',
+            'transition': 'all .3ss',
+            'background-size': 'coverr',
+            'line-height': '1.'
+        }
+        const cssObjV = Object.values(cssObj)
         let maxLevel = 0
         let lowestArr = []
-        let curTag = $(".btn.active").text()
-        let pre = $("#pre").val()
-        let curV = $(".btn.active").attr("v").replace("$",pre)
+        let curTag = $('.btn.active').text()
+        let pre = $('#pre').val()
+        let curV = $('.btn.active').attr('v').replace('$',pre)
         let bool = false,x0, y0, x1, y1, curL, curT, curW, curH, opWidth, opHeight,curEle = null
         let boolC = false,xC0, yC0, xC1, yC1, curCL, curCT, curCW, curCH, opCWidth, opCHeight,curEleC = null
         let d = []
@@ -375,49 +407,6 @@
         let wdH = $(window).height()
         let leftS,rightS,topS,bottomS
         let recognize = false
-
-        //获取url参数
-        function GetUrlParam(paraName) {
-            var url = document.location.toString();
-            var arrObj = url.split("?");
-            if (arrObj.length > 1) {
-                var arrPara = arrObj[1].split("&");
-                var arr;
-                for (var i = 0; i < arrPara.length; i++) {
-                    arr = arrPara[i].split("=");
-                    if (arr != null && arr[0] == paraName) {
-                        return arr[1];
-                    }
-                }
-                return "";
-            }else {
-                return "";
-            }
-        }
-        
-
-        //点击测量
-        $("#ce").click(function(){
-            $(this).addClass("active").siblings().removeClass("active")
-            $("#opce").addClass("show")
-            $("body").removeClass("write-class write-css")
-        })
-
-        //切换标签
-        $(".btn").click(function(){
-            $(this).addClass("active").siblings().removeClass("active")
-            curTag = $(this).text()
-            curV = $(this).attr("v").replace("$",pre)
-            $("#opce").removeClass("show")
-            $("body").removeClass("write-class write-css")
-        })
-
-        //设计图加载完后
-        const begin = ()=>{
-            cv.width = img.width + 20
-            cv.height = img.height + 70
-            ctx.drawImage(img, 10, 60, img.width, img.height)
-        }
 
         //画框框
         op[0].onmousedown = e=>{
@@ -484,7 +473,7 @@
                 } else {
                     d.push([curL, curT, curL + curW, curT + curH, curTag, curV, d.length])
                     copyD = JSON.stringify(d)
-                    curEle.addClass("ani").text(curV.match(/class='(.*?)'/)[1])
+                    curEle.addClass('ani').text(curV.match(/class='(.*?)'/)[1])
                     backArr = []
                 }
                 stopScroll()
@@ -535,9 +524,9 @@
                 curCT = y1
             }
             if(curCW>curCH){
-                curEleC.removeClass("bl").addClass("bt")
+                curEleC.removeClass('bl').addClass('bt')
             }else{
-                curEleC.removeClass("bt").addClass("bl")
+                curEleC.removeClass('bt').addClass('bl')
             }
             curEleC.css({
                 left: curCL,
@@ -671,11 +660,11 @@
             for (let i = 0; i < d.length; i++) {
                 if (d[i][7].length == 0) {
                     let h = $(d[i][5])
-                    h.attr("id", "a" + i)
+                    h.attr('id', 'a' + i)
                     if(d[i][8]){
-                        h.attr("style",obj2css(d[i][8]))
+                        h.attr('style',obj2css(d[i][8]))
                     }else{
-                        h.attr("style",'')
+                        h.attr('style','')
                     }
                     rt.append(h)
                 }
@@ -684,13 +673,13 @@
                 for (let i = 0; i < d.length; i++) {
                     if (d[i][7].length == k) {
                         let h = $(d[i][5])
-                        h.attr("id", "a" + i)
+                        h.attr('id', 'a' + i)
                         if(d[i][8]){
-                            h.attr("style",obj2css(d[i][8]))
+                            h.attr('style',obj2css(d[i][8]))
                         }else{
-                            h.attr("style",'')
+                            h.attr('style','')
                         }
-                        rt.find("#a" + d[i][7][k - 1]).append(h)
+                        rt.find('#a' + d[i][7][k - 1]).append(h)
                     }
                 }
             }
@@ -700,7 +689,7 @@
         //给div加类名，暂时用不到
         const classDiv = ()=>{
             const lt = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-            let divs = rt.find("div")
+            let divs = rt.find('div')
             for(let i=0;i<divs.length;i++){
                 let m = parseInt(i/26)
                 let n = i%26
@@ -714,33 +703,20 @@
 
         //获取所有类名放到textarea里
         const getAllClass = ()=>{
-            let all = rt.find("*")
+            let all = rt.find('*')
             let classArr = []
             for(let i=0;i<all.length;i++){
                 let item = all.eq(i)
-                let ar = item.attr("class").split(" ")
+                let ar = item.attr('class').split(' ')
                 for(let j=0;j<ar.length;j++){
                     classArr.push('.'+ar[j]+'{'+item.attr('style')+'}')
                 }
             }
             classArr = Array.from(new Set(classArr))
-            $("#css").val(classArr.join("\n"))
+            $('#css').val(classArr.join('\n'))
         }
 
-        //设置类名前缀
-        $("#pre").on("input",function(){
-            pre = $(this).val()
-            curV = $(".btn.active").attr("v").replace("$",pre)
-        })
-
         //缩
-        $("#shr").click(()=>{
-            setParents()
-            setMaxLevel()
-            setLowestArr()
-            shrink()
-            copyD = JSON.stringify(d)
-        })
         const shrink = ()=>{
             for(let k=0;k<lowestArr.length;k++){
                 let item = d[lowestArr[k]]
@@ -829,7 +805,7 @@
                 item[1] = item[1]+t
                 item[2] = item[2]-r
                 item[3] = item[3]-b
-                curEle = rectList.children(".one").eq(item[6])
+                curEle = rectList.children('.one').eq(item[6])
                 setEle(item[0],item[1],item[2],item[3])
             }
         }
@@ -872,7 +848,7 @@
                     }
                 }
                 setEleC(xC0, yC0, xC1, yC1)
-                curEleC.addClass("ve").removeClass("bt bl").find(".h").text(curCH)
+                curEleC.addClass('ve').removeClass('bt bl').find('.h').text(curCH)
             }else{
                 let dt = ctx.getImageData(curCL, curCT, 1, curCH).data
                 if(maxDc(dt)<jg){
@@ -907,7 +883,7 @@
                     }
                 }
                 setEleC(xC0, yC0, xC1, yC1)
-                curEleC.addClass("ho").removeClass("bt bl").find(".w").text(curCW)
+                curEleC.addClass('ho').removeClass('bt bl').find('.w').text(curCW)
             }
         }
 
@@ -940,16 +916,9 @@
             }
         }
 
-        //点击测量最内层之间的距离，暂时用不到
-        $("#measure").click(()=>{
-            setParents()
-            setMaxLevel()
-            setLowestArr()
-            shrink()
-            measure()
-        })
+        //测量最内层之间的距离，暂时用不到
         const measure = ()=>{
-            measureList.html("")
+            measureList.html('')
             for(let k=0;k<lowestArr.length;k++){
                 let u = d[lowestArr[k]]
                 let minx = Infinity
@@ -981,7 +950,7 @@
                         top: u[1],
                         width: minx+1
                     })
-                    el.find(".w").text(parseInt(minx+1))
+                    el.find('.w').text(parseInt(minx+1))
                 }
                 if(minyI!=null){
                     let el = $("<div class='yline'><div class='h'></div></div>")
@@ -991,14 +960,14 @@
                         top: u[3]-1,
                         height: miny+1
                     })
-                    el.find(".h").text(parseInt(miny+1))
+                    el.find('.h').text(parseInt(miny+1))
                 }
             }
         }
 
         //生成框住的图
         const createImg = ()=>{
-            imgs.html("")
+            imgs.html('')
             for(let i=0;i<lowestArr.length;i++){
                 let item = d[lowestArr[i]]
                 if(item[4]=='img'){
@@ -1008,14 +977,14 @@
                     h=h>0?h:0
                     if(w && h){
                         let t = ctx.getImageData(item[0]+1, item[1]+1, w, h)
-                        let c = document.createElement("canvas")
+                        let c = document.createElement('canvas')
                         c.width = t.width < 15 ? 15 : t.width
                         c.height = t.height < 15 ? 15 : t.height
-                        c.getContext("2d").putImageData(t, 0, 0)
-                        let src = c.toDataURL("image/jpeg")
+                        c.getContext('2d').putImageData(t, 0, 0)
+                        let src = c.toDataURL('image/jpeg')
                         let img = $("<img src='' />")
                         let blob = base64ToBlob(src)
-                        img.attr("src",URL.createObjectURL(blob))
+                        img.attr('src',URL.createObjectURL(blob))
                         imgs.append(img)
                     }
                 }
@@ -1035,16 +1004,6 @@
             return new Blob([uInt8Array], {type: contentType})
         }
 
-        //点击下载图片
-        $("#imgs").on("click","img",function(){
-            let a = document.createElement('a')
-            let ev = document.createEvent("HTMLEvents")
-            ev.initEvent("click", true, true)
-            a.download = new Date().getTime()+".jpg"
-            a.href = $(this).attr('src')
-            a.click()
-        })
-
         //文字识别
         const getText = ()=>{
             if(!lowestArr.length){
@@ -1056,12 +1015,12 @@
                 return
             }
             let t = ctx.getImageData(item[0], item[1], item[2] - item[0], item[3] - item[1])
-            let c = document.createElement("canvas")
+            let c = document.createElement('canvas')
             c.width = t.width < 15 ? 15 : t.width
             c.height = t.height < 15 ? 15 : t.height
-            c.getContext("2d").putImageData(t, 0, 0)
-            let src = c.toDataURL("image/jpeg")
-            let tempBase64 = src.replace(/^data:image\/\w+;base64,/, "")
+            c.getContext('2d').putImageData(t, 0, 0)
+            let src = c.toDataURL('image/jpeg')
+            let tempBase64 = src.replace(/^data:image\/\w+;base64,/, '')
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -1072,7 +1031,7 @@
                 success: (data, ts, jqXHR)=>{
                     console.log('识别文字成功', data)
                     if (data.words_result_num) {
-                        let s = ""
+                        let s = ''
                         for (let i = 0; i < data.words_result_num; i++) {
                             s += data.words_result[i].words
                         }
@@ -1106,17 +1065,6 @@
             d = JSON.parse(copyD)
         }
 
-        //生成时是否识别文字
-        $("#recognize").click(function(){
-            if($(this).hasClass("selected")){
-                $(this).removeClass("selected")
-                recognize = false
-            }else{
-                $(this).addClass("selected")
-                recognize = true
-            }
-        })
-
         //输出到界面看看长什么样
         const render = ()=>{
             rd.html(rt.html())
@@ -1124,31 +1072,31 @@
 
         //格式化html
         const format = ()=>{
-            rt.find("*").removeAttr("id").removeAttr("style")
-            let ssArr = rt.html().replace(/></g,">\n<").split("\n")
+            rt.find('*').removeAttr('id').removeAttr('style')
+            let ssArr = rt.html().replace(/></g,'>\n<').split('\n')
             let curP = 0
             for(let i=1;i<ssArr.length;i++){
-                if(ssArr[i-1].indexOf("</")==-1 && ssArr[i-1].indexOf("<input")==-1 && ssArr[i-1].indexOf("<img")==-1){
+                if(ssArr[i-1].indexOf('</')==-1 && ssArr[i-1].indexOf('<input')==-1 && ssArr[i-1].indexOf('<img')==-1){
                     curP++
                 }
-                if(ssArr[i].indexOf("</")==0){
+                if(ssArr[i].indexOf('</')==0){
                     curP--
                 }
                 for(let j=0;j<curP;j++){
-                    ssArr[i] = "    "+ssArr[i]
+                    ssArr[i] = '    '+ssArr[i]
                 }
             }
-            $("#code").val(ssArr.join("\n"))
+            $('#code').val(ssArr.join('\n'))
         }
 
         //不同标签名文字输入到哪
         const putText = s=>{
             let tag = d[lowestArr[cIndex]][4]
-            let a = $("#a" + lowestArr[cIndex])
-            if (["text", "pass", "area"].indexOf(tag) != -1) {
-                a.attr("placeholder", s)
-            } else if (["submit"].indexOf(tag) != -1) {
-                a.attr("value", s)
+            let a = $('#a' + lowestArr[cIndex])
+            if (['text', 'pass', 'area'].indexOf(tag) != -1) {
+                a.attr('placeholder', s)
+            } else if (['submit'].indexOf(tag) != -1) {
+                a.attr('value', s)
             } else {
                 a.text(s)
             }
@@ -1158,13 +1106,13 @@
         const setZIndex = ()=>{
             setParents()
             for (let i = 0; i < d.length; i++) {
-                rectList.children(".one").eq(d[i][6]).css("z-index",d[i][7].length)
+                rectList.children('.one').eq(d[i][6]).css('z-index',d[i][7].length)
             }
         }
 
         //把手写的类储存到d数组里
-        function setClass(){
-            $(".one").each(function(){
+        const setClass = ()=>{
+            $('.one').each(function(){
                 let i = $(this).index()
                 d[i][5] = d[i][5].replace(/class='.*?'/,"class='"+$(this).text()+"'")
             })
@@ -1172,7 +1120,7 @@
         }
 
         //将对象拼接成css字符串
-        function obj2css(obj){
+        const obj2css = obj=>{
             let x
             let s = ''
             for (x in obj){
@@ -1185,20 +1133,20 @@
 
         //撤销
         const back = ()=>{
-            if(!opC.hasClass("show")){
+            if(!opC.hasClass('show')){
                 if (d.length) {
                     backArr.push(d.pop())
                     copyD = JSON.stringify(d)
-                    $(".one").last().remove()
+                    $('.one').last().remove()
                 }
             }else{
-                $(".one-c").last().remove()
+                $('.one-c').last().remove()
             }
         }
 
         //反撤销
         const unBack = ()=>{
-            if(!opC.hasClass("show")){
+            if(!opC.hasClass('show')){
                 if (backArr.length) {
                     let u = backArr.pop()
                     d.push(u)
@@ -1206,7 +1154,7 @@
                     curEle = $("<div class='one'></div>")
                     rectList.append(curEle)
                     setEle(u[0], u[1], u[2], u[3])
-                    curEle.addClass("ani").text(u[5].match(/class='(.*?)'/)[1])
+                    curEle.addClass('ani').text(u[5].match(/class='(.*?)'/)[1])
                     setZIndex()
                 }
             }
@@ -1225,13 +1173,39 @@
                 unBack()
             }
         }
-        $("#back").click(back)
-        $("#unBack").click(unBack)
+
+        //设计图加载完后执行此函数
+        const begin = ()=>{
+            cv.width = img.width + 20
+            cv.height = img.height + 70
+            ctx.drawImage(img, 10, 60, img.width, img.height)
+        }
+
+        //撤销(ctrl+Z)
+        $('#back').click(back)
+
+        //反撤销(ctrl+Y)
+        $('#unBack').click(unBack)
+
+        //设置类名前缀
+        $('#pre').on('input',function(){
+            pre = $(this).val()
+            curV = $('.btn.active').attr('v').replace('$',pre)
+        })
+
+        //点击缩
+        $('#shr').click(()=>{
+            setParents()
+            setMaxLevel()
+            setLowestArr()
+            shrink()
+            copyD = JSON.stringify(d)
+        })
 
         //点击生成
-        $("#cal").click(function(){
-            $("#code").val("生成中…")
-            $("#pop").addClass("show")
+        $('#cal').click(function(){
+            $('#code').val('生成中…')
+            $('#pop').addClass('show')
             setClass()
             sortD()
             setParents()
@@ -1246,94 +1220,106 @@
             }
         })
 
+        //生成时是否识别文字
+        $('#recognize').click(function(){
+            if($(this).hasClass('selected')){
+                $(this).removeClass('selected')
+                recognize = false
+            }else{
+                $(this).addClass('selected')
+                recognize = true
+            }
+        })
+
+        //点击下载图片
+        $('#imgs').on('click','img',function(){
+            let a = document.createElement('a')
+            let ev = document.createEvent('HTMLEvents')
+            ev.initEvent('click', true, true)
+            a.download = new Date().getTime()+'.jpg'
+            a.href = $(this).attr('src')
+            a.click()
+        })
+
+        //点击测量最内层之间的距离，暂时用不到
+        $('#measure').click(function(){
+            setParents()
+            setMaxLevel()
+            setLowestArr()
+            shrink()
+            measure()
+        })
+
         //关闭生成的弹窗
-        $("#close").click(function(){
-            $("#pop").removeClass("show")
+        $('#close').click(function(){
+            $('#pop').removeClass('show')
         })
 
         //点击写类
-        $("#writeC").click(function(){
+        $('#writeC').click(function(){
             setZIndex()
-            $(this).addClass("active").siblings().removeClass("active")
-            $("#opce").removeClass("show")
-            $("body").removeClass("write-css").addClass("write-class")
+            $(this).addClass('active').siblings().removeClass('active')
+            $('#opce').removeClass('show')
+            $('body').removeClass('write-css').addClass('write-class')
         })
 
         //点击写css
-        $("#writeCss").click(function(){
-            $(this).addClass("active").siblings().removeClass("active")
-            $("body").removeClass("write-class").addClass("write-css")
+        $('#writeCss').click(function(){
+            $(this).addClass('active').siblings().removeClass('active')
+            $('body').removeClass('write-class').addClass('write-css')
         })
 
         //打开css弹窗
-        rectList.on("click",".one",function(){
-            if($("body").hasClass("write-css")){
+        rectList.on('click','.one',function(){
+            if($('body').hasClass('write-css')){
                 let i = $(this).index()
-                $("#cssName").text($(this).text())
+                $('#cssName').text($(this).text())
                 let b = d[i][8] || {}
-                $(".css-t").each(function(){
-                    let attr = $(this).attr("id")
-                    if(b[attr]){
-                        $(this).val(b[attr])
-                    }else if(attr=="background-image"){
-                        $(this).val('url(../images/)')
-                    }else if(attr=="transform"){
-                        $(this).val('translate()')
-                    }else if(attr=="color"){
-                        $(this).val('#')
-                    }else if(attr=="background-color"){
-                        $(this).val('#')
-                    }else if(attr=="border-top"){
-                        $(this).val('1px solid #')
-                    }else if(attr=="border-right"){
-                        $(this).val('1px solid #')
-                    }else if(attr=="border-bottom"){
-                        $(this).val('1px solid #')
-                    }else if(attr=="border-left"){
-                        $(this).val('1px solid #')
-                    }else if(attr=="border"){
-                        $(this).val('1px solid #')
-                    }else if(attr=="margin"){
-                        $(this).val('0 autoo')
-                    }else if(attr=="width"){
-                        $(this).val('100%%')
-                    }else if(attr=="border-radius"){
-                        $(this).val('50%%')
-                    }else if(attr=="transition"){
-                        $(this).val('all .3ss')
-                    }else if(attr=="background-size"){
-                        $(this).val('coverr')
-                    }else if(attr=="line-height"){
-                        $(this).val('1.')
-                    }else{
-                        $(this).val('')
-                    }
+                $('.css-t').each(function(){
+                    let attr = $(this).attr('id')
+                    $(this).val(b[attr] || cssObj[attr] || '')
                 })
-                $("#cssWrite").addClass("show").attr("dIndex",i)
+                $('#cssWrite').addClass('show').attr('dIndex',i)
             }
         })
 
         //关闭css弹窗
-        $("#cssMask").click(function(){
+        $('#cssMask').click(function(){
             var b = {}
-            $(".css-t").each(function(){
-                let attr = $(this).attr("id")
+            $('.css-t').each(function(){
+                let attr = $(this).attr('id')
                 let v = $(this).val()
                 if(v){
                     b[attr] = v
                 }
-                if(['url(../images/)','translate()','#','all .3ss','1px solid #','0 autoo','100%%','50%%','coverr','1.'].indexOf(v) !=-1){
+                if(cssObjV.indexOf(v) !=-1){
                     b[attr] = ''
                 }
             })
-            let c = $("#cssWrite")
-            let i = c.attr("dIndex")
-            if(JSON.stringify(b) != "{}"){
+            let c = $('#cssWrite')
+            let i = c.attr('dIndex')
+            if(JSON.stringify(b) != '{}'){
                 d[i][8] = b
             }else{
                 d[i][8] = ''
             }
-            c.removeClass("show")
+            c.removeClass('show')
+        })
+
+        //点击测量
+        $('#ce').click(function(){
+            $(this).addClass('active').siblings().removeClass('active')
+            $('#opce').addClass('show')
+            $('body').removeClass('write-class write-css')
+        })
+
+        //切换标签
+        $('.btn').click(function(){
+            $(this).addClass('active').siblings().removeClass('active')
+            curTag = $(this).text()
+            curV = $(this).attr('v').replace('$',pre)
+            $('#opce').removeClass('show')
+            $('body').removeClass('write-class write-css')
         })
 
         //等待设计图加载完
