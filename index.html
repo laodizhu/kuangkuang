@@ -97,9 +97,9 @@
                     text-align:
                     <select class="css-t" id="text-align">
                         <option value=""></option>
-                        <option value="left">left</option>
                         <option value="center">center</option>
                         <option value="right">right</option>
+                        <option value="left">left</option>
                         <option value="justify">justify</option>
                     </select>
                 </div>
@@ -140,7 +140,7 @@
                     <select class="css-t" id="vertical-align">
                         <option value=""></option>
                         <option value="top">top</option>
-                        <option value="middle<">middle</option>
+                        <option value="middle">middle</option>
                         <option value="bottom">bottom</option>
                     </select>
                 </div>
@@ -271,17 +271,17 @@
     #op{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 10;cursor: crosshair;user-select: none;}
     #opce{display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 100;cursor: crosshair;user-select: none;}
     #opce.show{display: block;}
-    #bar{display: flex;width: 100%;position: fixed;left: 0;top: 0;background-color: rgba(0,0,0,0.5);z-index: 10;font-size: 0;}
+    #bar{display: flex;width: 100%;position: fixed;left: 0;top: 0;background-color: #222;z-index: 10;font-size: 0;}
     #main{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;font-size: 0;overflow: auto;}
     #mainBox{width: auto;position: relative;display: inline-block;vertical-align: top;}
     #img{max-width: none;opacity: 0;position: absolute;left: 0;top: 0;z-index: 0;}
     .btn,
-    .opr{flex: 1;line-height: 50px;padding: 0 .2em;font-size: 1.1vw;color: #fff;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;}
+    .opr{flex: 1;line-height: 50px;padding: 0 .2em;font-size: 1.1vw;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;}
     .btn:hover,
     .opr:hover,
     .opr.active,
     .btn.active,
-    .opr.selected{background-color: #222;}
+    .opr.selected{background-color: #555;color: #eee;}
     input.opr{width: auto;min-width: 0;background-color: transparent;border: none;}
     .one{position: absolute;box-sizing: border-box;border: 1px solid #f00;user-modify: read-write;-webkit-user-modify: read-write;font-size: 18px;color: #f00;cursor: text;line-height: 22px;padding: 1px 3px;outline: none;}
     .one.ani{transition: all .3s;}
@@ -321,7 +321,7 @@
     #cssMask{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.5);z-index: 1;cursor: pointer;}
     .css-box{width: 1100px;height: 760px;margin-left: -550px;margin-top: -380px;background-color: #222;position: absolute;left: 50%;top: 50%;padding: 10px;z-index: 10;}
     .css-one{font-size: 16px;color: #ddd;}
-    #cssName{font-size: 23px;line-height: 42px;color: #f00;text-align: center;position: absolute;right: 100%;top: 0;white-space: nowrap;background-color: #222;padding: 0 15px;}
+    #cssName{font-size: 16px;line-height: 42px;color: #ddd;text-align: center;position: absolute;right: 100%;top: 0;white-space: nowrap;background-color: #222;padding: 0 15px;}
     .css-t{width: 200px;height: 42px;border: none;background-color: #222;font-size: 16px;color: #ddd;padding: 0 5px;margin-left: 5px;outline: none;}
     .css-left{position: absolute;left: 0;top: 50%;transform: translate(0,-50%);text-align: left;}
     .css-right{position: absolute;right: 0;top: 50%;transform: translate(0,-50%);text-align: left;}
@@ -353,7 +353,7 @@
             }
             return ''
         }
-        var imgName = decodeURI(getUrlPara('name'))
+        const imgName = decodeURI(getUrlPara('name'))
         if (imgName){
             $('#img').attr('src','./images/'+imgName+'.'+getUrlPara('type'))
             $('title').text(imgName)
@@ -389,7 +389,8 @@
             'border-radius': '50%%',
             'transition': 'all .3ss',
             'background-size': 'coverr',
-            'line-height': '1.'
+            'line-height': '1.',
+            'opacity': '0.'
         }
         const cssObjV = Object.values(cssObj)
         let maxLevel = 0
@@ -701,19 +702,30 @@
             }
         }
 
-        //获取所有类名放到textarea里
+        //获取所有类名加样式放到textarea里
         const getAllClass = ()=>{
             let all = rt.find('*')
-            let classArr = []
+            let ob = {}
             for(let i=0;i<all.length;i++){
                 let item = all.eq(i)
-                let ar = item.attr('class').split(' ')
-                for(let j=0;j<ar.length;j++){
-                    classArr.push('.'+ar[j]+'{'+item.attr('style')+'}')
+                let name = item.attr('class')
+                if(name){
+                    let c = item.attr('class').split(' ')[0]
+                    let s = item.attr('style')
+                    if(ob[c]){
+                        ob[c] += s
+                    }else{
+                        ob[c] = s
+                    }
                 }
             }
-            classArr = Array.from(new Set(classArr))
-            $('#css').val(classArr.join('\n'))
+            let ray = []
+            for(let key  in ob){
+                let arr = ob[key].split(';')
+                arr = Array.from(new Set(arr))
+                ray.push('.'+key+'{'+arr.join(';')+'}')
+            }
+            $('#css').val(ray.join('\n'))
         }
 
         //缩
@@ -1037,11 +1049,10 @@
                         }
                         putText(s)
                     }
+                    nextText()
                 },
                 error: (xhr, ts, errorThrown)=>{
                     console.log('识别文字失败', xhr)
-                },
-                complete: (xhr, ts)=>{
                     nextText()
                 }
             })
@@ -1114,7 +1125,7 @@
         const setClass = ()=>{
             $('.one').each(function(){
                 let i = $(this).index()
-                d[i][5] = d[i][5].replace(/class='.*?'/,"class='"+$(this).text()+"'")
+                d[i][5] = d[i][5].replace(/class='.*?'/,"class='"+$(this).text().replace(/\s+/g,' ')+"'")
             })
             copyD = JSON.stringify(d)
         }
