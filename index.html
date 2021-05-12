@@ -21,14 +21,16 @@
     <div id="bar">
         <a class="opr" id="back" title="撤销">Z</a>
         <a class="opr" id="unBack" title="反撤销">Y</a>
-        <a class="opr" id="recognize" title="生成时识别文字">T</a>
-        <a class="opr" id="cal">生成</a>
-        <a class="opr" id="shr">缩</a>
+        <a class="opr" id="recognize" title="查看html时识别文字">T</a>
+        <!-- <a class="opr" id="cal">生成</a> -->
+        <a class="opr" id="html" title="查看html">&lt;/&gt;</a>
+        <a class="opr" id="style" title="查看css">{…}</a>
+        <!-- <a class="opr" id="shr">缩</a> -->
         <!-- <a class="opr" id="measure">量最里层</a> -->
-        <a class="opr" id="ce">测量</a>
-        <a class="opr" id="writeCss">写css</a>
-        <a class="opr" id="writeC">写类</a>
-        <input type="text" class="opr" id="pre" title="前缀" value="$" />
+        <a class="opr" id="writeCss" title="编辑css">css</a>
+        <a class="opr" id="writeC" title="编辑类名">class</a>
+        <a class="opr" id="ce" title="测量">M</a>
+        <input type="text" class="opr" id="pre" title="设置前缀" value="$" />
         <a class="btn active" v="<div class='$-'></div>">div</a>
         <a class="btn" v="<a class='$-' title=''></a>">a</a>
         <a class="btn" v="<img class='$-img' src='images/' alt='' />">img</a>
@@ -56,10 +58,16 @@
     <div id="result"></div>
     <div id="pop">
         <div id="render"></div>
-        <textarea id="code"></textarea>
-        <textarea id="css"></textarea>
         <div id="imgs"></div>
         <a id="close" title="关闭">✕</a>
+    </div>
+    <div id="codePop">
+        <div id="codeM"></div>
+        <textarea id="code"></textarea>
+    </div>
+    <div id="cssPop">
+        <div id="cssM"></div>
+        <textarea id="css"></textarea>
     </div>
     <div id="cssWrite">
         <div id="cssMask"></div>
@@ -255,8 +263,6 @@
     #pop{width: 100%;height: 100%;position: fixed;left: -200%;top: 0;z-index: 123456;background-color: rgba(0,0,0,0.5);opacity: 1;transition: opacity .3s;}
     #pop.show{left: 0;opacity: 1;}
     #render{width: 100%;height: 40vh;background-color: #fff;;position: absolute;left: 0;top: 0;overflow: auto;}
-    #code{width: 35%;height: 60%;position: absolute;left: 0;bottom: 0;border: none;background-color: #222;font-size: 1vw;color: #fff;line-height: 1.5;padding: 2em;outline: none;}
-    #css{width: 35%;height: 60%;position: absolute;left: 35%;bottom: 0;border: none;background-color: #333;font-size: 1vw;color: #fff;line-height: 1.5;padding: 2em;outline: none;}
     #imgs{width: 30%;height: 60%;font-size: 0;position: absolute;left: 70%;bottom: 0;border: none;background-color: #222;font-size: 1vw;padding: 2em;outline: none;overflow: auto;}
     #imgs img{cursor: pointer;max-width: 48%;margin-right: 2%;margin-bottom: 2%;vertical-align: top;}
     #close{display: block;width: 4vw;height: 4vw;line-height: 4vw;font-size: 3vw;color: #666;text-align: center;position: absolute;right: 0;top: 0;cursor: pointer;user-select: none;}
@@ -320,18 +326,30 @@
     #cssWrite.show{opacity: 1;left: 0;}
     #cssMask{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.5);z-index: 1;cursor: pointer;}
     .css-box{width: 1100px;height: 760px;margin-left: -550px;margin-top: -380px;background-color: #222;position: absolute;left: 50%;top: 50%;padding: 10px;z-index: 10;}
-    .css-one{font-size: 16px;color: #ddd;}
+    .css-one{font-size: 16px;color: #ddd;padding-left: 10px;}
+    .css-one.black{background-color: #111;}
+    .css-one.black .css-t{background-color: #111;}
     #cssName{font-size: 16px;line-height: 42px;color: #ddd;text-align: center;position: absolute;right: 100%;top: 0;white-space: nowrap;background-color: #222;padding: 0 15px;}
     .css-t{width: 200px;height: 42px;border: none;background-color: #222;font-size: 16px;color: #ddd;padding: 0 5px;margin-left: 5px;outline: none;}
-    .css-left{position: absolute;left: 10px;top: 50%;transform: translate(0,-50%);text-align: left;}
-    .css-right{position: absolute;right: 10px;top: 50%;transform: translate(0,-50%);text-align: left;}
-    .css-top{position: absolute;left: 50%;top: 10px;transform: translate(-50%,0);text-align: left;}
-    .css-bottom{position: absolute;left: 50%;bottom: 10px;transform: translate(-50%,0);text-align: left;}
+    .css-left{position: absolute;left: 0;top: 50%;transform: translate(0,-50%);text-align: left;}
+    .css-right{position: absolute;right: 0;top: 50%;transform: translate(0,-50%);text-align: left;}
+    .css-top{position: absolute;left: 50%;top: 0;transform: translate(-50%,0);text-align: left;}
+    .css-bottom{position: absolute;left: 50%;bottom: 0;transform: translate(-50%,0);text-align: left;}
     .css-center{position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);text-align: left;}
-    .css-left-top{position: absolute;left: 10px;top: 10px;text-align: left;}
-    .css-right-top{position: absolute;right: 10px;top: 10px;text-align: left;}
-    .css-left-bottom{position: absolute;left: 10px;bottom: 10px;text-align: left;}
-    .css-right-bottom{position: absolute;right: 10px;bottom: 10px;text-align: left;}
+    .css-left-top{position: absolute;left: 0;top: 0;text-align: left;}
+    .css-right-top{position: absolute;right: 0;top: 0;text-align: left;}
+    .css-left-bottom{position: absolute;left: 0;bottom: 0;text-align: left;}
+    .css-right-bottom{position: absolute;right: 0;bottom: 0;text-align: left;}
+
+    #cssPop{width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
+    #cssPop.show{opacity: 1;left: 0;}
+    #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.5);z-index: 1;cursor: pointer;}
+    #css{width: 1100px;height: 760px;position: absolute;left: 50%;top: 50%;margin-left: -550px;margin-top: -380px;z-index: 2;border: none;background-color: #333;font-size: 1vw;color: #fff;line-height: 1.5;padding: 2em;outline: none;}
+
+    #codePop{width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
+    #codePop.show{opacity: 1;left: 0;}
+    #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.5);z-index: 1;cursor: pointer;}
+    #code{width: 1100px;height: 760px;position: absolute;left: 50%;top: 50%;margin-left: -550px;margin-top: -380px;z-index: 2;border: none;background-color: #222;font-size: 1vw;color: #fff;line-height: 1.5;padding: 2em;outline: none;}
 </style>
 <script>
     /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
@@ -684,7 +702,6 @@
                     }
                 }
             }
-            getAllClass()
         }
 
         //给div加类名，暂时用不到
@@ -1018,9 +1035,11 @@
 
         //文字识别
         const getText = ()=>{
+            console.log(1)
             if(!lowestArr.length){
                 return
             }
+            console.log(2)
             let item = d[lowestArr[cIndex]]
             if (['img', 'radio', 'checkbox', 'video'].indexOf(item[4]) != -1) {
                 nextText()
@@ -1033,6 +1052,7 @@
             c.getContext('2d').putImageData(t, 0, 0)
             let src = c.toDataURL('image/jpeg')
             let tempBase64 = src.replace(/^data:image\/\w+;base64,/, '')
+            console.log(3)
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -1097,7 +1117,23 @@
                     ssArr[i] = '    '+ssArr[i]
                 }
             }
-            $('#code').val(ssArr.join('\n'))
+            let s = ''
+            console.log(ssArr)
+            for(let i=0;i<ssArr.length;i++){
+                let ln = ssArr[i].length-1
+                let t = ''
+                if(ssArr[i+1]){
+                    t = ssArr[i+1].trim()
+                }
+                console.log(333,ssArr[i].charAt(ln))
+                if(t.indexOf('</')==0 && ssArr[i].charAt(ln)=='>' && ssArr[i].indexOf('</')==-1 && ssArr[i].indexOf('<input')==-1 && ssArr[i].indexOf('<img')==-1){
+                    s += ssArr[i]+t+'\n'
+                    i++
+                }else{
+                    s += ssArr[i]+'\n'
+                }
+            }
+            $('#code').val(s)
         }
 
         //不同标签名文字输入到哪
@@ -1115,7 +1151,9 @@
 
         //设置每个框框的z-index
         const setZIndex = ()=>{
+            console.log(0)
             setParents()
+            console.log(123)
             for (let i = 0; i < d.length; i++) {
                 rectList.children('.one').eq(d[i][6]).css('z-index',d[i][7].length)
             }
@@ -1231,6 +1269,44 @@
             }
         })
 
+        //查看html
+        $('#html').click(function(){
+            $('#codePop').addClass('show')
+            setClass()
+            sortD()
+            setParents()
+            setMaxLevel()
+            createHtml()
+            setLowestArr()
+            if(recognize){
+                getText()
+            }else{
+                finish()
+            }
+        })
+
+        //关闭html弹窗
+        $("#codeM").click(function(){
+            $('#codePop').removeClass('show')
+        })
+
+        //查看css
+        $('#style').click(function(){
+            $('#cssPop').addClass('show')
+            setClass()
+            sortD()
+            setParents()
+            setMaxLevel()
+            createHtml()
+            getAllClass()
+            d = JSON.parse(copyD)
+        })
+
+        //关闭html弹窗
+        $("#cssM").click(function(){
+            $('#cssPop').removeClass('show')
+        })
+
         //生成时是否识别文字
         $('#recognize').click(function(){
             if($(this).hasClass('selected')){
@@ -1276,6 +1352,7 @@
 
         //点击写css
         $('#writeCss').click(function(){
+            setZIndex()
             $(this).addClass('active').siblings().removeClass('active')
             $('body').removeClass('write-class').addClass('write-css')
         })
@@ -1289,6 +1366,11 @@
                 $('.css-t').each(function(){
                     let attr = $(this).attr('id')
                     $(this).val(b[attr] || cssObj[attr] || '')
+                    if(b[attr]){
+                        $(this).parents('.css-one').addClass("black")
+                    }else{
+                        $(this).parents('.css-one').removeClass("black")
+                    }
                 })
                 $('#cssWrite').addClass('show').attr('dIndex',i)
             }
@@ -1296,6 +1378,11 @@
 
         //关闭css弹窗
         $('#cssMask').click(function(){
+            $('#cssWrite').removeClass('show')
+        })
+
+        //将当前弹窗的css放到当前的对象里
+        function setCss(){
             var b = {}
             $('.css-t').each(function(){
                 let attr = $(this).attr('id')
@@ -1306,16 +1393,30 @@
                 if(cssObjV.indexOf(v) !=-1){
                     b[attr] = ''
                 }
+                if(b[attr]){
+                    $(this).parents('.css-one').addClass("black")
+                }else{
+                    $(this).parents('.css-one').removeClass("black")
+                }
             })
-            let c = $('#cssWrite')
-            let i = c.attr('dIndex')
+            let i = $('#cssWrite').attr('dIndex')
             if(JSON.stringify(b) != '{}'){
                 d[i][8] = b
             }else{
                 d[i][8] = ''
             }
-            c.removeClass('show')
+        }
+
+        //改变input的css时
+        $('input.css-t').on('input',function(){
+            setCss()
         })
+
+        //改变select的css时
+        $('select.css-t').on('change',function(){
+            setCss()
+        })
+
 
         //点击测量
         $('#ce').click(function(){
