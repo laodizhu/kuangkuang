@@ -30,7 +30,7 @@
         <a class="opr" id="writeCss" title="编辑css">css</a>
         <a class="opr" id="writeC" title="编辑类名">class</a>
         <a class="opr" id="ce" title="测量">M</a>
-        <input type="text" class="opr" id="pre" title="设置前缀" value="$" />
+        <input type="text" class="opr" id="pre" title="设置前缀" placeholder="$" value="" />
         <a class="btn active" v="<div class='$-'></div>">div</a>
         <a class="btn" v="<a class='$-' title=''></a>">a</a>
         <a class="btn" v="<img class='$-img' src='images/' alt='' />">img</a>
@@ -415,7 +415,7 @@
         let lowestArr = []
         let curTag = $('.btn.active').text()
         let pre = $('#pre').val()
-        let curV = $('.btn.active').attr('v').replace('$',pre)
+        let curV = $('.btn.active').attr('v').replace(pre?'$':'$-',pre)
         let bool = false,x0, y0, x1, y1, curL, curT, curW, curH, opWidth, opHeight,curEle = null
         let boolC = false,xC0, yC0, xC1, yC1, curCL, curCT, curCW, curCH, opCWidth, opCHeight,curEleC = null
         let d = []
@@ -1239,7 +1239,7 @@
         //设置类名前缀
         $('#pre').on('input',function(){
             pre = $(this).val()
-            curV = $('.btn.active').attr('v').replace('$',pre)
+            curV = $('.btn.active').attr('v').replace(pre?'$':'$-',pre)
         })
 
         //点击缩
@@ -1429,7 +1429,7 @@
         $('.btn').click(function(){
             $(this).addClass('active').siblings().removeClass('active')
             curTag = $(this).text()
-            curV = $(this).attr('v').replace('$',pre)
+            curV = $(this).attr('v').replace(pre?'$':'$-',pre)
             $('#opce').removeClass('show')
             $('body').removeClass('write-class write-css')
         })
