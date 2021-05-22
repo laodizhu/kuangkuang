@@ -12,7 +12,6 @@
             <img id="img" src="" alt="" />
             <canvas id="cv"></canvas>
             <div id="rectList"></div>
-            <div id="measureList"></div>
             <div id="rectListC"></div>
             <div id="op"></div>
             <div id="opCe"></div>
@@ -24,11 +23,7 @@
         <a class="opr" id="back" title="撤销">Z</a>
         <a class="opr" id="unBack" title="反撤销">Y</a>
         <a class="opr" id="recognize" title="查看html时识别文字">T</a>
-        <!-- <a class="opr" id="cal">生成</a> -->
-        <a class="opr" id="html" title="查看html">&lt;/&gt;</a>
-        <a class="opr" id="style" title="查看css">{…}</a>
-        <!-- <a class="opr" id="shr">缩</a> -->
-        <!-- <a class="opr" id="measure">量最里层</a> -->
+        <a class="opr" id="html" title="查看html和css">&lt;/&gt;</a>
         <a class="opr" id="writeCss" title="编辑css">css</a>
         <a class="opr" id="writeC" title="编辑类名">class</a>
         <a class="opr" id="ce" title="测量">M</a>
@@ -61,20 +56,17 @@
     </div>
     <input type="file" id="file" />
     <div id="result"></div>
-    <div id="pop">
-        <div id="render"></div>
-        <div id="imgs"></div>
-        <a id="close" title="关闭">✕</a>
-    </div>
+
     <div id="codePop">
         <div id="codeM"></div>
-        <textarea id="code"></textarea>
-        <a id="copyCode">复制</a>
-    </div>
-    <div id="cssPop">
-        <div id="cssM"></div>
-        <textarea id="css"></textarea>
-        <a id="copyCss">复制</a>
+        <div id="codeBox">
+            <textarea id="code"></textarea>
+            <a id="copyCode">复制</a>
+        </div>
+        <div id="cssBox">
+            <textarea id="css"></textarea>
+            <a id="copyCss">复制</a>
+        </div>
     </div>
     <div id="colorPop">
         <div id="colorM"></div>
@@ -83,7 +75,6 @@
             <div class="color-row"><a id="copy16">复制</a><textarea id="color16"></textarea></div>
             <div class="color-row"><a id="copyRGBA">复制</a><textarea id="colorRGBA"></textarea></div>
         </div>
-        
     </div>
     <div id="cssWrite">
         <div id="cssMask"></div>
@@ -277,20 +268,11 @@
     body{color: #000;font-family: Arial,Microsoft Yahei;}
     body *{box-sizing: border-box;line-height: 1;}
 
-    #pop{width: 100%;height: 100%;position: fixed;left: -200%;top: 0;z-index: 123456;background-color: rgba(0,0,0,0.5);opacity: 1;transition: opacity .3s;}
-    #pop.show{left: 0;opacity: 1;}
-    #render{width: 100%;height: 40vh;background-color: #fff;;position: absolute;left: 0;top: 0;overflow: auto;}
-    #imgs{width: 30%;height: 60%;font-size: 0;position: absolute;left: 70%;bottom: 0;border: none;background-color: #222;font-size: 1vw;padding: 2em;outline: none;overflow: auto;}
-    #imgs img{cursor: pointer;max-width: 48%;margin-right: 2%;margin-bottom: 2%;vertical-align: top;}
-    #close{display: block;width: 4vw;height: 4vw;line-height: 4vw;font-size: 3vw;color: #666;text-align: center;position: absolute;right: 0;top: 0;cursor: pointer;user-select: none;}
-    #close:hover{color: #000;}
     #result{display: none;}
 
     #cv{position: relative;z-index: 1;}
     #rectList{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 8;user-select: none;}
     #rectListC{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;user-select: none;}
-    #measureList{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;cursor: crosshair;user-select: none;}
-    #lineList{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 9;cursor: crosshair;user-select: none;}
     #op{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 10;cursor: crosshair;user-select: none;}
     #opCe{display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 100;cursor: crosshair;user-select: none;}
     #opCe.show{display: block;}
@@ -301,7 +283,7 @@
     #mainBox{width: auto;position: relative;display: inline-block;vertical-align: top;}
     #img{max-width: none;opacity: 0;position: absolute;left: 0;top: 0;z-index: 0;}
     .btn,
-    .opr{flex: 1;line-height: 50px;padding: 0 .2em;font-size: 1.1vw;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;}
+    .opr{flex: 1;line-height: 50px;padding: 0 .2em;font-size: 1vw;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;}
     .btn:hover,
     .opr:hover,
     .opr.active,
@@ -312,17 +294,6 @@
     .one.ani{transition: all .3s;}
     .one .w{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 50%;top: 0;transform: translate(-50%,0);}
     .one .h{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 0;top: 50%;transform: translate(0,-50%);}
-    .xline{height: 1px;background-color: #000;position: absolute;}
-    .xline:before,
-    .xline:after{content: "";display: block;width: 1px;height: 7px;background-color: #000;position: absolute;left: 0;top: -3px;}
-    .xline:after{left: auto;right: 0;}
-    .yline{width: 1px;background-color: #000;position: absolute;}
-    .yline:before,
-    .yline:after{content: "";display: block;width: 7px;height: 1px;background-color: #000;position: absolute;left: -3px;top: 0;}
-    .yline:after{top: auto;bottom: 0;}
-    .xline .w{font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 50%;top: 0;transform: translate(-50%,0);}
-    .yline .h{font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 0;top: 50%;transform: translate(0,-50%);}
-
     .one-c{position: absolute;box-sizing: border-box;}
     .one-c .w{font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 50%;top: 0;transform: translate(-50%,0);}
     .one-c .h{font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 0;top: 50%;transform: translate(0,-50%);}
@@ -337,9 +308,7 @@
     .one-c.bt{border-top: 1px solid #000;}
     .one-c.bl{border-left: 1px solid #000;}
 
-    body.write-class #rectList{z-index: 12345;}
-    body.write-css #rectList{z-index: 12345;}
-    body.write-css .one{user-modify: read-only;-webkit-user-modify: read-only;cursor: pointer;}
+    #rectList.show{z-index: 12345;}
 
     #cssWrite{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
     #cssWrite.show{opacity: 1;left: 0;}
@@ -361,17 +330,16 @@
     .css-left-bottom{position: absolute;left: 0;bottom: 0;text-align: left;}
     .css-right-bottom{position: absolute;right: 0;bottom: 0;text-align: left;}
 
-    #cssPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;left: -200%;opacity: 0;}
-    #cssPop.show{opacity: 1;left: 0;}
-    #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
-    #css{width: 1100px;height: 760px;position: absolute;left: 50%;top: 50%;margin-left: -550px;margin-top: -380px;z-index: 2;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
-    #copyCss{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 50%;margin-left: -550px;top: 50%;margin-top: -380px;z-index: 10;cursor: pointer;}
 
-    #codePop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;;z-index: 1234567;left: -200%;opacity: 0;}
+    #codePop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 987654321;left: -200%;opacity: 0;}
     #codePop.show{opacity: 1;left: 0;}
     #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
-    #code{width: 1100px;height: 760px;position: absolute;left: 50%;top: 50%;margin-left: -550px;margin-top: -380px;z-index: 2;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
-    #copyCode{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 50%;margin-left: -550px;top: 50%;margin-top: -380px;z-index: 10;cursor: pointer;}
+    #codeBox{width: 39%;height: 760px;position: absolute;left: 10%;top: 50%;margin-top: -380px;z-index: 2;}
+    #code{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
+    #copyCode{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;}
+    #cssBox{width: 39%;height: 760px;position: absolute;right: 10%;top: 50%;margin-top: -380px;z-index: 2;}
+    #css{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
+    #copyCss{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;}
 
     #colorPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;left: -200%;opacity: 0;}
     #colorPop.show{opacity: 1;left: 0;}
@@ -395,17 +363,13 @@
         //识别文字的文档网址：https://cloud.baidu.com/product/ocr/general
         const token = '24.151bcf35de9c105e5e40da52dbebbb97.2592000.1622794396.282335-23477754'
         const url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token
-        // const url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=' + token
         const cv = document.getElementById('cv')
         const ctx = cv.getContext('2d')
         const main = $('#main')[0]
         const rt = $('#result')
-        const rd = $('#render')
         const img = $('#img')[0]
         const rectList = $('#rectList')
         const rectListC = $('#rectListC')
-        const measureList = $('#measureList')
-        const imgs = $('#imgs')
         const op = $('#op')
         const opC = $('#opCe')
         const opColor = $('#opColor')
@@ -428,9 +392,9 @@
             'line-height': '1.',
             'opacity': '0.'
         }
+        const cssObjV = Object.values(cssObj)
         const cssColor = ['color','background-color','border','border-top','border-bottom','border-left','border-right']
         const cssDistance = ['left','top','right','bottom','margin','margin-left','margin-right','margin-top','margin-bottom','padding','padding-left','padding-right','padding-top','padding-bottom','width','height','line-height','font-size']
-        const cssObjV = Object.values(cssObj)
         let maxLevel = 0
         let lowestArr = []
         let curTag = $('.btn.active').text()
@@ -748,21 +712,6 @@
             }
         }
 
-        //给div加类名，暂时用不到
-        const classDiv = ()=>{
-            const lt = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-            let divs = rt.find('div')
-            for(let i=0;i<divs.length;i++){
-                let m = parseInt(i/26)
-                let n = i%26
-                let s = lt[n]
-                if(m){
-                    s = lt[m-1]+s
-                }
-                divs.eq(i).addClass(pre+'-'+s)
-            }
-        }
-
         //获取所有类名加样式放到textarea里
         const getAllClass = ()=>{
             let all = rt.find('*')
@@ -787,100 +736,6 @@
                 ray.push('.'+key+'{'+arr.join(';')+'}')
             }
             $('#css').val(ray.join('\n'))
-        }
-
-        //缩
-        const shrink = ()=>{
-            for(let k=0;k<lowestArr.length;k++){
-                let item = d[lowestArr[k]]
-                let dx = item[2] - item[0]
-                let dy = item[3] - item[1]
-                let td = ctx.getImageData(item[0], item[1], dx, dy)
-                let cd = td.data
-                let w = td.width
-                let h = td.height
-                let t=0,b=0,l=0,r=0
-                let n = cd.length - 1
-                let jd = 10
-                for(let j=1;j<dy;j++){
-                    let ddd = 0
-                    let ddn = 0
-                    for(let i=0;i<dx;i++){
-                        let p1 = 4*((j-1)*dx+i)
-                        let p2 = 4*(j*dx+i)
-                        let dc = Math.abs(cd[p2]-cd[p1]) + Math.abs(cd[p2+1]-cd[p1+1]) + Math.abs(cd[p2+3]-cd[p1+3])
-                        if(dc>0){
-                            ddd += dc
-                            ddn++
-                        }
-                    }
-                    if(ddn>0 && ddd/ddn>jd){
-                        t=j-1
-                        break
-                    }
-                }
-
-                for(let j=dy;j>0;j--){
-                    let ddd = 0
-                    let ddn = 0
-                    for(let i=0;i<dx;i++){
-                        let p1 = 4*((j-1)*dx+i)
-                        let p2 = 4*(j*dx+i)
-                        let dc = Math.abs(cd[p2]-cd[p1]) + Math.abs(cd[p2+1]-cd[p1+1]) + Math.abs(cd[p2+3]-cd[p1+3])
-                        if(dc>0){
-                            ddd += dc
-                            ddn++
-                        }
-                    }
-                    if(ddn>0 && ddd/ddn>jd){
-                        b=dy-j-1
-                        break
-                    }
-                }
-
-                for(let j=0;j<dx;j++){
-                    let ddd = 0
-                    let ddn = 0
-                    for(let i=0;i<dy;i++){
-                        let p1 = 4*(dx*i+j)
-                        let p2 = 4*(dx*i+j+1)
-                        let dc = Math.abs(cd[p2]-cd[p1]) + Math.abs(cd[p2+1]-cd[p1+1]) + Math.abs(cd[p2+3]-cd[p1+3])
-                        if(dc>0){
-                            ddd += dc
-                            ddn++
-                        }
-                    }
-                    if(ddn>0 && ddd/ddn>jd){
-                        l=j
-                        break
-                    }
-                }
-
-                for(let j=dx-1;j>0;j--){
-                    let ddd = 0
-                    let ddn = 0
-                    for(let i=0;i<dy;i++){
-                        let p1 = 4*(dx*i+j-1)
-                        let p2 = 4*(dx*i+j)
-                        let dc = Math.abs(cd[p2]-cd[p1]) + Math.abs(cd[p2+1]-cd[p1+1]) + Math.abs(cd[p2+3]-cd[p1+3])
-                        if(dc>0){
-                            ddd += dc
-                            ddn++
-                        }
-                    }
-                    if(ddn>0 && ddd/ddn>jd){
-                        r=dx-j-1
-                        break
-                    }
-                }
-
-                item[0] = item[0]+l
-                item[1] = item[1]+t
-                item[2] = item[2]-r
-                item[3] = item[3]-b
-                curEle = rectList.children('.one').eq(item[6])
-                setEle(item[0],item[1],item[2],item[3])
-            }
         }
 
         //扩
@@ -991,94 +846,6 @@
             }
         }
 
-        //测量最内层之间的距离，暂时用不到
-        const measure = ()=>{
-            measureList.html('')
-            for(let k=0;k<lowestArr.length;k++){
-                let u = d[lowestArr[k]]
-                let minx = Infinity
-                let minxI = null
-                let miny = Infinity
-                let minyI = null
-                for(let i=0;i<lowestArr.length;i++){
-                    let v = d[lowestArr[i]]
-                    if(v[0]>u[2] && v[1]<=u[3] && v[3]>=u[1]){
-                        let dx=v[0]-u[2]+1
-                        if(dx<minx){
-                            minx=dx
-                            minxI=i
-                        }
-                    }
-                    if(v[1]>u[3] && v[0]<=u[2] && v[2]>=u[0]){
-                        let dy=v[1]-u[3]+1
-                        if(dy<miny){
-                            miny=dy
-                            minyI=i
-                        }
-                    }
-                }
-                if(minxI!=null){
-                    let el = $("<div class='xline'><div class='w'></div></div>")
-                    measureList.append(el)
-                    el.css({
-                        left: u[2]-1,
-                        top: u[1],
-                        width: minx+1
-                    })
-                    el.find('.w').text(parseInt(minx+1))
-                }
-                if(minyI!=null){
-                    let el = $("<div class='yline'><div class='h'></div></div>")
-                    measureList.append(el)
-                    el.css({
-                        left: u[0],
-                        top: u[3]-1,
-                        height: miny+1
-                    })
-                    el.find('.h').text(parseInt(miny+1))
-                }
-            }
-        }
-
-        //生成框住的图
-        const createImg = ()=>{
-            imgs.html('')
-            for(let i=0;i<lowestArr.length;i++){
-                let item = d[lowestArr[i]]
-                if(item[4]=='img'){
-                    let w=item[2] - item[0] - 2
-                    w=w>0?w:0
-                    let h=item[3] - item[1] - 2
-                    h=h>0?h:0
-                    if(w && h){
-                        let t = ctx.getImageData(item[0]+1, item[1]+1, w, h)
-                        let c = document.createElement('canvas')
-                        c.width = t.width < 15 ? 15 : t.width
-                        c.height = t.height < 15 ? 15 : t.height
-                        c.getContext('2d').putImageData(t, 0, 0)
-                        let src = c.toDataURL('image/jpeg')
-                        let img = $("<img src='' />")
-                        let blob = base64ToBlob(src)
-                        img.attr('src',URL.createObjectURL(blob))
-                        imgs.append(img)
-                    }
-                }
-            }
-        }
-
-        //base64转blob
-        const base64ToBlob = code=>{
-            let parts = code.split(';base64,')
-            let contentType = parts[0].split(':')[1]
-            let raw = window.atob(parts[1])
-            let rawLength = raw.length
-            let uInt8Array = new Uint8Array(rawLength)
-            for (let i = 0; i < rawLength; ++i) {
-                uInt8Array[i] = raw.charCodeAt(i)
-            }
-            return new Blob([uInt8Array], {type: contentType})
-        }
-
         //文字识别
         const getText = ()=>{
             if(!lowestArr.length){
@@ -1133,15 +900,9 @@
 
         //文字识别完毕
         const finish = ()=>{
-            render()
             format()
             cIndex = 0
             d = JSON.parse(copyD)
-        }
-
-        //输出到界面看看长什么样
-        const render = ()=>{
-            rd.html(rt.html())
         }
 
         //格式化html
@@ -1269,10 +1030,9 @@
             ctx.drawImage(img, 10, 60, img.width, img.height)
         }
 
-        //关闭所有弹窗和状态
+        //关闭所有
         const closeAll = ()=>{
-            $("#codePop,#cssPop,#cssWrite,#colorPop,#opCe,#opColor").removeClass("show")
-            $('body').removeClass('write-class write-css')
+            $("#codePop,#cssWrite,#colorPop,#opCe,#opColor,#rectList").removeClass("show")
         }
 
         //将测量的距离设为当前的css属性值
@@ -1352,44 +1112,15 @@
             curV = $('.btn.active').attr('v').replace(pre?'$':'$-',pre)
         })
 
-        //点击缩
-        $('#shr').click(()=>{
-            closeAll()
-            setParents()
-            setMaxLevel()
-            setLowestArr()
-            shrink()
-            copyD = JSON.stringify(d)
-        })
-
-        //点击生成
-        $('#cal').click(function(){
-            closeAll()
-            $('#code').val('生成中…')
-            $('#pop').addClass('show')
-            setClass()
-            sortD()
-            setParents()
-            setMaxLevel()
-            createHtml()
-            setLowestArr()
-            createImg()
-            if(recognize){
-                getText()
-            }else{
-                finish()
-            }
-        })
-
-        //查看html
+        //查看html和css，让这个弹窗层级最高，打开时不要关闭其它
         $('#html').click(function(){
-            closeAll()
             $('#codePop').addClass('show')
             setClass()
             sortD()
             setParents()
             setMaxLevel()
             createHtml()
+            getAllClass()
             setLowestArr()
             if(recognize){
                 getText()
@@ -1409,28 +1140,10 @@
             document.execCommand("copy")
         })
 
-        //查看css
-        $('#style').click(function(){
-            closeAll()
-            $('#cssPop').addClass('show')
-            setClass()
-            sortD()
-            setParents()
-            setMaxLevel()
-            createHtml()
-            getAllClass()
-            d = JSON.parse(copyD)
-        })
-
         //复制css
         $("#copyCss").click(function(){
             $("#css").select()
             document.execCommand("copy")
-        })
-
-        //关闭html弹窗
-        $("#cssM").click(function(){
-            $('#cssPop').removeClass('show')
         })
 
         //生成时是否识别文字
@@ -1445,37 +1158,12 @@
             }
         })
 
-        //点击下载图片
-        $('#imgs').on('click','img',function(){
-            let a = document.createElement('a')
-            let ev = document.createEvent('HTMLEvents')
-            ev.initEvent('click', true, true)
-            a.download = new Date().getTime()+'.jpg'
-            a.href = $(this).attr('src')
-            a.click()
-        })
-
-        //点击测量最内层之间的距离，暂时用不到
-        $('#measure').click(function(){
-            closeAll()
-            setParents()
-            setMaxLevel()
-            setLowestArr()
-            shrink()
-            measure()
-        })
-
-        //关闭生成的弹窗
-        $('#close').click(function(){
-            $('#pop').removeClass('show')
-        })
-
         //点击写类
         $('#writeC').click(function(){
             closeAll()
             setZIndex()
             $(this).addClass('active').siblings().removeClass('active')
-            $('body').addClass('write-class')
+            $('#rectList').addClass("show")
         })
 
         //点击写css
@@ -1483,7 +1171,7 @@
             closeAll()
             setZIndex()
             $(this).addClass('active').siblings().removeClass('active')
-            $('body').addClass('write-css')
+            $('#rectList').addClass('show')
         })
 
         //打开css弹窗
@@ -1509,7 +1197,6 @@
         $('#cssMask').click(function(){
             $('#cssWrite').removeClass('show')
         })
-
 
         //改变input的css时
         $('input.css-t').on('input',function(){
@@ -1576,12 +1263,12 @@
             drawAttr = $(this).text()
             if(cssColor.indexOf(drawAttr)!=-1){
                 $('#cssWrite').removeClass('show')
-                $('body').removeClass('write-css')
+                $('#rectList').removeClass('show')
                 opColor.addClass('show')
                 colorPut = true
             }else if(cssDistance.indexOf(drawAttr)!=-1){
                 $('#cssWrite').removeClass('show')
-                $('body').removeClass('write-css')
+                $('#rectList').removeClass('show')
                 opC.addClass('show')
                 distancePut = true
             }
@@ -1604,7 +1291,7 @@
             fr.readAsDataURL(file)
         })
 
-        //如果缓存有图片的画
+        //缓存如果有图片
         if (localStorage.getItem('img')){
             $('#img').attr('src',localStorage.getItem('img'))
             if (img.complete) {
