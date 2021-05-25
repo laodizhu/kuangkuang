@@ -266,7 +266,7 @@
     button,input[type=submit],input[type=text],input[type=button]{-webkit-appearance:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;blr:expression(this.onFocus=this.blur())}
     input{outline: 0;}
     input::-webkit-input-safebox-button{display: none;}
-    body{color: #000;font-family: Arial,Microsoft Yahei;}
+    body{color: rgba(255,0,0,0.8);font-family: Arial,Microsoft Yahei;}
     body *{box-sizing: border-box;line-height: 1;}
 
     #result{display: none;}
@@ -291,22 +291,22 @@
     .btn.active,
     .opr.selected{background-color: #555;color: #eee;}
     input.opr{width: auto;min-width: 0;background-color: transparent;border: none;}
-    .one{position: absolute;box-sizing: border-box;border: 1px solid #000;user-modify: read-write;-webkit-user-modify: read-write;font-size: 14px;color: #000;cursor: text;line-height: 18px;padding: 1px 3px;outline: none;}
-    .one .w{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 50%;top: 0;transform: translate(-50%,0);}
-    .one .h{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 0;top: 50%;transform: translate(0,-50%);}
+    .one{position: absolute;box-sizing: border-box;border: 1px solid rgba(255,0,0,0.8);user-modify: read-write;-webkit-user-modify: read-write;font-size: 14px;color: rgba(255,0,0,0.8);cursor: text;line-height: 18px;padding: 1px 3px;outline: none;}
+    .one .w{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;left: 50%;top: 0;transform: translate(-50%,0);}
+    .one .h{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;left: 0;top: 50%;transform: translate(0,-50%);}
     .one-c{position: absolute;box-sizing: border-box;}
-    .one-c .w{font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 50%;top: 0;transform: translate(-50%,0);}
-    .one-c .h{font-size: 12px;color: #fff;line-height: 14px;background-color: #000;padding: 0 2px;position: absolute;left: 0;top: 50%;transform: translate(0,-50%);}
-    .one-c.ve{background-color: transparent;border-left: 1px solid #000;transition: height .3s;}
-    .one-c.ho{background-color: transparent;border-top: 1px solid #000;transition: width .3s;}
+    .one-c .w{font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;left: 50%;top: 0;transform: translate(-50%,0);}
+    .one-c .h{font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;left: 0;top: 50%;transform: translate(0,-50%);}
+    .one-c.ve{background-color: transparent;border-left: 1px solid rgba(255,0,0,0.8);transition: height .3s;}
+    .one-c.ho{background-color: transparent;border-top: 1px solid rgba(255,0,0,0.8);transition: width .3s;}
     .one-c.ve:before,
-    .one-c.ve:after{content: "";display: block;width: 7px;height: 1px;background-color: #000;position: absolute;left: -4px;top: 0;}
+    .one-c.ve:after{content: "";display: block;width: 7px;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -4px;top: 0;}
     .one-c.ve:after{top: auto;bottom: 0;}
     .one-c.ho:before,
-    .one-c.ho:after{content: "";display: block;width: 1px;height: 7px;background-color: #000;position: absolute;left: 0;top: -4px;}
+    .one-c.ho:after{content: "";display: block;width: 1px;height: 7px;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -4px;}
     .one-c.ho:after{left: auto;right: 0;}
-    .one-c.bt{border-top: 1px solid #000;}
-    .one-c.bl{border-left: 1px solid #000;}
+    .one-c.bt{border-top: 1px solid rgba(255,0,0,0.8);}
+    .one-c.bl{border-left: 1px solid rgba(255,0,0,0.8);}
 
     #rectList.show{z-index: 12345;}
 
@@ -1266,13 +1266,13 @@
             var fr = new FileReader()
             fr.onloadend = function(e) {
                 $('#img').attr('src',e.target.result)
-                localStorage.setItem("img",e.target.result)
                 if (img.complete) {
                     begin()
                 } else {
                     img.onload = begin
                     img.onerror = begin
                 }
+                localStorage.setItem("img",e.target.result)
             }
             fr.readAsDataURL(file)
         }
