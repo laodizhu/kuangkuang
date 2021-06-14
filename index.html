@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-    <div id="main">
+    <div id="main" ondrop="mainDrop(event)" ondragover="mainOver(event)">
         <div id="mainBox">
             <img id="img" src="" alt="" />
             <canvas id="cv"></canvas>
@@ -1415,6 +1415,17 @@
             fr.readAsDataURL(file)
         }
 
+        //拖动阻止默认事件
+        const mainOver = ev=>{
+            ev.preventDefault()
+        }
+
+        //拖动上传图片
+        const mainDrop = ev=>{
+            ev.preventDefault()
+            imgC(ev.dataTransfer)
+        }
+
         //缓存如果有图片
         if (sessionStorage.getItem('img')){
             imgA.attr('src',sessionStorage.getItem('img'))
@@ -1427,4 +1438,7 @@
         }
 
         localStorage.setItem("img",'')
+
+        
+        
 </script>
