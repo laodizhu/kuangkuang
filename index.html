@@ -12,23 +12,29 @@
             <img id="img" src="" alt="" />
             <canvas id="cv"></canvas>
             <div id="rectList"></div>
-            <div id="rectListC"></div>
+            <div id="rectListm"></div>
+            <div id="rectListM"></div>
             <div id="op"></div>
-            <div id="opCe"></div>
+            <div id="opm"></div>
+            <div id="opM">
+                <div id="MlineH"></div>
+                <div id="MlineV"></div>
+            </div>
             <div id="opColor"></div>
         </div>
     </div>
     <input type="file" id="file" onchange="imgC(this)" />
     <div id="bar">
-        <label class="opr" id="open" title="导入图片" for="file">O</label>
-        <a class="opr" title="撤销" onclick="back()">Z</a>
-        <a class="opr" title="反撤销" onclick="unBack()">Y</a>
+        <label class="opr" id="open" title="导入图片" for="file">📁</label>
+        <a class="opr" title="撤销" onclick="back()">↩️</a>
+        <a class="opr" title="反撤销" onclick="unBack()">↪️</a>
         <a class="opr" title="查看html时识别文字" onclick="recognizeT(this)">T</a>
         <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
-        <a class="opr" id="writeCss" title="编辑css" onclick="inCss(this)">css</a>
-        <a class="opr" title="编辑类名" onclick="inClass(this)">class</a>
-        <a class="opr" title="测量" onclick="measure(this)">M</a>
-        <a class="opr" title="点击一个点复制这个点的颜色" onclick="inColor(this)">C</a>
+        <a class="opr" id="writeCss" title="编辑css" onclick="inCss(this)">📝</a>
+        <a class="opr" title="编辑类名" onclick="inClass(this)">✏️</a>
+        <a class="opr" title="测量" onclick="measure(this)" id="mBtn">📏</a>
+        <a class="opr" title="测量2" onclick="measure2(this)" id="MBtn">📐</a>
+        <a class="opr" title="点击一个点复制这个点的颜色" onclick="inColor(this)" id="CBtn">🌈</a>
         <a class="opr" title="测量自动填写时是否用px，默认rem" onclick="px(this)">px</a>
         <input type="text" class="opr" id="pre" title="设置前缀" placeholder="$" value="" oninput="preC(this)" />
         <a class="btn active" v="<div class='$-'></div>" onclick="tagC(this)">div</a>
@@ -61,11 +67,11 @@
     <div id="codePop">
         <div id="codeM" onclick="closeCodePop()"></div>
         <div id="codeBox">
-            <textarea id="code"></textarea>
+            <textarea id="codeTextArea"></textarea>
             <a id="copyCode" onclick="copyCode()">复制</a>
         </div>
         <div id="cssBox">
-            <textarea id="css"></textarea>
+            <textarea id="cssTextArea"></textarea>
             <a id="copyCss" onclick="copyCss()">复制</a>
         </div>
     </div>
@@ -82,35 +88,35 @@
         <div class="css-box">
             <div id="cssName"></div>
             <div class="css-left">
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">left</span>:<input class="css-t" type="text" id="left" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">margin-left</span>:<input class="css-t" type="text" id="margin-left" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="colorP(this)">border-left</span>:<input class="css-t" type="text" id="border-left" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">padding-left</span>:<input class="css-t" type="text" id="padding-left" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">left</span><input class="css-t" type="text" id="left" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-left</span><input class="css-t" type="text" id="margin-left" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-left</span><input class="css-t" type="text" id="border-left" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-left</span><input class="css-t" type="text" id="padding-left" oninput="setCss()" /></div>
             </div>
             <div class="css-right">
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">right</span>:<input class="css-t" type="text" id="right" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">margin-right</span>:<input class="css-t" type="text" id="margin-right" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="colorP(this)">border-right</span>:<input class="css-t" type="text" id="border-right" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">padding-right</span>:<input class="css-t" type="text" id="padding-right" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">right</span><input class="css-t" type="text" id="right" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-right</span><input class="css-t" type="text" id="margin-right" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-right</span><input class="css-t" type="text" id="border-right" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-right</span><input class="css-t" type="text" id="padding-right" oninput="setCss()" /></div>
             </div>
             <div class="css-top">
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">top</span>:<input class="css-t" type="text" id="top" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">margin-top</span>:<input class="css-t" type="text" id="margin-top" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="colorP(this)">border-top</span>:<input class="css-t" type="text" id="border-top" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">padding-top</span>:<input class="css-t" type="text" id="padding-top" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">top</span><input class="css-t" type="text" id="top" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-top</span><input class="css-t" type="text" id="margin-top" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-top</span><input class="css-t" type="text" id="border-top" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-top</span><input class="css-t" type="text" id="padding-top" oninput="setCss()" /></div>
             </div>
             <div class="css-bottom">
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">padding-bottom</span>:<input class="css-t" type="text" id="padding-bottom" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="colorP(this)">border-bottom</span>:<input class="css-t" type="text" id="border-bottom" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">margin-bottom</span>:<input class="css-t" type="text" id="margin-bottom" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">bottom</span>:<input class="css-t" type="text" id="bottom" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-bottom</span><input class="css-t" type="text" id="padding-bottom" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-bottom</span><input class="css-t" type="text" id="border-bottom" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-bottom</span><input class="css-t" type="text" id="margin-bottom" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">bottom</span><input class="css-t" type="text" id="bottom" oninput="setCss()" /></div>
             </div>
             <div class="css-center">
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">font-size</span>:<input class="css-t" type="text" id="font-size" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="colorP(this)">color</span>:<input class="css-t" type="text" id="color" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">line-height</span>:<input class="css-t" type="text" id="line-height" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">font-size</span><input class="css-t" type="text" id="font-size" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">color</span><input class="css-t" type="text" id="color" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">line-height</span><input class="css-t" type="text" id="line-height" oninput="setCss()" /></div>
                 <div class="css-one">
-                    <span class="css-dt">text-align</span>:
+                    <span class="css-dt">text-align</span>
                     <select class="css-t" id="text-align" onchange="setCss()">
                         <option value=""></option>
                         <option value="center">center</option>
@@ -120,7 +126,7 @@
                     </select>
                 </div>
                 <div class="css-one">
-                    <span class="css-dt">font-weight</span>:
+                    <span class="css-dt">font-weight</span>
                     <select class="css-t" id="font-weight" onchange="setCss()">
                         <option value=""></option>
                         <option value="bold">bold</option>
@@ -131,7 +137,7 @@
             </div>
             <div class="css-left-top">
                 <div class="css-one">
-                    <span class="css-dt">position</span>:
+                    <span class="css-dt">position</span>
                     <select class="css-t" id="position" onchange="setCss()">
                         <option value=""></option>
                         <option value="absolute">absolute</option>
@@ -140,8 +146,9 @@
                         <option value="static">static</option>
                     </select>
                 </div>
+                <div class="css-one"><span class="css-dt">z-index</span><input class="css-t" type="text" id="z-index" oninput="setCss()" /></div>
                 <div class="css-one">
-                    <span class="css-dt">display</span>:
+                    <span class="css-dt">display</span>
                     <select class="css-t" id="display" onchange="setCss()">
                         <option value=""></option>
                         <option value="inline-block">inline-block</option>
@@ -152,7 +159,7 @@
                     </select>
                 </div>
                 <div class="css-one">
-                    <span class="css-dt">vertical-align</span>:
+                    <span class="css-dt">vertical-align</span>
                     <select class="css-t" id="vertical-align" onchange="setCss()">
                         <option value=""></option>
                         <option value="top">top</option>
@@ -161,7 +168,7 @@
                     </select>
                 </div>
                 <div class="css-one">
-                    <span class="css-dt">float</span>:
+                    <span class="css-dt">float</span>
                     <select class="css-t" id="float" onchange="setCss()">
                         <option value=""></option>
                         <option value="left">left</option>
@@ -170,7 +177,7 @@
                     </select>
                 </div>
                 <div class="css-one">
-                    <span class="css-dt">overflow</span>:
+                    <span class="css-dt">overflow</span>
                     <select class="css-t" id="overflow" onchange="setCss()">
                         <option value=""></option>
                         <option value="hidden">hidden</option>
@@ -181,11 +188,11 @@
                 </div>
             </div>
             <div class="css-right-top">
-                <div class="css-one"><span class="css-dt">transition</span>:<input class="css-t" type="text" id="transition" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">transform</span>:<input class="css-t" type="text" id="transform" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">opacity</span>:<input class="css-t" type="text" id="opacity" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt">transition</span><input class="css-t" type="text" id="transition" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt">transform</span><input class="css-t" type="text" id="transform" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt">opacity</span><input class="css-t" type="text" id="opacity" oninput="setCss()" /></div>
                 <div class="css-one">
-                    <span class="css-dt">visibility</span>:
+                    <span class="css-dt">visibility</span>
                     <select class="css-t" id="visibility" onchange="setCss()">
                         <option value=""></option>
                         <option value="hidden">hidden</option>
@@ -193,7 +200,7 @@
                     </select>
                 </div>
                 <div class="css-one">
-                    <span class="css-dt">cursor</span>:
+                    <span class="css-dt">cursor</span>
                     <select class="css-t" id="cursor" onchange="setCss()">
                         <option value=""></option>
                         <option value="pointer">pointer</option>
@@ -204,20 +211,20 @@
                 </div>
             </div>
             <div class="css-left-bottom">
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">width</span>:<input class="css-t" type="text" id="width" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">height</span>:<input class="css-t" type="text" id="height" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="colorP(this)">border-radius</span>:<input class="css-t" type="text" id="border-radius" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">padding</span>:<input class="css-t" type="text" id="padding" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="colorP(this)">border</span>:<input class="css-t" type="text" id="border" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt" onclick="distanceP(this)">margin</span>:<input class="css-t" type="text" id="margin" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">box-shadow</span>:<input class="css-t" type="text" id="box-shadow" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">width</span><input class="css-t" type="text" id="width" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">height</span><input class="css-t" type="text" id="height" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">border-radius</span><input class="css-t" type="text" id="border-radius" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding</span><input class="css-t" type="text" id="padding" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border</span><input class="css-t" type="text" id="border" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin</span><input class="css-t" type="text" id="margin" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt">box-shadow</span><input class="css-t" type="text" id="box-shadow" oninput="setCss()" /></div>
             </div>
             <div class="css-right-bottom">
-                <div class="css-one"><span class="css-dt" onclick="colorP(this)">background-color</span>:<input class="css-t" type="text" id="background-color" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">background-image</span>:<input class="css-t" type="text" id="background-image" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">background-size</span>:<input class="css-t" type="text" id="background-size" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">background-color</span><input class="css-t" type="text" id="background-color" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt">background-image</span><input class="css-t" type="text" id="background-image" oninput="setCss()" /></div>
+                <div class="css-one"><span class="css-dt">background-size</span><input class="css-t" type="text" id="background-size" oninput="setCss()" /></div>
                 <div class="css-one">
-                    <span class="css-dt">background-position</span>:
+                    <span class="css-dt">background-position</span>
                     <select class="css-t" id="background-position" onchange="setCss()">
                         <option value=""></option>
                         <option value="top left">top left</option>
@@ -232,7 +239,7 @@
                     </select>
                 </div>
                 <div class="css-one">
-                    <span class="css-dt">background-repeat</span>:
+                    <span class="css-dt">background-repeat</span>
                     <select class="css-t" id="background-repeat" onchange="setCss()">
                         <option value=""></option>
                         <option value="no-repeat">no-repeat</option>
@@ -272,12 +279,20 @@
     #result{display: none;}
 
     #cv{position: relative;z-index: 1;}
-    #rectList{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 8;user-select: none;}
-    #rectListC{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;user-select: none;}
+    #rectList,
+    #rectListm,
+    #rectListM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;user-select: none;}
+    #rectList{z-index: 8;}
+    #rectList.show{z-index: 12345;}
+    #rectListm{z-index: 1;}
+    #rectListM{z-index: 1;}
     #op{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 10;cursor: crosshair;user-select: none;}
-    #opCe{display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 100;cursor: crosshair;user-select: none;}
-    #opCe.show{display: block;}
+    #opm,
+    #opM,
     #opColor{display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 100;cursor: crosshair;user-select: none;}
+    #opM{cursor: default;}
+    #opm.show,
+    #opM.show,
     #opColor.show{display: block;}
     #bar{display: flex;width: 100%;position: fixed;left: 0;top: 0;background-color: #222;z-index: 10;font-size: 0;}
     #main{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;font-size: 0;overflow: auto;}
@@ -292,34 +307,58 @@
     .opr.selected{background-color: #555;color: #eee;}
     input.opr{width: auto;min-width: 0;background-color: transparent;border: none;}
     .one{position: absolute;box-sizing: border-box;border: 1px solid rgba(255,0,0,0.8);user-modify: read-write;-webkit-user-modify: read-write;font-size: 14px;color: rgba(255,0,0,0.8);cursor: text;line-height: 18px;padding: 1px 3px;outline: none;}
-    .one .w{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;left: 50%;top: 0;transform: translate(-50%,0);}
-    .one .h{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;left: 0;top: 50%;transform: translate(0,-50%);}
-    .one-c{position: absolute;box-sizing: border-box;}
-    .one-c .w{font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;left: 50%;top: 0;transform: translate(-50%,0);}
-    .one-c .h{font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;left: 0;top: 50%;transform: translate(0,-50%);}
-    .one-c.ve{background-color: transparent;border-left: 1px solid rgba(255,0,0,0.8);transition: height .3s;}
-    .one-c.ho{background-color: transparent;border-top: 1px solid rgba(255,0,0,0.8);transition: width .3s;}
-    .one-c.ve:before,
-    .one-c.ve:after{content: "";display: block;width: 7px;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -4px;top: 0;}
-    .one-c.ve:after{top: auto;bottom: 0;}
-    .one-c.ho:before,
-    .one-c.ho:after{content: "";display: block;width: 1px;height: 7px;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -4px;}
-    .one-c.ho:after{left: auto;right: 0;}
-    .one-c.bt{border-top: 1px solid rgba(255,0,0,0.8);}
-    .one-c.bl{border-left: 1px solid rgba(255,0,0,0.8);}
+    .one .w,
+    .one .h{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;}
+    .one .w{left: 50%;top: 0;transform: translate(-50%,0);}
+    .one .h{left: 0;top: 50%;transform: translate(0,-50%);}
+    .one-m{position: absolute;box-sizing: border-box;}
+    .one-m .w,
+    .one-m .h{font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;}
+    .one-m .w{left: 50%;top: 0;transform: translate(-50%,0);}
+    .one-m .h{left: 0;top: 50%;transform: translate(0,-50%);}
+    .one-m.ve{background-color: transparent;border-left: 1px solid rgba(255,0,0,0.8);transition: height .3s;}
+    .one-m.ho{background-color: transparent;border-top: 1px solid rgba(255,0,0,0.8);transition: width .3s;}
+    .one-m.ve:before,
+    .one-m.ve:after{content: "";display: block;width: 7px;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -4px;top: 0;}
+    .one-m.ve:after{top: auto;bottom: 0;}
+    .one-m.ho:before,
+    .one-m.ho:after{content: "";display: block;width: 1px;height: 7px;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -4px;}
+    .one-m.ho:after{left: auto;right: 0;}
+    .one-m.bt{border-top: 1px solid rgba(255,0,0,0.8);}
+    .one-m.bl{border-left: 1px solid rgba(255,0,0,0.8);}
 
-    #rectList.show{z-index: 12345;}
+    .one-M{position: absolute;box-sizing: border-box;}
+    .one-M .w,
+    .one-M .h{font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;}
+    .one-M .w{left: 50%;top: 0;transform: translate(-50%,0);}
+    .one-M .h{left: 0;top: 50%;transform: translate(0,-50%);}
+    .one-M.bt{border-top: 1px solid rgba(255,0,0,0.8);}
+    .one-M.bt .h{display: none;}
+    .one-M.bt:before,
+    .one-M.bt:after{content: "";display: block;width: 1px;height: 19px;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -10px;}
+    .one-M.bt:after{left: auto;right: 0;}
+    .one-M.bl{border-left: 1px solid rgba(255,0,0,0.8);}
+    .one-M.bl .w{display: none;}
+    .one-M.bl:before,
+    .one-M.bl:after{content: "";display: block;width: 19px;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -10px;top: 0;}
+    .one-M.bl:after{top: auto;bottom: 0;}
+
+    #MlineH{width: 100%;border-top: 1px dashed rgba(255,0,0,0.8);position: absolute;left: 0;pointer-events: none;}
+    #MlineV{height: 100%;border-left: 1px dashed rgba(255,0,0,0.8);position: absolute;top: 0;pointer-events: none;}
 
     #cssPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
     #cssPop.show{opacity: 1;left: 0;}
     #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
     .css-box{width: 1100px;height: 800px;margin-left: -550px;margin-top: -400px;background-color: #222;position: absolute;left: 50%;top: 50%;padding: 10px;z-index: 10;}
-    .css-one{font-size: 16px;color: #ddd;padding-left: 10px;}
+    .css-one{font-size: 16px;color: #ddd;}
     .css-one.black{background-color: #111;}
     .css-one.black .css-t{background-color: #111;}
     #cssName{font-size: 16px;line-height: 42px;color: #ddd;text-align: center;position: absolute;right: 100%;top: 0;white-space: nowrap;background-color: #222;padding: 0 15px;}
-    .css-dt{display: inline-block;vertical-align: top;line-height: 42px;}
-    .css-t{width: 200px;height: 42px;border: none;background-color: #222;font-size: 16px;color: #ddd;padding: 0 5px;margin-left: 5px;outline: none;}
+    .css-dt{display: inline-block;vertical-align: top;line-height: 42px;padding-left: 10px;padding-right: 10px;transition: all .3s;}
+    .css-dt.sp{cursor: pointer;}
+    .css-dt.sp:hover{background-color: #000;cursor: pointer;}
+    .css-t{width: 200px;height: 42px;border: none;background-color: #222;font-size: 16px;color: #ddd;padding: 0 5px;outline: none;transition: all .3s;}
+    .css-t:hover{background-color: #000;}
     .css-left{position: absolute;left: 0;top: 50%;transform: translate(0,-50%);text-align: left;}
     .css-right{position: absolute;right: 0;top: 50%;transform: translate(0,-50%);text-align: left;}
     .css-top{position: absolute;left: 50%;top: 0;transform: translate(-50%,0);text-align: left;}
@@ -330,15 +369,25 @@
     .css-left-bottom{position: absolute;left: 0;bottom: 0;text-align: left;}
     .css-right-bottom{position: absolute;right: 0;bottom: 0;text-align: left;}
 
+    .css-left,
+    .css-left .css-t,
+    .css-right,
+    .css-right .css-t,
+    .css-top,
+    .css-top .css-t,
+    .css-bottom,
+    .css-bottom .css-t{background-color: #333;}
+    .css-box .css-t:hover{background-color: #000;}
+    .css-box .css-dt.sp:hover{background-color: #000;}
 
     #codePop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 987654321;left: -200%;opacity: 0;}
     #codePop.show{opacity: 1;left: 0;}
     #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
     #codeBox{width: 39%;height: 760px;position: absolute;left: 10%;top: 50%;margin-top: -380px;z-index: 2;}
-    #code{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
+    #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
     #copyCode{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;}
     #cssBox{width: 39%;height: 760px;position: absolute;right: 10%;top: 50%;margin-top: -380px;z-index: 2;}
-    #css{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
+    #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
     #copyCss{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;}
 
     #colorPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;left: -200%;opacity: 0;}
@@ -360,17 +409,20 @@
 </script>
 <script>
         //识别文字的文档网址：https://cloud.baidu.com/product/ocr/general
-        const token = '24.151bcf35de9c105e5e40da52dbebbb97.2592000.1622794396.282335-23477754'
+        const token = '24.ccd63383ff2462f7873db59032464f62.2592000.1626257740.282335-23477754'
         const url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token
         const cv = document.getElementById('cv')
         const ctx = cv.getContext('2d')
         const main = $('#main')[0]
         const rt = $('#result')
-        const img = $('#img')[0]
+        const imgA = $('#img')
+        const img = imgA[0]
         const rectList = $('#rectList')
-        const rectListC = $('#rectListC')
+        const rectListm = $('#rectListm')
+        const rectListM = $('#rectListM')
         const op = $('#op')
-        const opC = $('#opCe')
+        const opm = $('#opm')
+        const opM = $('#opM')
         const opColor = $('#opColor')
         const cssObj = {
             'background-image': 'url(../images/)',
@@ -392,14 +444,23 @@
             'opacity': '0.'
         }
         const cssObjV = Object.values(cssObj)
+        const cssPop = $('#cssPop')
+        const codePop = $('#codePop')
+        const codeTextArea = $('#codeTextArea')
+        const cssTextArea = $('#cssTextArea')
+        const cssName = $('#cssName')
+        const MlineH = $("#MlineH")
+        const MlineV = $("#MlineV")
         let maxLevel = 0
         let lowestArr = []
         let curTag = $('.btn.active').text()
         let pre = $('#pre').val()
         let curV = $('.btn.active').attr('v').replace(pre?'$':'$-',pre)
         let bool = false,x0, y0, x1, y1, curL, curT, curW, curH, opWidth, opHeight,curEle = null
-        let boolC = false,xC0, yC0, xC1, yC1, curCL, curCT, curCW, curCH, opCWidth, opCHeight,curEleC = null
+        let boolm = false,xm0, ym0, xm1, ym1, curmL, curmT, curmW, curmH, opmWidth, opmHeight,curmEle = null
+        let boolM = false,xM0, yM0, xM1, yM1, curML, curMT, curMW, curMH, opMWidth, opMHeight,curMEle = null
         let boolColor = false
+        let opMshow = false
         let d = []
         let copyD = ''
         let cIndex = 0
@@ -431,18 +492,35 @@
             wdH = $(window).height()
         }
         //画线
-        opC[0].onmousedown = e=>{
-            let opCR = opC[0].getBoundingClientRect()
-            opCWidth = parseInt(opCR.width)
-            opCHeight = parseInt(opCR.height)
-            boolC = true
-            xC0 = e.offsetX
-            yC0 = e.offsetY
-            xC1 = e.offsetX
-            yC1 = e.offsetY
-            curEleC = $("<div class='one-c'><div class='w'></div><div class='h'></div></div>")
-            rectListC.append(curEleC)
-            setEleC(xC0, yC0, xC1, yC1)
+        opm[0].onmousedown = e=>{
+            let r = opm[0].getBoundingClientRect()
+            opmWidth = parseInt(r.width)
+            opmHeight = parseInt(r.height)
+            boolm = true
+            xm0 = e.offsetX
+            ym0 = e.offsetY
+            xm1 = e.offsetX
+            ym1 = e.offsetY
+            curmEle = $("<div class='one-m'><div class='w'></div><div class='h'></div></div>")
+            rectListm.append(curmEle)
+            setmEle(xm0, ym0, xm1, ym1)
+
+            wdW = $(window).width()
+            wdH = $(window).height()
+        }
+        //画线2
+        opM[0].onmousedown = e=>{
+            let r = opM[0].getBoundingClientRect()
+            opMWidth = parseInt(r.width)
+            opMHeight = parseInt(r.height)
+            boolM = true
+            xM0 = e.offsetX
+            yM0 = e.offsetY
+            xM1 = e.offsetX
+            yM1 = e.offsetY
+            curMEle = $("<div class='one-M'><div class='w'></div><div class='h'></div></div>")
+            rectListM.append(curMEle)
+            setMEle(xM0, yM0, xM1, yM1)
 
             wdW = $(window).width()
             wdH = $(window).height()
@@ -462,14 +540,28 @@
                 setEle(x0, y0, x1, y1)
                 scrollXY(e.pageX,e.pageY)
             }
-            if (boolC) {
-                xC1 = e.pageX + main.scrollLeft
-                yC1 = e.pageY + main.scrollTop
-                xC1 = xC1 > opCWidth ? opCWidth : xC1
-                yC1 = yC1 > opCHeight ? opCHeight : yC1
-                xC1 = xC1 < 0 ? 0 : xC1
-                yC1 = yC1 < 0 ? 0 : yC1
-                setEleC(xC0, yC0, xC1, yC1)
+            if (boolm) {
+                xm1 = e.pageX + main.scrollLeft
+                ym1 = e.pageY + main.scrollTop
+                xm1 = xm1 > opmWidth ? opmWidth : xm1
+                ym1 = ym1 > opmHeight ? opmHeight : ym1
+                xm1 = xm1 < 0 ? 0 : xm1
+                ym1 = ym1 < 0 ? 0 : ym1
+                setmEle(xm0, ym0, xm1, ym1)
+                scrollXY(e.pageX,e.pageY)
+            }
+            if (opMshow) {
+                MlineH.css('top',e.pageY + main.scrollTop-1)
+                MlineV.css('left',e.pageX + main.scrollLeft-1)
+            }
+            if(boolM){
+                xM1 = e.pageX + main.scrollLeft
+                yM1 = e.pageY + main.scrollTop
+                xM1 = xM1 > opMWidth ? opMWidth : xM1
+                yM1 = yM1 > opMHeight ? opMHeight : yM1
+                xM1 = xM1 < 0 ? 0 : xM1
+                yM1 = yM1 < 0 ? 0 : yM1
+                setMEle(xM0, yM0, xM1, yM1)
                 scrollXY(e.pageX,e.pageY)
             }
         }
@@ -487,16 +579,28 @@
                 }
                 stopScroll()
             }
-            if (boolC) {
-                boolC = false
-                if(curCW>curCH){
-                    yC1 = yC0+1
+            if (boolm) {
+                boolm = false
+                if(curmW>curmH){
+                    ym1 = ym0+1
                 }else{
-                    xC1 = xC0+1
+                    xm1 = xm0+1
                 }
-                setEleC(xC0, yC0, xC1, yC1)
+                setmEle(xm0, ym0, xm1, ym1)
                 stopScroll()
                 expand()
+            }
+            if (boolM) {
+                boolM = false
+                if(curMW>curMH){
+                    yM1 = yM0+1
+                    setCssD(curMW)
+                }else{
+                    xM1 = xM0+1
+                    setCssD(curMH)
+                }
+                setMEle(xM0, yM0, xM1, yM1)
+                stopScroll()
             }
             if(boolColor){
                 boolColor = false
@@ -536,28 +640,55 @@
         }
 
         //设置线的位置和大小
-        const setEleC = (x0, y0, x1, y1)=>{
-            curCL = x0
-            curCT = y0
-            curCW = Math.abs(x1 - x0)
-            curCH = Math.abs(y1 - y0)
+        const setmEle = (x0, y0, x1, y1)=>{
+            curmL = x0
+            curmT = y0
+            curmW = Math.abs(x1 - x0)
+            curmH = Math.abs(y1 - y0)
             if (x1 < x0) {
-                curCL = x1
+                curmL = x1
             }
             if (y1 < y0) {
-                curCT = y1
+                curmT = y1
             }
-            if(curCW>curCH){
-                curEleC.removeClass('bl').addClass('bt')
+            if(curmW>curmH){
+                curmEle.removeClass('bl').addClass('bt')
             }else{
-                curEleC.removeClass('bt').addClass('bl')
+                curmEle.removeClass('bt').addClass('bl')
             }
-            curEleC.css({
-                left: curCL,
-                top: curCT,
-                width: curCW,
-                height: curCH
+            curmEle.css({
+                left: curmL,
+                top: curmT,
+                width: curmW,
+                height: curmH
             })
+        }
+
+        //设置线的位置和大小2
+        const setMEle = (x0, y0, x1, y1)=>{
+            curML = x0
+            curMT = y0
+            curMW = Math.abs(x1 - x0)
+            curMH = Math.abs(y1 - y0)
+            if (x1 < x0) {
+                curML = x1
+            }
+            if (y1 < y0) {
+                curMT = y1
+            }
+            if(curMW>curMH){
+                curMEle.removeClass('bl').addClass('bt')
+            }else{
+                curMEle.removeClass('bt').addClass('bl')
+            }
+            curMEle.css({
+                left: curML,
+                top: curMT,
+                width: curMW,
+                height: curMH
+            })
+            curMEle.find(".w").text(curMW)
+            curMEle.find(".h").text(curMH)
         }
 
         //鼠标拖到边缘时滚动条自动滚
@@ -732,85 +863,85 @@
                 arr = Array.from(new Set(arr))
                 ray.push('.'+key+'{'+arr.join(';')+'}')
             }
-            $('#css').val(ray.join('\n'))
+            cssTextArea.val(ray.join('\n'))
         }
 
         //扩
         const expand = ()=>{
             const jg = 15
             const jd = 10
-            if(curCW>curCH){
-                let dt = ctx.getImageData(curCL, curCT, curCW, 1).data
+            if(curmW>curmH){
+                let dt = ctx.getImageData(curmL, curmT, curmW, 1).data
                 if(maxDc(dt)<jg){
                     for(let j=1;j<10000;j++){
-                        let dt2 = ctx.getImageData(curCL, curCT+j, curCW, 1).data
+                        let dt2 = ctx.getImageData(curmL, curmT+j, curmW, 1).data
                         if(avgDc(dt,dt2)>jd){
-                            yC1 = yC0+j
+                            ym1 = ym0+j
                             break
                         }
                     }
                     for(let j=1;j<10000;j++){
-                        let dt2 = ctx.getImageData(curCL, curCT-j, curCW, 1).data
+                        let dt2 = ctx.getImageData(curmL, curmT-j, curmW, 1).data
                         if(avgDc(dt,dt2)>jd){
-                            yC0 = yC0-j+1
+                            ym0 = ym0-j+1
                             break
                         }
                     }
                 }else{
                     for(let k=1;k<10000;k++){
-                        let dt = ctx.getImageData(curCL, curCT+k, curCW, 1).data
+                        let dt = ctx.getImageData(curmL, curmT+k, curmW, 1).data
                         if(maxDc(dt)<jg){
-                            yC1 = yC0+k
+                            ym1 = ym0+k
                             break
                         }
                     }
                     for(let k=1;k<10000;k++){
-                        let dt = ctx.getImageData(curCL, curCT-k, curCW, 1).data
+                        let dt = ctx.getImageData(curmL, curmT-k, curmW, 1).data
                         if(maxDc(dt)<jg){
-                            yC0 = yC0-k+1
+                            ym0 = ym0-k+1
                             break
                         }
                     }
                 }
-                setEleC(xC0, yC0, xC1, yC1)
-                curEleC.addClass('ve').removeClass('bt bl').find('.h').text(curCH)
-                setCssD(curCH)
+                setmEle(xm0, ym0, xm1, ym1)
+                curmEle.addClass('ve').removeClass('bt bl').find('.h').text(curmH)
+                setCssD(curmH)
             }else{
-                let dt = ctx.getImageData(curCL, curCT, 1, curCH).data
+                let dt = ctx.getImageData(curmL, curmT, 1, curmH).data
                 if(maxDc(dt)<jg){
                     for(let j=1;j<10000;j++){
-                        let dt2 = ctx.getImageData(curCL+j, curCT, 1, curCH).data
+                        let dt2 = ctx.getImageData(curmL+j, curmT, 1, curmH).data
                         if(avgDc(dt,dt2)>jd){
-                            xC1 = xC0+j
+                            xm1 = xm0+j
                             break
                         }
                     }
                     for(let j=1;j<10000;j++){
-                        let dt2 = ctx.getImageData(curCL-j, curCT, 1, curCH).data
+                        let dt2 = ctx.getImageData(curmL-j, curmT, 1, curmH).data
                         if(avgDc(dt,dt2)>jd){
-                            xC0 = xC0-j+1
+                            xm0 = xm0-j+1
                             break
                         }
                     }
                 }else{
                     for(let k=1;k<10000;k++){
-                        let dt = ctx.getImageData(curCL+k, curCT, 1, curCH).data
+                        let dt = ctx.getImageData(curmL+k, curmT, 1, curmH).data
                         if(maxDc(dt)<jg){
-                            xC1 = xC0+k
+                            xm1 = xm0+k
                             break
                         }
                     }
                     for(let k=1;k<10000;k++){
-                        let dt = ctx.getImageData(curCL-k, curCT, 1, curCH).data
+                        let dt = ctx.getImageData(curmL-k, curmT, 1, curmH).data
                         if(maxDc(dt)<jg){
-                            xC0 = xC0-k+1
+                            xm0 = xm0-k+1
                             break
                         }
                     }
                 }
-                setEleC(xC0, yC0, xC1, yC1)
-                curEleC.addClass('ho').removeClass('bt bl').find('.w').text(curCW)
-                setCssD(curCW)
+                setmEle(xm0, ym0, xm1, ym1)
+                curmEle.addClass('ho').removeClass('bt bl').find('.w').text(curmW)
+                setCssD(curmW)
             }
         }
 
@@ -932,36 +1063,37 @@
                     s += ssArr[i]+'\n'
                 }
             }
-            $('#code').val(s)
+            codeTextArea.val(s)
         }
 
         //不同标签名文字输入到哪
         const putText = s=>{
             let tag = d[lowestArr[cIndex]][4]
-            let a = $('#a' + lowestArr[cIndex])
+            let a = document.getElementById('a' + lowestArr[cIndex])
             if (['text', 'pass', 'area'].indexOf(tag) != -1) {
-                a.attr('placeholder', s)
+                a.placeholder=s
             } else if (['submit'].indexOf(tag) != -1) {
-                a.attr('value', s)
+                a.value=s
             } else {
-                a.text(s)
+                a.innerText=s
             }
         }
 
         //设置每个框框的z-index
         const setZIndex = ()=>{
             setParents()
+            let ones = document.querySelectorAll('.one')
             for (let i = 0; i < d.length; i++) {
-                rectList.children('.one').eq(d[i][6]).css('z-index',d[i][7].length)
+                ones[d[i][6]].style.zIndex=d[i][7].length
             }
         }
 
         //把手写的类储存到d数组里
         const setClass = ()=>{
-            $('.one').each(function(){
-                let i = $(this).index()
-                d[i][5] = d[i][5].replace(/class='.*?'/,"class='"+$(this).text().replace(/\s+/g,' ')+"'")
-            })
+            let ones = document.querySelectorAll('.one')
+            for(let i=0;i<ones.length;i++){
+                d[i][5] = d[i][5].replace(/class='.*?'/,"class='"+ones[i].innerText.replace(/\s+/g,' ')+"'")
+            }
             copyD = JSON.stringify(d)
         }
 
@@ -979,30 +1111,24 @@
 
         //撤销
         const back = ()=>{
-            if(!opC.hasClass('show')){
-                if (d.length) {
-                    backArr.push(d.pop())
-                    copyD = JSON.stringify(d)
-                    $('.one').last().remove()
-                }
-            }else{
-                $('.one-c').last().remove()
+            if (d.length) {
+                backArr.push(d.pop())
+                copyD = JSON.stringify(d)
+                $('.one').last().remove()
             }
         }
 
         //反撤销
         const unBack = ()=>{
-            if(!opC.hasClass('show')){
-                if (backArr.length) {
-                    let u = backArr.pop()
-                    d.push(u)
-                    copyD = JSON.stringify(d)
-                    curEle = $("<div class='one' onclick='editCss(this)'></div>")
-                    rectList.append(curEle)
-                    setEle(u[0], u[1], u[2], u[3])
-                    curEle.text(u[5].match(/class='(.*?)'/)[1])
-                    setZIndex()
-                }
+            if (backArr.length) {
+                let u = backArr.pop()
+                d.push(u)
+                copyD = JSON.stringify(d)
+                curEle = $("<div class='one' onclick='editCss(this)'></div>")
+                rectList.append(curEle)
+                setEle(u[0], u[1], u[2], u[3])
+                curEle.text(u[5].match(/class='(.*?)'/)[1])
+                setZIndex()
             }
         }
 
@@ -1029,7 +1155,8 @@
 
         //关闭所有
         const closeAll = ()=>{
-            $("#codePop,#cssPop,#colorPop,#opCe,#opColor,#rectList").removeClass("show")
+            $("#codePop,#cssPop,#colorPop,#opm,#opM,#opColor,#rectList").removeClass("show")
+            opMshow = false
         }
 
         //将测量的距离设为当前的css属性值
@@ -1040,7 +1167,8 @@
                 setCss()
                 closeAll()
                 rectList.addClass('show')
-                $('#cssPop').addClass('show')
+                cssPop.addClass('show')
+                $("#writeCss").addClass('active').siblings().removeClass('active')
             }
         }
 
@@ -1056,7 +1184,8 @@
                 setCss()
                 closeAll()
                 rectList.addClass('show')
-                $('#cssPop').addClass('show')
+                cssPop.addClass('show')
+                $("#writeCss").addClass('active').siblings().removeClass('active')
             }
         }
 
@@ -1078,7 +1207,7 @@
                     $(this).parents('.css-one').removeClass("black")
                 }
             })
-            let i = $('#cssPop').attr('dIndex')
+            let i = cssPop.attr('dIndex')
             if(JSON.stringify(b) != '{}'){
                 d[i][8] = b
             }else{
@@ -1107,7 +1236,7 @@
 
         //查看html和css，让这个弹窗层级最高，打开时不要关闭其它
         const seeCode = () => {
-            $('#codePop').addClass('show')
+            codePop.addClass('show')
             setClass()
             sortD()
             setParents()
@@ -1124,18 +1253,18 @@
 
         //关闭html弹窗
         const closeCodePop = ()=>{
-            $('#codePop').removeClass('show')
+            codePop.removeClass('show')
         }
 
         //复制html
         const copyCode = ()=>{
-            $("#code").select()
+            codeTextArea.select()
             document.execCommand("copy")
         }
 
         //复制css
         const copyCss = ()=>{
-            $("#css").select()
+            cssTextArea.select()
             document.execCommand("copy")
         }
 
@@ -1160,7 +1289,7 @@
         }
 
         //点击css进入编辑css的状态
-        const inCss= t=>{
+        const inCss = t=>{
             closeAll()
             setZIndex()
             $(t).addClass('active').siblings().removeClass('active')
@@ -1171,7 +1300,7 @@
         const editCss = t=>{
             if($('#writeCss').hasClass('active')){
                 let i = $(t).index()
-                $('#cssName').text($(t).text())
+                cssName.text($(t).text())
                 let b = d[i][8] || {}
                 $('.css-t').each(function(){
                     let attr = $(this).attr('id')
@@ -1182,21 +1311,28 @@
                         $(this).parents('.css-one').removeClass("black")
                     }
                 })
-                $('#cssPop').addClass('show').attr('dIndex',i)
+                cssPop.addClass('show').attr('dIndex',i)
             }
         }
 
         //关闭css弹窗
         const closeCssPop = ()=>{
-            $('#cssPop').removeClass('show')
+            cssPop.removeClass('show')
         }
 
         //进入测量模式
         const measure = t=>{
-            console.log(t)
             closeAll()
             $(t).addClass('active').siblings().removeClass('active')
-            opC.addClass('show')
+            opm.addClass('show')
+        }
+
+        //进入测量模式2
+        const measure2 = t=>{
+            closeAll()
+            $(t).addClass('active').siblings().removeClass('active')
+            opM.addClass('show')
+            opMshow = true
         }
 
         //点击C进入复制颜色的状态
@@ -1245,7 +1381,8 @@
         //点击颜色相关的css属性名
         const colorP = t=>{
             drawAttr = $(t).text()
-            $('#cssPop').removeClass('show')
+            $("#CBtn").addClass('active').siblings().removeClass('active')
+            cssPop.removeClass('show')
             rectList.removeClass('show')
             opColor.addClass('show')
             colorPut = true
@@ -1254,9 +1391,10 @@
         //点击距离相关的css属性名
         const distanceP = t=>{
             drawAttr = $(t).text()
-            $('#cssPop').removeClass('show')
+            $("#mBtn").addClass('active').siblings().removeClass('active')
+            cssPop.removeClass('show')
             rectList.removeClass('show')
-            opC.addClass('show')
+            opm.addClass('show')
             distancePut = true
         }
 
@@ -1265,21 +1403,21 @@
             var file = t.files[0]
             var fr = new FileReader()
             fr.onloadend = function(e) {
-                $('#img').attr('src',e.target.result)
+                imgA.attr('src',e.target.result)
                 if (img.complete) {
                     begin()
                 } else {
                     img.onload = begin
                     img.onerror = begin
                 }
-                localStorage.setItem("img",e.target.result)
+                sessionStorage.setItem("img",e.target.result)
             }
             fr.readAsDataURL(file)
         }
 
         //缓存如果有图片
-        if (localStorage.getItem('img')){
-            $('#img').attr('src',localStorage.getItem('img'))
+        if (sessionStorage.getItem('img')){
+            imgA.attr('src',sessionStorage.getItem('img'))
             if (img.complete) {
                 begin()
             } else {
@@ -1287,4 +1425,6 @@
                 img.onerror = begin
             }
         }
+
+        localStorage.setItem("img",'')
 </script>
