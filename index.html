@@ -23,13 +23,9 @@
             <div id="opColor"></div>
         </div>
     </div>
-    <input type="file" id="file" onchange="imgC(this)" />
     <div id="bar">
-        <label class="opr" id="open" title="导入图片" for="file">📁</label>
-        <a class="opr" title="撤销" onclick="back()">↩️</a>
-        <a class="opr" title="反撤销" onclick="unBack()">↪️</a>
-        <a class="opr" title="查看html时识别文字" onclick="recognizeT(this)">T</a>
         <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
+        <a class="opr" title="查看html时识别文字" onclick="recognizeT(this)">T</a>
         <a class="opr" id="writeCss" title="编辑css" onclick="inCss(this)">📝</a>
         <a class="opr" title="编辑类名" onclick="inClass(this)">✏️</a>
         <a class="opr" title="测量" onclick="measure(this)" id="mBtn">📏</a>
@@ -268,12 +264,12 @@
     a:hover{text-decoration:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;outline:none;blr:expression(this.onFocus=this.blur())}
     sup{vertical-align:text-top}
     sub{vertical-align:text-bottom}
-    textarea{resize:none;outline: none;font-family: Arial,Microsoft Yahei;}
+    textarea{resize:none;outline: none;font-family: Microsoft Yahei;}
     img{vertical-align:middle;max-width: 100%;height: auto;}
     button,input[type=submit],input[type=text],input[type=button]{-webkit-appearance:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;blr:expression(this.onFocus=this.blur())}
     input{outline: 0;}
     input::-webkit-input-safebox-button{display: none;}
-    body{color: rgba(255,0,0,0.8);font-family: Arial,Microsoft Yahei;}
+    body{color: rgba(255,0,0,0.8);font-family: Microsoft Yahei;background-color: #000;}
     body *{box-sizing: border-box;line-height: 1;}
 
     #result{display: none;}
@@ -299,7 +295,7 @@
     #mainBox{width: auto;position: relative;display: inline-block;vertical-align: top;}
     #img{max-width: none;opacity: 0;position: absolute;left: 0;top: 0;z-index: 0;}
     .btn,
-    .opr{flex: 1;line-height: 50px;padding: 0 .2em;font-size: 1vw;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;}
+    .opr{flex: 1;line-height: 50px;padding: 0 .2em;font-size: 1vw;color: #ddd;font-weight: lighter;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;}
     .btn:hover,
     .opr:hover,
     .opr.active,
@@ -385,11 +381,12 @@
     #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
     #codeBox{width: 39%;height: 760px;position: absolute;left: 10%;top: 50%;margin-top: -380px;z-index: 2;}
     #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
-    #copyCode{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;}
+    #copyCode{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
     #cssBox{width: 39%;height: 760px;position: absolute;right: 10%;top: 50%;margin-top: -380px;z-index: 2;}
     #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
-    #copyCss{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;}
-
+    #copyCss{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
+    #copyCss:hover,
+    #copyCode:hover{background-color: #000;}
     #colorPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;left: -200%;opacity: 0;}
     #colorPop.show{opacity: 1;left: 0;}
     #colorM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
@@ -400,8 +397,6 @@
     #colorRGBA{flex: 1;height: 50px;line-height: 50px;font-size: 1vw;color: #ddd;outline: none;background-color: #222;border: none;padding: 0 20px;margin-bottom: 30px;}
     #copy16,
     #copyRGBA{width: 100px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;cursor: pointer;}
-
-    #file{position: absolute;left: -100%;top: 0;}
 </style>
 <script>
     /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
@@ -449,8 +444,8 @@
         const codeTextArea = $('#codeTextArea')
         const cssTextArea = $('#cssTextArea')
         const cssName = $('#cssName')
-        const MlineH = $("#MlineH")
-        const MlineV = $("#MlineV")
+        const MlineH = $('#MlineH')
+        const MlineV = $('#MlineV')
         let maxLevel = 0
         let lowestArr = []
         let curTag = $('.btn.active').text()
@@ -612,7 +607,7 @@
                     $('#colorBox').css('background-color',rgba)
                     $('#colorRGBA').val(rgba)
                     $('#color16').val(c16)
-                    $("#copy16").trigger("click")
+                    $('#copy16').trigger('click')
                 }else{
                     setCssC(c16)
                 }
@@ -687,8 +682,8 @@
                 width: curMW,
                 height: curMH
             })
-            curMEle.find(".w").text(curMW)
-            curMEle.find(".h").text(curMH)
+            curMEle.find('.w').text(curMW)
+            curMEle.find('.h').text(curMH)
         }
 
         //鼠标拖到边缘时滚动条自动滚
@@ -811,7 +806,7 @@
 
         //创建html结构
         const createHtml = ()=>{
-            rt.html("")
+            rt.html('')
             for (let i = 0; i < d.length; i++) {
                 if (d[i][7].length == 0) {
                     let h = $(d[i][5])
@@ -1150,12 +1145,14 @@
         const begin = ()=>{
             cv.width = img.width + 20
             cv.height = img.height + 70
+            ctx.fillStyle='#fff'
+            ctx.fillRect(0,0,cv.width,cv.height)
             ctx.drawImage(img, 10, 60, img.width, img.height)
         }
 
         //关闭所有
         const closeAll = ()=>{
-            $("#codePop,#cssPop,#colorPop,#opm,#opM,#opColor,#rectList").removeClass("show")
+            $('#codePop,#cssPop,#colorPop,#opm,#opM,#opColor,#rectList').removeClass('show')
             opMshow = false
         }
 
@@ -1168,7 +1165,7 @@
                 closeAll()
                 rectList.addClass('show')
                 cssPop.addClass('show')
-                $("#writeCss").addClass('active').siblings().removeClass('active')
+                $('#writeCss').addClass('active').siblings().removeClass('active')
             }
         }
 
@@ -1202,9 +1199,9 @@
                     b[attr] = ''
                 }
                 if(b[attr]){
-                    $(this).parents('.css-one').addClass("black")
+                    $(this).parents('.css-one').addClass('black')
                 }else{
-                    $(this).parents('.css-one').removeClass("black")
+                    $(this).parents('.css-one').removeClass('black')
                 }
             })
             let i = cssPop.attr('dIndex')
@@ -1259,13 +1256,13 @@
         //复制html
         const copyCode = ()=>{
             codeTextArea.select()
-            document.execCommand("copy")
+            document.execCommand('copy')
         }
 
         //复制css
         const copyCss = ()=>{
             cssTextArea.select()
-            document.execCommand("copy")
+            document.execCommand('copy')
         }
 
         //点击T，生成时是否识别文字
@@ -1285,7 +1282,7 @@
             closeAll()
             setZIndex()
             $(t).addClass('active').siblings().removeClass('active')
-            rectList.addClass("show")
+            rectList.addClass('show')
         }
 
         //点击css进入编辑css的状态
@@ -1344,14 +1341,14 @@
 
         //复制color16
         const copy16 = ()=>{
-            $("#color16").select()
-            document.execCommand("copy")
+            $('#color16').select()
+            document.execCommand('copy')
         }
 
         //复制colorRGBA
         const copyRGBA = ()=>{
-            $("#colorRGBA").select()
-            document.execCommand("copy")
+            $('#colorRGBA').select()
+            document.execCommand('copy')
         }
 
         //关闭颜色弹窗
@@ -1381,7 +1378,7 @@
         //点击颜色相关的css属性名
         const colorP = t=>{
             drawAttr = $(t).text()
-            $("#CBtn").addClass('active').siblings().removeClass('active')
+            $('#CBtn').addClass('active').siblings().removeClass('active')
             cssPop.removeClass('show')
             rectList.removeClass('show')
             opColor.addClass('show')
@@ -1391,7 +1388,7 @@
         //点击距离相关的css属性名
         const distanceP = t=>{
             drawAttr = $(t).text()
-            $("#mBtn").addClass('active').siblings().removeClass('active')
+            $('#mBtn').addClass('active').siblings().removeClass('active')
             cssPop.removeClass('show')
             rectList.removeClass('show')
             opm.addClass('show')
@@ -1410,7 +1407,7 @@
                     img.onload = begin
                     img.onerror = begin
                 }
-                sessionStorage.setItem("img",e.target.result)
+                sessionStorage.setItem('img',e.target.result)
             }
             fr.readAsDataURL(file)
         }
@@ -1436,9 +1433,4 @@
                 img.onerror = begin
             }
         }
-
-        localStorage.setItem("img",'')
-
-        
-        
 </script>
