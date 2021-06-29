@@ -29,7 +29,7 @@
         <a class="opr" title="编辑类名" onclick="inClass(this)">✏️</a>
         <a class="opr" title="测量" onclick="measure(this)" id="mBtn">📏</a>
         <a class="opr" title="测量2" onclick="measure2(this)" id="MBtn">📐</a>
-        <a class="opr" title="点击一个点复制这个点的颜色" onclick="inColor(this)" id="CBtn">🌈</a>
+        <a class="opr" title="点击一个点复制这个点的颜色" onclick="inColor(this)" id="cBtn">🌈</a>
         <a class="opr" title="测量自动填写时是否用px，默认rem" onclick="px(this)">px</a>
         <input type="text" class="opr" id="pre" title="设置前缀" placeholder="$" value="" oninput="preC(this)" />
         <a class="btn active" v="<div class='$-'></div>" onclick="tagC(this)">div</a>
@@ -411,7 +411,7 @@
     const result = f('result')
     const imgA = f('imgA')
     const bar = f('bar')
-    const CBtn = f('CBtn')
+    const cBtn = f('cBtn')
     const mBtn = f('mBtn')
     const writeCss = f('writeCss')
     const rectList = f('rectList')
@@ -1401,7 +1401,7 @@
     const colorP = t=>{
         drawAttr = t.innerText
         noActive()
-        CBtn.className = 'opr active'
+        cBtn.className = 'opr active'
         cssPop.className = ''
         rectList.className = ''
         opColor.className = 'show'
