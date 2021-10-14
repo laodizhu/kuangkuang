@@ -26,40 +26,42 @@
     <div id="bar">
         <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
         <a class="opr" title="查看html时识别文字" onclick="recognizeT(this)">T</a>
-        <a class="opr" id="writeCss" title="编辑css" onclick="inCss(this)">📝</a>
-        <a class="opr" title="编辑类名" onclick="inClass(this)">✏️</a>
-        <a class="opr" title="测量" onclick="measure(this)" id="mBtn">📏</a>
-        <a class="opr" title="测量2" onclick="measure2(this)" id="MBtn">📐</a>
-        <a class="opr" title="点击一个点复制这个点的颜色" onclick="inColor(this)" id="CBtn">🌈</a>
+        <a class="opr" id="writeCss" title="编辑css" onclick="inCss(this)">css</a>
+        <a class="opr green" title="编辑类名" onclick="inClass(this)">class</a>
+        <a class="opr" title="测量" onclick="measure(this)" id="mBtn">m</a>
+        <a class="opr" title="测量" onclick="measure2(this)" id="MBtn">M</a>
+        <a class="opr" title="点击一个点复制这个点的颜色" onclick="inColor(this)" id="CBtn">color</a>
         <a class="opr" title="测量自动填写时是否用px，默认rem" onclick="px(this)">px</a>
-        <a class="opr" title="块状识别，开发中，未完善" onclick="bkr(this)">B</a>
+        <a class="opr" title="点击文字会为文字套上当前选中的标签" onclick="bkr(this)">bkr</a>
         <input type="text" class="opr" id="pre" title="设置前缀" placeholder="$" value="" oninput="preC(this)" />
-        <a class="btn active" v="<div class='$-'></div>" onclick="tagC(this)">div</a>
-        <a class="btn" v="<a class='$-' title=''></a>" onclick="tagC(this)">a</a>
-        <a class="btn" v="<img class='$-img' src='images/' alt='' />" onclick="tagC(this)">img</a>
-        <a class="btn" v="<span class='$-'></span>" onclick="tagC(this)">span</a>
-        <a class="btn" v="<ul class='$-ul'></ul>" onclick="tagC(this)">ul</a>
-        <a class="btn" v="<li class='$-li'></li>" onclick="tagC(this)">li</a>
-        <a class="btn" v="<p class=''></p>" onclick="tagC(this)">p</a>
-        <a class="btn" v="<dl class='$-dl'></dl>" onclick="tagC(this)">dl</a>
-        <a class="btn" v="<dt class='$-dt'></dt>" onclick="tagC(this)">dt</a>
-        <a class="btn" v="<dd class='$-dd'></dd>" onclick="tagC(this)">dd</a>
-        <a class="btn" v="<h1 class='$-h1'></h1>" onclick="tagC(this)">h1</a>
-        <a class="btn" v="<h2 class='$-h2'></h2>" onclick="tagC(this)">h2</a>
-        <a class="btn" v="<h3 class='$-h3'></h3>" onclick="tagC(this)">h3</a>
-        <a class="btn" v="<table class='$-tb'></table>" onclick="tagC(this)">table</a>
-        <a class="btn" v="<tr class='$-tr'></tr>" onclick="tagC(this)">tr</a>
-        <a class="btn" v="<td class='$-td'></td>" onclick="tagC(this)">td</a>
-        <a class="btn" v="<form class='$-form'></form>" onclick="tagC(this)">form</a>
-        <a class="btn" v="<input class='$-txt' type='text' />" onclick="tagC(this)">text</a>
-        <a class="btn" v="<input class='$-psd' type='password' />" onclick="tagC(this)">pass</a>
-        <a class="btn" v="<input class='$-sub' type='submit' value='提交' />" onclick="tagC(this)">submit</a>
-        <a class="btn" v="<input class='$-rad' type='radio' value='' />" onclick="tagC(this)">radio</a>
-        <a class="btn" v="<input class='$-ckb' type='checkbox' value='' />" onclick="tagC(this)">check</a>
-        <a class="btn" v="<textarea class='$-area'></textarea>" onclick="tagC(this)">area</a>
+        <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)">div</a>
+        <a class="btn" v='<a class="$-a" title=""></a>' onclick="tagC(this)">a</a>
+        <a class="btn" v='<img class="$-img" src="images/" alt="">' onclick="tagC(this)">img</a>
+        <a class="btn" v='<span class="$-span"></span>' onclick="tagC(this)">span</a>
+        <a class="btn" v='<ul class="$-ul"></ul>' onclick="tagC(this)">ul</a>
+        <a class="btn" v='<li class="$-li"></li>' onclick="tagC(this)">li</a>
+        <a class="btn" v='<p class="$-p"></p>' onclick="tagC(this)">p</a>
+        <a class="btn" v='<br>' onclick="tagC(this)">br</a>
+        <a class="btn" v='<dl class="$-dl"></dl>' onclick="tagC(this)">dl</a>
+        <a class="btn" v='<dt class="$-dt"></dt>' onclick="tagC(this)">dt</a>
+        <a class="btn" v='<dd class="$-dd"></dd>' onclick="tagC(this)">dd</a>
+        <a class="btn" v='<h1 class="$-h1"></h1>' onclick="tagC(this)">h1</a>
+        <a class="btn" v='<h2 class="$-h2"></h2>' onclick="tagC(this)">h2</a>
+        <a class="btn" v='<h3 class="$-h3"></h3>' onclick="tagC(this)">h3</a>
+        <a class="btn" v='<table class="$-tb"></table>' onclick="tagC(this)" title="table">tb</a>
+        <a class="btn" v='<tr class="$-tr"></tr>' onclick="tagC(this)">tr</a>
+        <a class="btn" v='<td class="$-td"></td>' onclick="tagC(this)">td</a>
+        <a class="btn" v='<form class="$-form"></form>' onclick="tagC(this)" title="form">form</a>
+        <a class="btn" v='<input class="$-txt" type="text" placeholder="">' onclick="tagC(this)" title="input[text]">txt</a>
+        <a class="btn" v='<input class="$-psd" type="password" placeholder="">' onclick="tagC(this)" title="input[password]">psd</a>
+        <a class="btn" v='<input class="$-sub" type="submit" value="提交">' onclick="tagC(this)" title="input[submit]">sub</a>
+        <a class="btn" v='<label class="$-lb"></label>' onclick="tagC(this)" title="label">lb</a>
+        <a class="btn" v='<input class="$-rad" type="radio" value="">' onclick="tagC(this)" title="input[radio]">rad</a>
+        <a class="btn" v='<input class="$-ckb" type="checkbox" value="">' onclick="tagC(this)" title="input[checkbox]">ckb</a>
+        <a class="btn" v='<textarea class="$-area" placeholder=""></textarea>' onclick="tagC(this)" title="textarea">area</a>
+        <a class="btn" v='<select class="$-sel"></select>' onclick="tagC(this)" title="select">sel</a>
+        <a class="btn" v='<option class="$-opt"></option>' onclick="tagC(this)" title="option">opt</a>
     </div>
-    
-    <div id="result"></div>
 
     <div id="codePop">
         <div id="codeM" onclick="codePop.className=''"></div>
@@ -82,168 +84,221 @@
     </div>
     <div id="cssPop">
         <div id="cssM" onclick="cssPop.className=''"></div>
-        <div class="css-box">
-            <div class="css-left">
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">left</span><input class="css-t" type="text" id="left" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-left</span><input class="css-t" type="text" id="margin-left" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-left</span><input class="css-t" type="text" id="border-left" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-left</span><input class="css-t" type="text" id="padding-left" oninput="setCss()" /></div>
+        <div class="css-left">
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding</span><input class="css-t" type="text" id="padding" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-left</span><input class="css-t" type="text" id="padding-left" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-right</span><input class="css-t" type="text" id="padding-right" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-top</span><input class="css-t" type="text" id="padding-top" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-bottom</span><input class="css-t" type="text" id="padding-bottom" oninput="setCss()" /></div>
+        </div>
+        <div class="css-right">
+            <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border</span><input class="css-t" type="text" id="border" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-left</span><input class="css-t" type="text" id="border-left" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-right</span><input class="css-t" type="text" id="border-right" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-top</span><input class="css-t" type="text" id="border-top" oninput="setCss()" /></div>
+            <div class="css-one "><span class="css-dt sp" onclick="colorP(this)">border-bottom</span><input class="css-t" type="text" id="border-bottom" oninput="setCss()" /></div>
+        </div>
+        <div class="css-top">
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin</span><input class="css-t" type="text" id="margin" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-left</span><input class="css-t" type="text" id="margin-left" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-right</span><input class="css-t" type="text" id="margin-right" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-top</span><input class="css-t" type="text" id="margin-top" oninput="setCss()" /></div>
+            <div class="css-one "><span class="css-dt sp" onclick="distanceP(this)">margin-bottom</span><input class="css-t" type="text" id="margin-bottom" oninput="setCss()" /></div>
+        </div>
+        <div class="css-bottom">
+            <div class="css-one">
+                <span class="css-dt">display</span>
+                <select class="css-t" id="display" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="inline-block">inline-block</option>
+                    <option value="flex">flex</option>
+                    <option value="block">block</option>
+                    <option value="none">none</option>
+                    <option value="inline">inline</option>
+                </select>
             </div>
-            <div class="css-right">
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">right</span><input class="css-t" type="text" id="right" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-right</span><input class="css-t" type="text" id="margin-right" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-right</span><input class="css-t" type="text" id="border-right" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-right</span><input class="css-t" type="text" id="padding-right" oninput="setCss()" /></div>
+            <div class="css-one">
+                <span class="css-dt">vertical-align</span>
+                <select class="css-t" id="vertical-align" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="top">top</option>
+                    <option value="middle">middle</option>
+                    <option value="bottom">bottom</option>
+                </select>
             </div>
-            <div class="css-top">
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">top</span><input class="css-t" type="text" id="top" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-top</span><input class="css-t" type="text" id="margin-top" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-top</span><input class="css-t" type="text" id="border-top" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-top</span><input class="css-t" type="text" id="padding-top" oninput="setCss()" /></div>
+            <div class="css-one">
+                <span class="css-dt">float</span>
+                <select class="css-t" id="float" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="left">left</option>
+                    <option value="right">right</option>
+                    <option value="none">none</option>
+                </select>
             </div>
-            <div class="css-bottom">
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding-bottom</span><input class="css-t" type="text" id="padding-bottom" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-bottom</span><input class="css-t" type="text" id="border-bottom" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-bottom</span><input class="css-t" type="text" id="margin-bottom" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">bottom</span><input class="css-t" type="text" id="bottom" oninput="setCss()" /></div>
+            <div class="css-one">
+                <span class="css-dt">justify-content</span>
+                <select class="css-t" id="justify-content" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-around">space-around</option>
+                    <option value="center">center</option>
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                </select>
             </div>
-            <div class="css-center">
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">font-size</span><input class="css-t" type="text" id="font-size" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">color</span><input class="css-t" type="text" id="color" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">line-height</span><input class="css-t" type="text" id="line-height" oninput="setCss()" /></div>
-                <div class="css-one">
-                    <span class="css-dt">text-align</span>
-                    <select class="css-t" id="text-align" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="center">center</option>
-                        <option value="right">right</option>
-                        <option value="left">left</option>
-                        <option value="justify">justify</option>
-                    </select>
-                </div>
-                <div class="css-one">
-                    <span class="css-dt">font-weight</span>
-                    <select class="css-t" id="font-weight" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="bold">bold</option>
-                        <option value="normal">normal</option>
-                        <option value="light">light</option>
-                    </select>
-                </div>
+            <div class="css-one">
+                <span class="css-dt">align-items</span>
+                <select class="css-t" id="align-items" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="center">center</option>
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="stretch">stretch</option>
+                    <option value="baseline">baseline</option>
+                </select>
             </div>
-            <div class="css-left-top">
-                <div class="css-one">
-                    <span class="css-dt">position</span>
-                    <select class="css-t" id="position" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="absolute">absolute</option>
-                        <option value="relative">relative</option>
-                        <option value="fixed">fixed</option>
-                        <option value="static">static</option>
-                    </select>
-                </div>
-                <div class="css-one"><span class="css-dt">z-index</span><input class="css-t" type="text" id="z-index" oninput="setCss()" /></div>
-                <div class="css-one">
-                    <span class="css-dt">display</span>
-                    <select class="css-t" id="display" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="inline-block">inline-block</option>
-                        <option value="flex">flex</option>
-                        <option value="block">block</option>
-                        <option value="none">none</option>
-                        <option value="inline">inline</option>
-                    </select>
-                </div>
-                <div class="css-one">
-                    <span class="css-dt">vertical-align</span>
-                    <select class="css-t" id="vertical-align" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="top">top</option>
-                        <option value="middle">middle</option>
-                        <option value="bottom">bottom</option>
-                    </select>
-                </div>
-                <div class="css-one">
-                    <span class="css-dt">float</span>
-                    <select class="css-t" id="float" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="left">left</option>
-                        <option value="right">right</option>
-                        <option value="none">none</option>
-                    </select>
-                </div>
-                <div class="css-one">
-                    <span class="css-dt">overflow</span>
-                    <select class="css-t" id="overflow" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="hidden">hidden</option>
-                        <option value="visible">visible</option>
-                        <option value="auto">auto</option>
-                        <option value="scroll">scroll</option>
-                    </select>
-                </div>
+            <div class="css-one">
+                <span class="css-dt">flex-wrap</span>
+                <select class="css-t" id="flex-wrap" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="wrap">wrap</option>
+                    <option value="nowrap">nowrap</option>
+                    <option value="wrap-reverse">wrap-reverse</option>
+                </select>
             </div>
-            <div class="css-right-top">
-                <div class="css-one"><span class="css-dt">transition</span><input class="css-t" type="text" id="transition" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">transform</span><input class="css-t" type="text" id="transform" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">opacity</span><input class="css-t" type="text" id="opacity" oninput="setCss()" /></div>
-                <div class="css-one">
-                    <span class="css-dt">visibility</span>
-                    <select class="css-t" id="visibility" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="hidden">hidden</option>
-                        <option value="visible">visible</option>
-                    </select>
-                </div>
-                <div class="css-one">
-                    <span class="css-dt">cursor</span>
-                    <select class="css-t" id="cursor" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="pointer">pointer</option>
-                        <option value="default">default</option>
-                        <option value="text">text</option>
-                        <option value="crosshair">crosshair</option>
-                    </select>
-                </div>
+            
+        </div>
+        <div class="css-center">
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">font-size</span><input class="css-t" type="text" id="font-size" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">color</span><input class="css-t" type="text" id="color" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">line-height</span><input class="css-t" type="text" id="line-height" oninput="setCss()" /></div>
+            <div class="css-one">
+                <span class="css-dt">text-align</span>
+                <select class="css-t" id="text-align" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="center">center</option>
+                    <option value="right">right</option>
+                    <option value="left">left</option>
+                    <option value="justify">justify</option>
+                </select>
             </div>
-            <div class="css-left-bottom">
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">width</span><input class="css-t" type="text" id="width" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">height</span><input class="css-t" type="text" id="height" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">border-radius</span><input class="css-t" type="text" id="border-radius" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">padding</span><input class="css-t" type="text" id="padding" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border</span><input class="css-t" type="text" id="border" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin</span><input class="css-t" type="text" id="margin" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">box-shadow</span><input class="css-t" type="text" id="box-shadow" oninput="setCss()" /></div>
+            <div class="css-one">
+                <span class="css-dt">font-weight</span>
+                <select class="css-t" id="font-weight" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="bold">bold</option>
+                    <option value="normal">normal</option>
+                    <option value="light">light</option>
+                </select>
             </div>
-            <div class="css-right-bottom">
-                <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">background-color</span><input class="css-t" type="text" id="background-color" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">background-image</span><input class="css-t" type="text" id="background-image" oninput="setCss()" /></div>
-                <div class="css-one"><span class="css-dt">background-size</span><input class="css-t" type="text" id="background-size" oninput="setCss()" /></div>
-                <div class="css-one">
-                    <span class="css-dt">background-position</span>
-                    <select class="css-t" id="background-position" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="top left">top left</option>
-                        <option value="top center">top center</option>
-                        <option value="top right">top right</option>
-                        <option value="center left">center left</option>
-                        <option value="center center">center center</option>
-                        <option value="center right">center right</option>
-                        <option value="bottom left">bottom left</option>
-                        <option value="bottom center">bottom center</option>
-                        <option value="bottom right">bottom right</option>
-                    </select>
-                </div>
-                <div class="css-one">
-                    <span class="css-dt">background-repeat</span>
-                    <select class="css-t" id="background-repeat" onchange="setCss()">
-                        <option value=""></option>
-                        <option value="no-repeat">no-repeat</option>
-                        <option value="repeat-x">repeat-x</option>
-                        <option value="repeat-y">repeat-y</option>
-                        <option value="repeat">repeat</option>
-                    </select>
-                </div>
+            <div class="css-one">
+                <span class="css-dt">overflow</span>
+                <select class="css-t" id="overflow" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="hidden">hidden</option>
+                    <option value="visible">visible</option>
+                    <option value="auto">auto</option>
+                    <option value="scroll">scroll</option>
+                </select>
+            </div>
+            <div class="css-one">
+                <span class="css-dt">text-overflow</span>
+                <select class="css-t" id="text-overflow" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="ellipsis">ellipsis</option>
+                    <option value="clip">clip</option>
+                </select>
+            </div>
+            <div class="css-one">
+                <span class="css-dt">white-space</span>
+                <select class="css-t" id="white-space" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="nowrap">nowrap</option>
+                    <option value="normal">normal</option>
+                    <option value="pre">pre</option>
+                    <option value="pre-wrap">pre-wrap</option>
+                    <option value="pre-line">pre-line</option>
+                </select>
+            </div>
+        </div>
+        <div class="css-left-top">
+            <div class="css-one">
+                <span class="css-dt">position</span>
+                <select class="css-t" id="position" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="absolute">absolute</option>
+                    <option value="relative">relative</option>
+                    <option value="fixed">fixed</option>
+                    <option value="static">static</option>
+                </select>
+            </div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">left</span><input class="css-t" type="text" id="left" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">top</span><input class="css-t" type="text" id="top" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">right</span><input class="css-t" type="text" id="right" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">bottom</span><input class="css-t" type="text" id="bottom" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt">z-index</span><input class="css-t" type="text" id="z-index" oninput="setCss()" /></div>
+        </div>
+        <div class="css-right-top">
+            <div class="css-one"><span class="css-dt">transition</span><input class="css-t" type="text" id="transition" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt">transform</span><input class="css-t" type="text" id="transform" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt">opacity</span><input class="css-t" type="text" id="opacity" oninput="setCss()" /></div>
+            <div class="css-one">
+                <span class="css-dt">visibility</span>
+                <select class="css-t" id="visibility" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="hidden">hidden</option>
+                    <option value="visible">visible</option>
+                </select>
+            </div>
+            <div class="css-one">
+                <span class="css-dt">cursor</span>
+                <select class="css-t" id="cursor" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="pointer">pointer</option>
+                    <option value="default">default</option>
+                    <option value="text">text</option>
+                    <option value="crosshair">crosshair</option>
+                </select>
+            </div>
+            <div class="css-one"><span class="css-dt">box-shadow</span><input class="css-t" type="text" id="box-shadow" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">border-radius</span><input class="css-t" type="text" id="border-radius" oninput="setCss()" /></div>
+        </div>
+        <div class="css-left-bottom">
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">width</span><input class="css-t" type="text" id="width" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">height</span><input class="css-t" type="text" id="height" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">max-width</span><input class="css-t" type="text" id="max-width" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">max-height</span><input class="css-t" type="text" id="max-height" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">min-width</span><input class="css-t" type="text" id="min-width" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">min-height</span><input class="css-t" type="text" id="min-height" oninput="setCss()" /></div>
+        </div>
+        <div class="css-right-bottom">
+            <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">background-color</span><input class="css-t" type="text" id="background-color" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt">background-image</span><input class="css-t" type="text" id="background-image" oninput="setCss()" /></div>
+            <div class="css-one"><span class="css-dt">background-size</span><input class="css-t" type="text" id="background-size" oninput="setCss()" /></div>
+            <div class="css-one">
+                <span class="css-dt">background-position</span>
+                <select class="css-t" id="background-position" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="top left">top left</option>
+                    <option value="top center">top center</option>
+                    <option value="top right">top right</option>
+                    <option value="center left">center left</option>
+                    <option value="center center">center center</option>
+                    <option value="center right">center right</option>
+                    <option value="bottom left">bottom left</option>
+                    <option value="bottom center">bottom center</option>
+                    <option value="bottom right">bottom right</option>
+                </select>
+            </div>
+            <div class="css-one">
+                <span class="css-dt">background-repeat</span>
+                <select class="css-t" id="background-repeat" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="no-repeat">no-repeat</option>
+                    <option value="repeat-x">repeat-x</option>
+                    <option value="repeat-y">repeat-y</option>
+                    <option value="repeat">repeat</option>
+                </select>
             </div>
         </div>
     </div>
@@ -272,8 +327,6 @@
     body{color: rgba(255,0,0,0.8);font-family: Microsoft Yahei;background-color: #000;}
     body *{box-sizing: border-box;line-height: 1;}
 
-    #result{display: none;}
-
     #cv{position: relative;z-index: 1;}
     #rectList,
     #rectListm,
@@ -294,7 +347,7 @@
     #opM.show,
     #opColor.show,
     #opB.show{display: block;}
-    #bar{display: flex;width: 100%;position: fixed;left: 0;top: 0;background-color: #222;z-index: 10;font-size: 0;}
+    #bar{display: flex;width: 100%;position: fixed;left: 0;top: 0;background-color: #282923;z-index: 10;font-size: 0;}
     #main{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;font-size: 0;overflow: auto;}
     #mainBox{width: auto;position: relative;display: inline-block;vertical-align: top;}
     #imgA{max-width: none;opacity: 0;position: absolute;left: 0;top: 0;z-index: 0;}
@@ -304,9 +357,13 @@
     .opr:hover,
     .opr.active,
     .btn.active,
-    .opr.selected{background-color: #555;color: #eee;}
+    .opr.selected{background-color: #000;}
+    .btn{color: #f92472;}
     input.opr{width: auto;min-width: 0;background-color: transparent;border: none;}
-    .one{position: absolute;box-sizing: border-box;border: 1px solid rgba(255,0,0,0.8);user-modify: read-write;-webkit-user-modify: read-write;font-size: 14px;color: rgba(255,0,0,0.8);cursor: text;line-height: 18px;padding: 1px 3px;outline: none;}
+    .opr.green{color: #a6e22b;}
+    .one:hover,
+    .one:focus{border-color: #a6e22b;color: #a6e22b;background-color: rgba(0, 0, 0, 0.5);transition: all .3s;}
+    .one{position: absolute;box-sizing: border-box;border: 1px solid #f92472;user-modify: read-write;-webkit-user-modify: read-write;font-size: 14px;color: #f92472;cursor: text;line-height: 18px;padding: 1px 3px;outline: none;}
     .one .w,
     .one .h{display: none;font-size: 12px;color: #fff;line-height: 14px;background-color: rgba(255,0,0,0.8);padding: 0 2px;position: absolute;}
     .one .w{left: 50%;top: 0;transform: translate(-50%,0);}
@@ -350,58 +407,51 @@
 
     #cssPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
     #cssPop.show{opacity: 1;left: 0;}
-    #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
-    .css-box{width: 1100px;height: 800px;margin-left: -550px;margin-top: -400px;background-color: #222;position: absolute;left: 50%;top: 50%;padding: 10px;z-index: 10;}
-    .css-one{font-size: 16px;color: #ddd;}
-    .css-one.black{background-color: #111;}
-    .css-one.black .css-t{background-color: #111;}
-    .css-dt{display: inline-block;vertical-align: top;line-height: 42px;padding-left: 10px;padding-right: 10px;transition: all .3s;}
+    #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+    .css-one{display: flex;}
+    .css-dt{display: inline-block;vertical-align: top;white-space: nowrap;width: auto;line-height: 38px;padding-left: 10px;padding-right: 10px;transition: all .3s;transform-origin: right center;font-size: 16px;color: #67d8ef;}
     .css-dt.sp{cursor: pointer;}
-    .css-dt.sp:hover{background-color: #000;cursor: pointer;}
-    .css-t{width: 200px;height: 42px;border: none;background-color: #222;font-size: 16px;color: #ddd;padding: 0 5px;outline: none;transition: all .3s;}
-    .css-t:hover{background-color: #000;}
-    .css-left{position: absolute;left: 0;top: 50%;transform: translate(0,-50%);text-align: left;}
-    .css-right{position: absolute;right: 0;top: 50%;transform: translate(0,-50%);text-align: left;}
-    .css-top{position: absolute;left: 50%;top: 0;transform: translate(-50%,0);text-align: left;}
-    .css-bottom{position: absolute;left: 50%;bottom: 0;transform: translate(-50%,0);text-align: left;}
-    .css-center{position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);text-align: left;}
-    .css-left-top{position: absolute;left: 0;top: 0;text-align: left;}
-    .css-right-top{position: absolute;right: 0;top: 0;text-align: left;}
-    .css-left-bottom{position: absolute;left: 0;bottom: 0;text-align: left;}
-    .css-right-bottom{position: absolute;right: 0;bottom: 0;text-align: left;}
-
-    .css-left,
-    .css-left .css-t,
-    .css-right,
-    .css-right .css-t,
-    .css-top,
-    .css-top .css-t,
-    .css-bottom,
-    .css-bottom .css-t{background-color: #333;}
-    .css-box .css-t:hover{background-color: #000;}
-    .css-box .css-dt.sp:hover{background-color: #000;}
+    .css-dt.sp:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
+    .css-t{height: 38px;width: 200px;border: none;background-color: transparent;font-size: 16px;color: #ac80ff;padding: 0 5px;outline: none;transition: all .3s;}
+    .css-t:hover{background-color: rgba(0,0,0,0.3);}
+    select.css-t:hover{background-color: #000;}
+    .css-left{position: absolute;left: 50%;margin-left: -600px;top: 50%;transform: translate(0,-50%);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-right{position: absolute;right: 50%;margin-right: -600px;top: 50%;transform: translate(0,-50%);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-top{position: absolute;left: 50%;top: 0;transform: translate(-50%,0);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-bottom{position: absolute;left: 50%;bottom: 0;transform: translate(-50%,0);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-center{position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-left-top{position: absolute;left: 50%;margin-left: -600px;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-right-top{position: absolute;right: 50%;margin-right: -600px;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-left-bottom{position: absolute;left: 50%;margin-left: -600px;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-right-bottom{position: absolute;right: 50%;margin-right: -600px;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-one.black .css-dt{color: #a6e22b;}
+    .css-s1 .css-dt{transform: scale(0.7);}
+    .css-s2 .css-dt{transform: scale(0.8);}
+    .css-s3 .css-dt{transform: scale(0.9);}
 
     #codePop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 987654321;left: -200%;opacity: 0;}
     #codePop.show{opacity: 1;left: 0;}
-    #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
+    #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
     #codeBox{width: 39%;height: 760px;position: absolute;left: 10%;top: 50%;margin-top: -380px;z-index: 2;}
-    #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
-    #copyCode{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
+    #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.9vw;color: #67d8ef;line-height: 1.5;padding: 70px 2em;outline: none;}
+    #copyCode{width: 100%;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
     #cssBox{width: 39%;height: 760px;position: absolute;right: 10%;top: 50%;margin-top: -380px;z-index: 2;}
-    #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #222;font-size: 1vw;color: #ddd;line-height: 1.5;padding: 70px 2em;outline: none;}
-    #copyCss{width: 200px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
-    #copyCss:hover,
-    #copyCode:hover{background-color: #000;}
+    #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.9vw;color: #d7ba7d;line-height: 1.5;padding: 70px 2em;outline: none;}
+    #copyCss{width: 100%;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
+    #copyCss.green,
+    #copyCode.green{color: #a6e22b;}
     #colorPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;left: -200%;opacity: 0;}
     #colorPop.show{opacity: 1;left: 0;}
     #colorM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
-    #colorCont{width: 1100px;height: 760px;position: absolute;left: 50%;top: 50%;margin-left: -550px;margin-top: -380px;z-index: 2;border: none;background-color: #222;padding: 30px;}
+    #colorCont{width: 1100px;height: 760px;position: absolute;left: 50%;top: 50%;margin-left: -550px;margin-top: -380px;z-index: 2;border: none;background-color: #282923;padding: 30px;}
     #colorBox{width: 100px;height: 100px;border: 6px solid #ddd;margin-bottom: 30px;}
     .color-row{width: 100%;display: flex;}
     #color16,
-    #colorRGBA{flex: 1;height: 50px;line-height: 50px;font-size: 1vw;color: #ddd;outline: none;background-color: #222;border: none;padding: 0 20px;margin-bottom: 30px;}
+    #colorRGBA{flex: 1;height: 50px;line-height: 50px;font-size: 1vw;color: #ddd;outline: none;background-color: #282923;border: none;padding: 0 20px;margin-bottom: 30px;}
     #copy16,
-    #copyRGBA{width: 100px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;cursor: pointer;}
+    #copyRGBA{width: 100px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;cursor: pointer;transition: all .3s;}
+    #copy16.green,
+    #copyRGBA.green{color: #a6e22b;}
 </style>
 <script>
     //获取dom对象
@@ -461,12 +511,11 @@
         }
     }
     //识别文字的文档网址：https://cloud.baidu.com/product/ocr/general
-    const token = '24.46a8defd10464e399322921f6bfe2dfd.2592000.1628944252.282335-23477754'
+    const token = '24.5382dbeb7e80d619034813b73432c3df.2592000.1634354433.282335-23477754'
     const url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token
     const cv = f('cv')
     const ctx = cv.getContext('2d')
     const main = f('main')
-    const result = f('result')
     const imgA = f('imgA')
     const bar = f('bar')
     const CBtn = f('CBtn')
@@ -492,6 +541,8 @@
         'margin': '0 autoo',
         'box-shadow': '0 0 0rem rgba(0,0,0,0)',
         'width': '100%%',
+        'max-width': '100%%',
+        'max-height': '100%%',
         'border-radius': '50%%',
         'transition': 'all .3ss',
         'background-size': 'coverr',
@@ -534,6 +585,7 @@
     let tagS = true
     let dIndex = undefined
     let rew = 30
+    let totalHtml = ''
     //画框框
     op.onmousedown = e=>{
         if(!bool){
@@ -559,7 +611,10 @@
             } else {
                 d.push([curL, curT, curL + curW, curT + curH, curTag, curV, d.length])
                 copyD = JSON.stringify(d)
-                curEle.innerText=curV.match(/class='(.*?)'/)[1]
+                let cArr = curV.match(/class="(.*?)"/)
+                if(cArr){
+                    curEle.innerText=cArr[1]
+                }
                 backArr = []
             }
             stopScroll()
@@ -617,6 +672,15 @@
     opColor.onmousedown = e=>{
         boolColor = true
     }
+    opColor.onmousemove = e=>{
+        let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
+        let c16 = parse16(cc)
+        let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
+        bar.style.backgroundColor=rgba
+    }
+    opColor.onmouseleave = e=>{
+        bar.style.backgroundColor='#282923'
+    }
     document.onmousemove = e=>{
         if (bool) {
             x1 = e.pageX + main.scrollLeft
@@ -670,7 +734,6 @@
         if(boolColor){
             boolColor = false
             let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
-            console.log(999,cc)
             let c16 = parse16(cc)
             let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
             if(!colorPut){
@@ -851,41 +914,44 @@
 
     //创建html结构
     const createHtml = ()=>{
-        result.innerHTML = ''
-        for (let i = 0; i < d.length; i++) {
-            if (d[i][7].length == 0) {
-                let p = document.createElement('div')
-                p.innerHTML = d[i][5]
-                let h = p.children[0]
-                h.id='a' + i
-                d[i][8]?h.setAttribute('cssT',obj2css(d[i][8])):h.setAttribute('cssT','')
-                result.appendChild(h)
-            }
-        }
-        for (let k = 1; k < maxLevel; k++) {
+        totalHtml = ''
+        for (let k = maxLevel-1; k >0; k--) {
+            let arr = []
             for (let i = 0; i < d.length; i++) {
                 if (d[i][7].length == k) {
-                    let p = document.createElement('div')
-                    p.innerHTML = d[i][5]
-                    let h = p.children[0]
-                    h.id='a' + i
-                    d[i][8]?h.setAttribute('cssT',obj2css(d[i][8])):h.setAttribute('cssT','')
-                    f('a' + d[i][7][k - 1]).appendChild(h)
+                    arr.push(d[i])
                 }
+            }
+            let obj = {}
+            for (let m = 0; m < arr.length; m++) {
+                let ar = arr[m][7]
+                let n = ar[ar.length-1]
+                if(obj[n]){
+                    obj[n] = obj[n]+arr[m][5]
+                }else{
+                    obj[n] = arr[m][5]
+                }
+            }
+            for(let key in obj){
+                d[key][5] = d[key][5].replace(/></g,'>'+obj[key]+'<')
+            }
+        }
+        for (let i = 0; i < d.length; i++) {
+            if (d[i][7].length == 0) {
+                totalHtml += d[i][5]
             }
         }
     }
 
     //获取所有类名加样式放到textarea里
     const getAllClass = ()=>{
-        let all = result.querySelectorAll('*')
         let ob = {}
-        for(let i=0;i<all.length;i++){
-            let item = all[i]
-            let name = item.className
+        for(let i=0;i<d.length;i++){
+            let item = d[i]
+            let name = item[9]
             if(name){
                 let c = name.split(' ')[0]
-                let s = item.getAttribute('cssT')
+                let s = obj2css(item[8])
                 ob[c] = (ob[c] || '') + s
             }
         }
@@ -932,16 +998,19 @@
         let c = getLineH(e.offsetX,e.offsetY)
         let tb = getTB(c[0],c[1],c[2],5)
         let p = getLineV(e.offsetX,e.offsetY)
-        let lr = getLR(p[0],p[1],p[2],5)
-        curEle = document.createElement('div')
-        curEle.className = 'one'
-        curEle.onclick= function(){editCss(this)}
-        rectList.appendChild(curEle)
-        setEle(lr[0],tb[0],lr[1]+1,tb[1]+1)
-        d.push([curL, curT, curL + curW, curT + curH, curTag, curV, d.length])
-        copyD = JSON.stringify(d)
-        curEle.innerText=curV.match(/class='(.*?)'/)[1]
-        backArr = []
+        let lr = getLR2(p[0],p[1],p[2],tb[1]-tb[0])
+        if(lr){
+            tb = getTB(lr[0],parseInt(tb[0]+(tb[1]-tb[0])/2),lr[1]-lr[0],9)
+            curEle = document.createElement('div')
+            curEle.className = 'one'
+            curEle.onclick= function(){editCss(this)}
+            rectList.appendChild(curEle)
+            setEle(lr[0],tb[0],lr[1]+1,tb[1]+1)
+            d.push([curL, curT, curL + curW, curT + curH, curTag, curV, d.length])
+            copyD = JSON.stringify(d)
+            curEle.innerText=curV.match(/class="(.*?)"/)[1]
+            backArr = []
+        }
     }
     // 根据一点获取经过此点的横线段
     const getLineH = (x,y)=>{
@@ -961,15 +1030,15 @@
     const getTB = (x,y,w,di=1)=>{
         const jg = 15
         const jd = 10
-        let dt = ctx.getImageData(x,y,w,1).data
+        let dt0 = ctx.getImageData(x,y,w,1).data
         let yt = y
         let yb = y
         let m = 0
-        console.log(4444,di)
-        if(maxDc(dt)<jg){
+        if(maxDc(dt0)<jg){
+            let cdt = null
             for(let j=1;j<10000;j++){
                 let dt2 = ctx.getImageData(x,y+j,w,1).data
-                if(avgDc(dt,dt2)>jd){
+                if(avgDc(dt0,dt2)>jd){
                     m++
                     if(m>=di){
                         yb = y+j-m+1
@@ -979,10 +1048,12 @@
                 }else{
                     m=0
                 }
+                dt0 = dt2
             }
+            dt0 = ctx.getImageData(x,y,w,1).data
             for(let j=1;j<10000;j++){
                 let dt2 = ctx.getImageData(x,y-j,w,1).data
-                if(avgDc(dt,dt2)>jd){
+                if(avgDc(dt0,dt2)>jd){
                     m++
                     if(m>=di){
                         yt = y-j+m-1
@@ -992,6 +1063,7 @@
                 }else{
                     m=0
                 }
+                dt0 = dt2
             }
         }else{
             for(let k=1;k<10000;k++){
@@ -1027,14 +1099,14 @@
     const getLR = (x,y,h,di=1)=>{
         const jg = 15
         const jd = 10
-        let dt = ctx.getImageData(x,y,1,h).data
+        let dt0 = ctx.getImageData(x,y,1,h).data
         let xl = x
         let xr = x
         let m = 0
-        if(maxDc(dt)<jg){
+        if(maxDc(dt0)<jg){
             for(let j=1;j<10000;j++){
                 let dt2 = ctx.getImageData(x+j,y,1,h).data
-                if(avgDc(dt,dt2)>jd){
+                if(avgDc(dt0,dt2)>jd){
                     m++
                     if(m>=di){
                         xr = x+j-m+1
@@ -1044,10 +1116,12 @@
                 }else{
                     m=0
                 }
+                dt0 = dt2
             }
+            dt0 = ctx.getImageData(x,y,1,h).data
             for(let j=1;j<10000;j++){
                 let dt2 = ctx.getImageData(x-j,y,1,h).data
-                if(avgDc(dt,dt2)>jd){
+                if(avgDc(dt0,dt2)>jd){
                     m++
                     if(m>=di){
                         xl = x-j+m-1
@@ -1057,6 +1131,7 @@
                 }else{
                     m=0
                 }
+                dt0 = dt2
             }
         }else{
             for(let k=1;k<10000;k++){
@@ -1086,6 +1161,45 @@
             }
         }
         return [xl,xr]
+    }
+    //一条竖线段向左右扩展，超过距离di后返回左多少和右多少，如果这条竖线段是纯色的就不执行
+    const getLR2 = (x,y,h,di=1)=>{
+        const jg = 15
+        const jd = 10
+        let dt = ctx.getImageData(x,y,1,h).data
+        let xl = x
+        let xr = x
+        let m = 0
+        if(maxDc(dt)>=jg){
+            for(let k=1;k<10000;k++){
+                let dt = ctx.getImageData(x+k,y,1,h).data
+                if(maxDc(dt)<jg){
+                    m++
+                    if(m>=di){
+                        xr = x+k-m+1
+                        m=0
+                        break
+                    }
+                }else{
+                    m=0
+                }
+            }
+            for(let k=1;k<10000;k++){
+                let dt = ctx.getImageData(x-k,y,1,h).data
+                if(maxDc(dt)<jg){
+                    m++
+                    if(m>=di){
+                        xl = x-k+m-1
+                        break
+                    }
+                }else{
+                    m=0
+                }
+            }
+            return [xl,xr]
+        }else{
+            return false
+        }
     }
     //根据一点获取以此点为中心的边长为rew的正方形的颜色数据，将此数据称为样本颜色
     const getSwatches = (x,y)=>{
@@ -1177,6 +1291,7 @@
             nextText()
             return
         }
+        codeTextArea.value = '识别文字中…'
         let t = ctx.getImageData(item[0], item[1], item[2] - item[0], item[3] - item[1])
         let c = document.createElement('canvas')
         c.width = t.width < 15 ? 15 : t.width
@@ -1223,6 +1338,7 @@
 
     //文字识别完毕
     const finish = ()=>{
+        createHtml()
         format()
         cIndex = 0
         d = JSON.parse(copyD)
@@ -1230,15 +1346,10 @@
 
     //格式化html
     const format = ()=>{
-        var all = result.querySelectorAll('*')
-        for(let i=0;i<all.length;i++){
-            all[i].removeAttribute('id')
-            all[i].removeAttribute('cssT')
-        }
-        let ssArr = result.innerHTML.replace(/></g,'>\n<').split('\n')
+        let ssArr = totalHtml.replace(/></g,'>\n<').split('\n')
         let curP = 0
         for(let i=1;i<ssArr.length;i++){
-            if(ssArr[i-1].indexOf('</')==-1 && ssArr[i-1].indexOf('<input')==-1 && ssArr[i-1].indexOf('<img')==-1){
+            if(ssArr[i-1].indexOf('</')==-1 && ssArr[i-1].indexOf('<input')==-1 && ssArr[i-1].indexOf('<img')==-1 && ssArr[i-1].indexOf('<br')==-1){
                 curP++
             }
             if(ssArr[i].startsWith('</')){
@@ -1255,7 +1366,7 @@
             if(ssArr[i+1]){
                 t = ssArr[i+1].trim()
             }
-            if(t.startsWith('</') && ssArr[i].charAt(ln)=='>' && ssArr[i].indexOf('</')==-1 && ssArr[i].indexOf('<input')==-1 && ssArr[i].indexOf('<img')==-1){
+            if(t.startsWith('</') && ssArr[i].charAt(ln)=='>' && ssArr[i].indexOf('</')==-1 && ssArr[i].indexOf('<input')==-1 && ssArr[i].indexOf('<img')==-1 && ssArr[i].indexOf('<br')==-1){
                 s += ssArr[i]+t+'\n'
                 i++
             }else{
@@ -1267,14 +1378,14 @@
 
     //不同标签名文字输入到哪
     const putText = s=>{
-        let tag = d[lowestArr[cIndex]][4]
-        let a = f('a' + lowestArr[cIndex])
-        if (['text', 'pass', 'area'].includes(tag)) {
-            a.placeholder=s
-        } else if (['submit'].includes(tag)) {
-            a.value=s
+        let item = d[lowestArr[cIndex]]
+        let tag = item[4]
+        if (['txt', 'psd', 'area'].includes(tag)) {
+            item[5] = item[5].replace(/placeholder=".*?"/,'placeholder="'+s+'"')
+        } else if (['sub'].includes(tag)) {
+            item[5] = item[5].replace(/value=".*?"/,'value="'+s+'"')
         } else {
-            a.innerText=s
+            item[5] = item[5].replace(/></g,'>'+s+'<')
         }
     }
 
@@ -1290,9 +1401,10 @@
     //把手写的类储存到d数组里
     const setClass = ()=>{
         let ones = rectList.childNodes
-        console.log(ones,d)
         for(let i=0;i<ones.length;i++){
-            d[i][5] = d[i][5].replace(/class='.*?'/,"class='"+ones[i].innerText.replace(/\s+/g,' ')+"'")
+            let name = ones[i].innerText.replace(/\s+/g,' ')
+            d[i][9] = name
+            d[i][5] = d[i][5].replace(/class=".*?"/,'class="'+name+'"')
         }
         copyD = JSON.stringify(d)
     }
@@ -1328,7 +1440,7 @@
             curEle.onclick= function(){editCss(this)}
             rectList.appendChild(curEle)
             setEle(u[0], u[1], u[2], u[3])
-            curEle.innertext=u[5].match(/class='(.*?)'/)[1]
+            curEle.innertext=u[5].match(/class="(.*?)"/)[1]
             setZIndex()
         }
     }
@@ -1354,6 +1466,12 @@
         // ctx.fillStyle='#fff'
         ctx.fillRect(0,0,cv.width,cv.height)
         ctx.drawImage(imgA, 10, 60, imgA.width, imgA.height)
+    }
+
+    //如果没有设计就弄个黑色的全屏图
+    const beginEmpty = ()=>{
+        cv.width = document.documentElement.clientWidth
+        cv.height = document.documentElement.clientHeight
     }
 
     //关闭所有
@@ -1405,7 +1523,7 @@
     }
     //将当前弹窗的css放到当前的对象里
     const setCss = ()=>{
-        var b = {}
+        let b = {}
         let list = cssPop.querySelectorAll('.css-t')
         for(let k=0;k<list.length;k++){
             let item = list[k]
@@ -1451,7 +1569,6 @@
         sortD()
         setParents()
         setMaxLevel()
-        createHtml()
         getAllClass()
         setLowestArr()
         recognize?getText():finish()
@@ -1461,12 +1578,28 @@
     const copyCode = ()=>{
         codeTextArea.select()
         document.execCommand('copy')
+        codeTextArea.blur()
+        let btn = f('copyCode')
+        btn.innerText='已复制'
+        btn.addClass('green')
+        setTimeout(function(){
+            btn.innerText='复制'
+            btn.removeClass('green')
+        },2000)
     }
 
     //复制css
     const copyCss = ()=>{
         cssTextArea.select()
         document.execCommand('copy')
+        cssTextArea.blur()
+        let btn = f('copyCss')
+        btn.innerText='已复制'
+        btn.addClass('green')
+        setTimeout(function(){
+            btn.innerText='复制'
+            btn.removeClass('green')
+        },2000)
     }
 
     //点击T，生成时是否识别文字
@@ -1548,12 +1681,28 @@
     const copy16 = ()=>{
         color16.select()
         document.execCommand('copy')
+        color16.blur()
+        let btn = f('copy16')
+        btn.innerText='已复制'
+        btn.addClass('green')
+        setTimeout(function(){
+            btn.innerText='复制'
+            btn.removeClass('green')
+        },2000)
     }
 
     //复制colorRGBA
     const copyRGBA = ()=>{
         colorRGBA.select()
         document.execCommand('copy')
+        colorRGBA.blur()
+        let btn = f('copyRGBA')
+        btn.innerText='已复制'
+        btn.addClass('green')
+        setTimeout(function(){
+            btn.innerText='复制'
+            btn.removeClass('green')
+        },2000)
     }
 
     //点击px
@@ -1615,8 +1764,8 @@
     //导入图片
     const imgC = t=>{
         empty()
-        var file = t.files[0]
-        var fr = new FileReader()
+        let file = t.files[0]
+        let fr = new FileReader()
         fr.onloadend = function(e) {
             imgA.src=e.target.result
             if (imgA.complete) {
@@ -1637,5 +1786,7 @@
         } else {
             imgA.onload = begin
         }
+    }else{
+        beginEmpty()
     }
 </script>
