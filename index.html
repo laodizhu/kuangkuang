@@ -26,13 +26,13 @@
     <div id="bar">
         <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
         <a class="opr" title="查看html时识别文字" onclick="recognizeT(this)">T</a>
-        <a class="opr" id="writeCss" title="编辑css" onclick="inCss(this)">css</a>
-        <a class="opr green" title="编辑类名" onclick="inClass(this)">class</a>
+        <a class="opr" id="writeCss" title="点击框框编辑css，可以手写，也可以点击css属性名再量距离或取颜色自动填入" onclick="inCss(this)">css</a>
+        <a class="opr green" title="点击框框编辑类名" onclick="inClass(this)">class</a>
         <a class="opr" title="测量" onclick="measure(this)" id="mBtn">m</a>
         <a class="opr" title="测量" onclick="measure2(this)" id="MBtn">M</a>
         <a class="opr" title="点击一个点复制这个点的颜色" onclick="inColor(this)" id="CBtn">color</a>
-        <a class="opr" title="测量自动填写时是否用px，默认rem" onclick="px(this)">px</a>
-        <a class="opr" title="点击文字会为文字套上当前选中的标签" onclick="bkr(this)">bkr</a>
+        <a class="opr" title="自动填入时是否用px，默认rem" onclick="px(this)">px</a>
+        <a class="opr" title="点击文字会为文字套上标签" onclick="bkr(this)">bkr</a>
         <input type="text" class="opr" id="pre" title="设置前缀" placeholder="$" value="" oninput="preC(this)" />
         <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)">div</a>
         <a class="btn" v='<a class="$-a" title=""></a>' onclick="tagC(this)">a</a>
