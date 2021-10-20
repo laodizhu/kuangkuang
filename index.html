@@ -61,6 +61,7 @@
         <a class="btn" v='<textarea class="$-area" placeholder=""></textarea>' onclick="tagC(this)" title="textarea">area</a>
         <a class="btn" v='<select class="$-sel"></select>' onclick="tagC(this)" title="select">sel</a>
         <a class="btn" v='<option class="$-opt"></option>' onclick="tagC(this)" title="option">opt</a>
+        <a class="opr" title="常用代码块" onclick="openCommon()">code</a>
     </div>
 
     <div id="codePop">
@@ -302,6 +303,145 @@
             </div>
         </div>
     </div>
+<div id="commonPop">
+<div id="commonM" onclick="commonPop.className=''"></div>
+<div id="commonCont">
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">单行省略</a>
+<textarea>.ellipsis{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}</textarea>
+</div>
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">多行省略</a>
+<textarea>.eps2{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}</textarea>
+</div>
+<br />
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">鼠标移到图片放大-快</a>
+<textarea>
+.box{position: relative;overflow: hidden;}
+.box img{transform: scale(1.001);transition: all 0.5s ease 0s;}
+.box:hover img{transform: scale(1.07);}</textarea>
+</div>
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">鼠标移到图片放大-慢</a>
+<textarea>
+.box{overflow: hidden;position: relative;}
+.box img{transition: transform 12s cubic-bezier(.23, 1, .32, 1); transform: scale(1);}
+.box:hover img{transform: scale(1.1);}</textarea>
+</div>
+<br />
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">swiper结构</a>
+<textarea>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div></textarea>
+</div>
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">swiper的js</a>
+<textarea>
+var bn = new Swiper('.banner',{
+    preventClicks: false,
+    slidesPerView: "auto",
+    centeredSlides: true,
+    loop: true,
+    autoHeight: true,
+    pagination: '.swiper-pagination',
+    paginationClickable :true,
+    prevButton:'.swiper-button-prev',
+    nextButton:'.swiper-button-next',
+})</textarea>
+</div>
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">swiper箭头样式</a>
+<textarea>
+.banner .swiper-button-prev,
+.banner .swiper-button-next{width: 36px;height: 70px;margin-top: -35px;background-size: 100% 100%;}
+.banner .swiper-button-prev{background-image: url(../images/icon-left.png);left: 0px;}
+.banner .swiper-button-next{background-image: url(../images/icon-right.png);right: 0px;}
+.banner .swiper-button-prev.swiper-button-disabled{opacity: 1;background-image: url(../images/icon-left3.png);}
+.banner .swiper-button-next.swiper-button-disabled{opacity: 1;background-image: url(../images/icon-right3.png);}</textarea>
+</div>
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">swiper点样式</a>
+<textarea>
+.banner .swiper-pagination-bullet{width: 18px;height: 18px;background-color: transparent;opacity: 1;border: 2px solid #fff;}
+.banner .swiper-pagination-bullet-active{background-color: #fff;}
+.banner.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{margin: 0 10px;}
+.banner.swiper-container-horizontal>.swiper-pagination-bullets{bottom: 37px;font-size: 0;}</textarea>
+</div>
+<br />
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">slick结构</a>
+<textarea>
+<div class="banner">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div></textarea>
+</div>
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">slick的js</a>
+<textarea>
+$('.banner').slick({
+    dots: true,
+    infinite: true,
+    speed: 800,
+    arrows:true,
+    pauseOnHover:false,
+    autoplay:true,
+    autoplaySpeed:4500,
+    draggable:false,
+    slidesToShow: 4,
+    slidesToScroll: 2
+})</textarea>
+</div>
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">slick箭头样式</a>
+<textarea>
+.banner .slick-arrow{position: absolute;width: 60px;height: 60px;top: 50%;margin-top: -30px;border-radius: 100%;background-repeat: no-repeat;background-position: center center;background-color: #f2f2f2;font-size: 0;border: none;cursor: pointer;z-index: 10;}
+.banner .slick-prev{left: 0;background-image: url(../images/prev.png);}
+.banner .slick-next{right: 0;background-image: url(../images/next.png);}
+.banner .slick-disabled{opacity: 1;}</textarea>
+</div>
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">slick点样式</a>
+<textarea>
+.banner .slick-dots{width: 100%;position: absolute;text-align: center;bottom: 0px;z-index: 1;padding: 0;margin: 0;font-size: 0;}
+.banner .slick-dots li{display: inline-block;width: 7px;height: 7px;margin:0 7px;vertical-align: top;background-color: #fbfbfb;opacity: 0.5;cursor: pointer;border-radius: 100%;}
+.banner .slick-dots li button{display: none;}
+.banner .slick-dots li.slick-active{opacity: 1;}</textarea>
+</div>
+<br />
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">改变placeholder颜色</a>
+<textarea>
+.box input::-webkit-input-placeholder,
+.box textarea::-webkit-input-placeholder{color: #999;}
+.box input:-moz-placeholder,
+.box textarea:-moz-placeholder{color: #999;}
+.box input::-moz-placeholder,
+.box textarea::-moz-placeholder{color: #999;}
+.box input:-ms-input-placeholder,
+.box textarea:-ms-input-placeholder{color: #999;}</textarea>
+</div>
+<div class="c-dl" onclick="copyCommon(this)">
+<a class="c-dt">背景色渐变</a>
+<textarea>
+.btn{
+    background:#f00; /* 不支持渐变的浏览器显示纯色 */
+    background:-moz-linear-gradient(top, red, rgba(0, 0, 255, 0.5));
+    background:-webkit-gradient(linear, 0 0,right 0, from(#f00), to(rgba(0, 0, 255, 0.5)));
+}</textarea>
+</div>
+</div>
+</div>
+
 </body>
 </html>
 <style>
@@ -438,6 +578,8 @@
     #cssBox{width: 39%;height: 760px;position: absolute;right: 10%;top: 50%;margin-top: -380px;z-index: 2;}
     #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.9vw;color: #d7ba7d;line-height: 1.5;padding: 70px 2em;outline: none;}
     #copyCss{width: 100%;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
+    #copyCss:hover,
+    #copyCode:hover,
     #copyCss.green,
     #copyCode.green{color: #a6e22b;}
     #colorPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;left: -200%;opacity: 0;}
@@ -452,6 +594,17 @@
     #copyRGBA{width: 100px;height: 50px;line-height: 50px;text-align: center;background-color: #111;color: #ddd;cursor: pointer;transition: all .3s;}
     #copy16.green,
     #copyRGBA.green{color: #a6e22b;}
+
+    #commonPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;left: -200%;opacity: 0;overflow: hidden;}
+    #commonPop.show{opacity: 1;left: 0;}
+    #commonM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
+    #commonCont{width: 1100px;height: 760px;position: absolute;left: 50%;top: 50%;margin-left: -550px;margin-top: -380px;z-index: 2;border: none;background-color: #282923;padding: 30px 14px 30px 30px;font-size: 0;overflow: auto;}
+    .c-dl{display: inline-block;vertical-align: top;margin-right: 16px;margin-bottom: 16px;}
+    .c-dt{display: inline-block;vertical-align: top;min-width: 195px;height: 50px;line-height: 50px;padding: 0 1em;text-align: center;background-color: #111;font-size: 16px;color: #ddd;cursor: pointer;transition: all .3s;position: relative;}
+    .c-dt:hover{color: #a6e22b;}
+    .c-dt:after{content: "已复制";display: none;width: 100%;line-height: 50px;background-color: #111;font-size: 14px;color: #a6e22b;text-align: center;position: absolute;left: 0;top: 0;}
+    .c-dt.green:after{display: inline-block;}
+    .c-dl textarea{width: 1px;height: 1px;position: absolute;left: -100vw;top: 0;}
 </style>
 <script>
     //获取dom对象
@@ -558,6 +711,7 @@
     const colorRGBA = f('colorRGBA')
     const colorPop = f('colorPop')
     const colorBox = f('colorBox')
+    const commonPop = f('commonPop')
     const MlineH = f('MlineH')
     const MlineV = f('MlineV')
     let maxLevel = 0
@@ -1479,6 +1633,7 @@
         rectList.removeClass('show')
         colorPop.removeClass('show')
         opColor.removeClass('show')
+        commonPop.removeClass("show")
         opm.removeClass('show')
         opM.removeClass('show')
         opB.removeClass('show')
@@ -1701,6 +1856,22 @@
         btn.addClass('green')
         setTimeout(function(){
             btn.innerText='复制'
+            btn.removeClass('green')
+        },2000)
+    }
+    //点击code
+    const openCommon = ()=>{
+        commonPop.addClass("show")
+    }
+    //复制常用代码块
+    const copyCommon = t=>{
+        let area = t.getElementsByTagName('textarea')[0]
+        area.select()
+        console.log(area)
+        document.execCommand('copy')
+        let btn = t.getElementsByTagName('a')[0]
+        btn.addClass('green')
+        setTimeout(function(){
             btn.removeClass('green')
         },2000)
     }
