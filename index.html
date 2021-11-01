@@ -26,7 +26,7 @@
     </div>
     <div id="bar">
         <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
-        <a class="opr" title="查看html时识别文字" onclick="recognizeT(this)">T</a>
+        <a class="opr" title="查看html时识别文字，需要有服务器环境" onclick="recognizeT(this)">T</a>
         <a class="opr" id="writeCss" title="选中后，点击框框编辑css，可以手写，也可以点击css属性名再量距离或取颜色自动填入" onclick="inCss(this)">css</a>
         <a class="opr green" id="writeClass" title="选中后，点击框框编辑类名，可以选择弹窗里的类名也可以输入" onclick="inClass(this)">class</a>
         <a class="opr" title="主测量" onclick="measure(this)" id="mBtn">m</a>
@@ -1631,7 +1631,7 @@ $('.banner').slick({
             curEle.onclick= function(){showEdit(this)}
             rectList.appendChild(curEle)
             setEle(lr[0],tb[0],lr[1]+1,tb[1]+1)
-            kkd.push([curL, curT, curL + curW, curT + curH, curTag, curV, d.length])
+            kkd.push([curL, curT, curL + curW, curT + curH, curTag, curV, kkd.length])
             copyD = JSON.stringify(kkd)
             curEle.innerText=curV.match(/class="(.*?)"/)[1]
             backArr = []
