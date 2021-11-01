@@ -18,6 +18,7 @@
             <div id="opm"></div>
             <div id="opM"></div>
             <div id="opColor"></div>
+            <div id="opColorText"></div>
             <div id="MlineH"></div>
             <div id="MlineV"></div>
             <div id="opB" onclick="cl(event)"></div>
@@ -30,6 +31,7 @@
         <a class="opr green" id="writeClass" title="选中后，点击框框编辑类名，可以选择弹窗里的类名也可以输入" onclick="inClass(this)">class</a>
         <a class="opr" title="主测量" onclick="measure(this)" id="mBtn">m</a>
         <a class="opr" title="副测量" onclick="measure2(this)" id="MBtn">M</a>
+        <a class="opr" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onclick="inColorText(this)" id="cBtn">c</a>
         <a class="opr" title="选中后，点击一个点复制这个点的颜色" onclick="inColor(this)" id="CBtn">C</a>
         <a class="opr" title="选中后，自动填入时单位用px，不选中则用rem" onclick="px(this)">px</a>
         <a class="opr" title="选中后，点击文字会为文字套上之前选中的html标签" onclick="bkr(this)">B</a>
@@ -918,14 +920,17 @@ $('.banner').slick({
     #op{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 10;cursor: crosshair;user-select: none;}
     #opm,
     #opM,
+    #opColorText,
     #opColor,
     #opB{display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 100;cursor: crosshair;user-select: none;}
     #opM{cursor: default;}
     #opB{cursor: default;}
     #opm.show,
     #opM.show,
+    #opColorText.show,
     #opColor.show,
     #opB.show{display: block;}
+    #opColorText{cursor: default;}
     #bar{display: flex;width: 100%;position: fixed;left: 0;top: 0;background-color: #282923;z-index: 10;font-size: 0;}
     #main{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;font-size: 0;overflow: auto;}
     #mainBox{width: auto;position: relative;display: inline-block;vertical-align: top;}
@@ -1120,6 +1125,7 @@ $('.banner').slick({
     const main = f('main')
     const imgA = f('imgA')
     const bar = f('bar')
+    const cBtn = f('cBtn')
     const CBtn = f('CBtn')
     const mBtn = f('mBtn')
     const writeClass = f('writeClass')
@@ -1130,6 +1136,7 @@ $('.banner').slick({
     const op = f('op')
     const opm = f('opm')
     const opM = f('opM')
+    const opColorText = f('opColorText')
     const opColor = f('opColor')
     const cssObj = {
         'background-image': 'url(../images/)',
@@ -1169,7 +1176,7 @@ $('.banner').slick({
     let boolM = false,xM0, yM0, xM1, yM1, curML, curMT, curMW, curMH, opMWidth, opMHeight,curMEle = null
     let boolColor = false
     let opMshow = false
-    let d = []
+    let kkd = []
     let copyD = ''
     let cIndex = 0
     let backArr = []
@@ -1209,8 +1216,8 @@ $('.banner').slick({
                 rectList.removeChild(curEle)
                 curEle = null
             } else {
-                d.push([curL, curT, curL + curW, curT + curH, curTag, curV, d.length])
-                copyD = JSON.stringify(d)
+                kkd.push([curL, curT, curL + curW, curT + curH, curTag, curV, kkd.length])
+                copyD = JSON.stringify(kkd)
                 let cArr = curV.match(/class="(.*?)"/)
                 if(cArr){
                     curEle.innerText=cArr[1]
@@ -1334,18 +1341,26 @@ $('.banner').slick({
         if(boolColor){
             boolColor = false
             let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
-            let c16 = parse16(cc)
-            let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
             if(!colorPut){
-                colorPop.addClass('show')
-                colorBox.style.backgroundColor=rgba
-                colorRGBA.value = rgba
-                color16.value = c16
-                copy16()
+                openColor(cc)
             }else{
-                setCssC(c16)
+                setCssC(parse16(cc))
             }
         }
+    }
+    //传入颜色，打开弹窗
+    const openColor = cc=>{
+        let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
+        colorPop.addClass('show')
+        colorBox.style.backgroundColor=rgba
+        colorRGBA.value = rgba
+        color16.value = parse16(cc)
+        copy16()
+    }
+    //取文字颜色
+    opColorText.onmousedown = e=>{
+        var cc = getTextColor(e.pageX+main.scrollLeft,e.pageY+main.scrollTop)
+        openColor(cc)
     }
 
     //获取此时屏幕宽高
@@ -1452,7 +1467,7 @@ $('.banner').slick({
 
     //按从左到右从上到下排好顺序
     const sortD = ()=>{
-        d.sort((a, b)=>{
+        kkd.sort((a, b)=>{
             if (a[0] < b[0] && a[1] <= b[3]) {
                 return -1
             } else if (a[0] < b[0] && a[1] > b[3]) {
@@ -1469,39 +1484,39 @@ $('.banner').slick({
         })
     }
 
-    //找出d中每个元素的所有父节点
+    //找出kkd中每个元素的所有父节点
     const setParents = ()=>{
-        for (let i = 0; i < d.length; i++) {
+        for (let i = 0; i < kkd.length; i++) {
             let temp = []
-            for (let j = 0; j < d.length; j++) {
-                if (d[i][0] > d[j][0] && d[i][1] > d[j][1] && d[i][2] < d[j][2] && d[i][3] < d[j][3]) {
+            for (let j = 0; j < kkd.length; j++) {
+                if (kkd[i][0] > kkd[j][0] && kkd[i][1] > kkd[j][1] && kkd[i][2] < kkd[j][2] && kkd[i][3] < kkd[j][3]) {
                     temp.push(j)
                 }
             }
             temp.sort((a, b) =>{
-                return d[a][0] - d[b][0]
+                return kkd[a][0] - kkd[b][0]
             })
-            d[i][7] = temp
+            kkd[i][7] = temp
         }
     }
 
-    //获取d中的最深层数
+    //获取kkd中的最深层数
     const setMaxLevel = ()=>{
         MaxLevel = 0
-        for (let i = 0; i < d.length; i++) {
-            if (d[i][7].length + 1 > maxLevel) {
-                maxLevel = d[i][7].length + 1
+        for (let i = 0; i < kkd.length; i++) {
+            if (kkd[i][7].length + 1 > maxLevel) {
+                maxLevel = kkd[i][7].length + 1
             }
         }
     }
 
-    //获取d中所有最里层的元素在数组d中的位置
+    //获取kkd中所有最里层的元素在数组kkd中的位置
     const setLowestArr = ()=>{
         lowestArr = []
-        for (let i = 0; i < d.length; i++) {
+        for (let i = 0; i < kkd.length; i++) {
             let tf = true
-            for (let j = 0; j < d.length; j++) {
-                if (d[j][7].includes(i)) {
+            for (let j = 0; j < kkd.length; j++) {
+                if (kkd[j][7].includes(i)) {
                     tf = false
                     break
                 }
@@ -1517,9 +1532,9 @@ $('.banner').slick({
         totalHtml = ''
         for (let k = maxLevel-1; k >0; k--) {
             let arr = []
-            for (let i = 0; i < d.length; i++) {
-                if (d[i][7].length == k) {
-                    arr.push(d[i])
+            for (let i = 0; i < kkd.length; i++) {
+                if (kkd[i][7].length == k) {
+                    arr.push(kkd[i])
                 }
             }
             let obj = {}
@@ -1533,12 +1548,12 @@ $('.banner').slick({
                 }
             }
             for(let key in obj){
-                d[key][5] = d[key][5].replace(/></g,'>'+obj[key]+'<')
+                kkd[key][5] = kkd[key][5].replace(/></g,'>'+obj[key]+'<')
             }
         }
-        for (let i = 0; i < d.length; i++) {
-            if (d[i][7].length == 0) {
-                totalHtml += d[i][5]
+        for (let i = 0; i < kkd.length; i++) {
+            if (kkd[i][7].length == 0) {
+                totalHtml += kkd[i][5]
             }
         }
     }
@@ -1547,8 +1562,8 @@ $('.banner').slick({
     const getAllClass = ()=>{
         let ob = {}
         let noClassArr = []
-        for(let i=0;i<d.length;i++){
-            let item = d[i]
+        for(let i=0;i<kkd.length;i++){
+            let item = kkd[i]
             let name = item[9]
             let s = obj2css(item[8])
             if(name){
@@ -1616,8 +1631,8 @@ $('.banner').slick({
             curEle.onclick= function(){showEdit(this)}
             rectList.appendChild(curEle)
             setEle(lr[0],tb[0],lr[1]+1,tb[1]+1)
-            d.push([curL, curT, curL + curW, curT + curH, curTag, curV, d.length])
-            copyD = JSON.stringify(d)
+            kkd.push([curL, curT, curL + curW, curT + curH, curTag, curV, d.length])
+            copyD = JSON.stringify(kkd)
             curEle.innerText=curV.match(/class="(.*?)"/)[1]
             backArr = []
         }
@@ -1840,29 +1855,29 @@ $('.banner').slick({
         }
         return ar
     }
-    //根据一点获取以此点周围的字体颜色，只适用于纯色背景和不加粗的字体
+    //根据一点获取以此点周围的字体颜色，只适用于纯色背景
     const getTextColor = (x,y)=>{
         let c = getLineH(x,y)
         let tb = getTB(c[0],c[1],c[2],5)
         let p = getLineV(x,y)
-        let lr = getLR(p[0],p[1],p[2],5)
-        let t = ctx.getImageData(lr[0],tb[0],lr[1]-lr[0],tb[1]-tb[0])
-        let arr = getColorObj(t)
-        let n = arr.length
-        let s = 0
-        let str = ''
-        for(let i=0;i<n;i++){
-            s+=arr[i][1]
-        }
-        if(arr[0][1]/s<0.3){
+        let lr = getLR2(p[0],p[1],p[2],tb[1]-tb[0])
+        if(lr){
+            tb = getTB(lr[0],parseInt(tb[0]+(tb[1]-tb[0])/2),lr[1]-lr[0],9)
+            let t = ctx.getImageData(lr[0],tb[0],lr[1]-lr[0],tb[1]-tb[0])
+            let arr = getColorObj(t)
+            console.log('arr',arr)
+            let t2 = ctx.getImageData(lr[0],tb[0]-1,lr[1]-lr[0],1)
+            let arr2 = getColorObj(t2)
+            console.log('arr2',arr2)
             str = arr[0][0]
-        }else if(arr[1]){
-            str = arr[1][0]
-        }
-        if(str){
-            return parse16(str.split(','))
-        }else{
-            return ''
+            if(arr2[0][0]==str){
+                str = arr[1][0]
+            }
+            if(str){
+                return str.split(',')
+            }else{
+                return ''
+            }
         }
     }
 
@@ -1896,7 +1911,7 @@ $('.banner').slick({
         if(!lowestArr.length){
             return
         }
-        let item = d[lowestArr[cIndex]]
+        let item = kkd[lowestArr[cIndex]]
         if (['img', 'radio', 'checkbox', 'video'].includes(item[4])) {
             nextText()
             return
@@ -1951,7 +1966,8 @@ $('.banner').slick({
         createHtml()
         format()
         cIndex = 0
-        d = JSON.parse(copyD)
+        kkd = JSON.parse(copyD)
+        console.log(kkd)
     }
 
     //格式化html
@@ -1992,7 +2008,7 @@ $('.banner').slick({
 
     //不同标签名文字输入到哪
     const putText = s=>{
-        let item = d[lowestArr[cIndex]]
+        let item = kkd[lowestArr[cIndex]]
         let tag = item[4]
         if (['txt', 'psd', 'area'].includes(tag)) {
             item[5] = item[5].replace(/placeholder=".*?"/,'placeholder="'+s+'"')
@@ -2007,8 +2023,8 @@ $('.banner').slick({
     const setZIndex = ()=>{
         setParents()
         let ones = rectList.childNodes
-        for (let i = 0; i < d.length; i++) {
-            ones[d[i][6]].style.zIndex=d[i][7].length
+        for (let i = 0; i < kkd.length; i++) {
+            ones[kkd[i][6]].style.zIndex=kkd[i][7].length
         }
     }
 
@@ -2017,10 +2033,10 @@ $('.banner').slick({
         let ones = rectList.childNodes
         for(let i=0;i<ones.length;i++){
             let name = ones[i].innerText.replace(/\s+/g,' ')
-            d[i][9] = name
-            d[i][5] = d[i][5].replace(/class=".*?"/,'class="'+name+'"')
+            kkd[i][9] = name
+            kkd[i][5] = kkd[i][5].replace(/class=".*?"/,'class="'+name+'"')
         }
-        copyD = JSON.stringify(d)
+        copyD = JSON.stringify(kkd)
     }
 
     //将对象拼接成css字符串
@@ -2036,9 +2052,9 @@ $('.banner').slick({
 
     //将框框撤销
     const back = ()=>{
-        if (d.length) {
-            backArr.push(d.pop())
-            copyD = JSON.stringify(d)
+        if (kkd.length) {
+            backArr.push(kkd.pop())
+            copyD = JSON.stringify(kkd)
             rectList.removeChild(rectList.lastChild)
         }
     }
@@ -2047,8 +2063,8 @@ $('.banner').slick({
     const unBack = ()=>{
         if (backArr.length) {
             let u = backArr.pop()
-            d.push(u)
-            copyD = JSON.stringify(d)
+            kkd.push(u)
+            copyD = JSON.stringify(kkd)
             curEle = document.createElement('div')
             curEle.className = 'one'
             curEle.onclick= function(){showEdit(this)}
@@ -2092,6 +2108,7 @@ $('.banner').slick({
     const closeAll = ()=>{
         rectList.removeClass('show')
         colorPop.removeClass('show')
+        opColorText.removeClass('show')
         opColor.removeClass('show')
         commonPop.removeClass("show")
         opm.removeClass('show')
@@ -2153,7 +2170,7 @@ $('.banner').slick({
             }
             b[attr]?item.parentNode.addClass('black'):item.parentNode.removeClass('black')
         }
-        d[dIndex][8] = JSON.stringify(b)!='{}'?b:''
+        kkd[dIndex][8] = JSON.stringify(b)!='{}'?b:''
     }
 
     //将颜色转为16进制的
@@ -2262,7 +2279,7 @@ $('.banner').slick({
                     break
                 }
             }
-            let b = d[i][8] || {}
+            let b = kkd[i][8] || {}
             let list = cssPop.querySelectorAll('.css-t')
             for(let k=0;k<list.length;k++){
                 let item = list[k]
@@ -2297,6 +2314,14 @@ $('.banner').slick({
         opMshow = true
         MlineH.addClass('show')
         MlineV.addClass('show')
+    }
+
+    //点击c进入复制文字颜色的状态
+    const inColorText = t=>{
+        closeAll()
+        noActive()
+        t.addClass('active')
+        opColorText.addClass('show')
     }
 
     //点击C进入复制颜色的状态
@@ -2399,7 +2424,7 @@ $('.banner').slick({
     //清空框框和线
     const empty = ()=>{
         copyD = ''
-        d = []
+        kkd = []
         backArr = []
         rectList.innerHTML = ''
         rectListm.innerHTML = ''
