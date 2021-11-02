@@ -1360,7 +1360,9 @@ $('.banner').slick({
     //取文字颜色
     opColorText.onmousedown = e=>{
         var cc = getTextColor(e.pageX+main.scrollLeft,e.pageY+main.scrollTop)
-        openColor(cc)
+        if(cc){
+            openColor(cc)
+        }
     }
 
     //获取此时屏幕宽高
@@ -1858,17 +1860,15 @@ $('.banner').slick({
     //根据一点获取以此点周围的字体颜色，只适用于纯色背景
     const getTextColor = (x,y)=>{
         let c = getLineH(x,y)
-        let tb = getTB(c[0],c[1],c[2],5)
+        let tb = getTB(c[0],c[1],c[2],2)
         let p = getLineV(x,y)
-        let lr = getLR2(p[0],p[1],p[2],tb[1]-tb[0])
+        let lr = getLR2(p[0],p[1],p[2],2)
         if(lr){
-            tb = getTB(lr[0],parseInt(tb[0]+(tb[1]-tb[0])/2),lr[1]-lr[0],9)
+            tb = getTB(lr[0],parseInt(tb[0]+(tb[1]-tb[0])/2),lr[1]-lr[0])
             let t = ctx.getImageData(lr[0],tb[0],lr[1]-lr[0],tb[1]-tb[0])
             let arr = getColorObj(t)
-            console.log('arr',arr)
             let t2 = ctx.getImageData(lr[0],tb[0]-1,lr[1]-lr[0],1)
             let arr2 = getColorObj(t2)
-            console.log('arr2',arr2)
             str = arr[0][0]
             if(arr2[0][0]==str){
                 str = arr[1][0]
