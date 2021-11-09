@@ -26,7 +26,7 @@
     </div>
     <div id="bar">
         <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
-        <a class="opr" title="查看html时识别文字，需要有服务器环境" onclick="recognizeT(this)">T</a>
+        <a class="opr" title="查看html时识别文字" onclick="recognizeT(this)">T</a>
         <a class="opr" id="writeCss" title="选中后，点击框框编辑css，可以手写，也可以点击css属性名再量距离或取颜色自动填入" onclick="inCss(this)">css</a>
         <a class="opr green" id="writeClass" title="选中后，点击框框编辑类名，可以选择弹窗里的类名也可以输入" onclick="inClass(this)">class</a>
         <a class="opr" title="主测量" onclick="measure(this)" id="mBtn">m</a>
@@ -36,7 +36,7 @@
         <a class="opr" title="选中后，自动填入时单位用px，不选中则用rem" onclick="px(this)">px</a>
         <a class="opr" title="选中后，点击文字会为文字套上之前选中的html标签" onclick="bkr(this)">B</a>
         <input type="text" class="opr" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" />
-        <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)">div</a>
+        <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)" title="点击屏幕上两个点，生成一个div">div</a>
         <a class="btn" v='<a class="$-a" title=""></a>' onclick="tagC(this)">a</a>
         <a class="btn" v='<img class="$-img" src="images/" alt="">' onclick="tagC(this)">img</a>
         <a class="btn" v='<span class="$-span"></span>' onclick="tagC(this)">span</a>
@@ -231,6 +231,10 @@
                 <datalist id="colorList">
                     <option value="#fff">
                     <option value="#f00">
+                    <option value="#000">
+                    <option value="#333">
+                    <option value="#666">
+                    <option value="#999">
                 </datalist>
             </div>
             <div class="css-one">
@@ -1283,10 +1287,10 @@ $('.banner').slick({
         let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
         let c16 = parse16(cc)
         let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
-        bar.style.backgroundColor=rgba
+        CBtn.style.backgroundColor=rgba
     }
     opColor.onmouseleave = e=>{
-        bar.style.backgroundColor='#282923'
+        CBtn.style.backgroundColor='#282923'
     }
     document.onmousemove = e=>{
         if (bool) {
@@ -2102,6 +2106,11 @@ $('.banner').slick({
     const beginEmpty = ()=>{
         cv.width = document.documentElement.clientWidth
         cv.height = document.documentElement.clientHeight
+        ctx.font='20px Arial'
+        ctx.fillStyle='#999'
+        ctx.textAlign='center'
+        ctx.textBaseline='middle'
+        ctx.fillText("拖动PNG到此",cv.width/2,cv.height/2)
     }
 
     //关闭所有
