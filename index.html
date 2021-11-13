@@ -36,7 +36,7 @@
         <a class="opr" title="选中后，自动填入时单位用px，不选中则用rem" onclick="px(this)">px</a>
         <a class="opr" title="选中后，点击文字会为文字套上之前选中的html标签" onclick="bkr(this)">B</a>
         <input type="text" class="opr" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" />
-        <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)" title="点击屏幕上两个点，生成一个div">div</a>
+        <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)" title="选中后，点击屏幕上两个点，生成一个div">div</a>
         <a class="btn" v='<a class="$-a" title=""></a>' onclick="tagC(this)">a</a>
         <a class="btn" v='<img class="$-img" src="images/" alt="">' onclick="tagC(this)">img</a>
         <a class="btn" v='<span class="$-span"></span>' onclick="tagC(this)">span</a>
@@ -89,75 +89,75 @@
     <div id="cssPop">
         <div id="cssM" onclick="cssPop.className=''"></div>
         <div class="css-left-top">
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">padding</span>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">padding</dt>
                 <input class="css-t" type="text" id="padding" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">padding-left</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">padding-left</dt>
                 <input class="css-t" type="text" id="padding-left" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">padding-right</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">padding-right</dt>
                 <input class="css-t" type="text" id="padding-right" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">padding-top</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">padding-top</dt>
                 <input class="css-t" type="text" id="padding-top" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">padding-bottom</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">padding-bottom</dt>
                 <input class="css-t" type="text" id="padding-bottom" oninput="setCss()" />
-            </div>
+            </dl>
         </div>
         <div class="css-right-top">
-            <div class="css-one">
-                <span class="css-dt sp" onclick="colorP(this)">border</span>
+            <dl>
+                <dt class="sp" onclick="colorP(this)">border</dt>
                 <input class="css-t" type="text" id="border" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="colorP(this)">border-left</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="colorP(this)">border-left</dt>
                 <input class="css-t" type="text" id="border-left" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="colorP(this)">border-right</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="colorP(this)">border-right</dt>
                 <input class="css-t" type="text" id="border-right" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="colorP(this)">border-top</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="colorP(this)">border-top</dt>
                 <input class="css-t" type="text" id="border-top" oninput="setCss()" />
-            </div>
-            <div class="css-one"><span class="css-dt sp" onclick="colorP(this)">border-bottom</span>
+            </dl>
+            <dl><dt class="sp" onclick="colorP(this)">border-bottom</dt>
                 <input class="css-t" type="text" id="border-bottom" oninput="setCss()" />
-            </div>
+            </dl>
         </div>
         <div class="css-top">
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">margin</span>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">margin</dt>
                 <input class="css-t" type="text" id="margin" oninput="setCss()" list="marginList" />
                 <datalist id="marginList">
                     <option value="0 auto">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">margin-left</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">margin-left</dt>
                 <input class="css-t" type="text" id="margin-left" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">margin-right</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">margin-right</dt>
                 <input class="css-t" type="text" id="margin-right" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">margin-top</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">margin-top</dt>
                 <input class="css-t" type="text" id="margin-top" oninput="setCss()" />
-            </div>
-            <div class="css-one"><span class="css-dt sp" onclick="distanceP(this)">margin-bottom</span>
+            </dl>
+            <dl><dt class="sp" onclick="distanceP(this)">margin-bottom</dt>
                 <input class="css-t" type="text" id="margin-bottom" oninput="setCss()" />
-            </div>
+            </dl>
         </div>
         <div class="css-bottom">
-            <div class="css-one">
-                <span class="css-dt">display</span>
+            <dl>
+                <dt>display</dt>
                 <select class="css-t" id="display" onchange="setCss()">
                     <option value=""></option>
                     <option value="inline-block">inline-block</option>
@@ -166,27 +166,27 @@
                     <option value="none">none</option>
                     <option value="inline">inline</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">vertical-align</span>
+            </dl>
+            <dl>
+                <dt>vertical-align</dt>
                 <select class="css-t" id="vertical-align" onchange="setCss()">
                     <option value=""></option>
                     <option value="top">top</option>
                     <option value="middle">middle</option>
                     <option value="bottom">bottom</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">float</span>
+            </dl>
+            <dl>
+                <dt>float</dt>
                 <select class="css-t" id="float" onchange="setCss()">
                     <option value=""></option>
                     <option value="left">left</option>
                     <option value="right">right</option>
                     <option value="none">none</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">justify-content</span>
+            </dl>
+            <dl>
+                <dt>justify-content</dt>
                 <select class="css-t" id="justify-content" onchange="setCss()">
                     <option value=""></option>
                     <option value="space-between">space-between</option>
@@ -195,9 +195,9 @@
                     <option value="flex-start">flex-start</option>
                     <option value="flex-end">flex-end</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">align-items</span>
+            </dl>
+            <dl>
+                <dt>align-items</dt>
                 <select class="css-t" id="align-items" onchange="setCss()">
                     <option value=""></option>
                     <option value="center">center</option>
@@ -206,27 +206,27 @@
                     <option value="stretch">stretch</option>
                     <option value="baseline">baseline</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">flex-wrap</span>
+            </dl>
+            <dl>
+                <dt>flex-wrap</dt>
                 <select class="css-t" id="flex-wrap" onchange="setCss()">
                     <option value=""></option>
                     <option value="wrap">wrap</option>
                     <option value="nowrap">nowrap</option>
                     <option value="wrap-reverse">wrap-reverse</option>
                 </select>
-            </div>
+            </dl>
         </div>
         <div class="css-center">
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">font-size</span>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">font-size</dt>
                 <input class="css-t" type="text" id="font-size" oninput="setCss()" list="fontSizeList" />
                 <datalist id="fontSizeList">
                     <option value="0">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="colorP(this)">color</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="colorP(this)">color</dt>
                 <input class="css-t" type="text" id="color" oninput="setCss()" list="colorList" />
                 <datalist id="colorList">
                     <option value="#fff">
@@ -236,9 +236,9 @@
                     <option value="#666">
                     <option value="#999">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">line-height</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">line-height</dt>
                 <input class="css-t" type="text" id="line-height" oninput="setCss()" list="lineHeightList" />
                 <datalist id="lineHeightList">
                     <option value="1.1">
@@ -251,9 +251,9 @@
                     <option value="1.8">
                     <option value="1.9">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">text-align</span>
+            </dl>
+            <dl>
+                <dt>text-align</dt>
                 <select class="css-t" id="text-align" onchange="setCss()">
                     <option value=""></option>
                     <option value="center">center</option>
@@ -261,18 +261,18 @@
                     <option value="left">left</option>
                     <option value="justify">justify</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">font-weight</span>
+            </dl>
+            <dl>
+                <dt>font-weight</dt>
                 <select class="css-t" id="font-weight" onchange="setCss()">
                     <option value=""></option>
                     <option value="bold">bold</option>
                     <option value="normal">normal</option>
                     <option value="light">light</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">overflow</span>
+            </dl>
+            <dl>
+                <dt>overflow</dt>
                 <select class="css-t" id="overflow" onchange="setCss()">
                     <option value=""></option>
                     <option value="hidden">hidden</option>
@@ -280,17 +280,17 @@
                     <option value="auto">auto</option>
                     <option value="scroll">scroll</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">text-overflow</span>
+            </dl>
+            <dl>
+                <dt>text-overflow</dt>
                 <select class="css-t" id="text-overflow" onchange="setCss()">
                     <option value=""></option>
                     <option value="ellipsis">ellipsis</option>
                     <option value="clip">clip</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">white-space</span>
+            </dl>
+            <dl>
+                <dt>white-space</dt>
                 <select class="css-t" id="white-space" onchange="setCss()">
                     <option value=""></option>
                     <option value="nowrap">nowrap</option>
@@ -299,11 +299,11 @@
                     <option value="pre-wrap">pre-wrap</option>
                     <option value="pre-line">pre-line</option>
                 </select>
-            </div>
+            </dl>
         </div>
         <div class="css-left">
-            <div class="css-one">
-                <span class="css-dt">position</span>
+            <dl>
+                <dt>position</dt>
                 <select class="css-t" id="position" onchange="setCss()">
                     <option value=""></option>
                     <option value="absolute">absolute</option>
@@ -311,60 +311,64 @@
                     <option value="fixed">fixed</option>
                     <option value="static">static</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">left</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">left</dt>
                 <input class="css-t" type="text" id="left" oninput="setCss()" list="leftList" />
                 <datalist id="leftList">
+                    <option value="0">
                     <option value="50%">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">top</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">top</dt>
                 <input class="css-t" type="text" id="top" oninput="setCss()" list="topList" />
                 <datalist id="topList">
+                    <option value="0">
                     <option value="50%">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">right</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">right</dt>
                 <input class="css-t" type="text" id="right" oninput="setCss()" list="rightList" />
                 <datalist id="rightList">
+                    <option value="0">
                     <option value="50%">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">bottom</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">bottom</dt>
                 <input class="css-t" type="text" id="bottom" oninput="setCss()" list="bottomList" />
                 <datalist id="bottomList">
+                    <option value="0">
                     <option value="50%">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">z-index</span>
+            </dl>
+            <dl>
+                <dt>z-index</dt>
                 <input class="css-t" type="text" id="z-index" oninput="setCss()" />
-            </div>
+            </dl>
         </div>
         <div class="css-right">
-            <div class="css-one">
-                <span class="css-dt">transition</span>
+            <dl>
+                <dt>transition</dt>
                 <input class="css-t" type="text" id="transition" oninput="setCss()" list="transitionList" />
                 <datalist id="transitionList">
                     <option value="all .3s">
                     <option value="all .4s">
                     <option value="all .5s">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">transform</span>
+            </dl>
+            <dl>
+                <dt>transform</dt>
                 <input class="css-t" type="text" id="transform" oninput="setCss()" list="transformList" />
                 <datalist id="transformList">
                     <option value="translate()">
                     <option value="scale()">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">opacity</span>
+            </dl>
+            <dl>
+                <dt>opacity</dt>
                 <input class="css-t" type="text" id="opacity" oninput="setCss()" list="opacityList" />
                 <datalist id="opacityList">
                     <option value="0.1">
@@ -377,17 +381,17 @@
                     <option value="0.8">
                     <option value="0.9">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">visibility</span>
+            </dl>
+            <dl>
+                <dt>visibility</dt>
                 <select class="css-t" id="visibility" onchange="setCss()">
                     <option value=""></option>
                     <option value="hidden">hidden</option>
                     <option value="visible">visible</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">cursor</span>
+            </dl>
+            <dl>
+                <dt>cursor</dt>
                 <select class="css-t" id="cursor" onchange="setCss()">
                     <option value=""></option>
                     <option value="pointer">pointer</option>
@@ -395,82 +399,82 @@
                     <option value="text">text</option>
                     <option value="crosshair">crosshair</option>
                 </select>
-            </div>
+            </dl>
         </div>
         <div class="css-left-bottom">
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">width</span>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">width</dt>
                 <input class="css-t" type="text" id="width" oninput="setCss()" list="widthList" />
                 <datalist id="widthList">
                     <option value="100%">
                     <option value="100vw">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">height</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">height</dt>
                 <input class="css-t" type="text" id="height" oninput="setCss()" list="heightList" />
                 <datalist id="heightList">
                     <option value="100%">
                     <option value="100vh">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">max-width</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">max-width</dt>
                 <input class="css-t" type="text" id="max-width" oninput="setCss()" list="maxWidthList" />
                 <datalist id="maxWidthList">
                     <option value="100%">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">max-height</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">max-height</dt>
                 <input class="css-t" type="text" id="max-height" oninput="setCss()" list="maxHeightList" />
                 <datalist id="maxHeightList">
                     <option value="100%">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">min-width</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">min-width</dt>
                 <input class="css-t" type="text" id="min-width" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">min-height</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">min-height</dt>
                 <input class="css-t" type="text" id="min-height" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt sp" onclick="distanceP(this)">border-radius</span>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP(this)">border-radius</dt>
                 <input class="css-t" type="text" id="border-radius" oninput="setCss()" list="borderRadiusList" />
                 <datalist id="borderRadiusList">
                     <option value="50%">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">box-shadow</span>
+            </dl>
+            <dl>
+                <dt>box-shadow</dt>
                 <input class="css-t" type="text" id="box-shadow" oninput="setCss()" />
-            </div>
+            </dl>
         </div>
         <div class="css-right-bottom">
-            <div class="css-one">
-                <span class="css-dt sp" onclick="colorP(this)">background-color</span>
+            <dl>
+                <dt class="sp" onclick="colorP(this)">background-color</dt>
                 <input class="css-t" type="text" id="background-color" oninput="setCss()" list="backgroundColorList" />
                 <datalist id="backgroundColorList">
                     <option value="#fff">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">background-image</span>
+            </dl>
+            <dl>
+                <dt>background-image</dt>
                 <input class="css-t" type="text" id="background-image" oninput="setCss()" />
-            </div>
-            <div class="css-one">
-                <span class="css-dt">background-size</span>
+            </dl>
+            <dl>
+                <dt>background-size</dt>
                 <input class="css-t" type="text" id="background-size" oninput="setCss()" list="backgroundSizeList" />
                 <datalist id="backgroundSizeList">
                     <option value="cover">
                     <option value="contain">
                     <option value="100% 100%">
                 </datalist>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">background-position</span>
+            </dl>
+            <dl>
+                <dt>background-position</dt>
                 <select class="css-t" id="background-position" onchange="setCss()">
                     <option value=""></option>
                     <option value="top left">top left</option>
@@ -483,9 +487,9 @@
                     <option value="bottom center">bottom center</option>
                     <option value="bottom right">bottom right</option>
                 </select>
-            </div>
-            <div class="css-one">
-                <span class="css-dt">background-repeat</span>
+            </dl>
+            <dl>
+                <dt>background-repeat</dt>
                 <select class="css-t" id="background-repeat" onchange="setCss()">
                     <option value=""></option>
                     <option value="no-repeat">no-repeat</option>
@@ -493,271 +497,271 @@
                     <option value="repeat-y">repeat-y</option>
                     <option value="repeat">repeat</option>
                 </select>
-            </div>
+            </dl>
         </div>
     </div>
-    <div id="classPop">
+    <div id="classPop" onclick="putClass(event)">
         <div id="classM" onclick="classPop.className=''"></div>
-        <dl class="class-dl">
-            <dt class="class-dt">功能</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">clearfix</a>
-                <a onclick="putClass(this)">clear</a>
-                <a onclick="putClass(this)">fl</a>
-                <a onclick="putClass(this)">fr</a>
+        <dl>
+            <dt>功能</dt>
+            <dd>
+                <a>clearfix</a>
+                <a>clear</a>
+                <a>fl</a>
+                <a>fr</a>
             </dd>
         </dl>
-        <dl class="class-dl class-dl2">
-            <dt class="class-dt">容器</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">boxes</a>
-                <a onclick="putClass(this)">box</a>
-                <a onclick="putClass(this)">main</a>
-                <a onclick="putClass(this)">layout</a><br>
-                <a onclick="putClass(this)">container</a>
-                <a onclick="putClass(this)">contain</a>
-                <a onclick="putClass(this)">wrapper</a>
-                <a onclick="putClass(this)">wrap</a>
-                <a onclick="putClass(this)">outer</a>
-                <a onclick="putClass(this)">out</a>
-                <a onclick="putClass(this)">inner</a>
-                <a onclick="putClass(this)">in</a>
-                <a onclick="putClass(this)">header</a>
-                <a onclick="putClass(this)">head</a>
-                <a onclick="putClass(this)">footer</a>
-                <a onclick="putClass(this)">foot</a>
+        <dl class="sp">
+            <dt>容器</dt>
+            <dd>
+                <a>boxes</a>
+                <a>box</a>
+                <a>main</a>
+                <a>layout</a><br>
+                <a>container</a>
+                <a>contain</a>
+                <a>wrapper</a>
+                <a>wrap</a>
+                <a>outer</a>
+                <a>out</a>
+                <a>inner</a>
+                <a>in</a>
+                <a>header</a>
+                <a>head</a>
+                <a>footer</a>
+                <a>foot</a>
             </dd>
         </dl>
-        <dl class="class-dl class-dl2">
-            <dt class="class-dt">列表</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">list</a>
-                <a onclick="putClass(this)">one</a>
-                <a onclick="putClass(this)">items</a>
-                <a onclick="putClass(this)">item</a>
-                <a onclick="putClass(this)">links</a>
-                <a onclick="putClass(this)">link</a>
-                <a onclick="putClass(this)">cards</a>
-                <a onclick="putClass(this)">card</a>
-                <a onclick="putClass(this)">blocks</a>
-                <a onclick="putClass(this)">block</a>
-                <a onclick="putClass(this)">pieces</a>
-                <a onclick="putClass(this)">piece</a>
-                <a onclick="putClass(this)">chunks</a>
-                <a onclick="putClass(this)">chunk</a>
-                <a onclick="putClass(this)">tabs</a>
-                <a onclick="putClass(this)">tab</a>
-                <a onclick="putClass(this)">tags</a>
-                <a onclick="putClass(this)">tag</a>
-                <a onclick="putClass(this)">labels</a>
-                <a onclick="putClass(this)">label</a>
-                <a onclick="putClass(this)">rows</a>
-                <a onclick="putClass(this)">row</a>
-                <a onclick="putClass(this)">nav</a>
-                <a onclick="putClass(this)">nav-item</a>
-                <a onclick="putClass(this)">sub-nav</a>
-                <a onclick="putClass(this)">sub-item</a>
-                <a onclick="putClass(this)">third-nav</a>
-                <a onclick="putClass(this)">third-item</a>
-                <a onclick="putClass(this)">fouth-nav</a>
-                <a onclick="putClass(this)">fouth-item</a>
-                <a onclick="putClass(this)">arr</a>
-                <a onclick="putClass(this)">ele</a>
-                <a onclick="putClass(this)">group</a>
-                <a onclick="putClass(this)">single</a>
+        <dl class="sp">
+            <dt>列表</dt>
+            <dd>
+                <a>list</a>
+                <a>one</a>
+                <a>items</a>
+                <a>item</a>
+                <a>links</a>
+                <a>link</a>
+                <a>cards</a>
+                <a>card</a>
+                <a>blocks</a>
+                <a>block</a>
+                <a>pieces</a>
+                <a>piece</a>
+                <a>chunks</a>
+                <a>chunk</a>
+                <a>tabs</a>
+                <a>tab</a>
+                <a>tags</a>
+                <a>tag</a>
+                <a>labels</a>
+                <a>label</a>
+                <a>rows</a>
+                <a>row</a>
+                <a>nav</a>
+                <a>nav-item</a>
+                <a>sub-nav</a>
+                <a>sub-item</a>
+                <a>third-nav</a>
+                <a>third-item</a>
+                <a>fouth-nav</a>
+                <a>fouth-item</a>
+                <a>arr</a>
+                <a>ele</a>
+                <a>group</a>
+                <a>single</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">标题</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">title</a>
-                <a onclick="putClass(this)">tit</a>
-                <a onclick="putClass(this)">t</a>
-                <a onclick="putClass(this)">headline</a>
-                <a onclick="putClass(this)">heading</a>
-                <a onclick="putClass(this)">topic</a>
-                <a onclick="putClass(this)">subject</a>
+        <dl>
+            <dt>标题</dt>
+            <dd>
+                <a>title</a>
+                <a>tit</a>
+                <a>t</a>
+                <a>headline</a>
+                <a>heading</a>
+                <a>topic</a>
+                <a>subject</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">简介</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">describe</a>
-                <a onclick="putClass(this)">desc</a>
-                <a onclick="putClass(this)">des</a>
-                <a onclick="putClass(this)">intro</a>
-                <a onclick="putClass(this)">explain</a>
-                <a onclick="putClass(this)">para</a>
-                <a onclick="putClass(this)">summary</a>
-                <a onclick="putClass(this)">abstract</a>
+        <dl>
+            <dt>简介</dt>
+            <dd>
+                <a>describe</a>
+                <a>desc</a>
+                <a>des</a>
+                <a>intro</a>
+                <a>explain</a>
+                <a>para</a>
+                <a>summary</a>
+                <a>abstract</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">内容</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">content</a>
-                <a onclick="putClass(this)">cont</a>
-                <a onclick="putClass(this)">con</a>
-                <a onclick="putClass(this)">text</a>
-                <a onclick="putClass(this)">txt</a>
-                <a onclick="putClass(this)">detail</a>
-                <a onclick="putClass(this)">article</a>
-                <a onclick="putClass(this)">essay</a>
+        <dl>
+            <dt>内容</dt>
+            <dd>
+                <a>content</a>
+                <a>cont</a>
+                <a>con</a>
+                <a>text</a>
+                <a>txt</a>
+                <a>detail</a>
+                <a>article</a>
+                <a>essay</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">位置</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">left</a>
-                <a onclick="putClass(this)">right</a>
-                <a onclick="putClass(this)">top</a>
-                <a onclick="putClass(this)">bot</a>
-                <a onclick="putClass(this)">mid</a>
-                <a onclick="putClass(this)">center</a>
-                <a onclick="putClass(this)">top-left</a>
-                <a onclick="putClass(this)">top-right</a>
-                <a onclick="putClass(this)">bot-left</a>
-                <a onclick="putClass(this)">bot-right</a>
+        <dl>
+            <dt>位置</dt>
+            <dd>
+                <a>left</a>
+                <a>right</a>
+                <a>top</a>
+                <a>bot</a>
+                <a>mid</a>
+                <a>center</a>
+                <a>top-left</a>
+                <a>top-right</a>
+                <a>bot-left</a>
+                <a>bot-right</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">图片图标</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">image</a>
-                <a onclick="putClass(this)">img</a>
-                <a onclick="putClass(this)">icon</a>
-                <a onclick="putClass(this)">ico</a>
-                <a onclick="putClass(this)">ic</a>
-                <a onclick="putClass(this)">i</a>
-                <a onclick="putClass(this)">picture</a>
-                <a onclick="putClass(this)">pic</a>
-                <a onclick="putClass(this)">thumbnail</a>
-                <a onclick="putClass(this)">thumb</a>
-                <a onclick="putClass(this)">photo</a>
-                <a onclick="putClass(this)">avatar</a>
-                <a onclick="putClass(this)">bg</a>
+        <dl>
+            <dt>图片图标</dt>
+            <dd>
+                <a>image</a>
+                <a>img</a>
+                <a>icon</a>
+                <a>ico</a>
+                <a>ic</a>
+                <a>i</a>
+                <a>picture</a>
+                <a>pic</a>
+                <a>thumbnail</a>
+                <a>thumb</a>
+                <a>photo</a>
+                <a>avatar</a>
+                <a>bg</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">按钮</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">button</a>
-                <a onclick="putClass(this)">btns</a>
-                <a onclick="putClass(this)">btn</a>
-                <a onclick="putClass(this)">push</a>
-                <a onclick="putClass(this)">press</a>
-                <a onclick="putClass(this)">click</a>
-                <a onclick="putClass(this)">cancel</a>
-                <a onclick="putClass(this)">reset</a>
-                <a onclick="putClass(this)">submit</a>
-                <a onclick="putClass(this)">sub</a>
-                <a onclick="putClass(this)">more</a>
-                <a onclick="putClass(this)">edit</a>
-                <a onclick="putClass(this)">delete</a>
-                <a onclick="putClass(this)">del</a>
-                <a onclick="putClass(this)">plus</a>
-                <a onclick="putClass(this)">minus</a>
-                <a onclick="putClass(this)">arrow</a>
-                <a onclick="putClass(this)">prev</a>
-                <a onclick="putClass(this)">next</a>
-                <a onclick="putClass(this)">back</a>
+        <dl>
+            <dt>按钮</dt>
+            <dd>
+                <a>button</a>
+                <a>btns</a>
+                <a>btn</a>
+                <a>push</a>
+                <a>press</a>
+                <a>click</a>
+                <a>cancel</a>
+                <a>reset</a>
+                <a>submit</a>
+                <a>sub</a>
+                <a>more</a>
+                <a>edit</a>
+                <a>delete</a>
+                <a>del</a>
+                <a>plus</a>
+                <a>minus</a>
+                <a>arrow</a>
+                <a>prev</a>
+                <a>next</a>
+                <a>back</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">数字</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">number</a>
-                <a onclick="putClass(this)">num</a>
-                <a onclick="putClass(this)">count</a>
-                <a onclick="putClass(this)">digit</a>
-                <a onclick="putClass(this)">quantity</a>
-                <a onclick="putClass(this)">amount</a>
-                <a onclick="putClass(this)">size</a>
-                <a onclick="putClass(this)">price</a>
+        <dl>
+            <dt>数字</dt>
+            <dd>
+                <a>number</a>
+                <a>num</a>
+                <a>count</a>
+                <a>digit</a>
+                <a>quantity</a>
+                <a>amount</a>
+                <a>size</a>
+                <a>price</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">日期</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">date</a>
-                <a onclick="putClass(this)">time</a>
-                <a onclick="putClass(this)">year</a>
-                <a onclick="putClass(this)">y</a>
-                <a onclick="putClass(this)">month</a>
-                <a onclick="putClass(this)">m</a>
-                <a onclick="putClass(this)">day</a>
-                <a onclick="putClass(this)">d</a>
-                <a onclick="putClass(this)">ym</a>
-                <a onclick="putClass(this)">md</a>
-                <a onclick="putClass(this)">ymd</a>
+        <dl>
+            <dt>日期</dt>
+            <dd>
+                <a>date</a>
+                <a>time</a>
+                <a>year</a>
+                <a>y</a>
+                <a>month</a>
+                <a>m</a>
+                <a>day</a>
+                <a>d</a>
+                <a>ym</a>
+                <a>md</a>
+                <a>ymd</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">联系</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">contact</a>
-                <a onclick="putClass(this)">tel</a>
-                <a onclick="putClass(this)">phone</a>
-                <a onclick="putClass(this)">mobile</a>
-                <a onclick="putClass(this)">email</a>
-                <a onclick="putClass(this)">address</a>
-                <a onclick="putClass(this)">addr</a>
-                <a onclick="putClass(this)">map</a>
-                <a onclick="putClass(this)">message</a>
-                <a onclick="putClass(this)">msg</a>
-                <a onclick="putClass(this)">words</a>
+        <dl>
+            <dt>联系</dt>
+            <dd>
+                <a>contact</a>
+                <a>tel</a>
+                <a>phone</a>
+                <a>mobile</a>
+                <a>email</a>
+                <a>address</a>
+                <a>addr</a>
+                <a>map</a>
+                <a>message</a>
+                <a>msg</a>
+                <a>words</a>
             </dd>
         </dl>
-        <dl class="class-dl">
-            <dt class="class-dt">尺寸</dt>
-            <dd class="class-dd">
-                <a onclick="putClass(this)">large</a>
-                <a onclick="putClass(this)">lg</a>
-                <a onclick="putClass(this)">l</a>
-                <a onclick="putClass(this)">big</a>
-                <a onclick="putClass(this)">small</a>
-                <a onclick="putClass(this)">sm</a>
-                <a onclick="putClass(this)">s</a>
-                <a onclick="putClass(this)">little</a>
+        <dl>
+            <dt>尺寸</dt>
+            <dd>
+                <a>large</a>
+                <a>lg</a>
+                <a>l</a>
+                <a>big</a>
+                <a>small</a>
+                <a>sm</a>
+                <a>s</a>
+                <a>little</a>
             </dd>
         </dl>
     </div>
 <div id="commonPop">
 <div id="commonM" onclick="commonPop.className=''"></div>
-<div id="commonCont">
+<div id="commonCont" onclick="copyCommon(event)">
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">单行省略</dt>
+<dl>
+<dt>单行省略</dt>
 <textarea>.ellipsis{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}</textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">多行省略</dt>
+<dl>
+<dt>多行省略</dt>
 <textarea>.eps2{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}</textarea>
 </dl>
 
-<br />
+<br>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">鼠标移到图片放大-快</dt>
+<dl>
+<dt>鼠标移到图片放大-快</dt>
 <textarea>
 .box{position: relative;overflow: hidden;}
 .box img{transform: scale(1.001);transition: all 0.5s ease 0s;}
 .box:hover img{transform: scale(1.07);}</textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">鼠标移到图片放大-慢</dt>
+<dl>
+<dt>鼠标移到图片放大-慢</dt>
 <textarea>
 .box{overflow: hidden;position: relative;}
 .box img{transition: transform 12s cubic-bezier(.23, 1, .32, 1); transform: scale(1);}
 .box:hover img{transform: scale(1.1);}</textarea>
 </dl>
 
-<br />
+<br>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">swiper结构</dt>
+<dl>
+<dt>swiper结构</dt>
 <textarea>
 <div class="swiper-container">
     <div class="swiper-wrapper">
@@ -769,8 +773,8 @@
 </div></textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">swiper的js</dt>
+<dl>
+<dt>swiper的js</dt>
 <textarea>
 var bn = new Swiper('.banner',{
     preventClicks: false,
@@ -785,8 +789,8 @@ var bn = new Swiper('.banner',{
 })</textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">swiper箭头样式</dt>
+<dl>
+<dt>swiper箭头样式</dt>
 <textarea>
 .banner .swiper-button-prev,
 .banner .swiper-button-next{width: 36px;height: 70px;margin-top: -35px;background-size: 100% 100%;}
@@ -796,8 +800,8 @@ var bn = new Swiper('.banner',{
 .banner .swiper-button-next.swiper-button-disabled{opacity: 1;background-image: url(../images/icon-right3.png);}</textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">swiper点样式</dt>
+<dl>
+<dt>swiper点样式</dt>
 <textarea>
 .banner .swiper-pagination-bullet{width: 18px;height: 18px;background-color: transparent;opacity: 1;border: 2px solid #fff;}
 .banner .swiper-pagination-bullet-active{background-color: #fff;}
@@ -805,10 +809,10 @@ var bn = new Swiper('.banner',{
 .banner.swiper-container-horizontal>.swiper-pagination-bullets{bottom: 37px;font-size: 0;}</textarea>
 </dl>
 
-<br />
+<br>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">slick结构</dt>
+<dl>
+<dt>slick结构</dt>
 <textarea>
 <div class="banner">
     <div class="item"></div>
@@ -817,8 +821,8 @@ var bn = new Swiper('.banner',{
 </div></textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">slick的js</dt>
+<dl>
+<dt>slick的js</dt>
 <textarea>
 $('.banner').slick({
     dots: true,
@@ -834,8 +838,8 @@ $('.banner').slick({
 })</textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">slick箭头样式</dt>
+<dl>
+<dt>slick箭头样式</dt>
 <textarea>
 .banner .slick-arrow{position: absolute;width: 60px;height: 60px;top: 50%;margin-top: -30px;border-radius: 100%;background-repeat: no-repeat;background-position: center center;background-color: #f2f2f2;font-size: 0;border: none;cursor: pointer;z-index: 10;}
 .banner .slick-prev{left: 0;background-image: url(../images/prev.png);}
@@ -843,8 +847,8 @@ $('.banner').slick({
 .banner .slick-disabled{opacity: 1;}</textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">slick点样式</dt>
+<dl>
+<dt>slick点样式</dt>
 <textarea>
 .banner .slick-dots{width: 100%;position: absolute;text-align: center;bottom: 0px;z-index: 1;padding: 0;margin: 0;font-size: 0;}
 .banner .slick-dots li{display: inline-block;width: 7px;height: 7px;margin:0 7px;vertical-align: top;background-color: #fbfbfb;opacity: 0.5;cursor: pointer;border-radius: 100%;}
@@ -852,10 +856,10 @@ $('.banner').slick({
 .banner .slick-dots li.slick-active{opacity: 1;}</textarea>
 </dl>
 
-<br />
+<br>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">改变placeholder颜色</dt>
+<dl>
+<dt>改变placeholder颜色</dt>
 <textarea>
 .box input::-webkit-input-placeholder,
 .box textarea::-webkit-input-placeholder{color: #999;}
@@ -867,8 +871,8 @@ $('.banner').slick({
 .box textarea:-ms-input-placeholder{color: #999;}</textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">背景色渐变</dt>
+<dl>
+<dt>背景色渐变</dt>
 <textarea>
 .btn{
     background:#f00; /* 不支持渐变的浏览器显示纯色 */
@@ -877,19 +881,29 @@ $('.banner').slick({
 }</textarea>
 </dl>
 
-<dl class="c-dl" onclick="copyCommon(this)">
-<dt class="c-dt">关闭按钮✕</dt>
+<dl>
+<dt>关闭按钮✕</dt>
 <textarea>✕</textarea>
 </dl>
 
-<br />
+<br>
 
-<dl class="c-dl">
-<a class="c-dt" href="https://www.kancloud.cn/ywfwj2008/weuijs/274308" target="_blank">WeUI.JS 中文文档</a>
+<dl>
+<dt>返回顶部jq</dt>
+<textarea>
+$("html,body").animate({
+    scrollTop:0
+},500,function(){});</textarea>
 </dl>
 
-<dl class="c-dl">
-<a class="c-dt" href="http://fonts.safe.360.cn/" target="_blank">360查字体</a>
+<br>
+
+<dl>
+<a href="https://www.kancloud.cn/ywfwj2008/weuijs/274308" target="_blank">WeUI.JS 中文文档</a>
+</dl>
+
+<dl>
+<a href="http://fonts.safe.360.cn/" target="_blank">360查字体</a>
 </dl>
 </div>
 </div>
@@ -996,10 +1010,10 @@ $('.banner').slick({
     #cssPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
     #cssPop.show{opacity: 1;left: 0;}
     #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-    .css-one{display: flex;}
-    .css-dt{display: inline-block;vertical-align: top;white-space: nowrap;width: auto;line-height: 38px;padding-left: 10px;padding-right: 10px;transition: all .3s;transform-origin: right center;font-size: 16px;color: #67d8ef;}
-    .css-dt.sp{cursor: pointer;}
-    .css-dt.sp:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
+    #cssPop dl{display: flex;}
+    #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;width: auto;line-height: 38px;padding-left: 10px;padding-right: 10px;transition: all .3s;transform-origin: right center;font-size: 16px;color: #67d8ef;}
+    #cssPop dt.sp{cursor: pointer;}
+    #cssPop dt.sp:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
     .css-t{height: 38px;width: 200px;border: none;background-color: transparent;font-size: 16px;color: #ac80ff;padding: 0 5px;outline: none;transition: all .3s;}
     .css-t:hover{background-color: rgba(0,0,0,0.3);}
     select.css-t:hover{background-color: #000;}
@@ -1012,20 +1026,20 @@ $('.banner').slick({
     .css-right-top{position: absolute;right: 50%;margin-right: -600px;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
     .css-left-bottom{position: absolute;left: 50%;margin-left: -600px;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
     .css-right-bottom{position: absolute;right: 50%;margin-right: -600px;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-one.black .css-dt{color: #a6e22b;}
-    .css-s1 .css-dt{transform: scale(0.7);}
-    .css-s2 .css-dt{transform: scale(0.8);}
-    .css-s3 .css-dt{transform: scale(0.9);}
+    #cssPop dl.black #cssPop dt{color: #a6e22b;}
+    #cssPop .css-s1 dt{transform: scale(0.7);}
+    #cssPop .css-s2 dt{transform: scale(0.8);}
+    #cssPop .css-s3 dt{transform: scale(0.9);}
 
     #classPop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;text-align: center;font-size: 0;}
     #classPop.show{opacity: 1;left: 0;}
     #classM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-    .class-dl{display: inline-block;vertical-align: top;width: 100px;margin-right: 0;background-color: rgba(40,41,35,0.8);text-align: left;margin: 0 5px;position: relative;z-index: 10;}
-    .class-dl2{width: 200px;}
-    .class-dt{font-size: 16px;color: #fff;padding: 0 10px;line-height: 38px;width: 120px;}
-    .class-dd{width: 100%;font-size: 0;}
-    .class-dd>a{display: inline-block;vertical-align: top;width: 100px;line-height: 38px;padding: 0 5px;font-size: 16px;color: #ddd;cursor: pointer;transition: all .3s;}
-    .class-dd>a:hover{background-color: rgba(0,0,0,0.3);}
+    #classPop dl{display: inline-block;vertical-align: top;width: 100px;margin-right: 0;background-color: rgba(40,41,35,0.8);text-align: left;margin: 0 5px;position: relative;z-index: 10;}
+    #classPop dl.sp{width: 200px;}
+    #classPop dt{font-size: 16px;color: #fff;padding: 0 10px;line-height: 38px;width: 120px;}
+    #classPop dd{width: 100%;font-size: 0;}
+    #classPop dd>a{display: inline-block;vertical-align: top;width: 100px;line-height: 38px;padding: 0 5px;font-size: 16px;color: #ddd;cursor: pointer;transition: all .3s;}
+    #classPop dd>a:hover{background-color: rgba(0,0,0,0.3);}
 
     #codePop{width: 100%;height: calc(100vh - 50px);position: fixed;left: 0;top: 50px;z-index: 987654321;left: -200%;opacity: 0;}
     #codePop.show{opacity: 1;left: 0;}
@@ -1057,12 +1071,16 @@ $('.banner').slick({
     #commonPop.show{opacity: 1;left: 0;}
     #commonM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
     #commonCont{width: 1100px;height: 760px;position: absolute;left: 50%;top: 50%;margin-left: -550px;margin-top: -380px;z-index: 2;border: none;background-color: #282923;padding: 30px 14px 30px 30px;font-size: 0;overflow: auto;}
-    .c-dl{display: inline-block;vertical-align: top;margin-right: 16px;margin-bottom: 16px;}
-    .c-dt{display: inline-block;vertical-align: top;min-width: 195px;height: 50px;line-height: 50px;padding: 0 1em;text-align: center;background-color: #111;font-size: 16px;color: #ddd;cursor: pointer;transition: all .3s;position: relative;}
-    .c-dt:hover{color: #a6e22b;}
-    .c-dt:after{content: "已复制";display: none;width: 100%;line-height: 50px;background-color: #111;font-size: 14px;color: #a6e22b;text-align: center;position: absolute;left: 0;top: 0;}
-    .c-dt.green:after{display: inline-block;}
-    .c-dl textarea{width: 1px;height: 1px;position: absolute;left: -100vw;top: 0;}
+    #commonCont>dl{display: inline-block;vertical-align: top;margin-right: 16px;margin-bottom: 16px;}
+    #commonCont>dl>dt,
+    #commonCont>dl>a{display: inline-block;vertical-align: top;min-width: 195px;height: 50px;line-height: 50px;padding: 0 1em;text-align: center;background-color: #111;font-size: 16px;color: #ddd;cursor: pointer;transition: all .3s;position: relative;}
+    #commonCont>dl>dt:hover,
+    #commonCont>dl>a:hover{color: #a6e22b;}
+    #commonCont>dl>dt:after,
+    #commonCont>dl>a:after{content: "已复制";display: none;width: 100%;line-height: 50px;background-color: #111;font-size: 14px;color: #a6e22b;text-align: center;position: absolute;left: 0;top: 0;}
+    #commonCont>dl>dt.green:after,
+    #commonCont>dl>a.green:after{display: inline-block;}
+    #commonCont>dl>textarea{width: 1px;height: 1px;position: absolute;left: -100vw;top: 0;}
 </style>
 <script>
     //获取dom对象
@@ -1122,27 +1140,27 @@ $('.banner').slick({
         }
     }
     //识别文字的文档网址：https://cloud.baidu.com/product/ocr/general
-    const token = '24.48b3c586a5e429650a48399cf0b6b773.2592000.1636959868.282335-23477754'
-    const url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token
-    const cv = f('cv')
-    const ctx = cv.getContext('2d')
-    const main = f('main')
-    const imgA = f('imgA')
-    const bar = f('bar')
-    const cBtn = f('cBtn')
-    const CBtn = f('CBtn')
-    const mBtn = f('mBtn')
-    const writeClass = f('writeClass')
-    const writeCss = f('writeCss')
-    const rectList = f('rectList')
-    const rectListm = f('rectListm')
-    const rectListM = f('rectListM')
-    const op = f('op')
-    const opm = f('opm')
-    const opM = f('opM')
-    const opColorText = f('opColorText')
-    const opColor = f('opColor')
-    const cssObj = {
+    const token = '24.48b3c586a5e429650a48399cf0b6b773.2592000.1636959868.282335-23477754',
+    url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token,
+    cv = f('cv'),
+    ctx = cv.getContext('2d'),
+    main = f('main'),
+    imgA = f('imgA'),
+    bar = f('bar'),
+    cBtn = f('cBtn'),
+    CBtn = f('CBtn'),
+    mBtn = f('mBtn'),
+    writeClass = f('writeClass'),
+    writeCss = f('writeCss'),
+    rectList = f('rectList'),
+    rectListm = f('rectListm'),
+    rectListM = f('rectListM'),
+    op = f('op'),
+    opm = f('opm'),
+    opM = f('opM'),
+    opColorText = f('opColorText'),
+    opColor = f('opColor'),
+    cssObj = {
         'background-image': 'url(../images/)',
         'transform': 'translate()',
         'color': '#',
@@ -1156,47 +1174,49 @@ $('.banner').slick({
         'box-shadow': '0 0 0rem rgba(0,0,0,0)',
         'line-height': '1.',
         'opacity': '0.'
-    }
-    const cssObjV = Object.values(cssObj)
-    const classPop = f('classPop')
-    const cssPop = f('cssPop')
-    const codePop = f('codePop')
-    const codeTextArea = f('codeTextArea')
-    const cssTextArea = f('cssTextArea')
-    const color16 = f('color16')
-    const colorRGBA = f('colorRGBA')
-    const colorPop = f('colorPop')
-    const colorBox = f('colorBox')
-    const commonPop = f('commonPop')
-    const MlineH = f('MlineH')
-    const MlineV = f('MlineV')
-    let maxLevel = 0
-    let lowestArr = []
-    let curTag = bar.querySelector('.btn.active').innerText
-    let preV = f('pre').value
-    let curV = bar.querySelector('.btn.active').getAttribute('v').replace(preV?'$':'$-',preV)
-    let bool = false,x0, y0, x1, y1, curL, curT, curW, curH, opWidth, opHeight,curEle = null
-    let boolm = false,xm0, ym0, xm1, ym1, curmL, curmT, curmW, curmH, opmWidth, opmHeight,curmEle = null
-    let boolM = false,xM0, yM0, xM1, yM1, curML, curMT, curMW, curMH, opMWidth, opMHeight,curMEle = null
-    let boolColor = false
-    let opMshow = false
-    let kkd = []
-    let copyD = ''
-    let cIndex = 0
-    let backArr = []
-    let wdW = 0
-    let wdH = 0
-    let leftS,rightS,topS,bottomS
-    let recognize = false
-    let distancePut = false
-    let colorPut = false
-    let drawAttr = ''
-    let drawPx = false
-    let tagS = true
-    let dIndex = undefined
-    let rew = 30
-    let totalHtml = ''
-    let curKK = {}
+    },
+    cssObjV = Object.values(cssObj),
+    classPop = f('classPop'),
+    cssPop = f('cssPop'),
+    codePop = f('codePop'),
+    codeTextArea = f('codeTextArea'),
+    cssTextArea = f('cssTextArea'),
+    color16 = f('color16'),
+    colorRGBA = f('colorRGBA'),
+    colorPop = f('colorPop'),
+    colorBox = f('colorBox'),
+    commonPop = f('commonPop'),
+    MlineH = f('MlineH'),
+    MlineV = f('MlineV');
+
+
+    let maxLevel = 0,
+    lowestArr = [],
+    curTag = bar.querySelector('.btn.active').innerText,
+    preV = f('pre').value,
+    curV = bar.querySelector('.btn.active').getAttribute('v').replace(preV?'$':'$-',preV),
+    bool = false,x0, y0, x1, y1, curL, curT, curW, curH, opWidth, opHeight,curEle = null,
+    boolm = false,xm0, ym0, xm1, ym1, curmL, curmT, curmW, curmH, opmWidth, opmHeight,curmEle = null,
+    boolM = false,xM0, yM0, xM1, yM1, curML, curMT, curMW, curMH, opMWidth, opMHeight,curMEle = null,
+    boolColor = false,
+    opMshow = false,
+    kkd = [],
+    copyD = '',
+    cIndex = 0,
+    backArr = [],
+    wdW = 0,
+    wdH = 0,
+    leftS,rightS,topS,bottomS,
+    recognize = false,
+    distancePut = false,
+    colorPut = false,
+    drawAttr = '',
+    drawPx = false,
+    tagS = true,
+    dIndex = undefined,
+    rew = 30,
+    totalHtml = '',
+    curKK = {};
     //画框框
     op.onmousedown = e=>{
         if(!bool){
@@ -1352,6 +1372,7 @@ $('.banner').slick({
             }
         }
     }
+
     //传入颜色，打开弹窗
     const openColor = cc=>{
         let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
@@ -1361,6 +1382,7 @@ $('.banner').slick({
         color16.value = parse16(cc)
         copy16()
     }
+
     //取文字颜色
     opColorText.onmousedown = e=>{
         var cc = getTextColor(e.pageX+main.scrollLeft,e.pageY+main.scrollTop)
@@ -1624,6 +1646,7 @@ $('.banner').slick({
         t.addClass('active')
         opB.addClass('show')
     }
+
     //点击opB时
     const cl = (e)=>{
         let c = getLineH(e.offsetX,e.offsetY)
@@ -1643,6 +1666,7 @@ $('.banner').slick({
             backArr = []
         }
     }
+
     // 根据一点获取经过此点的横线段
     const getLineH = (x,y)=>{
         let r = rew/2,x0 = x-r,x1 = x+r
@@ -1650,6 +1674,7 @@ $('.banner').slick({
         x1 = x1<cv.width?x1:cv.width
         return [x0,y,x1-x0]
     }
+
     //根据一点获取经过此点的竖线段
     const getLineV = (x,y)=>{
         let r = rew/2,y0 = y-r,y1 = y+r
@@ -1657,6 +1682,7 @@ $('.banner').slick({
         y1 = y1<cv.height?y1:cv.height
         return [x,y0,y1-y0]
     }
+
     //一条横线段向上下扩展，超过距离di后返回上多少和下多少
     const getTB = (x,y,w,di=1)=>{
         const jg = 15
@@ -1726,6 +1752,7 @@ $('.banner').slick({
         }
         return [yt,yb]
     }
+
     //一条竖线段向左右扩展，超过距离di后返回左多少和右多少
     const getLR = (x,y,h,di=1)=>{
         const jg = 15
@@ -1793,6 +1820,7 @@ $('.banner').slick({
         }
         return [xl,xr]
     }
+
     //一条竖线段向左右扩展，超过距离di后返回左多少和右多少，如果这条竖线段是纯色的就不执行
     const getLR2 = (x,y,h,di=1)=>{
         const jg = 15
@@ -1832,13 +1860,7 @@ $('.banner').slick({
             return false
         }
     }
-    //根据一点获取以此点为中心的边长为rew的正方形的颜色数据，将此数据称为样本颜色
-    const getSwatches = (x,y)=>{
-        let h = getLineH(x,y)
-        let v = getLineV(x,y)
-        return ctx.getImageData(h[0], v[1], v[2], h[2])
-    }
-    //获取样本颜色中所有颜色和其对应的数量
+    //获取canvas的某块imageData的所有颜色和其对应的数量
     const getColorObj = c=>{
         let l = c.data
         let n = l.length
@@ -2269,11 +2291,14 @@ $('.banner').slick({
     }
 
     //将选中的类输入框框
-    const putClass = t=>{
-        curKK.innerText = preV?(preV+'-'+t.innerText):t.innerText
-        classPop.removeClass('show')
-        window.getSelection().collapse(curKK, 1);
-        curKK.focus()
+    const putClass = e=>{
+        let t = e.target
+        if(t.nodeName == 'A'){
+            curKK.innerText = preV?(preV+'-'+t.innerText):t.innerText
+            classPop.removeClass('show')
+            window.getSelection().collapse(curKK, 1);
+            curKK.focus()
+        }
     }
 
     //点击一个框框打开css弹窗或class弹窗开始编辑
@@ -2368,20 +2393,25 @@ $('.banner').slick({
             btn.removeClass('green')
         },2000)
     }
+
     //点击code
     const openCommon = ()=>{
         commonPop.addClass("show")
     }
+
     //复制常用代码块
-    const copyCommon = t=>{
-        let area = t.getElementsByTagName('textarea')[0]
-        area.select()
-        document.execCommand('copy')
-        let btn = t.querySelector('.c-dt')
-        btn.addClass('green')
-        setTimeout(function(){
-            btn.removeClass('green')
-        },2000)
+    const copyCommon = e=>{
+        if(e.target.nodeName == 'DT'){
+            let btn = e.target
+            let t = btn.parentNode
+            let area = t.getElementsByTagName('textarea')[0]
+            area.select()
+            document.execCommand('copy')
+            btn.addClass('green')
+            setTimeout(function(){
+                btn.removeClass('green')
+            },2000)
+        }
     }
 
     //点击px
@@ -2435,9 +2465,7 @@ $('.banner').slick({
         copyD = ''
         kkd = []
         backArr = []
-        rectList.innerHTML = ''
-        rectListm.innerHTML = ''
-        rectListM.innerHTML = ''
+        rectList.innerHTML = rectListm.innerHTML = rectListM.innerHTML = ''
     }
 
 
