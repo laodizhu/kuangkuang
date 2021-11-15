@@ -7,28 +7,28 @@
     <title>kk</title>
 </head>
 <body>
-    <div id="main" ondrop="event.preventDefault();imgC(event.dataTransfer);" ondragover="event.preventDefault();">
+    <main id="main" ondrop="event.preventDefault();imgC(event.dataTransfer);" ondragover="event.preventDefault();">
         <div id="mainBox">
             <img id="imgA" src="" alt="" />
             <canvas id="cv"></canvas>
             <div id="rectList"></div>
             <div id="rectListm"></div>
             <div id="rectListM"></div>
-            <div id="op"></div>
-            <div id="opm"></div>
-            <div id="opM"></div>
-            <div id="opColor"></div>
-            <div id="opColorText"></div>
+            <div id="op" onmousedown="opMousedown(event)"></div>
+            <div id="opm" onmousedown="opmMousedown(event)"></div>
+            <div id="opM" onmousedown="opMMousedown(event)"></div>
+            <div id="opColor" onmousedown="opColorMousedown(event)" onmousemove="opColorMousemove(event)" onmouseleave="opColorMouseleave(event)"></div>
+            <div id="opColorText" onmousedown="opColorTextMousedown(event)"></div>
             <div id="MlineH"></div>
             <div id="MlineV"></div>
-            <div id="opB" onclick="cl(event)"></div>
+            <div id="opB" onclick="opBClick(event)"></div>
         </div>
-    </div>
+    </main>
     <div id="bar">
         <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
         <a class="opr" title="查看html时识别文字" onclick="recognizeT(this)">T</a>
-        <a class="opr" id="writeCss" title="选中后，点击框框编辑css，可以手写，也可以点击css属性名再量距离或取颜色自动填入" onclick="inCss(this)">css</a>
-        <a class="opr green" id="writeClass" title="选中后，点击框框编辑类名，可以选择弹窗里的类名也可以输入" onclick="inClass(this)">class</a>
+        <a class="opr" id="writeCss" title="选中后，点击框框编辑css，可以手写，也可以点击css属性名再量距离或取颜色自动填入" onclick="cssIng(this)">css</a>
+        <a class="opr green" id="writeClass" title="选中后，点击框框编辑类名，可以选择弹窗里的类名也可以输入" onclick="classIng(this)">class</a>
         <a class="opr" title="主测量" onclick="measure(this)" id="mBtn">m</a>
         <a class="opr" title="副测量" onclick="measure2(this)" id="MBtn">M</a>
         <a class="opr" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onclick="inColorText(this)" id="cBtn">c</a>
@@ -1140,7 +1140,7 @@ $("html,body").animate({
         }
     }
     //识别文字的文档网址：https://cloud.baidu.com/product/ocr/general
-    const token = '24.48b3c586a5e429650a48399cf0b6b773.2592000.1636959868.282335-23477754',
+    const token = '24.3b0cf55a2acfefaa82af4296af0c8bfa.2592000.1639577632.282335-23477754',
     url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token,
     cv = f('cv'),
     ctx = cv.getContext('2d'),
@@ -1217,8 +1217,9 @@ $("html,body").animate({
     rew = 30,
     totalHtml = '',
     curKK = {};
+
     //画框框
-    op.onmousedown = e=>{
+    const opMousedown = e=>{
         if(!bool){
             bool = true
             let opR = op.getBoundingClientRect()
@@ -1235,7 +1236,7 @@ $("html,body").animate({
             setEle(x0, y0, x1, y1)
             setWH()
         }else{
-        	bool = false
+            bool = false
             if (Math.abs(x1 - x0) < 2 || Math.abs(y1 - y0) < 2) {
                 rectList.removeChild(curEle)
                 curEle = null
@@ -1250,10 +1251,9 @@ $("html,body").animate({
             }
             stopScroll()
         }
-        
-    }
+    },
     //画线
-    opm.onmousedown = e=>{
+    opmMousedown = e=>{
         let r = opm.getBoundingClientRect()
         opmWidth = parseInt(r.width)
         opmHeight = parseInt(r.height)
@@ -1268,11 +1268,12 @@ $("html,body").animate({
         rectListm.appendChild(curmEle)
         setmEle(xm0, ym0, xm1, ym1)
         setWH()
-    }
+    },
+
     //画线2
-    opM.onmousedown = e=>{
-    	if (!boolM) {
-    		boolM = true
+    opMMousedown = e=>{
+        if (!boolM) {
+            boolM = true
             let r = opM.getBoundingClientRect()
             opMWidth = parseInt(r.width)
             opMHeight = parseInt(r.height)
@@ -1287,7 +1288,7 @@ $("html,body").animate({
             setMEle(xM0, yM0, xM1, yM1)
             setWH()
         }else{
-        	boolM = false
+            boolM = false
             if(curMW>curMH){
                 yM1 = yM0+1
                 setCssD(curMW)
@@ -1298,107 +1299,26 @@ $("html,body").animate({
             setMEle(xM0, yM0, xM1, yM1)
             stopScroll()
         }
-    }
-    //取颜色
-    opColor.onmousedown = e=>{
-        boolColor = true
-    }
-    opColor.onmousemove = e=>{
-        let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
-        let c16 = parse16(cc)
-        let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
-        CBtn.style.backgroundColor=rgba
-    }
-    opColor.onmouseleave = e=>{
-        CBtn.style.backgroundColor='#282923'
-    }
-    document.onmousemove = e=>{
-        if (bool) {
-            x1 = e.pageX + main.scrollLeft
-            y1 = e.pageY + main.scrollTop
-            x1 = x1 > opWidth ? opWidth : x1
-            y1 = y1 > opHeight ? opHeight : y1
-            x1 = x1 < 0 ? 0 : x1
-            y1 = y1 < 0 ? 0 : y1
-            setEle(x0, y0, x1, y1)
-            scrollXY(e.pageX,e.pageY)
-            MlineH.style.top=e.pageY + main.scrollTop-1+'px'
-            MlineV.style.left=e.pageX + main.scrollLeft-1+'px'
-        }
-        if (boolm) {
-            xm1 = e.pageX + main.scrollLeft
-            ym1 = e.pageY + main.scrollTop
-            xm1 = xm1 > opmWidth ? opmWidth : xm1
-            ym1 = ym1 > opmHeight ? opmHeight : ym1
-            xm1 = xm1 < 0 ? 0 : xm1
-            ym1 = ym1 < 0 ? 0 : ym1
-            setmEle(xm0, ym0, xm1, ym1)
-            scrollXY(e.pageX,e.pageY)
-        }
-        if (opMshow) {
-            MlineH.style.top=e.pageY + main.scrollTop-1+'px'
-            MlineV.style.left=e.pageX + main.scrollLeft-1+'px'
-        }
-        if(boolM){
-            xM1 = e.pageX + main.scrollLeft
-            yM1 = e.pageY + main.scrollTop
-            xM1 = xM1 > opMWidth ? opMWidth : xM1
-            yM1 = yM1 > opMHeight ? opMHeight : yM1
-            xM1 = xM1 < 0 ? 0 : xM1
-            yM1 = yM1 < 0 ? 0 : yM1
-            setMEle(xM0, yM0, xM1, yM1)
-            scrollXY(e.pageX,e.pageY)
-        }
-    }
-    document.onmouseup = e=>{
-        if (boolm) {
-            boolm = false
-            if(curmW>curmH){
-                ym1 = ym0+1
-            }else{
-                xm1 = xm0+1
-            }
-            setmEle(xm0, ym0, xm1, ym1)
-            stopScroll()
-            expand()
-        }
-        if(boolColor){
-            boolColor = false
-            let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
-            if(!colorPut){
-                openColor(cc)
-            }else{
-                setCssC(parse16(cc))
-            }
-        }
-    }
+    },
 
     //传入颜色，打开弹窗
-    const openColor = cc=>{
+    openColor = cc=>{
         let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
         colorPop.addClass('show')
         colorBox.style.backgroundColor=rgba
         colorRGBA.value = rgba
         color16.value = parse16(cc)
         copy16()
-    }
-
-    //取文字颜色
-    opColorText.onmousedown = e=>{
-        var cc = getTextColor(e.pageX+main.scrollLeft,e.pageY+main.scrollTop)
-        if(cc){
-            openColor(cc)
-        }
-    }
+    },
 
     //获取此时屏幕宽高
-    const setWH = ()=>{
+    setWH = ()=>{
         wdW = main.getBoundingClientRect().width
         wdH = main.getBoundingClientRect().height
-    }
+    },
 
     //设置框框的位置和大小
-    const setEle = (x0, y0, x1, y1)=>{
+    setEle = (x0, y0, x1, y1)=>{
         curL = x1<x0?x1:x0
         curT = y1<y0?y1:y0
         curW = Math.abs(x1 - x0)
@@ -1407,10 +1327,10 @@ $("html,body").animate({
         curEle.style.top = curT+'px'
         curEle.style.width = curW+'px'
         curEle.style.height = curH+'px'
-    }
+    },
 
     //设置线的位置和大小
-    const setmEle = (x0, y0, x1, y1)=>{
+    setmEle = (x0, y0, x1, y1)=>{
         curmL = x1<x0?x1:x0
         curmT = y1<y0?y1:y0
         curmW = Math.abs(x1 - x0)
@@ -1420,10 +1340,10 @@ $("html,body").animate({
         curmEle.style.top = curmT+'px'
         curmEle.style.width = curmW+'px'
         curmEle.style.height = curmH+'px'
-    }
+    },
 
     //设置线的位置和大小2
-    const setMEle = (x0, y0, x1, y1)=>{
+    setMEle = (x0, y0, x1, y1)=>{
         curML = x1<x0?x1:x0
         curMT = y1<y0?y1:y0
         curMW = Math.abs(x1 - x0)
@@ -1435,10 +1355,10 @@ $("html,body").animate({
         curMEle.style.height = curMH+'px'
         curMEle.querySelector('.w').innerText=curMW
         curMEle.querySelector('.h').innerText=curMH
-    }
+    },
 
     //鼠标拖到边缘时滚动条自动滚
-    const scrollXY = (x,y)=>{
+    scrollXY = (x,y)=>{
         if(x>wdW-20){
             if(!rightS){
                 rightS = setInterval(()=>{
@@ -1479,10 +1399,10 @@ $("html,body").animate({
             clearInterval(topS)
             topS = null
         }
-    }
+    },
 
     //停止自动滚
-    const stopScroll = ()=>{
+    stopScroll = ()=>{
         clearInterval(rightS)
         rightS = null
         clearInterval(bottomS)
@@ -1491,10 +1411,10 @@ $("html,body").animate({
         leftS = null
         clearInterval(topS)
         topS = null
-    }
+    },
 
     //按从左到右从上到下排好顺序
-    const sortD = ()=>{
+    sortD = ()=>{
         kkd.sort((a, b)=>{
             if (a[0] < b[0] && a[1] <= b[3]) {
                 return -1
@@ -1510,10 +1430,10 @@ $("html,body").animate({
                 return 1
             }
         })
-    }
+    },
 
     //找出kkd中每个元素的所有父节点
-    const setParents = ()=>{
+    setParents = ()=>{
         for (let i = 0; i < kkd.length; i++) {
             let temp = []
             for (let j = 0; j < kkd.length; j++) {
@@ -1526,20 +1446,20 @@ $("html,body").animate({
             })
             kkd[i][7] = temp
         }
-    }
+    },
 
     //获取kkd中的最深层数
-    const setMaxLevel = ()=>{
+    setMaxLevel = ()=>{
         MaxLevel = 0
         for (let i = 0; i < kkd.length; i++) {
             if (kkd[i][7].length + 1 > maxLevel) {
                 maxLevel = kkd[i][7].length + 1
             }
         }
-    }
+    },
 
     //获取kkd中所有最里层的元素在数组kkd中的位置
-    const setLowestArr = ()=>{
+    setLowestArr = ()=>{
         lowestArr = []
         for (let i = 0; i < kkd.length; i++) {
             let tf = true
@@ -1553,10 +1473,10 @@ $("html,body").animate({
                 lowestArr.push(i)
             }
         }
-    }
+    },
 
     //创建html结构
-    const createHtml = ()=>{
+    createHtml = ()=>{
         totalHtml = ''
         for (let k = maxLevel-1; k >0; k--) {
             let arr = []
@@ -1584,10 +1504,10 @@ $("html,body").animate({
                 totalHtml += kkd[i][5]
             }
         }
-    }
+    },
 
     //获取所有类名加样式放到textarea里
-    const getAllClass = ()=>{
+    getAllClass = ()=>{
         let ob = {}
         let noClassArr = []
         for(let i=0;i<kkd.length;i++){
@@ -1615,10 +1535,10 @@ $("html,body").animate({
             ray.push('{'+arr.join(';')+'}')
         }
         cssTextArea.value = ray.join('\n')
-    }
+    },
 
     //扩
-    const expand = ()=>{
+    expand = ()=>{
         if(curmW>curmH){
             let tb = getTB(curmL,curmT,curmW)
             ym0 = tb[0]+1
@@ -1636,19 +1556,19 @@ $("html,body").animate({
             curmEle.querySelector('.w').innerText=curmW
             setCssD(curmW)
         }
-    }
+    },
 
     //根据距离的块状识别
-    const bkr = (t)=>{
+    bkr = (t)=>{
         closeAll()
         noActive()
         tagS = true
         t.addClass('active')
         opB.addClass('show')
-    }
+    },
 
     //点击opB时
-    const cl = (e)=>{
+    opBClick = (e)=>{
         let c = getLineH(e.offsetX,e.offsetY)
         let tb = getTB(c[0],c[1],c[2],5)
         let p = getLineV(e.offsetX,e.offsetY)
@@ -1665,26 +1585,26 @@ $("html,body").animate({
             curEle.innerText=curV.match(/class="(.*?)"/)[1]
             backArr = []
         }
-    }
+    },
 
     // 根据一点获取经过此点的横线段
-    const getLineH = (x,y)=>{
+    getLineH = (x,y)=>{
         let r = rew/2,x0 = x-r,x1 = x+r
         x0 = x0>0?x0:0
         x1 = x1<cv.width?x1:cv.width
         return [x0,y,x1-x0]
-    }
+    },
 
     //根据一点获取经过此点的竖线段
-    const getLineV = (x,y)=>{
+    getLineV = (x,y)=>{
         let r = rew/2,y0 = y-r,y1 = y+r
         y0 = y0>0?y0:0
         y1 = y1<cv.height?y1:cv.height
         return [x,y0,y1-y0]
-    }
+    },
 
     //一条横线段向上下扩展，超过距离di后返回上多少和下多少
-    const getTB = (x,y,w,di=1)=>{
+    getTB = (x,y,w,di=1)=>{
         const jg = 15
         const jd = 10
         let dt0 = ctx.getImageData(x,y,w,1).data
@@ -1751,10 +1671,10 @@ $("html,body").animate({
             }
         }
         return [yt,yb]
-    }
+    },
 
     //一条竖线段向左右扩展，超过距离di后返回左多少和右多少
-    const getLR = (x,y,h,di=1)=>{
+    getLR = (x,y,h,di=1)=>{
         const jg = 15
         const jd = 10
         let dt0 = ctx.getImageData(x,y,1,h).data
@@ -1819,10 +1739,10 @@ $("html,body").animate({
             }
         }
         return [xl,xr]
-    }
+    },
 
     //一条竖线段向左右扩展，超过距离di后返回左多少和右多少，如果这条竖线段是纯色的就不执行
-    const getLR2 = (x,y,h,di=1)=>{
+    getLR2 = (x,y,h,di=1)=>{
         const jg = 15
         const jd = 10
         let dt = ctx.getImageData(x,y,1,h).data
@@ -1859,9 +1779,10 @@ $("html,body").animate({
         }else{
             return false
         }
-    }
+    },
+
     //获取canvas的某块imageData的所有颜色和其对应的数量
-    const getColorObj = c=>{
+    getColorObj = c=>{
         let l = c.data
         let n = l.length
         let obj = {}
@@ -1882,9 +1803,10 @@ $("html,body").animate({
             ar.push([arr[i],obj[arr[i]]])
         }
         return ar
-    }
+    },
+
     //根据一点获取以此点周围的字体颜色，只适用于纯色背景
-    const getTextColor = (x,y)=>{
+    getTextColor = (x,y)=>{
         let c = getLineH(x,y)
         let tb = getTB(c[0],c[1],c[2],2)
         let p = getLineV(x,y)
@@ -1905,10 +1827,32 @@ $("html,body").animate({
                 return ''
             }
         }
-    }
+    },
+
+    //取颜色
+    opColorMousedown = e=>{
+        boolColor = true
+    },
+    opColorMousemove = e=>{
+        let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
+        let c16 = parse16(cc)
+        let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
+        CBtn.style.backgroundColor=rgba
+    },
+    opColorMouseleave = e=>{
+        CBtn.style.backgroundColor='#282923'
+    },
+
+    //取文字颜色
+    opColorTextMousedown = e=>{
+        var cc = getTextColor(e.pageX+main.scrollLeft,e.pageY+main.scrollTop)
+        if(cc){
+            openColor(cc)
+        }
+    },
 
     //给一个imageData，找出这个data中颜色差别最大两种颜色之差
-    const maxDc = dt=>{
+    maxDc = dt=>{
         let n = dt.length,ccmax = 0
         for(let i=0;i<n;i+=4){
             for(let j=i+4;j<n;j+=4){
@@ -1917,10 +1861,10 @@ $("html,body").animate({
             }
         }
         return ccmax
-    }
+    },
 
     //给两个长度一样的imageData，求它们的平均颜色差
-    const avgDc = (dt,dt2)=>{
+    avgDc = (dt,dt2)=>{
         let n=dt.length,ddd = 0,ddn = 0
         for(let i=0;i<n;i+=4){
             let dc = Math.abs(dt[i]-dt2[i]) + Math.abs(dt[i+1]-dt2[i+1]) + Math.abs(dt[i+2]-dt2[i+2])
@@ -1930,10 +1874,10 @@ $("html,body").animate({
             }
         }
         return ddn>0?ddd/ddn:0
-    }
+    },
 
     //文字识别
-    const getText = ()=>{
+    getText = ()=>{
         if(!lowestArr.length){
             return
         }
@@ -1975,29 +1919,29 @@ $("html,body").animate({
             }
         }
         xhr.send('image='+encodeURIComponent(tempBase64))
-    }
+    },
 
     //识别下一个元素的文字
-    const nextText = ()=>{
+    nextText = ()=>{
         if (cIndex < lowestArr.length - 1) {
             cIndex++
             setTimeout(getText, 350)
         } else {
             finish()
         }
-    }
+    },
 
     //文字识别完毕
-    const finish = ()=>{
+    finish = ()=>{
         createHtml()
-        format()
+        formatHtml()
         cIndex = 0
         kkd = JSON.parse(copyD)
         console.log(kkd)
-    }
+    },
 
     //格式化html
-    const format = ()=>{
+    formatHtml = ()=>{
         if(!totalHtml){
             codeTextArea.value = ''
             return
@@ -2030,10 +1974,10 @@ $("html,body").animate({
             }
         }
         codeTextArea.value = s
-    }
+    },
 
-    //不同标签名文字输入到哪
-    const putText = s=>{
+    //识别后的文字输入到text或value或placeholder
+    putText = s=>{
         let item = kkd[lowestArr[cIndex]]
         let tag = item[4]
         if (['txt', 'psd', 'area'].includes(tag)) {
@@ -2043,19 +1987,19 @@ $("html,body").animate({
         } else {
             item[5] = item[5].replace(/></g,'>'+s+'<')
         }
-    }
+    },
 
     //设置每个框框的z-index
-    const setZIndex = ()=>{
+    setZIndex = ()=>{
         setParents()
         let ones = rectList.childNodes
         for (let i = 0; i < kkd.length; i++) {
             ones[kkd[i][6]].style.zIndex=kkd[i][7].length
         }
-    }
+    },
 
-    //把手写的类储存到d数组里
-    const setClass = ()=>{
+    //把编辑后的类储存到数组kkd里
+    setClass = ()=>{
         let ones = rectList.childNodes
         for(let i=0;i<ones.length;i++){
             let name = ones[i].innerText.replace(/\s+/g,' ')
@@ -2063,10 +2007,10 @@ $("html,body").animate({
             kkd[i][5] = kkd[i][5].replace(/class=".*?"/,'class="'+name+'"')
         }
         copyD = JSON.stringify(kkd)
-    }
+    },
 
     //将对象拼接成css字符串
-    const obj2css = obj=>{
+    obj2css = obj=>{
         let x,s = ''
         for (x in obj){
             if(obj[x]){
@@ -2074,19 +2018,19 @@ $("html,body").animate({
             }
         }
         return s
-    }
+    },
 
     //将框框撤销
-    const back = ()=>{
+    undo = ()=>{
         if (kkd.length) {
             backArr.push(kkd.pop())
             copyD = JSON.stringify(kkd)
             rectList.removeChild(rectList.lastChild)
         }
-    }
+    },
 
     //将框框反撤销
-    const unBack = ()=>{
+    unBack = ()=>{
         if (backArr.length) {
             let u = backArr.pop()
             kkd.push(u)
@@ -2099,33 +2043,19 @@ $("html,body").animate({
             curEle.innertext=u[5].match(/class="(.*?)"/)[1]
             setZIndex()
         }
-    }
-
-    //将框框撤销(ctrl+Z)或反撤销(ctrl+Y)
-    document.onkeydown = e => {
-        if (tagS && e.ctrlKey == true && e.keyCode == 90) {
-            e.preventDefault()
-            e.returnvalue = false
-            back()
-        }
-        if (tagS && e.ctrlKey == true && e.keyCode == 89) {
-            e.preventDefault()
-            e.returnvalue = false
-            unBack()
-        }
-    }
+    },
 
     //设计图加载完后执行此函数
-    const begin = ()=>{
+    begin = ()=>{
         cv.width = imgA.width + 20
         cv.height = imgA.height + 70
         // ctx.fillStyle='#fff'
         ctx.fillRect(0,0,cv.width,cv.height)
         ctx.drawImage(imgA, 10, 60, imgA.width, imgA.height)
-    }
+    },
 
     //如果没有设计就弄个黑色的全屏图
-    const beginEmpty = ()=>{
+    beginEmpty = ()=>{
         cv.width = document.documentElement.clientWidth
         cv.height = document.documentElement.clientHeight
         ctx.font='20px Arial'
@@ -2133,10 +2063,10 @@ $("html,body").animate({
         ctx.textAlign='center'
         ctx.textBaseline='middle'
         ctx.fillText("拖动PNG到此",cv.width/2,cv.height/2)
-    }
+    },
 
     //关闭所有
-    const closeAll = ()=>{
+    closeAll = ()=>{
         rectList.removeClass('show')
         colorPop.removeClass('show')
         opColorText.removeClass('show')
@@ -2152,10 +2082,10 @@ $("html,body").animate({
         tagS = false
         MlineH.removeClass('show')
         MlineV.removeClass('show')
-    }
+    },
 
     //将测量的距离设为当前的css属性值
-    const setCssD = cssV=>{
+    setCssD = cssV=>{
         if(distancePut){
             distancePut = false
             f(drawAttr).value=drawPx?(cssV+'px'):(cssV/100+'rem')
@@ -2166,10 +2096,10 @@ $("html,body").animate({
             noActive()
             writeCss.addClass('active')
         }
-    }
+    },
 
     //将取到的颜色设为当前的css属性值
-    const setCssC = cssV=>{
+    setCssC = cssV=>{
         if(colorPut){
             colorPut = false
             if(['border','border-top','border-bottom','border-left','border-right'].includes(drawAttr)){
@@ -2184,9 +2114,10 @@ $("html,body").animate({
             noActive()
             writeCss.addClass('active')
         }
-    }
+    },
+
     //将当前弹窗的css放到当前的对象里
-    const setCss = ()=>{
+    setCss = ()=>{
         let b = {}
         let list = cssPop.querySelectorAll('.css-t')
         for(let k=0;k<list.length;k++){
@@ -2202,10 +2133,10 @@ $("html,body").animate({
             b[attr]?item.parentNode.addClass('black'):item.parentNode.removeClass('black')
         }
         kkd[dIndex][8] = JSON.stringify(b)!='{}'?b:''
-    }
+    },
 
-    //将颜色转为16进制的
-    const parse16 = c=>{
+    //颜色转16进制
+    parse16 = c=>{
         c[0] = parseInt(c[0])
         c[1] = parseInt(c[1])
         c[2] = parseInt(c[2])
@@ -2218,16 +2149,16 @@ $("html,body").animate({
             b=b.charAt(0)
         }
         return '#'+r+g+b
-    }
+    },
 
     //设置类名前缀
-    const preC = t=>{
+    preC = t=>{
         preV = t.value
         curV = bar.querySelector('.btn.active').getAttribute('v').replace(preV?'$':'$-',preV)
-    }
+    },
 
     //查看html和css，让这个弹窗层级最高，打开时不要关闭其它
-    const seeCode = () => {
+    seeCode = () => {
         codePop.addClass('show')
         setClass()
         sortD()
@@ -2236,10 +2167,10 @@ $("html,body").animate({
         getAllClass()
         setLowestArr()
         recognize?getText():finish()
-    }
+    },
 
     //复制html
-    const copyCode = ()=>{
+    copyCode = ()=>{
         codeTextArea.select()
         document.execCommand('copy')
         codeTextArea.blur()
@@ -2250,10 +2181,10 @@ $("html,body").animate({
             btn.innerText='复制'
             btn.removeClass('green')
         },2000)
-    }
+    },
 
     //复制css
-    const copyCss = ()=>{
+    copyCss = ()=>{
         cssTextArea.select()
         document.execCommand('copy')
         cssTextArea.blur()
@@ -2264,34 +2195,34 @@ $("html,body").animate({
             btn.innerText='复制'
             btn.removeClass('green')
         },2000)
-    }
+    },
 
     //点击T，生成时是否识别文字
-    const recognizeT = t=>{
+    recognizeT = t=>{
         recognize?t.removeClass('selected'):t.addClass('selected')
         recognize = !recognize
-    }
+    },
 
     //点击Class进入写类状态
-    const inClass = t=>{
+    classIng = t=>{
         closeAll()
         setZIndex()
         noActive()
         t.addClass('active')
         rectList.addClass('show')
-    }
+    },
 
     //点击css进入编辑css的状态
-    const inCss = t=>{
+    cssIng = t=>{
         closeAll()
         setZIndex()
         noActive()
         t.addClass('active')
         rectList.addClass('show')
-    }
+    },
 
     //将选中的类输入框框
-    const putClass = e=>{
+    putClass = e=>{
         let t = e.target
         if(t.nodeName == 'A'){
             curKK.innerText = preV?(preV+'-'+t.innerText):t.innerText
@@ -2299,10 +2230,10 @@ $("html,body").animate({
             window.getSelection().collapse(curKK, 1);
             curKK.focus()
         }
-    }
+    },
 
     //点击一个框框打开css弹窗或class弹窗开始编辑
-    const showEdit = t=>{
+    showEdit = t=>{
         curKK = t
         if(writeCss.hasClass('active')){
             let all = rectList.childNodes
@@ -2329,18 +2260,18 @@ $("html,body").animate({
                 classPop.removeClass('show')
             }
         }
-    }
+    },
 
     //进入测量模式
-    const measure = t=>{
+    measure = t=>{
         closeAll()
         noActive()
         t.addClass('active')
         opm.addClass('show')
-    }
+    },
 
     //进入测量模式2
-    const measure2 = t=>{
+    measure2 = t=>{
         closeAll()
         noActive()
         t.addClass('active')
@@ -2348,26 +2279,26 @@ $("html,body").animate({
         opMshow = true
         MlineH.addClass('show')
         MlineV.addClass('show')
-    }
+    },
 
     //点击c进入复制文字颜色的状态
-    const inColorText = t=>{
+    inColorText = t=>{
         closeAll()
         noActive()
         t.addClass('active')
         opColorText.addClass('show')
-    }
+    },
 
     //点击C进入复制颜色的状态
-    const inColor = t=>{
+    inColor = t=>{
         closeAll()
         noActive()
         t.addClass('active')
         opColor.addClass('show')
-    }
+    },
 
     //复制color16
-    const copy16 = ()=>{
+    copy16 = ()=>{
         color16.select()
         document.execCommand('copy')
         color16.blur()
@@ -2378,10 +2309,10 @@ $("html,body").animate({
             btn.innerText='复制'
             btn.removeClass('green')
         },2000)
-    }
+    },
 
     //复制colorRGBA
-    const copyRGBA = ()=>{
+    copyRGBA = ()=>{
         colorRGBA.select()
         document.execCommand('copy')
         colorRGBA.blur()
@@ -2392,15 +2323,15 @@ $("html,body").animate({
             btn.innerText='复制'
             btn.removeClass('green')
         },2000)
-    }
+    },
 
     //点击code
-    const openCommon = ()=>{
+    openCommon = ()=>{
         commonPop.addClass("show")
-    }
+    },
 
     //复制常用代码块
-    const copyCommon = e=>{
+    copyCommon = e=>{
         if(e.target.nodeName == 'DT'){
             let btn = e.target
             let t = btn.parentNode
@@ -2412,26 +2343,26 @@ $("html,body").animate({
                 btn.removeClass('green')
             },2000)
         }
-    }
+    },
 
     //点击px
-    const px = t=>{
+    px = t=>{
         drawPx?t.removeClass('selected'):t.addClass('selected')
         drawPx = !drawPx
-    }
+    },
 
     //切换标签时
-    const tagC = t=>{
+    tagC = t=>{
         closeAll()
         noActive()
         t.addClass('active')
         curTag = t.innerText
         curV = t.getAttribute('v').replace(preV?'$':'$-',preV)
         tagS = true
-    }
+    },
 
     //点击颜色相关的css属性名
-    const colorP = t=>{
+    colorP = t=>{
         drawAttr = t.innerText
         noActive()
         CBtn.addClass('active')
@@ -2439,10 +2370,10 @@ $("html,body").animate({
         rectList.removeClass('show')
         opColor.addClass('show')
         colorPut = true
-    }
+    },
 
     //点击距离相关的css属性名
-    const distanceP = t=>{
+    distanceP = t=>{
         drawAttr = t.innerText
         noActive()
         mBtn.addClass('active')
@@ -2450,27 +2381,27 @@ $("html,body").animate({
         rectList.removeClass('show')
         opm.addClass('show')
         distancePut = true
-    }
+    },
 
     //所有按钮去掉active类
-    const noActive = ()=>{
+    noActive = ()=>{
         let as = bar.children
         for(let i=0;i<as.length;i++){
             as[i].removeClass('active')
         }
-    }
+    },
 
     //清空框框和线
-    const empty = ()=>{
+    empty = ()=>{
         copyD = ''
         kkd = []
         backArr = []
         rectList.innerHTML = rectListm.innerHTML = rectListM.innerHTML = ''
-    }
+    },
 
 
     //导入图片
-    const imgC = t=>{
+    imgC = t=>{
         empty()
         let file = t.files[0]
         let fr = new FileReader()
@@ -2484,6 +2415,83 @@ $("html,body").animate({
             sessionStorage.setItem('img',e.target.result)
         }
         fr.readAsDataURL(file)
+    };
+
+    
+    
+    document.onmousemove = e=>{
+        if (bool) {
+            x1 = e.pageX + main.scrollLeft
+            y1 = e.pageY + main.scrollTop
+            x1 = x1 > opWidth ? opWidth : x1
+            y1 = y1 > opHeight ? opHeight : y1
+            x1 = x1 < 0 ? 0 : x1
+            y1 = y1 < 0 ? 0 : y1
+            setEle(x0, y0, x1, y1)
+            scrollXY(e.pageX,e.pageY)
+            MlineH.style.top=e.pageY + main.scrollTop-1+'px'
+            MlineV.style.left=e.pageX + main.scrollLeft-1+'px'
+        }
+        if (boolm) {
+            xm1 = e.pageX + main.scrollLeft
+            ym1 = e.pageY + main.scrollTop
+            xm1 = xm1 > opmWidth ? opmWidth : xm1
+            ym1 = ym1 > opmHeight ? opmHeight : ym1
+            xm1 = xm1 < 0 ? 0 : xm1
+            ym1 = ym1 < 0 ? 0 : ym1
+            setmEle(xm0, ym0, xm1, ym1)
+            scrollXY(e.pageX,e.pageY)
+        }
+        if (opMshow) {
+            MlineH.style.top=e.pageY + main.scrollTop-1+'px'
+            MlineV.style.left=e.pageX + main.scrollLeft-1+'px'
+        }
+        if(boolM){
+            xM1 = e.pageX + main.scrollLeft
+            yM1 = e.pageY + main.scrollTop
+            xM1 = xM1 > opMWidth ? opMWidth : xM1
+            yM1 = yM1 > opMHeight ? opMHeight : yM1
+            xM1 = xM1 < 0 ? 0 : xM1
+            yM1 = yM1 < 0 ? 0 : yM1
+            setMEle(xM0, yM0, xM1, yM1)
+            scrollXY(e.pageX,e.pageY)
+        }
+    }
+    document.onmouseup = e=>{
+        if (boolm) {
+            boolm = false
+            if(curmW>curmH){
+                ym1 = ym0+1
+            }else{
+                xm1 = xm0+1
+            }
+            setmEle(xm0, ym0, xm1, ym1)
+            stopScroll()
+            expand()
+        }
+        if(boolColor){
+            boolColor = false
+            let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
+            if(!colorPut){
+                openColor(cc)
+            }else{
+                setCssC(parse16(cc))
+            }
+        }
+    }
+
+    //将框框撤销(ctrl+Z)或反撤销(ctrl+Y)
+    document.onkeydown = e => {
+        if (tagS && e.ctrlKey == true && e.keyCode == 90) {
+            e.preventDefault()
+            e.returnvalue = false
+            undo()
+        }
+        if (tagS && e.ctrlKey == true && e.keyCode == 89) {
+            e.preventDefault()
+            e.returnvalue = false
+            unBack()
+        }
     }
 
     //缓存如果有图片
