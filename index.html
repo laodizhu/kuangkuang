@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>kk</title>
 </head>
-<body>
+<body onmouseleave="bodyMouseleave(event)">
     <main id="main" ondrop="event.preventDefault();imgC(event.dataTransfer);" ondragover="event.preventDefault();">
         <div id="mainBox">
             <img id="imgA" src="" alt="" />
@@ -33,7 +33,7 @@
         <a class="opr" title="副测量" onclick="measure2(this)" id="MBtn">M</a>
         <a class="opr" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onclick="inColorText(this)" id="cBtn">c</a>
         <a class="opr" title="选中后，点击一个点复制这个点的颜色" onclick="inColor(this)" id="CBtn">C</a>
-        <a class="opr" title="选中后，自动填入时单位用px，不选中则用rem" onclick="px(this)">px</a>
+        <a class="opr" title="选中后，自动填入时单位用px，不选中则用rem" onclick="usePx(this)">px</a>
         <a class="opr" title="选中后，点击文字会为文字套上之前选中的html标签" onclick="bkr(this)">B</a>
         <input type="text" class="opr" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" />
         <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)" title="选中后，点击屏幕上两个点，生成一个div">div</a>
@@ -88,74 +88,76 @@
     </div>
     <div id="cssPop">
         <div id="cssM" onclick="cssPop.className=''"></div>
-        <div class="css-left-top">
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">padding</dt>
-                <input class="css-t" type="text" id="padding" oninput="setCss()" />
-            </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">padding-left</dt>
-                <input class="css-t" type="text" id="padding-left" oninput="setCss()" />
-            </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">padding-right</dt>
-                <input class="css-t" type="text" id="padding-right" oninput="setCss()" />
-            </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">padding-top</dt>
+        <div class="css-left-top" style="display: flex;flex-wrap: wrap;width:600px;margin-left: -960px;">
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('padding-top')">top</dt>
                 <input class="css-t" type="text" id="padding-top" oninput="setCss()" />
             </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">padding-bottom</dt>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('padding-left')">left</dt>
+                <input class="css-t" type="text" id="padding-left" oninput="setCss()" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('padding')">padding</dt>
+                <input class="css-t" type="text" id="padding" oninput="setCss()" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('padding-right')">right</dt>
+                <input class="css-t" type="text" id="padding-right" oninput="setCss()" />
+            </dl>
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('padding-bottom')">bottom</dt>
                 <input class="css-t" type="text" id="padding-bottom" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-right-top">
-            <dl>
-                <dt class="sp" onclick="colorP(this)">border</dt>
-                <input class="css-t" type="text" id="border" oninput="setCss()" />
-            </dl>
-            <dl>
-                <dt class="sp" onclick="colorP(this)">border-left</dt>
-                <input class="css-t" type="text" id="border-left" oninput="setCss()" />
-            </dl>
-            <dl>
-                <dt class="sp" onclick="colorP(this)">border-right</dt>
-                <input class="css-t" type="text" id="border-right" oninput="setCss()" />
-            </dl>
-            <dl>
-                <dt class="sp" onclick="colorP(this)">border-top</dt>
+        <div class="css-right-top" style="display: flex;flex-wrap: wrap;width:600px;margin-right: -960px;">
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="colorP('border-top')">top</dt>
                 <input class="css-t" type="text" id="border-top" oninput="setCss()" />
             </dl>
-            <dl><dt class="sp" onclick="colorP(this)">border-bottom</dt>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="colorP('border-left')">left</dt>
+                <input class="css-t" type="text" id="border-left" oninput="setCss()" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="colorP('border')">border</dt>
+                <input class="css-t" type="text" id="border" oninput="setCss()" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="colorP('border-right')">right</dt>
+                <input class="css-t" type="text" id="border-right" oninput="setCss()" />
+            </dl>
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="colorP('border-bottom')">bottom</dt>
                 <input class="css-t" type="text" id="border-bottom" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-top">
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">margin</dt>
+        <div class="css-top" style="display: flex;flex-wrap: wrap;width:600px;">
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('margin-top')">top</dt>
+                <input class="css-t" type="text" id="margin-top" oninput="setCss()" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('margin-left')">left</dt>
+                <input class="css-t" type="text" id="margin-left" oninput="setCss()" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('margin')">margin</dt>
                 <input class="css-t" type="text" id="margin" oninput="setCss()" list="marginList" />
                 <datalist id="marginList">
                     <option value="0 auto">
                 </datalist>
             </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">margin-left</dt>
-                <input class="css-t" type="text" id="margin-left" oninput="setCss()" />
-            </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">margin-right</dt>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('margin-right')">right</dt>
                 <input class="css-t" type="text" id="margin-right" oninput="setCss()" />
             </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">margin-top</dt>
-                <input class="css-t" type="text" id="margin-top" oninput="setCss()" />
-            </dl>
-            <dl><dt class="sp" onclick="distanceP(this)">margin-bottom</dt>
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('margin-bottom')">bottom</dt>
                 <input class="css-t" type="text" id="margin-bottom" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-bottom">
+        <div class="css-bottom" style="width: 300px;">
             <dl>
                 <dt>display</dt>
                 <select class="css-t" id="display" onchange="setCss()">
@@ -217,16 +219,16 @@
                 </select>
             </dl>
         </div>
-        <div class="css-center">
+        <div class="css-center" style="width: 300px;">
             <dl>
-                <dt class="sp" onclick="distanceP(this)">font-size</dt>
+                <dt class="sp" onclick="distanceP('font-size')">font-size</dt>
                 <input class="css-t" type="text" id="font-size" oninput="setCss()" list="fontSizeList" />
                 <datalist id="fontSizeList">
                     <option value="0">
                 </datalist>
             </dl>
             <dl>
-                <dt class="sp" onclick="colorP(this)">color</dt>
+                <dt class="sp" onclick="colorTP('color')">color</dt>
                 <input class="css-t" type="text" id="color" oninput="setCss()" list="colorList" />
                 <datalist id="colorList">
                     <option value="#fff">
@@ -238,7 +240,7 @@
                 </datalist>
             </dl>
             <dl>
-                <dt class="sp" onclick="distanceP(this)">line-height</dt>
+                <dt class="sp" onclick="distanceP('line-height')">line-height</dt>
                 <input class="css-t" type="text" id="line-height" oninput="setCss()" list="lineHeightList" />
                 <datalist id="lineHeightList">
                     <option value="1.1">
@@ -301,8 +303,25 @@
                 </select>
             </dl>
         </div>
-        <div class="css-left">
-            <dl>
+        <div class="css-left" style="display: flex;flex-wrap: wrap;width:600px;margin-left: -960px;top:152px;">
+            
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('top')">top</dt>
+                <input class="css-t" type="text" id="top" oninput="setCss()" list="topList" />
+                <datalist id="topList">
+                    <option value="0">
+                    <option value="50%">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('left')">left</dt>
+                <input class="css-t" type="text" id="left" oninput="setCss()" list="leftList" />
+                <datalist id="leftList">
+                    <option value="0">
+                    <option value="50%">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
                 <dt>position</dt>
                 <select class="css-t" id="position" onchange="setCss()">
                     <option value=""></option>
@@ -312,44 +331,28 @@
                     <option value="static">static</option>
                 </select>
             </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">left</dt>
-                <input class="css-t" type="text" id="left" oninput="setCss()" list="leftList" />
-                <datalist id="leftList">
-                    <option value="0">
-                    <option value="50%">
-                </datalist>
-            </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">top</dt>
-                <input class="css-t" type="text" id="top" oninput="setCss()" list="topList" />
-                <datalist id="topList">
-                    <option value="0">
-                    <option value="50%">
-                </datalist>
-            </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">right</dt>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('right')">right</dt>
                 <input class="css-t" type="text" id="right" oninput="setCss()" list="rightList" />
                 <datalist id="rightList">
                     <option value="0">
                     <option value="50%">
                 </datalist>
             </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">bottom</dt>
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('bottom')">bottom</dt>
                 <input class="css-t" type="text" id="bottom" oninput="setCss()" list="bottomList" />
                 <datalist id="bottomList">
                     <option value="0">
                     <option value="50%">
                 </datalist>
             </dl>
-            <dl>
+            <dl style="padding-left: 33.33%;width:100%;">
                 <dt>z-index</dt>
                 <input class="css-t" type="text" id="z-index" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-right">
+        <div class="css-right" style="width: 300px;top:152px;margin-right: -660px;">
             <dl>
                 <dt>transition</dt>
                 <input class="css-t" type="text" id="transition" oninput="setCss()" list="transitionList" />
@@ -363,6 +366,9 @@
                 <dt>transform</dt>
                 <input class="css-t" type="text" id="transform" oninput="setCss()" list="transformList" />
                 <datalist id="transformList">
+                    <option value="translate(-50%,-50%)">
+                    <option value="translate(-50%,0)">
+                    <option value="translate(0,-50%)">
                     <option value="translate()">
                     <option value="scale()">
                 </datalist>
@@ -401,60 +407,62 @@
                 </select>
             </dl>
         </div>
-        <div class="css-left-bottom">
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">width</dt>
+        <div class="css-left-bottom" style="display: flex;flex-wrap: wrap;width:600px;transform: translate(-50%,0);margin-left: 0;bottom:auto;top:152px;">
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('width')">width</dt>
                 <input class="css-t" type="text" id="width" oninput="setCss()" list="widthList" />
                 <datalist id="widthList">
                     <option value="100%">
                     <option value="100vw">
                 </datalist>
             </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">height</dt>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('max-width')">max-width</dt>
+                <input class="css-t" type="text" id="max-width" oninput="setCss()" list="maxWidthList" />
+                <datalist id="maxWidthList">
+                    <option value="100%">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('min-width')">min-width</dt>
+                <input class="css-t" type="text" id="min-width" oninput="setCss()" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('height')">height</dt>
                 <input class="css-t" type="text" id="height" oninput="setCss()" list="heightList" />
                 <datalist id="heightList">
                     <option value="100%">
                     <option value="100vh">
                 </datalist>
             </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">max-width</dt>
-                <input class="css-t" type="text" id="max-width" oninput="setCss()" list="maxWidthList" />
-                <datalist id="maxWidthList">
-                    <option value="100%">
-                </datalist>
-            </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">max-height</dt>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('max-height')">max-height</dt>
                 <input class="css-t" type="text" id="max-height" oninput="setCss()" list="maxHeightList" />
                 <datalist id="maxHeightList">
                     <option value="100%">
                 </datalist>
             </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">min-width</dt>
-                <input class="css-t" type="text" id="min-width" oninput="setCss()" />
-            </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">min-height</dt>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('min-height')">min-height</dt>
                 <input class="css-t" type="text" id="min-height" oninput="setCss()" />
             </dl>
-            <dl>
-                <dt class="sp" onclick="distanceP(this)">border-radius</dt>
+        </div>
+        <div style="display: flex;flex-wrap: wrap;width:600px;transform: translate(-50%,0);position: absolute;left:50%;top:266px;background-color: rgba(40,41,35,0.8);z-index: 123;">
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('border-radius')">border-radius</dt>
                 <input class="css-t" type="text" id="border-radius" oninput="setCss()" list="borderRadiusList" />
                 <datalist id="borderRadiusList">
                     <option value="50%">
                 </datalist>
             </dl>
-            <dl>
+            <dl style="width:66.66%;">
                 <dt>box-shadow</dt>
                 <input class="css-t" type="text" id="box-shadow" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-right-bottom">
+        <div class="css-right-bottom" style="width: 300px;">
             <dl>
-                <dt class="sp" onclick="colorP(this)">background-color</dt>
+                <dt class="sp" onclick="colorP('background-color')">background-color</dt>
                 <input class="css-t" type="text" id="background-color" oninput="setCss()" list="backgroundColorList" />
                 <datalist id="backgroundColorList">
                     <option value="#fff">
@@ -609,19 +617,19 @@
                 <a>essay</a>
             </dd>
         </dl>
-        <dl>
+        <dl style="width:300px;">
             <dt>位置</dt>
             <dd>
-                <a>left</a>
-                <a>right</a>
-                <a>top</a>
-                <a>bot</a>
-                <a>mid</a>
-                <a>center</a>
                 <a>top-left</a>
+                <a>top</a>
                 <a>top-right</a>
+                <a>left</a>
+                <a>center</a>
+                <a>right</a>
                 <a>bot-left</a>
+                <a>bot</a>
                 <a>bot-right</a>
+                <a style="margin-left: 100px;">mid</a>
             </dd>
         </dl>
         <dl>
@@ -923,7 +931,7 @@ $("html,body").animate({
     button,input[type=submit],input[type=text],input[type=button]{-webkit-appearance:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;blr:expression(this.onFocus=this.blur())}
     input{outline: 0;}
     input::-webkit-input-safebox-button{display: none;}
-    body{color: rgba(255,0,0,0.8);font-family: Microsoft Yahei;background-color: #000;}
+    body{color: rgba(255,0,0,0.8);font-family: Microsoft Yahei;background-color: #000;height: 100vh;}
     body *{box-sizing: border-box;line-height: 1;}
 
     #cv{position: relative;z-index: 1;}
@@ -1011,18 +1019,18 @@ $("html,body").animate({
     #cssPop.show{opacity: 1;left: 0;}
     #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
     #cssPop dl{display: flex;}
-    #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;width: auto;line-height: 38px;padding-left: 10px;padding-right: 10px;transition: all .3s;transform-origin: right center;font-size: 16px;color: #67d8ef;}
+    #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;min-width: 80px;width: auto;line-height: 38px;padding-left: 10px;padding-right: 10px;transition: all .3s;transform-origin: right center;font-size: 16px;color: #67d8ef;user-select: none;}
     #cssPop dt.sp{cursor: pointer;}
     #cssPop dt.sp:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
-    .css-t{height: 38px;width: 200px;border: none;background-color: transparent;font-size: 16px;color: #ac80ff;padding: 0 5px;outline: none;transition: all .3s;}
+    .css-t{height: 38px;width: 50px;flex: 1;border: none;background-color: transparent;font-size: 16px;color: #ac80ff;padding: 0 5px;outline: none;transition: all .3s;}
     .css-t:hover{background-color: rgba(0,0,0,0.3);}
     select.css-t:hover{background-color: #000;}
-    .css-left{position: absolute;left: 50%;margin-left: -600px;top: 50%;transform: translate(0,-50%);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-right{position: absolute;right: 50%;margin-right: -600px;top: 50%;transform: translate(0,-50%);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-left{position: absolute;left: 50%;margin-left: -600px;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-right{position: absolute;right: 50%;margin-right: -600px;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
     .css-top{position: absolute;left: 50%;top: 0;transform: translate(-50%,0);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-bottom{position: absolute;left: 50%;bottom: 0;transform: translate(-50%,0);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-center{position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-left-top{position: absolute;left: 50%;margin-left: -600px;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-bottom{position: absolute;left: 50%;bottom: 0;margin-left: -600px;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-center{position: absolute;left: 50%;text-align: left;bottom: 0;transform: translate(-50%,0);background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-left-top{position: absolute;left: 50%;margin-left: -600px;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;font-size: 0;}
     .css-right-top{position: absolute;right: 50%;margin-right: -600px;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
     .css-left-bottom{position: absolute;left: 50%;margin-left: -600px;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
     .css-right-bottom{position: absolute;right: 50%;margin-right: -600px;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
@@ -1162,7 +1170,6 @@ $("html,body").animate({
     opColor = f('opColor'),
     cssObj = {
         'background-image': 'url(../images/)',
-        'transform': 'translate()',
         'color': '#',
         'background-color': '#',
         'border-top': '1px solid #',
@@ -1192,9 +1199,10 @@ $("html,body").animate({
 
     let maxLevel = 0,
     lowestArr = [],
-    curTag = bar.querySelector('.btn.active').innerText,
+    curTagEle = bar.querySelector('.btn.active'),
+    curTag = curTagEle.innerText,
     preV = f('pre').value,
-    curV = bar.querySelector('.btn.active').getAttribute('v').replace(preV?'$':'$-',preV),
+    curV = curTagEle.getAttribute('v').replace(preV?'$':'$-',preV),
     bool = false,x0, y0, x1, y1, curL, curT, curW, curH, opWidth, opHeight,curEle = null,
     boolm = false,xm0, ym0, xm1, ym1, curmL, curmT, curmW, curmH, opmWidth, opmHeight,curmEle = null,
     boolM = false,xM0, yM0, xM1, yM1, curML, curMT, curMW, curMH, opMWidth, opMHeight,curMEle = null,
@@ -1210,13 +1218,15 @@ $("html,body").animate({
     recognize = false,
     distancePut = false,
     colorPut = false,
+    colorTextPut = false,
     drawAttr = '',
     drawPx = false,
     tagS = true,
     dIndex = undefined,
     rew = 30,
     totalHtml = '',
-    curKK = {};
+    curKK = {},
+    focusing = false;
 
     //画框框
     const opMousedown = e=>{
@@ -1247,11 +1257,36 @@ $("html,body").animate({
                 if(cArr){
                     curEle.innerText=cArr[1]
                 }
+                setTimeout(function(){
+                    setFocus(curEle)
+                    focusing = true
+                    curKK = curEle
+                    curEle.onblur = function(){
+                        focusing = false
+                    }
+                    curEle.onkeydown = function(){
+                        classPop.removeClass('show')
+                    }
+                },100)
+                
                 backArr = []
             }
             stopScroll()
         }
     },
+
+    //光标聚焦到元素el里的文字最后
+    setFocus = el=>{
+        el.focus()
+        var range = document.createRange()
+        range.selectNodeContents(el)
+        range.collapse(false)
+        var sel = window.getSelection()
+        if(sel.anchorOffset != 0){return}
+        sel.removeAllRanges()
+        sel.addRange(range)
+    },
+
     //画线
     opmMousedown = e=>{
         let r = opm.getBoundingClientRect()
@@ -1847,7 +1882,11 @@ $("html,body").animate({
     opColorTextMousedown = e=>{
         var cc = getTextColor(e.pageX+main.scrollLeft,e.pageY+main.scrollTop)
         if(cc){
-            openColor(cc)
+            if(!colorTextPut){
+                openColor(cc)
+            }else{
+                setCssTC(parse16(cc))
+            }
         }
     },
 
@@ -2115,6 +2154,21 @@ $("html,body").animate({
             writeCss.addClass('active')
         }
     },
+    //将取到的文字颜色设为当前的css属性值
+    setCssTC = cssV=>{
+        if(colorTextPut){
+            colorTextPut = false
+            if(['color'].includes(drawAttr)){
+                f(drawAttr).value=cssV
+            }
+            setCss()
+            closeAll()
+            rectList.addClass('show')
+            cssPop.addClass('show')
+            noActive()
+            writeCss.addClass('active')
+        }
+    },
 
     //将当前弹窗的css放到当前的对象里
     setCss = ()=>{
@@ -2132,7 +2186,9 @@ $("html,body").animate({
             }
             b[attr]?item.parentNode.addClass('black'):item.parentNode.removeClass('black')
         }
-        kkd[dIndex][8] = JSON.stringify(b)!='{}'?b:''
+        if(kkd[dIndex]){
+            kkd[dIndex][8] = JSON.stringify(b)!='{}'?b:''
+        }
     },
 
     //颜色转16进制
@@ -2154,7 +2210,7 @@ $("html,body").animate({
     //设置类名前缀
     preC = t=>{
         preV = t.value
-        curV = bar.querySelector('.btn.active').getAttribute('v').replace(preV?'$':'$-',preV)
+        curV = curTagEle.getAttribute('v').replace(preV?'$':'$-',preV)
     },
 
     //查看html和css，让这个弹窗层级最高，打开时不要关闭其它
@@ -2229,6 +2285,7 @@ $("html,body").animate({
             classPop.removeClass('show')
             window.getSelection().collapse(curKK, 1);
             curKK.focus()
+            focusing = true
         }
     },
 
@@ -2256,11 +2313,22 @@ $("html,body").animate({
             dIndex = i
         }else if(writeClass.hasClass('active')){
             classPop.addClass('show')
-            curKK.onkeydown = function(){
-                classPop.removeClass('show')
+        }
+    },
+
+    //鼠标离开body
+    bodyMouseleave = (e)=>{
+        if(focusing){
+            if(e.pageY<100){
+                cssPop.removeClass('show')
+                classPop.addClass('show')
+            }else{
+                cssIng(writeCss)
+                showEdit(curKK)
             }
         }
     },
+    
 
     //进入测量模式
     measure = t=>{
@@ -2346,7 +2414,7 @@ $("html,body").animate({
     },
 
     //点击px
-    px = t=>{
+    usePx = t=>{
         drawPx?t.removeClass('selected'):t.addClass('selected')
         drawPx = !drawPx
     },
@@ -2359,11 +2427,12 @@ $("html,body").animate({
         curTag = t.innerText
         curV = t.getAttribute('v').replace(preV?'$':'$-',preV)
         tagS = true
+        curTagEle = t
     },
 
     //点击颜色相关的css属性名
-    colorP = t=>{
-        drawAttr = t.innerText
+    colorP = attr=>{
+        drawAttr = attr
         noActive()
         CBtn.addClass('active')
         cssPop.removeClass('show')
@@ -2372,9 +2441,20 @@ $("html,body").animate({
         colorPut = true
     },
 
+    //点击文字颜色的css属性名
+    colorTP = attr=>{
+        drawAttr = attr
+        noActive()
+        cBtn.addClass('active')
+        cssPop.removeClass('show')
+        rectList.removeClass('show')
+        opColorText.addClass('show')
+        colorTextPut = true
+    },
+
     //点击距离相关的css属性名
-    distanceP = t=>{
-        drawAttr = t.innerText
+    distanceP = attr=>{
+        drawAttr = attr
         noActive()
         mBtn.addClass('active')
         cssPop.removeClass('show')
