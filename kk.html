@@ -1,0 +1,2600 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>kk</title>
+</head>
+<body onmouseleave="bodyMouseleave(event)" ondrop="event.preventDefault();imgC(event.dataTransfer);" ondragover="event.preventDefault();">
+    <main id="main">
+        <div id="mainBox">
+            <img id="imgA" src="" alt="" />
+            <canvas id="cv"></canvas>
+            <div id="rectList"></div>
+            <div id="rectListm"></div>
+            <div id="rectListM"></div>
+            <div id="op" onmousedown="opMousedown(event)"></div>
+            <div id="opm" onmousedown="opmMousedown(event)"></div>
+            <div id="opM" onmousedown="opMMousedown(event)"></div>
+            <div id="opColor" onmousedown="opColorMousedown(event)" onmousemove="opColorMousemove(event)" onmouseleave="opColorMouseleave(event)"></div>
+            <div id="opColorText" onmousedown="opColorTextMousedown(event)"></div>
+            <div id="MlineH"></div>
+            <div id="MlineV"></div>
+            <div id="opB" onclick="opBClick(event)"></div>
+        </div>
+    </main>
+    
+    <div id="opPop">
+        <div id="opMask" onclick="opPop.className=''"></div>
+        <div class="op-html" title="鼠标移动到此打开html标签弹窗" onmouseenter="opHtmlMouseenter()">html</div>
+        <div class="op-class" title="鼠标移到此或者向上离开网页进入编辑类名状态" onmouseenter="classIng()">class</div>
+        <div class="op-css" title="鼠标移动到此进入编辑css状态" onmouseenter="cssIng()">css</div>
+        <div class="op-tool" title="鼠标移动到此打开工具弹窗" onmouseenter="toolIng()">tool</div>
+    </div>
+
+    <div id="toolPop">
+        <div id="toolM" onclick="toolPop.className=''"></div>
+        <div style="z-index: 12;position: absolute;left:4rem;top:1rem;width: 1.3rem;">
+            <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
+            <a class="opr" title="查看html和css并识别文字" onclick="seeCode(true)">&lt;t/&gt;</a>
+        </div>
+        <div style="z-index: 12;position: absolute;left:5.5rem;top:1rem;width: 1.3rem;">
+            <a class="opr" title="主测量" onclick="measure()" id="mBtn">m</a>
+            <a class="opr" title="副测量" onclick="measure2()" id="MBtn">M</a>
+        </div>
+        <div style="z-index: 12;position: absolute;left:7rem;top:1rem;width: 1.3rem;">
+            <a class="opr" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onclick="inColorText()" id="cBtn">c</a>
+            <a class="opr" title="选中后，点击一个点复制这个点的颜色" onclick="inColor()" id="CBtn">C</a>
+        </div>
+        <div style="z-index: 12;position: absolute;left:8.5rem;top:1rem;width: 1.3rem;">
+            <a class="opr" title="选中后，自动填入时单位用px，不选中则用rem" onclick="usePx(this)">px</a>
+        </div>
+        <div style="z-index: 12;position: absolute;left:10rem;top:1rem;width: 1.3rem;">
+            <a class="opr" title="选中后，点击文字会为文字套上之前选中的html标签" onclick="bkr()">B</a>
+        </div>
+        <div style="z-index: 12;position: absolute;left:11.5rem;top:1rem;width: 1.3rem;">
+            <input type="text" class="opr" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" onfocus="kkUndo=false" onblur="kkUndo=true" />
+        </div>
+        <div style="z-index: 12;position: absolute;left:13rem;top:1rem;width: 1.3rem;">
+            <a class="opr" title="清除框框和线" onclick="empty()">clear</a>
+        </div>
+        <div style="z-index: 12;position: absolute;left:14.5rem;top:1rem;width: 1.3rem;">
+            <a class="opr" title="常用代码块和网址" onclick="openCommon()">code</a>
+        </div>
+    </div>
+
+    <div id="codePop">
+        <div id="codeM" onclick="codePop.className='';leaveClose=true"></div>
+        <div id="codeBox">
+            <textarea id="codeTextArea"></textarea>
+            <a id="copyCode" onclick="copyCode()">复制</a>
+        </div>
+        <div id="cssBox">
+            <textarea id="cssTextArea"></textarea>
+            <a id="copyCss" onclick="copyCss()">复制</a>
+        </div>
+    </div>
+    <div id="colorPop">
+        <div id="colorM" onclick="colorPop.className=''"></div>
+        <div id="colorCont">
+            <div id="colorBox"></div>
+            <div class="color-row"><a id="copy16" onclick="copy16()">复制</a><textarea id="color16"></textarea></div>
+            <div class="color-row"><a id="copyRGBA" onclick="copyRGBA()">复制</a><textarea id="colorRGBA"></textarea></div>
+        </div>
+    </div>
+    <div id="htmlPop">
+        <div id="htmlM" onclick="htmlPop.className=''"></div>
+        <div style="width: 1.3rem;z-index: 12;position: absolute;left:3.5rem;top:1rem;">
+            <a class="btn" v='<header class="$-header"></header>' onclick="tagC(this)">header</a>
+            <a class="btn" v='<footer class="$-footer"></footer>' onclick="tagC(this)">footer</a>
+            <a class="btn" v='<main class="$-main"></main>' onclick="tagC(this)">main</a>
+            <a class="btn" v='<nav class="$-nav"></nav>' onclick="tagC(this)">nav</a>
+            <a class="btn" v='<aside class="$-aside"></aside>' onclick="tagC(this)">aside</a>
+            <a class="btn" v='<section class="$-section"></section>' onclick="tagC(this)">section</a>
+            <a class="btn" v='<article class="$-article"></article>' onclick="tagC(this)">article</a>
+        </div>
+        <div style="width: 1.3rem;z-index: 12;position: absolute;left:5rem;top:1rem;">
+            <a class="btn" v='<h1 class="$-h1"></h1>' onclick="tagC(this)">h1</a>
+            <a class="btn" v='<h2 class="$-h2"></h2>' onclick="tagC(this)">h2</a>
+            <a class="btn" v='<h3 class="$-h3"></h3>' onclick="tagC(this)">h3</a>
+            <a class="btn" v='<h4 class="$-h4"></h4>' onclick="tagC(this)">h4</a>
+            <a class="btn" v='<h5 class="$-h5"></h5>' onclick="tagC(this)">h5</a>
+            <a class="btn" v='<h6 class="$-h6"></h6>' onclick="tagC(this)">h6</a>
+        </div>
+        <div style="width: 1.3rem;z-index: 12;position: absolute;left:6.5rem;top:1rem;">
+            <a class="btn" v='<table class="$-tb"></table>' onclick="tagC(this)" title="table">table</a>
+            <a class="btn" v='<tr class="$-tr"></tr>' onclick="tagC(this)">tr</a>
+            <a class="btn" v='<td class="$-td"></td>' onclick="tagC(this)">td</a>
+        </div>
+        <div style="width: 1.3rem;z-index: 12;position: absolute;left:8rem;top:1rem;">
+            <a class="btn" v='<form class="$-form"></form>' onclick="tagC(this)" title="form">form</a>
+            <a class="btn" v='<label class="$-lb"></label>' onclick="tagC(this)" title="label">lable</a>
+            <a class="btn" v='<input class="$-txt" type="text" placeholder="">' onclick="tagC(this)" title="input[text]">text</a>
+            <a class="btn" v='<input class="$-psd" type="password" placeholder="">' onclick="tagC(this)" title="input[password]">password</a>
+            <a class="btn" v='<input class="$-ckb" type="checkbox" value="">' onclick="tagC(this)" title="input[checkbox]">checkbox</a>
+            <a class="btn" v='<input class="$-rad" type="radio" value="">' onclick="tagC(this)" title="input[radio]">radio</a>
+            <a class="btn" v='<textarea class="$-area" placeholder=""></textarea>' onclick="tagC(this)" title="textarea">textarea</a>
+            <a class="btn" v='<select class="$-sel"></select>' onclick="tagC(this)" title="select">select</a>
+            <a class="btn" v='<option class="$-opt"></option>' onclick="tagC(this)" title="option">option</a>
+            <a class="btn" v='<input class="$-sub" type="submit" value="提交">' onclick="tagC(this)" title="input[submit]">submit</a>
+        </div>
+        <div style="width: 1.3rem;z-index: 12;position: absolute;left:9.5rem;top:1rem;">
+            <a class="btn" v='<ul class="$-ul"></ul>' onclick="tagC(this)">ul</a>
+            <a class="btn" v='<li class="$-li"></li>' onclick="tagC(this)">li</a>
+        </div>
+        <div style="width: 1.3rem;z-index: 12;position: absolute;left:11rem;top:1rem;">
+            <a class="btn" v='<dl class="$-dl"></dl>' onclick="tagC(this)">dl</a>
+            <a class="btn" v='<dt class="$-dt"></dt>' onclick="tagC(this)">dt</a>
+            <a class="btn" v='<dd class="$-dd"></dd>' onclick="tagC(this)">dd</a>
+        </div>
+        <div style="width: 1.3rem;z-index: 12;position: absolute;left:12.5rem;top:1rem;">
+            <a class="btn" v='<p class="$-p"></p>' onclick="tagC(this)">p</a>
+            <a class="btn" v='<span class="$-span"></span>' onclick="tagC(this)">span</a>
+            <a class="btn" v='<br>' onclick="tagC(this)">br</a>
+        </div>
+        <div style="width: 1.3rem;z-index: 12;position: absolute;left:14rem;top:1rem;">
+            <a class="btn" v='<a class="$-a" title=""></a>' onclick="tagC(this)">a</a>
+            <a class="btn" v='<img class="$-img" src="images/" alt="">' onclick="tagC(this)">img</a>
+        </div>
+        <div style="width: 1.3rem;z-index: 12;position: absolute;left:15.5rem;top:1rem;">
+            <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)" title="选中后，点击屏幕上两个点，生成一个div">div</a>
+        </div>
+    </div>
+    <div id="cssPop">
+        <div id="cssM" onclick="cssPop.className=''"></div>
+        <div class="css-left-top" style="display: flex;flex-wrap: wrap;width:6rem;margin-left: -9.6rem;">
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('padding-top')">top</dt>
+                <input class="css-t" type="text" id="padding-top" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('padding-left')">left</dt>
+                <input class="css-t" type="text" id="padding-left" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('padding')">padding</dt>
+                <input class="css-t" type="text" id="padding" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('padding-right')">right</dt>
+                <input class="css-t" type="text" id="padding-right" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('padding-bottom')">bottom</dt>
+                <input class="css-t" type="text" id="padding-bottom" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+        </div>
+        <div class="css-right-top" style="display: flex;flex-wrap: wrap;width:6rem;margin-right: -9.6rem;">
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="colorP('border-top')">top</dt>
+                <input class="css-t" type="text" id="border-top" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="colorP('border-left')">left</dt>
+                <input class="css-t" type="text" id="border-left" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="colorP('border')">border</dt>
+                <input class="css-t" type="text" id="border" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="colorP('border-right')">right</dt>
+                <input class="css-t" type="text" id="border-right" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="colorP('border-bottom')">bottom</dt>
+                <input class="css-t" type="text" id="border-bottom" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+        </div>
+        <div class="css-top" style="display: flex;flex-wrap: wrap;width:6rem;">
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('margin-top')">top</dt>
+                <input class="css-t" type="text" id="margin-top" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('margin-left')">left</dt>
+                <input class="css-t" type="text" id="margin-left" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('margin')">margin</dt>
+                <input class="css-t" type="text" id="margin" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="marginList" />
+                <datalist id="marginList" onmouseenter="alert('a')">
+                    <option value="0 auto">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('margin-right')">right</dt>
+                <input class="css-t" type="text" id="margin-right" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('margin-bottom')">bottom</dt>
+                <input class="css-t" type="text" id="margin-bottom" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+        </div>
+        <div class="css-bottom" style="width: 3rem;">
+            <dl>
+                <dt>display</dt>
+                <select class="css-t" id="display" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="inline-block">inline-block</option>
+                    <option value="flex">flex</option>
+                    <option value="block">block</option>
+                    <option value="none">none</option>
+                    <option value="inline">inline</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>vertical-align</dt>
+                <select class="css-t" id="vertical-align" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="top">top</option>
+                    <option value="middle">middle</option>
+                    <option value="bottom">bottom</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>float</dt>
+                <select class="css-t" id="float" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="left">left</option>
+                    <option value="right">right</option>
+                    <option value="none">none</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>justify-content</dt>
+                <select class="css-t" id="justify-content" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-around">space-around</option>
+                    <option value="center">center</option>
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>align-items</dt>
+                <select class="css-t" id="align-items" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="center">center</option>
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="stretch">stretch</option>
+                    <option value="baseline">baseline</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>flex-wrap</dt>
+                <select class="css-t" id="flex-wrap" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="wrap">wrap</option>
+                    <option value="nowrap">nowrap</option>
+                    <option value="wrap-reverse">wrap-reverse</option>
+                </select>
+            </dl>
+        </div>
+        <div class="css-center" style="width: 3rem;">
+            <dl>
+                <dt class="sp" onclick="distanceP('font-size')">font-size</dt>
+                <input class="css-t" type="text" id="font-size" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="fontSizeList" />
+                <datalist id="fontSizeList" onmouseenter="alert('a')">
+                    <option value="0">
+                </datalist>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="colorTP('color')">color</dt>
+                <input class="css-t" type="text" id="color" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="colorList" />
+                <datalist id="colorList" onmouseenter="alert('a')">
+                    <option value="#fff">
+                    <option value="#f00">
+                    <option value="#000">
+                    <option value="#333">
+                    <option value="#666">
+                    <option value="#999">
+                </datalist>
+            </dl>
+            <dl>
+                <dt class="sp" onclick="distanceP('line-height')">line-height</dt>
+                <input class="css-t" type="text" id="line-height" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="lineHeightList" />
+                <datalist id="lineHeightList">
+                    <option value="1.1">
+                    <option value="1.2">
+                    <option value="1.3">
+                    <option value="1.4">
+                    <option value="1.5">
+                    <option value="1.6">
+                    <option value="1.7">
+                    <option value="1.8">
+                    <option value="1.9">
+                </datalist>
+            </dl>
+            <dl>
+                <dt>text-align</dt>
+                <select class="css-t" id="text-align" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="center">center</option>
+                    <option value="right">right</option>
+                    <option value="left">left</option>
+                    <option value="justify">justify</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>font-weight</dt>
+                <select class="css-t" id="font-weight" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="bold">bold</option>
+                    <option value="normal">normal</option>
+                    <option value="lighter">lighter</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>overflow</dt>
+                <select class="css-t" id="overflow" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="hidden">hidden</option>
+                    <option value="visible">visible</option>
+                    <option value="auto">auto</option>
+                    <option value="scroll">scroll</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>text-overflow</dt>
+                <select class="css-t" id="text-overflow" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="ellipsis">ellipsis</option>
+                    <option value="clip">clip</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>white-space</dt>
+                <select class="css-t" id="white-space" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="nowrap">nowrap</option>
+                    <option value="normal">normal</option>
+                    <option value="pre">pre</option>
+                    <option value="pre-wrap">pre-wrap</option>
+                    <option value="pre-line">pre-line</option>
+                </select>
+            </dl>
+        </div>
+        <div class="css-left" style="display: flex;flex-wrap: wrap;width:6rem;margin-left: -9.6rem;top:1.52rem;">
+            
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('top')">top</dt>
+                <input class="css-t" type="text" id="top" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="topList" />
+                <datalist id="topList">
+                    <option value="0">
+                    <option value="50%">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('left')">left</dt>
+                <input class="css-t" type="text" id="left" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="leftList" />
+                <datalist id="leftList">
+                    <option value="0">
+                    <option value="50%">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt>position</dt>
+                <select class="css-t" id="position" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="absolute">absolute</option>
+                    <option value="relative">relative</option>
+                    <option value="fixed">fixed</option>
+                    <option value="static">static</option>
+                </select>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('right')">right</dt>
+                <input class="css-t" type="text" id="right" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="rightList" />
+                <datalist id="rightList">
+                    <option value="0">
+                    <option value="50%">
+                </datalist>
+            </dl>
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt class="sp" onclick="distanceP('bottom')">bottom</dt>
+                <input class="css-t" type="text" id="bottom" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="bottomList" />
+                <datalist id="bottomList">
+                    <option value="0">
+                    <option value="50%">
+                </datalist>
+            </dl>
+            <dl style="padding-left: 33.33%;width:100%;">
+                <dt>z-index</dt>
+                <input class="css-t" type="text" id="z-index" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+        </div>
+        <div class="css-right" style="width: 3rem;top:1.52rem;margin-right: -6.6rem;">
+            <dl>
+                <dt>transition</dt>
+                <input class="css-t" type="text" id="transition" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="transitionList" />
+                <datalist id="transitionList">
+                    <option value="all .3s">
+                    <option value="all .4s">
+                    <option value="all .5s">
+                </datalist>
+            </dl>
+            <dl>
+                <dt>transform</dt>
+                <input class="css-t" type="text" id="transform" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="transformList" />
+                <datalist id="transformList">
+                    <option value="translate(-50%,-50%)">
+                    <option value="translate(-50%,0)">
+                    <option value="translate(0,-50%)">
+                    <option value="translate()">
+                    <option value="scale()">
+                </datalist>
+            </dl>
+            <dl>
+                <dt>opacity</dt>
+                <input class="css-t" type="text" id="opacity" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="opacityList" />
+                <datalist id="opacityList">
+                    <option value="0.1">
+                    <option value="0.2">
+                    <option value="0.3">
+                    <option value="0.4">
+                    <option value="0.5">
+                    <option value="0.6">
+                    <option value="0.7">
+                    <option value="0.8">
+                    <option value="0.9">
+                </datalist>
+            </dl>
+            <dl>
+                <dt>visibility</dt>
+                <select class="css-t" id="visibility" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="hidden">hidden</option>
+                    <option value="visible">visible</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>cursor</dt>
+                <select class="css-t" id="cursor" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="pointer">pointer</option>
+                    <option value="default">default</option>
+                    <option value="text">text</option>
+                    <option value="crosshair">crosshair</option>
+                </select>
+            </dl>
+        </div>
+        <div class="css-left-bottom" style="display: flex;flex-wrap: wrap;width:6rem;transform: translate(-50%,0);margin-left: 0;bottom:auto;top:1.52rem;">
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('width')">width</dt>
+                <input class="css-t" type="text" id="width" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="widthList" />
+                <datalist id="widthList">
+                    <option value="100%">
+                    <option value="100vw">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('max-width')">max-width</dt>
+                <input class="css-t" type="text" id="max-width" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="maxWidthList" />
+                <datalist id="maxWidthList">
+                    <option value="100%">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('min-width')">min-width</dt>
+                <input class="css-t" type="text" id="min-width" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('height')">height</dt>
+                <input class="css-t" type="text" id="height" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="heightList" />
+                <datalist id="heightList">
+                    <option value="100%">
+                    <option value="100vh">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('max-height')">max-height</dt>
+                <input class="css-t" type="text" id="max-height" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="maxHeightList" />
+                <datalist id="maxHeightList">
+                    <option value="100%">
+                </datalist>
+            </dl>
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('min-height')">min-height</dt>
+                <input class="css-t" type="text" id="min-height" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+        </div>
+        <div style="display: flex;flex-wrap: wrap;width:6rem;transform: translate(-50%,0);position: absolute;left:50%;top:2.66rem;background-color: rgba(40,41,35,0.8);z-index: 123;">
+            <dl style="width:33.33%;">
+                <dt class="sp" onclick="distanceP('border-radius')">border-radius</dt>
+                <input class="css-t" type="text" id="border-radius" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="borderRadiusList" />
+                <datalist id="borderRadiusList">
+                    <option value="50%">
+                </datalist>
+            </dl>
+            <dl style="width:66.66%;">
+                <dt>box-shadow</dt>
+                <input class="css-t" type="text" id="box-shadow" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+        </div>
+        <div class="css-right-bottom" style="width: 3rem;">
+            <dl>
+                <dt class="sp" onclick="colorP('background-color')">background-color</dt>
+                <input class="css-t" type="text" id="background-color" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="backgroundColorList" />
+                <datalist id="backgroundColorList">
+                    <option value="#fff">
+                </datalist>
+            </dl>
+            <dl>
+                <dt>background-image</dt>
+                <input class="css-t" type="text" id="background-image" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+            </dl>
+            <dl>
+                <dt>background-size</dt>
+                <input class="css-t" type="text" id="background-size" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="backgroundSizeList" />
+                <datalist id="backgroundSizeList">
+                    <option value="cover">
+                    <option value="contain">
+                    <option value="100% 100%">
+                </datalist>
+            </dl>
+            <dl>
+                <dt>background-position</dt>
+                <select class="css-t" id="background-position" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="top left">top left</option>
+                    <option value="top center">top center</option>
+                    <option value="top right">top right</option>
+                    <option value="center left">center left</option>
+                    <option value="center center">center center</option>
+                    <option value="center right">center right</option>
+                    <option value="bottom left">bottom left</option>
+                    <option value="bottom center">bottom center</option>
+                    <option value="bottom right">bottom right</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>background-repeat</dt>
+                <select class="css-t" id="background-repeat" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="no-repeat">no-repeat</option>
+                    <option value="repeat-x">repeat-x</option>
+                    <option value="repeat-y">repeat-y</option>
+                    <option value="repeat">repeat</option>
+                </select>
+            </dl>
+        </div>
+    </div>
+    <div id="classPop" onclick="putClass(event)">
+        <div id="classM" onclick="classPop.className=''"></div>
+        <dl style="width:2rem;left:2.2rem;top:0.76rem;">
+            <a>main</a>
+            <a>layout</a><br>
+            <a>container</a>
+            <a>contain</a>
+            <a>wrapper</a>
+            <a>wrap</a>
+            <a>outer</a>
+            <a>out</a>
+            <a>inner</a>
+            <a>in</a>
+        </dl>
+        <dl style="width:2rem;left: 4.30rem;top:0.76rem;">
+            <a>list</a>
+            <a>one</a>
+            <a>items</a>
+            <a>item</a>
+            <a>boxes</a>
+            <a>box</a>
+            <a>links</a>
+            <a>link</a>
+            <a>cards</a>
+            <a>card</a>
+            <a>blocks</a>
+            <a>block</a>
+            <a>tabs</a>
+            <a>tab</a>
+            <a>tags</a>
+            <a>tag</a>
+            <a>labels</a>
+            <a>label</a>
+            <a>rows</a>
+            <a>row</a>
+            <a>nav</a>
+            <a>nav-item</a>
+            <a>sub-nav</a>
+            <a>sub-item</a>
+            <a>third-nav</a>
+            <a>third-item</a>
+            <a>fouth-nav</a>
+            <a>fouth-item</a>
+            <a>arr</a>
+            <a>ele</a>
+            <a>group</a>
+            <a>single</a>
+        </dl>
+        <dl style="left: 50%;top:0.76rem;margin-left: -0.50rem;">
+            <a>title</a>
+            <a>tit</a>
+            <a>t</a>
+            <a>headline</a>
+            <a>heading</a>
+            <a>topic</a>
+            <a>subject</a>
+        </dl>
+        <dl style="right: 5.30rem;top:0.76rem;">
+            <a>describe</a>
+            <a>desc</a>
+            <a>des</a>
+            <a>intro</a>
+            <a>explain</a>
+            <a>para</a>
+            <a>summary</a>
+            <a>abstract</a>
+        </dl>
+        <dl style="right: 4.20rem;top:0.76rem;">
+            <a>content</a>
+            <a>cont</a>
+            <a>con</a>
+            <a>text</a>
+            <a>txt</a>
+            <a>detail</a>
+            <a>article</a>
+            <a>essay</a>
+        </dl>
+        <dl style="width:3rem;right:1.10rem;top: 1.14rem;">
+            <a>image</a>
+            <a>img</a>
+            <a>icon</a>
+            <a>ico</a>
+            <a>ic</a>
+            <a>i</a>
+            <a>picture</a>
+            <a>pic</a>
+            <a>thumbnail</a>
+            <a>thumb</a>
+            <a>photo</a>
+            <a>avatar</a>
+            <a>bg</a>
+        </dl>
+        <dl style="left:4.30rem;bottom:0.76rem;width:13.20rem;">
+            <a style="text-align: center;">button</a>
+            <a style="text-align: center;">btn</a>
+            <a style="text-align: center;">push</a>
+            <a style="text-align: center;">press</a>
+            <a style="text-align: center;">cancel</a>
+            <a style="text-align: center;">reset</a>
+            <a style="text-align: center;">submit</a>
+            <a style="text-align: center;">sub</a>
+        </dl>
+        <dl style="width:3rem;right:1.10rem;bottom:1.90rem;">
+            <a>number</a>
+            <a>num</a>
+            <a>count</a>
+            <a>digit</a>
+            <a>quantity</a>
+            <a>amount</a>
+            <a>size</a>
+            <a>price</a>
+            <a>tel</a>
+            <a>phone</a>
+            <a>mobile</a>
+            <a>email</a>
+        </dl>
+        <dl style="width:3rem;right:1.10rem;top:0;">
+            <a>large</a>
+            <a>lg</a>
+            <a>big</a>
+            <a>small</a>
+            <a>sm</a>
+            <a>little</a>
+        </dl>
+        <dl style="width:3rem;right:1.10rem;bottom:0;">
+            <a>date</a>
+            <a>time</a>
+            <br>
+            <a>year</a>
+            <a>month</a>
+            <a>day</a>
+            <a>y</a>
+            <a>m</a>
+            <a>d</a>
+            <a>y-m</a>
+            <a>m-d</a>
+            <a>y-m-d</a>
+        </dl>
+        <a style="left:50%;top:0;transform: translate(-270%,0);">header</a>
+        <a style="left:50%;top:0;transform: translate(-160%,0);">head</a>
+        <a style="left:50%;bottom:0;transform: translate(-270%,0);">footer</a>
+        <a style="left:50%;bottom:0;transform: translate(-160%,0);">foot</a>
+        <a style="left:0;top:0;">top-left</a>
+        <a style="left:50%;top:0;transform: translate(-50%,0);">top</a>
+        <a style="right:0;top:0;">top-right</a>
+        <a style="left:0;top:50%;transform: translate(0,-50%);">left</a>
+        <a style="left:50%;top:50%;transform: translate(-50%,0);">center</a>
+        <a style="right:0;top:50%;transform: translate(0,-50%);">right</a>
+        <a style="left:0;bottom:0;">bot-left</a>
+        <a style="left:50%;bottom:0;transform: translate(-50%,0);">bot</a>
+        <a style="right:0;bottom:0;">bot-right</a>
+        <a style="left:50%;bottom:50%;transform: translate(-50%,0);">mid</a>
+        <a style="right:0;top:0.48rem;">close</a>
+        <a style="right:0;top:0.96rem;">delete</a>
+        <a style="right:0;top:1.44rem;">del</a>
+        <a style="right:0;top:1.92rem;">edit</a>
+        <a style="left:0;top:50%;transform: translate(0,0.77rem);">minus</a>
+        <a style="right:0;top:50%;transform: translate(0,0.77rem);">plus</a>
+        <a style="left:0;top:50%;transform: translate(0,0.29rem);">prev</a>
+        <a style="right:2rem;top:50%;transform: translate(0,0.29rem);">more</a>
+        <a style="right:1rem;top:50%;transform: translate(0,0.29rem);">arrow</a>
+        <a style="right:0;top:50%;transform: translate(0,0.29rem);">next</a>
+        <a style="left:0;top:0.48rem;">back</a>
+        <a style="left:1.10rem;top:0;">clearfix</a>
+        <a style="left:2.2rem;top:0;">logo</a>
+    </div>
+<div id="commonPop">
+<div id="commonM" onclick="commonPop.className=''"></div>
+<div id="commonCont" onclick="copyCommon(event)">
+
+<dl>
+<dt>单行省略</dt>
+<textarea>.ellipsis{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}</textarea>
+</dl>
+
+<dl>
+<dt>多行省略</dt>
+<textarea>.eps2{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}</textarea>
+</dl>
+
+<br>
+
+<dl>
+<dt>鼠标移到图片放大-快</dt>
+<textarea>
+.box{position: relative;overflow: hidden;}
+.box img{transform: scale(1.001);transition: all 0.5s ease 0s;}
+.box:hover img{transform: scale(1.07);}</textarea>
+</dl>
+
+<dl>
+<dt>鼠标移到图片放大-慢</dt>
+<textarea>
+.box{overflow: hidden;position: relative;}
+.box img{transition: transform 12s cubic-bezier(.23, 1, .32, 1); transform: scale(1);}
+.box:hover img{transform: scale(1.1);}</textarea>
+</dl>
+
+<br>
+
+<dl>
+<dt>swiper结构</dt>
+<textarea>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div></textarea>
+</dl>
+
+<dl>
+<dt>swiper的js</dt>
+<textarea>
+var bn = new Swiper('.banner',{
+    preventClicks: false,
+    slidesPerView: "auto",
+    centeredSlides: true,
+    loop: true,
+    autoHeight: true,
+    pagination: '.swiper-pagination',
+    paginationClickable :true,
+    prevButton:'.swiper-button-prev',
+    nextButton:'.swiper-button-next',
+})</textarea>
+</dl>
+
+<dl>
+<dt>swiper箭头样式</dt>
+<textarea>
+.banner .swiper-button-prev,
+.banner .swiper-button-next{width: 36px;height: 70px;margin-top: -35px;background-size: 100% 100%;}
+.banner .swiper-button-prev{background-image: url(../images/icon-left.png);left: 0px;}
+.banner .swiper-button-next{background-image: url(../images/icon-right.png);right: 0px;}
+.banner .swiper-button-prev.swiper-button-disabled{opacity: 1;background-image: url(../images/icon-left3.png);}
+.banner .swiper-button-next.swiper-button-disabled{opacity: 1;background-image: url(../images/icon-right3.png);}</textarea>
+</dl>
+
+<dl>
+<dt>swiper点样式</dt>
+<textarea>
+.banner .swiper-pagination-bullet{width: 18px;height: 18px;background-color: transparent;opacity: 1;border: 2px solid #fff;}
+.banner .swiper-pagination-bullet-active{background-color: #fff;}
+.banner.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{margin: 0 10px;}
+.banner.swiper-container-horizontal>.swiper-pagination-bullets{bottom: 37px;font-size: 0;}</textarea>
+</dl>
+
+<br>
+
+<dl>
+<dt>slick结构</dt>
+<textarea>
+<div class="banner">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div></textarea>
+</dl>
+
+<dl>
+<dt>slick的js</dt>
+<textarea>
+$('.banner').slick({
+    dots: true,
+    infinite: true,
+    speed: 800,
+    arrows:true,
+    pauseOnHover:false,
+    autoplay:true,
+    autoplaySpeed:4500,
+    draggable:false,
+    slidesToShow: 4,
+    slidesToScroll: 2
+})</textarea>
+</dl>
+
+<dl>
+<dt>slick箭头样式</dt>
+<textarea>
+.banner .slick-arrow{position: absolute;width: 60px;height: 60px;top: 50%;margin-top: -30px;border-radius: 100%;background-repeat: no-repeat;background-position: center center;background-color: #f2f2f2;font-size: 0;border: none;cursor: pointer;z-index: 10;}
+.banner .slick-prev{left: 0;background-image: url(../images/prev.png);}
+.banner .slick-next{right: 0;background-image: url(../images/next.png);}
+.banner .slick-disabled{opacity: 1;}</textarea>
+</dl>
+
+<dl>
+<dt>slick点样式</dt>
+<textarea>
+.banner .slick-dots{width: 100%;position: absolute;text-align: center;bottom: 0px;z-index: 1;padding: 0;margin: 0;font-size: 0;}
+.banner .slick-dots li{display: inline-block;width: 7px;height: 7px;margin:0 7px;vertical-align: top;background-color: #fbfbfb;opacity: 0.5;cursor: pointer;border-radius: 100%;}
+.banner .slick-dots li button{display: none;}
+.banner .slick-dots li.slick-active{opacity: 1;}</textarea>
+</dl>
+
+<br>
+
+<dl>
+<dt>改变placeholder颜色</dt>
+<textarea>
+.box input::-webkit-input-placeholder,
+.box textarea::-webkit-input-placeholder{color: #999;}
+.box input:-moz-placeholder,
+.box textarea:-moz-placeholder{color: #999;}
+.box input::-moz-placeholder,
+.box textarea::-moz-placeholder{color: #999;}
+.box input:-ms-input-placeholder,
+.box textarea:-ms-input-placeholder{color: #999;}</textarea>
+</dl>
+
+<dl>
+<dt>背景色渐变</dt>
+<textarea>
+.btn{
+    background:#f00; /* 不支持渐变的浏览器显示纯色 */
+    background:-moz-linear-gradient(top, red, rgba(0, 0, 255, 0.5));
+    background:-webkit-gradient(linear, 0 0,right 0, from(#f00), to(rgba(0, 0, 255, 0.5)));
+}</textarea>
+</dl>
+
+<dl>
+<dt>关闭按钮✕</dt>
+<textarea>✕</textarea>
+</dl>
+
+<br>
+
+<dl>
+<dt>返回顶部jq</dt>
+<textarea>
+$("html,body").animate({
+    scrollTop:0
+},500,function(){});</textarea>
+</dl>
+
+<br>
+
+<dl>
+<a href="https://www.kancloud.cn/ywfwj2008/weuijs/274308" target="_blank">WeUI.JS 中文文档</a>
+</dl>
+
+<dl>
+<a href="http://fonts.safe.360.cn/" target="_blank">360查字体</a>
+</dl>
+
+<dl>
+<a href="https://pagespeed.web.dev/?utm_source=psi&utm_medium=redirect" target="_blank">网站性能检测</a>
+</dl>
+</div>
+</div>
+
+</body>
+</html>
+<style>
+    @charset "utf-8";
+    html{-webkit-font-smoothing:antialiased;height: 100%;touch-action: manipulation;font-size: calc(100vw / 1920 * 100);}
+    blockquote,body,code,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}
+    header, hgroup, nav, menu, main, section, article, summary, details, aside, figure, figcaption, footer{display: block;margin:0;padding:0}
+    dl,ol,ul{list-style-type:none}
+    a{text-decoration:none;color: inherit;}
+    a:hover{text-decoration:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;outline:none;blr:expression(this.onFocus=this.blur())}
+    textarea{resize:none;outline: none;font-family: Microsoft Yahei;}
+    img{vertical-align:middle;max-width: 100%;height: auto;}
+    button,input[type=submit],input[type=text],input[type=button]{-webkit-appearance:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;blr:expression(this.onFocus=this.blur())}
+    input{outline: 0;}
+    input::-webkit-input-safebox-button{display: none;}
+    body{color: rgba(255,0,0,0.8);font-family: Microsoft Yahei;background-color: #000;height: 100vh;font-size: .16rem;}
+    body *{box-sizing: border-box;line-height: 1;}
+
+    #cv{position: relative;z-index: 1;}
+    #rectList,
+    #rectListm,
+    #rectListM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;user-select: none;}
+    #rectList{z-index: 8;}
+    #rectList.show{z-index: 12345;}
+    #rectListm{z-index: 1;}
+    #rectListM{z-index: 1;}
+    
+    #op{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 10;cursor: crosshair;user-select: none;}
+    #opm,
+    #opM,
+    #opColorText,
+    #opColor,
+    #opB{display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 100;cursor: crosshair;user-select: none;}
+    #opM{cursor: default;}
+    #opB{cursor: default;}
+    #opm.show,
+    #opM.show,
+    #opColorText.show,
+    #opColor.show,
+    #opB.show{display: block;}
+    #opColorText{cursor: default;}
+
+    #main{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;font-size: 0;overflow: auto;}
+    #mainBox{width: auto;position: relative;display: inline-block;vertical-align: top;}
+    #imgA{max-width: none;opacity: 0;position: absolute;left: 0;top: 0;z-index: 0;}
+    .btn,
+    .opr{min-width: 1.3rem;line-height: 0.6rem;padding: 0 .2em;font-size: 0.2rem;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;background-color: #282923;}
+    .btn:hover,
+    .opr:hover{background-color: transparent;}
+    #pre{background-color: #282923;}
+    .btn.active{color: #f92472}
+    .opr.active,
+    .opr.selected{color: #f92472;}
+    input.opr{width: 100%;background-color: #282923;border: none;}
+    .opr.green{color: #f92472;}
+    .one:hover,
+    .one:focus{color: #f92472;transition: all .3s;}
+    .one{position: absolute;box-sizing: border-box;border: 1px solid #f92472;user-modify: read-write;-webkit-user-modify: read-write;font-size: 0.14rem;color: #f92472;cursor: text;line-height: 0.18rem;padding: 1px 0.03rem;outline: none;}
+    .one .w,
+    .one .h{display: none;font-size: 0.12rem;color: #fff;line-height: 0.14rem;background-color: rgba(255,0,0,0.8);padding: 0 0.02rem;position: absolute;}
+    .one .w{left: 50%;top: 0;transform: translate(-50%,0);}
+    .one .h{left: 0;top: 50%;transform: translate(0,-50%);}
+    .one-m{position: absolute;box-sizing: border-box;}
+    .one-m .w,
+    .one-m .h{font-size: 0.12rem;color: #fff;line-height: 0.14rem;background-color: rgba(255,0,0,0.8);padding: 0 0.02rem;position: absolute;}
+    .one-m .w{left: 50%;top: 0;transform: translate(-50%,0);}
+    .one-m .h{left: 0;top: 50%;transform: translate(0,-50%);}
+    .one-m.ve{background-color: transparent;border-left: 1px solid rgba(255,0,0,0.8);transition: height .3s;}
+    .one-m.ho{background-color: transparent;border-top: 1px solid rgba(255,0,0,0.8);transition: width .3s;}
+    .one-m.ve:before,
+    .one-m.ve:after{content: "";display: block;width: 0.07rem;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -0.04rem;top: 0;}
+    .one-m.ve:after{top: auto;bottom: 0;}
+    .one-m.ho:before,
+    .one-m.ho:after{content: "";display: block;width: 1px;height: 0.07rem;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -0.04rem;}
+    .one-m.ho:after{left: auto;right: 0;}
+    .one-m.bt{border-top: 1px solid rgba(255,0,0,0.8);}
+    .one-m.bl{border-left: 1px solid rgba(255,0,0,0.8);}
+
+    .one-M{position: absolute;box-sizing: border-box;}
+    .one-M .w,
+    .one-M .h{font-size: 0.12rem;color: #fff;line-height: 0.14rem;background-color: rgba(255,0,0,0.8);padding: 0 0.02rem;position: absolute;}
+    .one-M .w{left: 50%;top: 0;transform: translate(-50%,0);}
+    .one-M .h{left: 0;top: 50%;transform: translate(0,-50%);}
+    .one-M.bt{border-top: 1px solid rgba(255,0,0,0.8);}
+    .one-M.bt .h{display: none;}
+    .one-M.bt:before,
+    .one-M.bt:after{content: "";display: block;width: 1px;height: 0.19rem;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -0.1rem;}
+    .one-M.bt:after{left: auto;right: 0;}
+    .one-M.bl{border-left: 1px solid rgba(255,0,0,0.8);}
+    .one-M.bl .w{display: none;}
+    .one-M.bl:before,
+    .one-M.bl:after{content: "";display: block;width: 0.19rem;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -0.1rem;top: 0;}
+    .one-M.bl:after{top: auto;bottom: 0;}
+
+    #MlineH{width: 100%;border-top: 1px dashed rgba(255,0,0,0.8);position: absolute;left: 0;pointer-events: none;z-index: 1;display: none;}
+    #MlineV{height: 100%;border-left: 1px dashed rgba(255,0,0,0.8);position: absolute;top: 0;pointer-events: none;z-index: 1;display: none;}
+    #MlineH.show{display: block;}
+    #MlineV.show{display: block;}
+
+    #cssPop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.25rem;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
+    #cssPop.show{opacity: 1;left: 0;}
+    #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+    #cssPop dl{display: flex;}
+    #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;min-width: 0.8rem;width: auto;line-height: 0.38rem;padding-left: 0.1rem;padding-right: 0.1rem;transition: all .3s;transform-origin: right center;font-size: 0.16rem;color: #ddd;user-select: none;}
+    #cssPop dt.sp{cursor: pointer;}
+    #cssPop dt.sp:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
+    .css-t{height: 0.38rem;width: 0.5rem;flex: 1;border: none;background-color: transparent;font-size: 0.16rem;color: #ddd;padding: 0 0.05rem;outline: none;transition: all .3s;}
+    .css-t:hover{background-color: rgba(0,0,0,0.3);}
+    select.css-t:hover{background-color: #000;}
+    .css-left{position: absolute;left: 50%;margin-left: -6rem;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-right{position: absolute;right: 50%;margin-right: -6rem;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-top{position: absolute;left: 50%;top: 0;transform: translate(-50%,0);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-bottom{position: absolute;left: 50%;bottom: 0;margin-left: -6rem;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-center{position: absolute;left: 50%;text-align: left;bottom: 0;transform: translate(-50%,0);background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-left-top{position: absolute;left: 50%;margin-left: -6rem;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;font-size: 0;}
+    .css-right-top{position: absolute;right: 50%;margin-right: -6rem;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-left-bottom{position: absolute;left: 50%;margin-left: -6rem;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    .css-right-bottom{position: absolute;right: 50%;margin-right: -6rem;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
+    #cssPop dl.black dt{color: #f92472;}
+    #cssPop dl.black .css-t{color: #f92472;}
+    #cssPop .css-s1 dt{transform: scale(0.7);}
+    #cssPop .css-s2 dt{transform: scale(0.8);}
+    #cssPop .css-s3 dt{transform: scale(0.9);}
+
+    #opPop{width: 100vw;height: 100vh;position: fixed;left: -200vw;top: 0;opacity: 0;transition: opacity .3s;}
+    #opPop.show{opacity: 1;left: 0;}
+    #opMask{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+    .op-html{width: .6rem;height: 100vh;line-height: 100vh;position: absolute;right:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-left:1px solid #000;}
+    .op-class{width: 100vw;height: .6rem;line-height: .6rem;position: absolute;right:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:2;}
+    .op-css{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-bottom:1px solid #000;border-right:1px solid #000;}
+    .op-tool{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:50vh;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-right:1px solid #000;}
+
+    #htmlPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
+    #htmlPop.show{opacity: 1;left: 50%;}
+    #htmlM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+
+    #toolPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
+    #toolPop.show{opacity: 1;left: 50%;}
+    #toolM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+
+    #classPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
+    #classPop.show{opacity: 1;left: 50%;}
+    #classM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+    #classPop dl{display: inline-block;vertical-align: top;width: 1rem;text-align: left;z-index: 10;position: absolute;font-size: 0;}
+    #classPop a{display: inline-block;vertical-align: top;z-index: 10;width: 1rem;line-height: 0.38rem;height: 0.38rem;padding: 0 0.05rem;font-size: 0.16rem;color: #ddd;cursor: pointer;transition: all .3s;background-color: rgba(40,41,35,0.8);position: relative;z-index: 10;}
+    #classPop a:hover{background-color: rgba(0,0,0,0.3);}
+    #classPop>a{position: absolute;text-align: center;}
+
+    #codePop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.25rem;z-index: 987654321;left: -200%;opacity: 0;}
+    #codePop.show{opacity: 1;left: 0;}
+    #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+    #codeBox{width: 39%;height: 7.6rem;position: absolute;left: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
+    #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 0.7rem 2em;outline: none;}
+    #copyCode{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
+    #cssBox{width: 39%;height: 7.6rem;position: absolute;right: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
+    #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 0.7rem 2em;outline: none;}
+    #copyCss{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
+    #copyCss:hover,
+    #copyCode:hover,
+    #copyCss.green,
+    #copyCode.green{color: #f92472;}
+    #colorPop{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;z-index: 1234567;left: -200%;opacity: 0;}
+    #colorPop.show{opacity: 1;left: 0;}
+    #colorM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
+    #colorCont{width: 11rem;height: 7.6rem;position: absolute;left: 50%;top: 50%;margin-left: -5.05rem;margin-top: -3.8rem;z-index: 2;border: none;background-color: #282923;padding: 0.3rem;}
+    #colorBox{width: 1rem;height: 1rem;border: 0.06rem solid #ddd;margin-bottom: 0.3rem;}
+    .color-row{width: 100%;display: flex;}
+    #color16,
+    #colorRGBA{flex: 1;height: 0.5rem;line-height: 0.5rem;font-size: 0.19rem;color: #ddd;outline: none;background-color: #282923;border: none;padding: 0 0.2rem;margin-bottom: 0.3rem;}
+    #copy16,
+    #copyRGBA{width: 1rem;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;color: #ddd;cursor: pointer;transition: all .3s;}
+    #copy16.green,
+    #copyRGBA.green{color: #f92472;}
+
+    #commonPop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.5rem;z-index: 1234567;left: -200%;opacity: 0;overflow: hidden;}
+    #commonPop.show{opacity: 1;left: 0;}
+    #commonM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
+    #commonCont{width: 16rem;height: 7.6rem;position: absolute;left: 50%;top: 50%;margin-left: -8rem;margin-top: -3.8rem;z-index: 2;border: none;background-color: #282923;padding: 0.3rem 0.14rem 0.3rem 0.3rem;font-size: 0;overflow: auto;}
+    #commonCont>dl{display: inline-block;vertical-align: top;margin-right: 0.16rem;margin-bottom: 0.16rem;}
+    #commonCont>dl>dt,
+    #commonCont>dl>a{display: inline-block;vertical-align: top;min-width: 1.95rem;height: 0.5rem;line-height: 0.5rem;padding: 0 1em;text-align: center;background-color: #111;font-size: 0.16rem;color: #ddd;cursor: pointer;transition: all .3s;position: relative;}
+    #commonCont>dl>dt:hover,
+    #commonCont>dl>a:hover{background-color: transparent;}
+    #commonCont>dl>dt:after,
+    #commonCont>dl>a:after{content: "已复制";display: none;width: 100%;line-height: 0.5rem;background-color: #111;font-size: 0.14rem;color: #f92472;text-align: center;position: absolute;left: 0;top: 0;}
+    #commonCont>dl>dt.green:after,
+    #commonCont>dl>a.green:after{display: inline-block;}
+    #commonCont>dl>textarea{width: 1px;height: 1px;position: absolute;left: -100vw;top: 0;}
+</style>
+<script>
+    //获取dom对象
+    const f = id=>{
+        return document.getElementById(id)
+    }
+    //增加类名
+    HTMLElement.prototype.addClass=function(name){
+        let a = this.className.split(' ')
+        let b = []
+        for(let i=0;i<a.length;i++){
+            if(a[i]){
+                b.push(a[i].trim())
+            }
+        }
+        let c = name.split(' ')
+        for(let i=0;i<c.length;i++){
+            if(c[i] && b.indexOf(c[i])==-1){
+                b.push(c[i])
+            }
+        }
+        this.className=b.join(' ')
+        return this
+    }
+    //删除类名
+    HTMLElement.prototype.removeClass=function(name){
+        let a = this.className.split(' ')
+        let b = []
+        for(let i=0;i<a.length;i++){
+            if(a[i]){
+                b.push(a[i].trim())
+            }
+        }
+        let c = name.split(' ')
+        for(let i=0;i<c.length;i++){
+            let j=b.indexOf(c[i])
+            if(c[i] && j!=-1){
+                b.splice(j,1)
+            }
+        }
+        this.className=b.join(' ')
+        return this
+    }
+    //是否有此类名
+    HTMLElement.prototype.hasClass=function(name){
+        let a = this.className.split(' ')
+        let b = []
+        for(let i=0;i<a.length;i++){
+            if(a[i]){
+                b.push(a[i].trim())
+            }
+        }
+        if(b.indexOf(name)==-1){
+            return false
+        }else{
+            return true
+        }
+    }
+    //识别文字的文档网址：https://cloud.baidu.com/product/ocr/general
+    const token = '24.3b0cf55a2acfefaa82af4296af0c8bfa.2592000.1639577632.282335-23477754',
+    url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token,
+    cv = f('cv'),
+    ctx = cv.getContext('2d'),
+    main = f('main'),
+    imgA = f('imgA'),
+    cBtn = f('cBtn'),
+    CBtn = f('CBtn'),
+    mBtn = f('mBtn'),
+    rectList = f('rectList'),
+    rectListm = f('rectListm'),
+    rectListM = f('rectListM'),
+    op = f('op'),
+    opm = f('opm'),
+    opM = f('opM'),
+    opColorText = f('opColorText'),
+    opColor = f('opColor'),
+    cssObj = {
+        'background-image': 'url(../images/)',
+        'color': '#',
+        'background-color': '#',
+        'border-top': '1px solid #',
+        'border-right': '1px solid #',
+        'border-bottom': '1px solid #',
+        'border-left': '1px solid #',
+        'border': '1px solid #',
+        'margin': '',
+        'box-shadow': '0 0 0rem rgba(0,0,0,0)',
+        'line-height': '1.',
+        'opacity': '0.'
+    },
+    cssObjV = Object.values(cssObj),
+    opPop = f('opPop'),
+    htmlPop = f('htmlPop'),
+    classPop = f('classPop'),
+    cssPop = f('cssPop'),
+    toolPop = f('toolPop'),
+    codePop = f('codePop'),
+    codeTextArea = f('codeTextArea'),
+    cssTextArea = f('cssTextArea'),
+    color16 = f('color16'),
+    colorRGBA = f('colorRGBA'),
+    colorPop = f('colorPop'),
+    colorBox = f('colorBox'),
+    commonPop = f('commonPop'),
+    MlineH = f('MlineH'),
+    MlineV = f('MlineV');
+
+
+    let maxLevel = 0,
+    lowestArr = [],
+    curTagEle = document.querySelector('.btn.active'),
+    curTag = curTagEle.innerText,
+    preV = f('pre').value,
+    curV = curTagEle.getAttribute('v').replace(preV?'$':'$-',preV),
+    bool = false,x0, y0, x1, y1, curL, curT, curW, curH, opWidth, opHeight,curEle = null,
+    boolm = false,xm0, ym0, xm1, ym1, curmL, curmT, curmW, curmH, opmWidth, opmHeight,curmEle = null,
+    boolM = false,xM0, yM0, xM1, yM1, curML, curMT, curMW, curMH, opMWidth, opMHeight,curMEle = null,
+    boolColor = false,
+    opMshow = false,
+    kkd = [],
+    copyD = '',
+    cIndex = 0,
+    backArr = [],
+    wdW = 0,
+    wdH = 0,
+    leftS,rightS,topS,bottomS,
+    distancePut = false,
+    colorPut = false,
+    colorTextPut = false,
+    drawAttr = '',
+    drawPx = false,
+    kkUndo = true,
+    dIndex = undefined,
+    rew = 30,
+    totalHtml = '',
+    curKK = {},
+    focusing = false,
+    writeClass = false,
+    writeCss = false,
+    leaveClose = true;
+
+    //画框框
+    const opMousedown = e=>{
+        if(!bool){
+            bool = true
+            let opR = op.getBoundingClientRect()
+            opWidth = parseInt(opR.width)
+            opHeight = parseInt(opR.height)
+            x0 = e.offsetX
+            y0 = e.offsetY
+            x1 = e.offsetX
+            y1 = e.offsetY
+            curEle = document.createElement('div')
+            curEle.className = 'one'
+            rectList.appendChild(curEle)
+            setEle(x0, y0, x1, y1)
+            setWH()
+        }else{
+            bool = false
+            if (Math.abs(x1 - x0) < 2 || Math.abs(y1 - y0) < 2) {
+                rectList.removeChild(curEle)
+                curEle = null
+            } else {
+                kkd.push([curL, curT, curL + curW, curT + curH, curTag, curV, kkd.length])
+                copyD = JSON.stringify(kkd)
+                let cArr = curV.match(/class="(.*?)"/)
+                if(cArr){
+                    curEle.innerText=cArr[1]
+                }
+                setTimeout(function(){
+                    setFocus(curEle)
+                    focusing = true
+                    setEvent(curEle)
+                },100)
+                curKK = curEle
+                backArr = []
+            }
+            stopScroll()
+        }
+    },
+
+    //光标聚焦到元素el里的文字最后
+    setFocus = el=>{
+        el.focus()
+        var range = document.createRange()
+        range.selectNodeContents(el)
+        range.collapse(false)
+        var sel = window.getSelection()
+        if(sel.anchorOffset != 0){return}
+        sel.removeAllRanges()
+        sel.addRange(range)
+    },
+
+    //画线
+    opmMousedown = e=>{
+        let r = opm.getBoundingClientRect()
+        opmWidth = parseInt(r.width)
+        opmHeight = parseInt(r.height)
+        boolm = true
+        xm0 = e.offsetX
+        ym0 = e.offsetY
+        xm1 = e.offsetX
+        ym1 = e.offsetY
+        curmEle = document.createElement('div')
+        curmEle.className = 'one-m'
+        curmEle.innerHTML = "<div class='w'></div><div class='h'></div>"
+        rectListm.appendChild(curmEle)
+        setmEle(xm0, ym0, xm1, ym1)
+        setWH()
+    },
+
+    //画线2
+    opMMousedown = e=>{
+        if (!boolM) {
+            boolM = true
+            let r = opM.getBoundingClientRect()
+            opMWidth = parseInt(r.width)
+            opMHeight = parseInt(r.height)
+            xM0 = e.offsetX-1
+            yM0 = e.offsetY-1
+            xM1 = e.offsetX
+            yM1 = e.offsetY
+            curMEle = document.createElement('div')
+            curMEle.className = 'one-M'
+            curMEle.innerHTML = "<div class='w'></div><div class='h'></div>"
+            rectListM.appendChild(curMEle)
+            setMEle(xM0, yM0, xM1, yM1)
+            setWH()
+        }else{
+            boolM = false
+            if(curMW>curMH){
+                yM1 = yM0+1
+                setCssD(curMW)
+            }else{
+                xM1 = xM0+1
+                setCssD(curMH)
+            }
+            setMEle(xM0, yM0, xM1, yM1)
+            stopScroll()
+        }
+    },
+
+    //传入颜色，打开弹窗
+    openColor = cc=>{
+        let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
+        colorPop.addClass('show')
+        colorBox.style.backgroundColor=rgba
+        colorRGBA.value = rgba
+        color16.value = parse16(cc)
+        copy16()
+    },
+
+    //获取此时屏幕宽高
+    setWH = ()=>{
+        wdW = main.getBoundingClientRect().width
+        wdH = main.getBoundingClientRect().height
+    },
+
+    //设置框框的位置和大小
+    setEle = (x0, y0, x1, y1)=>{
+        curL = x1<x0?x1:x0
+        curT = y1<y0?y1:y0
+        curW = Math.abs(x1 - x0)
+        curH = Math.abs(y1 - y0)
+        curEle.style.left = curL+'px'
+        curEle.style.top = curT+'px'
+        curEle.style.width = curW+'px'
+        curEle.style.height = curH+'px'
+    },
+
+    //设置线的位置和大小
+    setmEle = (x0, y0, x1, y1)=>{
+        curmL = x1<x0?x1:x0
+        curmT = y1<y0?y1:y0
+        curmW = Math.abs(x1 - x0)
+        curmH = Math.abs(y1 - y0)
+        curmEle.className = curmW>curmH?'one-m bt':'one-m bl'
+        curmEle.style.left = curmL+'px'
+        curmEle.style.top = curmT+'px'
+        curmEle.style.width = curmW+'px'
+        curmEle.style.height = curmH+'px'
+    },
+
+    //设置线的位置和大小2
+    setMEle = (x0, y0, x1, y1)=>{
+        curML = x1<x0?x1:x0
+        curMT = y1<y0?y1:y0
+        curMW = Math.abs(x1 - x0)
+        curMH = Math.abs(y1 - y0)
+        curMEle.className = curMW>curMH?'one-M bt':'one-M bl'
+        curMEle.style.left = curML+'px'
+        curMEle.style.top = curMT+'px'
+        curMEle.style.width = curMW+'px'
+        curMEle.style.height = curMH+'px'
+        curMEle.querySelector('.w').innerText=curMW
+        curMEle.querySelector('.h').innerText=curMH
+    },
+
+    //鼠标拖到边缘时滚动条自动滚
+    scrollXY = (x,y)=>{
+        if(x>wdW-20){
+            if(!rightS){
+                rightS = setInterval(()=>{
+                    main.scrollLeft = main.scrollLeft + 20
+                },20)
+            }
+        }else{
+            clearInterval(rightS)
+            rightS = null
+        }
+        if(y>wdH-20){
+            if(!bottomS){
+                bottomS = setInterval(()=>{
+                    main.scrollTop = main.scrollTop + 20
+                },20)
+            }
+        }else{
+            clearInterval(bottomS)
+            bottomS = null
+        }
+        if(x<1){
+            if(!leftS){
+                leftS = setInterval(()=>{
+                    main.scrollLeft = main.scrollLeft - 20
+                },20)
+            }
+        }else{
+            clearInterval(leftS)
+            leftS = null
+        }
+        if(y<1){
+            if(!topS){
+                topS = setInterval(()=>{
+                    main.scrollTop = main.scrollTop - 20
+                },20)
+            }
+        }else{
+            clearInterval(topS)
+            topS = null
+        }
+    },
+
+    //停止自动滚
+    stopScroll = ()=>{
+        clearInterval(rightS)
+        rightS = null
+        clearInterval(bottomS)
+        bottomS = null
+        clearInterval(leftS)
+        leftS = null
+        clearInterval(topS)
+        topS = null
+    },
+
+    //按从左到右从上到下排好顺序
+    sortD = ()=>{
+        kkd.sort((a, b)=>{
+            if (a[0] < b[0] && a[1] <= b[3]) {
+                return -1
+            } else if (a[0] < b[0] && a[1] > b[3]) {
+                return 1
+            } else if (a[0] == b[0] && a[1] <= b[1]) {
+                return -1
+            } else if (a[0] == b[0] && a[1] > b[1]) {
+                return 1
+            } else if (a[0] > b[0] && a[3] <= b[1]) {
+                return -1
+            } else if (a[0] > b[0] && a[3] > b[1]) {
+                return 1
+            }
+        })
+    },
+
+    //找出kkd中每个元素的所有父节点
+    setParents = ()=>{
+        for (let i = 0; i < kkd.length; i++) {
+            let temp = []
+            for (let j = 0; j < kkd.length; j++) {
+                if (kkd[i][0] > kkd[j][0] && kkd[i][1] > kkd[j][1] && kkd[i][2] < kkd[j][2] && kkd[i][3] < kkd[j][3]) {
+                    temp.push(j)
+                }
+            }
+            temp.sort((a, b) =>{
+                return kkd[a][0] - kkd[b][0]
+            })
+            kkd[i][7] = temp
+        }
+    },
+
+    //获取kkd中的最深层数
+    setMaxLevel = ()=>{
+        MaxLevel = 0
+        for (let i = 0; i < kkd.length; i++) {
+            if (kkd[i][7].length + 1 > maxLevel) {
+                maxLevel = kkd[i][7].length + 1
+            }
+        }
+    },
+
+    //获取kkd中所有最里层的元素在数组kkd中的位置
+    setLowestArr = ()=>{
+        lowestArr = []
+        for (let i = 0; i < kkd.length; i++) {
+            let tf = true
+            for (let j = 0; j < kkd.length; j++) {
+                if (kkd[j][7].includes(i)) {
+                    tf = false
+                    break
+                }
+            }
+            if (tf) {
+                lowestArr.push(i)
+            }
+        }
+    },
+
+    //创建html结构
+    createHtml = ()=>{
+        totalHtml = ''
+        for (let k = maxLevel-1; k >0; k--) {
+            let arr = []
+            for (let i = 0; i < kkd.length; i++) {
+                if (kkd[i][7].length == k) {
+                    arr.push(kkd[i])
+                }
+            }
+            let obj = {}
+            for (let m = 0; m < arr.length; m++) {
+                let ar = arr[m][7]
+                let n = ar[ar.length-1]
+                if(obj[n]){
+                    obj[n] = obj[n]+arr[m][5]
+                }else{
+                    obj[n] = arr[m][5]
+                }
+            }
+            for(let key in obj){
+                kkd[key][5] = kkd[key][5].replace(/></g,'>'+obj[key]+'<')
+            }
+        }
+        for (let i = 0; i < kkd.length; i++) {
+            if (kkd[i][7].length == 0) {
+                totalHtml += kkd[i][5]
+            }
+        }
+    },
+
+    //获取所有类名加样式放到textarea里
+    getAllClass = ()=>{
+        let ob = {}
+        let noClassArr = []
+        for(let i=0;i<kkd.length;i++){
+            let item = kkd[i]
+            let name = item[9]
+            let s = obj2css(item[8])
+            if(name){
+                let c = name.split(' ')[0]
+                ob[c] = (ob[c] || '') + s
+            }else{
+                if(s){
+                    noClassArr.push(s)
+                }
+            }
+        }
+        let ray = []
+        for(let key  in ob){
+            let arr = ob[key].split(';')
+            arr = Array.from(new Set(arr))
+            ray.push('.'+key+'{'+arr.join(';')+'}')
+        }
+        for(let k=0;k<noClassArr.length;k++){
+            let arr = noClassArr[k].split(';')
+            arr = Array.from(new Set(arr))
+            ray.push('{'+arr.join(';')+'}')
+        }
+        cssTextArea.value = ray.join('\n')
+    },
+
+    //扩
+    expand = ()=>{
+        if(curmW>curmH){
+            let tb = getTB(curmL,curmT,curmW)
+            ym0 = tb[0]+1
+            ym1 = tb[1]
+            setmEle(xm0, ym0, xm1, ym1)
+            curmEle.className = 'one-m ve'
+            curmEle.querySelector('.h').innerText=curmH
+            setCssD(curmH)
+        }else{
+            let lr = getLR(curmL,curmT,curmH)
+            xm0 = lr[0]+1
+            xm1 = lr[1]
+            setmEle(xm0, ym0, xm1, ym1)
+            curmEle.className = 'one-m ho'
+            curmEle.querySelector('.w').innerText=curmW
+            setCssD(curmW)
+        }
+    },
+
+    //根据距离的块状识别
+    bkr = ()=>{
+        closeAll()
+        opB.addClass('show')
+    },
+
+    //点击opB时
+    opBClick = (e)=>{
+        let c = getLineH(e.offsetX,e.offsetY)
+        let tb = getTB(c[0],c[1],c[2],5)
+        let p = getLineV(e.offsetX,e.offsetY)
+        let lr = getLR2(p[0],p[1],p[2],tb[1]-tb[0])
+        if(lr){
+            tb = getTB(lr[0],parseInt(tb[0]+(tb[1]-tb[0])/2),lr[1]-lr[0],9)
+            curEle = document.createElement('div')
+            curEle.className = 'one'
+            setEvent(curEle)
+            rectList.appendChild(curEle)
+            setEle(lr[0],tb[0],lr[1]+1,tb[1]+1)
+            kkd.push([curL, curT, curL + curW, curT + curH, curTag, curV, kkd.length])
+            copyD = JSON.stringify(kkd)
+            curEle.innerText=curV.match(/class="(.*?)"/)[1]
+            backArr = []
+        }
+    },
+
+    // 根据一点获取经过此点的横线段
+    getLineH = (x,y)=>{
+        let r = rew/2,x0 = x-r,x1 = x+r
+        x0 = x0>0?x0:0
+        x1 = x1<cv.width?x1:cv.width
+        return [x0,y,x1-x0]
+    },
+
+    //根据一点获取经过此点的竖线段
+    getLineV = (x,y)=>{
+        let r = rew/2,y0 = y-r,y1 = y+r
+        y0 = y0>0?y0:0
+        y1 = y1<cv.height?y1:cv.height
+        return [x,y0,y1-y0]
+    },
+
+    //一条横线段向上下扩展，超过距离di后返回上多少和下多少
+    getTB = (x,y,w,di=1)=>{
+        const jg = 15
+        const jd = 10
+        let dt0 = ctx.getImageData(x,y,w,1).data
+        let yt = -1
+        let yb = cv.height
+        let m = 0
+        if(maxDc(dt0)<jg){
+            let cdt = null
+            for(let j=1;j<10000;j++){
+                let dt2 = ctx.getImageData(x,y+j,w,1).data
+                if(avgDc(dt0,dt2)>jd){
+                    m++
+                    if(m>=di){
+                        yb = y+j-m+1
+                        m=0
+                        break
+                    }
+                }else{
+                    m=0
+                }
+                dt0 = dt2
+            }
+            dt0 = ctx.getImageData(x,y,w,1).data
+            for(let j=1;j<10000;j++){
+                let dt2 = ctx.getImageData(x,y-j,w,1).data
+                if(avgDc(dt0,dt2)>jd){
+                    m++
+                    if(m>=di){
+                        yt = y-j+m-1
+                        m=0
+                        break
+                    }
+                }else{
+                    m=0
+                }
+                dt0 = dt2
+            }
+        }else{
+            for(let k=1;k<10000;k++){
+                let dt = ctx.getImageData(x,y+k,w,1).data
+                if(maxDc(dt)<jg){
+                    m++
+                    if(m>=di){
+                        yb = y+k-m+1
+                        m=0
+                        break
+                    }
+                }else{
+                    m=0
+                }
+            }
+            for(let k=1;k<10000;k++){
+                let dt = ctx.getImageData(x,y-k,w,1).data
+                if(maxDc(dt)<jg){
+                    m++
+                    if(m>=di){
+                        yt = y-k+m-1
+                        m=0
+                        break
+                    }
+                }else{
+                    m=0
+                }
+            }
+        }
+        return [yt,yb]
+    },
+
+    //一条竖线段向左右扩展，超过距离di后返回左多少和右多少
+    getLR = (x,y,h,di=1)=>{
+        const jg = 15
+        const jd = 10
+        let dt0 = ctx.getImageData(x,y,1,h).data
+        let xl = -1
+        let xr = cv.width
+        let m = 0
+        if(maxDc(dt0)<jg){
+            for(let j=1;j<10000;j++){
+                let dt2 = ctx.getImageData(x+j,y,1,h).data
+                if(avgDc(dt0,dt2)>jd){
+                    m++
+                    if(m>=di){
+                        xr = x+j-m+1
+                        m=0
+                        break
+                    }
+                }else{
+                    m=0
+                }
+                dt0 = dt2
+            }
+            dt0 = ctx.getImageData(x,y,1,h).data
+            for(let j=1;j<10000;j++){
+                let dt2 = ctx.getImageData(x-j,y,1,h).data
+                if(avgDc(dt0,dt2)>jd){
+                    m++
+                    if(m>=di){
+                        xl = x-j+m-1
+                        m=0
+                        break
+                    }
+                }else{
+                    m=0
+                }
+                dt0 = dt2
+            }
+        }else{
+            for(let k=1;k<10000;k++){
+                let dt = ctx.getImageData(x+k,y,1,h).data
+                if(maxDc(dt)<jg){
+                    m++
+                    if(m>=di){
+                        xr = x+k-m+1
+                        m=0
+                        break
+                    }
+                }else{
+                    m=0
+                }
+            }
+            for(let k=1;k<10000;k++){
+                let dt = ctx.getImageData(x-k,y,1,h).data
+                if(maxDc(dt)<jg){
+                    m++
+                    if(m>=di){
+                        xl = x-k+m-1
+                        break
+                    }
+                }else{
+                    m=0
+                }
+            }
+        }
+        return [xl,xr]
+    },
+
+    //一条竖线段向左右扩展，超过距离di后返回左多少和右多少，如果这条竖线段是纯色的就不执行
+    getLR2 = (x,y,h,di=1)=>{
+        const jg = 15
+        const jd = 10
+        let dt = ctx.getImageData(x,y,1,h).data
+        let xl = -1
+        let xr = cv.width
+        let m = 0
+        if(maxDc(dt)>=jg){
+            for(let k=1;k<10000;k++){
+                let dt = ctx.getImageData(x+k,y,1,h).data
+                if(maxDc(dt)<jg){
+                    m++
+                    if(m>=di){
+                        xr = x+k-m+1
+                        m=0
+                        break
+                    }
+                }else{
+                    m=0
+                }
+            }
+            for(let k=1;k<10000;k++){
+                let dt = ctx.getImageData(x-k,y,1,h).data
+                if(maxDc(dt)<jg){
+                    m++
+                    if(m>=di){
+                        xl = x-k+m-1
+                        break
+                    }
+                }else{
+                    m=0
+                }
+            }
+            return [xl,xr]
+        }else{
+            return false
+        }
+    },
+
+    //获取canvas的某块imageData的所有颜色和其对应的数量
+    getColorObj = c=>{
+        let l = c.data
+        let n = l.length
+        let obj = {}
+        for(let i=0;i<n;i+=4){
+            let str = l[i]+','+l[i+1]+','+l[i+2]+','+l[i+3]
+            if(obj[str]){
+                obj[str] = obj[str] + 1
+            }else{
+                obj[str] = 1
+            }
+        }
+        let arr = Object.keys(obj)
+        arr.sort(function(a,b){
+            return obj[b]-obj[a]
+        })
+        let ar = []
+        for(let i=0;i<arr.length;i++){
+            ar.push([arr[i],obj[arr[i]]])
+        }
+        return ar
+    },
+
+    //根据一点获取以此点周围的字体颜色，只适用于纯色背景
+    getTextColor = (x,y)=>{
+        let c = getLineH(x,y)
+        let tb = getTB(c[0],c[1],c[2],2)
+        let p = getLineV(x,y)
+        let lr = getLR2(p[0],p[1],p[2],2)
+        if(lr){
+            tb = getTB(lr[0],parseInt(tb[0]+(tb[1]-tb[0])/2),lr[1]-lr[0])
+            let t = ctx.getImageData(lr[0],tb[0],lr[1]-lr[0],tb[1]-tb[0])
+            let arr = getColorObj(t)
+            let t2 = ctx.getImageData(lr[0],tb[0]-1,lr[1]-lr[0],1)
+            let arr2 = getColorObj(t2)
+            str = arr[0][0]
+            if(arr2[0][0]==str){
+                str = arr[1][0]
+            }
+            if(str){
+                return str.split(',')
+            }else{
+                return ''
+            }
+        }
+    },
+
+    //取颜色
+    opColorMousedown = e=>{
+        boolColor = true
+    },
+    opColorMousemove = e=>{
+        let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
+        let c16 = parse16(cc)
+        let rgba = 'rgba('+cc[0]+','+cc[1]+','+cc[2]+','+parseInt(cc[3]*100/255)/100+')'
+        CBtn.style.backgroundColor=rgba
+    },
+    opColorMouseleave = e=>{
+        CBtn.style.backgroundColor='#282923'
+    },
+
+    //取文字颜色
+    opColorTextMousedown = e=>{
+        var cc = getTextColor(e.pageX+main.scrollLeft,e.pageY+main.scrollTop)
+        if(cc){
+            if(!colorTextPut){
+                openColor(cc)
+            }else{
+                setCssTC(parse16(cc))
+            }
+        }
+    },
+
+    //给一个imageData，找出这个data中颜色差别最大两种颜色之差
+    maxDc = dt=>{
+        let n = dt.length,ccmax = 0
+        for(let i=0;i<n;i+=4){
+            for(let j=i+4;j<n;j+=4){
+                let cb = Math.abs(dt[j]-dt[i]) + Math.abs(dt[j+1]-dt[i+1]) + Math.abs(dt[j+2]-dt[i+2])
+                if(cb>ccmax){ccmax = cb}
+            }
+        }
+        return ccmax
+    },
+
+    //给两个长度一样的imageData，求它们的平均颜色差
+    avgDc = (dt,dt2)=>{
+        let n=dt.length,ddd = 0,ddn = 0
+        for(let i=0;i<n;i+=4){
+            let dc = Math.abs(dt[i]-dt2[i]) + Math.abs(dt[i+1]-dt2[i+1]) + Math.abs(dt[i+2]-dt2[i+2])
+            if(dc>0){
+                ddd += dc
+                ddn++
+            }
+        }
+        return ddn>0?ddd/ddn:0
+    },
+
+    //文字识别
+    getText = ()=>{
+        if(!lowestArr.length){
+            return
+        }
+        let item = kkd[lowestArr[cIndex]]
+        if (['img', 'radio', 'checkbox', 'video'].includes(item[4])) {
+            nextText()
+            return
+        }
+        codeTextArea.value = '识别文字中…'
+        let t = ctx.getImageData(item[0], item[1], item[2] - item[0], item[3] - item[1])
+        let c = document.createElement('canvas')
+        c.width = t.width < 15 ? 15 : t.width
+        c.height = t.height < 15 ? 15 : t.height
+        c.getContext('2d').putImageData(t, 0, 0)
+        let src = c.toDataURL('image/jpeg')
+        let tempBase64 = src.replace(/^data:image\/\w+;base64,/, '')
+        let xhr = new XMLHttpRequest()
+        xhr.open('POST', url, true)
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4) {
+                if(xhr.status == 200){
+                    let dt = JSON.parse(xhr.responseText)
+                    console.log('识别文字成功', dt)
+                    let arr = dt.words_result
+                    let n = dt.words_result_num
+                    if (n) {
+                        let s = ''
+                        for (let i = 0; i < n; i++) {
+                            s += arr[i].words
+                        }
+                        putText(s)
+                    }
+                    nextText()
+                }else{
+                    console.log('识别文字失败', xhr.responseText)
+                    nextText()
+                }
+            }
+        }
+        xhr.send('image='+encodeURIComponent(tempBase64))
+    },
+
+    //识别下一个元素的文字
+    nextText = ()=>{
+        if (cIndex < lowestArr.length - 1) {
+            cIndex++
+            setTimeout(getText, 350)
+        } else {
+            finish()
+        }
+    },
+
+    //文字识别完毕
+    finish = ()=>{
+        createHtml()
+        formatHtml()
+        cIndex = 0
+        kkd = JSON.parse(copyD)
+        console.log(kkd)
+    },
+
+    //格式化html
+    formatHtml = ()=>{
+        if(!totalHtml){
+            codeTextArea.value = ''
+            return
+        }
+        let ssArr = totalHtml.replace(/></g,'>\n<').split('\n')
+        let curP = 0
+        for(let i=1;i<ssArr.length;i++){
+            if(ssArr[i-1].indexOf('</')==-1 && ssArr[i-1].indexOf('<input')==-1 && ssArr[i-1].indexOf('<img')==-1 && ssArr[i-1].indexOf('<br')==-1){
+                curP++
+            }
+            if(ssArr[i].startsWith('</')){
+                curP--
+            }
+            for(let j=0;j<curP;j++){
+                ssArr[i] = '    '+ssArr[i]
+            }
+        }
+        let s = ''
+        for(let i=0;i<ssArr.length;i++){
+            let ln = ssArr[i].length-1
+            let t = ''
+            if(ssArr[i+1]){
+                t = ssArr[i+1].trim()
+            }
+            if(t.startsWith('</') && ssArr[i].charAt(ln)=='>' && ssArr[i].indexOf('</')==-1 && ssArr[i].indexOf('<input')==-1 && ssArr[i].indexOf('<img')==-1 && ssArr[i].indexOf('<br')==-1){
+                s += ssArr[i]+t+'\n'
+                i++
+            }else{
+                s += ssArr[i]+'\n'
+            }
+        }
+        codeTextArea.value = s
+    },
+
+    //识别后的文字输入到text或value或placeholder
+    putText = s=>{
+        let item = kkd[lowestArr[cIndex]]
+        let tag = item[4]
+        if (['text', 'password', 'textarea'].includes(tag)) {
+            item[5] = item[5].replace(/placeholder=".*?"/,'placeholder="'+s+'"')
+        } else if (['submit'].includes(tag)) {
+            item[5] = item[5].replace(/value=".*?"/,'value="'+s+'"')
+        } else {
+            item[5] = item[5].replace(/></g,'>'+s+'<')
+        }
+    },
+
+    //设置每个框框的z-index
+    setZIndex = ()=>{
+        setParents()
+        let ones = rectList.childNodes
+        for (let i = 0; i < kkd.length; i++) {
+            ones[kkd[i][6]].style.zIndex=kkd[i][7].length
+        }
+    },
+
+    //把编辑后的类储存到数组kkd里
+    setClass = ()=>{
+        let ones = rectList.childNodes
+        for(let i=0;i<ones.length;i++){
+            let name = ones[i].innerText.replace(/\s+/g,' ')
+            kkd[i][9] = name
+            kkd[i][5] = kkd[i][5].replace(/class=".*?"/,'class="'+name+'"')
+        }
+        copyD = JSON.stringify(kkd)
+    },
+
+    //将对象拼接成css字符串
+    obj2css = obj=>{
+        let x,s = ''
+        for (x in obj){
+            if(obj[x]){
+                s += x+': '+obj[x]+';'
+            }
+        }
+        return s
+    },
+
+    //将框框撤销
+    undo = ()=>{
+        if (kkd.length) {
+            backArr.push(kkd.pop())
+            copyD = JSON.stringify(kkd)
+            rectList.removeChild(rectList.lastChild)
+        }
+    },
+
+    //将框框反撤销
+    unBack = ()=>{
+        if (backArr.length) {
+            let u = backArr.pop()
+            kkd.push(u)
+            copyD = JSON.stringify(kkd)
+            curEle = document.createElement('div')
+            curEle.className = 'one'
+            setEvent(curEle)
+            rectList.appendChild(curEle)
+            setEle(u[0], u[1], u[2], u[3])
+            curEle.innertext=u[5].match(/class="(.*?)"/)[1]
+            setZIndex()
+        }
+    },
+
+    //给框框设置事件
+    setEvent = t=>{
+        t.onclick= function(){focusing=true;showEdit(this)}
+        t.oninput = function(){kkUndo=false}
+        t.onblur = function(){focusing = false;kkUndo=true}
+        t.onkeydown = function(){classPop.removeClass('show')}
+    }
+
+    //设计图加载完后执行此函数
+    begin = ()=>{
+        cv.width = imgA.width + 20
+        cv.height = imgA.height + 20
+        // ctx.fillStyle='#fff'
+        ctx.fillRect(0,0,cv.width,cv.height)
+        ctx.drawImage(imgA, 10, 10, imgA.width, imgA.height)
+    },
+
+    //如果没有设计就弄个黑色的全屏图
+    beginEmpty = ()=>{
+        cv.width = document.documentElement.clientWidth
+        cv.height = document.documentElement.clientHeight-1
+        ctx.font='20px Arial'
+        ctx.fillStyle='#999'
+        ctx.textAlign='center'
+        ctx.textBaseline='middle'
+        ctx.fillText("拖动PNG到此",cv.width/2,cv.height/2)
+        ctx.fillText("光标向下移出网页打开操作弹窗",cv.width/2,cv.height/2-50)
+    },
+
+    //关闭所有
+    closeAll = ()=>{
+        rectList.removeClass('show')
+        colorPop.removeClass('show')
+        opColorText.removeClass('show')
+        opColor.removeClass('show')
+        commonPop.removeClass("show")
+        opm.removeClass('show')
+        opM.removeClass('show')
+        opB.removeClass('show')
+        codePop.removeClass('show')
+        opPop.removeClass('show')
+        htmlPop.removeClass('show')
+        classPop.removeClass('show')
+        cssPop.removeClass('show')
+        toolPop.removeClass('show')
+        opMshow = false
+        MlineH.removeClass('show')
+        MlineV.removeClass('show')
+    },
+
+    //将测量的距离设为当前的css属性值
+    setCssD = cssV=>{
+        if(distancePut){
+            distancePut = false
+            f(drawAttr).value=drawPx?(cssV+'px'):(cssV/100+'rem')
+            setCss()
+            closeAll()
+            rectList.addClass('show')
+            cssPop.addClass('show')
+        }
+    },
+
+    //将取到的颜色设为当前的css属性值
+    setCssC = cssV=>{
+        if(colorPut){
+            colorPut = false
+            if(['border','border-top','border-bottom','border-left','border-right'].includes(drawAttr)){
+                f(drawAttr).value='1px solid '+cssV
+            }else{
+                f(drawAttr).value=cssV
+            }
+            setCss()
+            closeAll()
+            rectList.addClass('show')
+            cssPop.addClass('show')
+        }
+    },
+    //将取到的文字颜色设为当前的css属性值
+    setCssTC = cssV=>{
+        if(colorTextPut){
+            colorTextPut = false
+            if(['color'].includes(drawAttr)){
+                f(drawAttr).value=cssV
+            }
+            setCss()
+            closeAll()
+            rectList.addClass('show')
+            cssPop.addClass('show')
+        }
+    },
+
+    //将当前弹窗的css放到当前的对象里
+    setCss = ()=>{
+        let b = {}
+        let list = cssPop.querySelectorAll('.css-t')
+        for(let k=0;k<list.length;k++){
+            let item = list[k]
+            let attr = item.id
+            let v = item.value
+            if(v){
+                b[attr] = v
+            }
+            if(cssObjV.includes(v)){
+                delete b[attr]
+            }
+            b[attr]?item.parentNode.addClass('black'):item.parentNode.removeClass('black')
+        }
+        if(kkd[dIndex]){
+            kkd[dIndex][8] = JSON.stringify(b)!='{}'?b:''
+        }
+    },
+
+    //颜色转16进制
+    parse16 = c=>{
+        c[0] = parseInt(c[0])
+        c[1] = parseInt(c[1])
+        c[2] = parseInt(c[2])
+        let r = c[0]>15?c[0].toString(16):('0'+c[0].toString(16))
+        let g = c[1]>15?c[1].toString(16):('0'+c[1].toString(16))
+        let b = c[2]>15?c[2].toString(16):('0'+c[2].toString(16))
+        if(r.charAt(0)==r.charAt(1) && g.charAt(0)==g.charAt(1) && b.charAt(0)==b.charAt(1)){
+            r=r.charAt(0)
+            g=g.charAt(0)
+            b=b.charAt(0)
+        }
+        return '#'+r+g+b
+    },
+
+    //设置类名前缀
+    preC = t=>{
+        preV = t.value
+        curV = curTagEle.getAttribute('v').replace(preV?'$':'$-',preV)
+    },
+
+    //查看html和css，让这个弹窗层级最高，打开时不要关闭其它
+    seeCode = (recognize) => {
+        leaveClose = false
+        codePop.addClass('show')
+        setClass()
+        sortD()
+        setParents()
+        setMaxLevel()
+        getAllClass()
+        setLowestArr()
+        recognize?getText():finish()
+    },
+
+    //复制html
+    copyCode = ()=>{
+        codeTextArea.select()
+        document.execCommand('copy')
+        codeTextArea.blur()
+        let btn = f('copyCode')
+        btn.innerText='已复制'
+        btn.addClass('green')
+        setTimeout(function(){
+            btn.innerText='复制'
+            btn.removeClass('green')
+        },2000)
+    },
+
+    //复制css
+    copyCss = ()=>{
+        cssTextArea.select()
+        document.execCommand('copy')
+        cssTextArea.blur()
+        let btn = f('copyCss')
+        btn.innerText='已复制'
+        btn.addClass('green')
+        setTimeout(function(){
+            btn.innerText='复制'
+            btn.removeClass('green')
+        },2000)
+    },
+
+    //将选中的类输入框框
+    putClass = e=>{
+        let t = e.target
+        if(t.nodeName == 'A'){
+            curKK.innerText = preV?(preV+'-'+t.innerText):t.innerText
+            classPop.removeClass('show')
+            window.getSelection().collapse(curKK, 1);
+            curKK.focus()
+            focusing = true
+            kkUndo=false
+        }
+    },
+
+    //点击一个框框打开css弹窗或class弹窗开始编辑
+    showEdit = t=>{
+        curKK = t
+        if(writeCss){
+            let all = rectList.childNodes
+            let i = 0
+            for(let j=0;j<all.length;j++){
+                if(all[j]==t){
+                    i=j
+                    break
+                }
+            }
+            let b = kkd[i][8] || {}
+            let list = cssPop.querySelectorAll('.css-t')
+            for(let k=0;k<list.length;k++){
+                let item = list[k]
+                let attr = item.id
+                item.value=b[attr] || cssObj[attr] || ''
+                b[attr]?item.parentNode.addClass('black'):item.parentNode.removeClass('black')
+            }
+            cssPop.addClass('show')
+            dIndex = i
+        }else if(writeClass){
+            classPop.addClass('show')
+        }
+    },
+
+    //鼠标离开body
+    bodyMouseleave = (e)=>{
+        if(leaveClose){
+            if(focusing && e.pageY<100){
+                htmlPop.removeClass('show')
+                cssPop.removeClass('show')
+                toolPop.removeClass('show')
+                classPop.addClass('show')
+            }else if(e.pageY>=main.getBoundingClientRect().height/2 && !bool){
+                closeAll()
+                opPop.addClass('show')
+            }
+        }
+    },
+
+    //鼠标进入op-html
+    opHtmlMouseenter = ()=>{
+        closeAll()
+        htmlPop.addClass('show')
+    },
+
+    //进入编辑类名的状态
+    classIng = ()=>{
+        closeAll()
+        if(kkd.length){
+            setZIndex()
+            rectList.addClass('show')
+            writeClass = true
+            writeCss = false
+            if(focusing){
+                showEdit(curKK)
+            }
+        }
+    },
+
+    //进入编辑css的状态
+    cssIng = ()=>{
+        closeAll()
+        if(kkd.length){
+            setZIndex()
+            rectList.addClass('show')
+            writeCss = true
+            writeClass = false
+            if(focusing){
+                showEdit(curKK)
+            }
+        }
+    },
+
+    //打开工具弹窗
+    toolIng = ()=>{
+        closeAll()
+        toolPop.addClass('show')
+    },
+    
+
+    //进入测量模式
+    measure = ()=>{
+        closeAll()
+        opm.addClass('show')
+    },
+
+    //进入测量模式2
+    measure2 = ()=>{
+        closeAll()
+        opM.addClass('show')
+        opMshow = true
+        MlineH.addClass('show')
+        MlineV.addClass('show')
+    },
+
+    //点击c进入复制文字颜色的状态
+    inColorText = ()=>{
+        closeAll()
+        opColorText.addClass('show')
+    },
+
+    //点击C进入复制颜色的状态
+    inColor = ()=>{
+        closeAll()
+        opColor.addClass('show')
+    },
+
+    //复制color16
+    copy16 = ()=>{
+        color16.select()
+        document.execCommand('copy')
+        color16.blur()
+        let btn = f('copy16')
+        btn.innerText='已复制'
+        btn.addClass('green')
+        setTimeout(function(){
+            btn.innerText='复制'
+            btn.removeClass('green')
+        },2000)
+    },
+
+    //复制colorRGBA
+    copyRGBA = ()=>{
+        colorRGBA.select()
+        document.execCommand('copy')
+        colorRGBA.blur()
+        let btn = f('copyRGBA')
+        btn.innerText='已复制'
+        btn.addClass('green')
+        setTimeout(function(){
+            btn.innerText='复制'
+            btn.removeClass('green')
+        },2000)
+    },
+
+    //点击code
+    openCommon = ()=>{
+        commonPop.addClass("show")
+    },
+
+    //复制常用代码块
+    copyCommon = e=>{
+        if(e.target.nodeName == 'DT'){
+            let btn = e.target
+            let t = btn.parentNode
+            let area = t.getElementsByTagName('textarea')[0]
+            area.select()
+            document.execCommand('copy')
+            btn.addClass('green')
+            setTimeout(function(){
+                btn.removeClass('green')
+            },2000)
+        }
+    },
+
+    //点击px
+    usePx = t=>{
+        drawPx?t.removeClass('selected'):t.addClass('selected')
+        drawPx = !drawPx
+    },
+
+    //切换标签时
+    tagC = t=>{
+        closeAll()
+        let btns = htmlPop.querySelectorAll(".btn")
+        for(let i=0;i<btns.length;i++){
+            btns[i].removeClass('active')
+        }
+        t.addClass('active')
+        curTag = t.innerText
+        curV = t.getAttribute('v').replace(preV?'$':'$-',preV)
+        curTagEle = t
+    },
+
+    //点击颜色相关的css属性名
+    colorP = attr=>{
+        drawAttr = attr
+        cssPop.removeClass('show')
+        rectList.removeClass('show')
+        opColor.addClass('show')
+        colorPut = true
+    },
+
+    //点击文字颜色的css属性名
+    colorTP = attr=>{
+        drawAttr = attr
+        cssPop.removeClass('show')
+        rectList.removeClass('show')
+        opColorText.addClass('show')
+        colorTextPut = true
+    },
+
+    //点击距离相关的css属性名
+    distanceP = attr=>{
+        drawAttr = attr
+        cssPop.removeClass('show')
+        rectList.removeClass('show')
+        opm.addClass('show')
+        distancePut = true
+    },
+
+    //清空框框和线
+    empty = ()=>{
+        copyD = ''
+        kkd = []
+        backArr = []
+        rectList.innerHTML = rectListm.innerHTML = rectListM.innerHTML = ''
+    },
+
+
+    //导入图片
+    imgC = t=>{
+        closeAll()
+        empty()
+        let file = t.files[0]
+        let fr = new FileReader()
+        fr.onloadend = function(e) {
+            imgA.src=e.target.result
+            if (imgA.complete) {
+                begin()
+            } else {
+                imgA.onload = begin
+            }
+            sessionStorage.setItem('img',e.target.result)
+        }
+        fr.readAsDataURL(file)
+    };
+
+    
+    
+    document.onmousemove = e=>{
+        if (bool) {
+            x1 = e.pageX + main.scrollLeft
+            y1 = e.pageY + main.scrollTop
+            x1 = x1 > opWidth ? opWidth : x1
+            y1 = y1 > opHeight ? opHeight : y1
+            x1 = x1 < 0 ? 0 : x1
+            y1 = y1 < 0 ? 0 : y1
+            setEle(x0, y0, x1, y1)
+            scrollXY(e.pageX,e.pageY)
+            MlineH.style.top=e.pageY + main.scrollTop-1+'px'
+            MlineV.style.left=e.pageX + main.scrollLeft-1+'px'
+        }
+        if (boolm) {
+            xm1 = e.pageX + main.scrollLeft
+            ym1 = e.pageY + main.scrollTop
+            xm1 = xm1 > opmWidth ? opmWidth : xm1
+            ym1 = ym1 > opmHeight ? opmHeight : ym1
+            xm1 = xm1 < 0 ? 0 : xm1
+            ym1 = ym1 < 0 ? 0 : ym1
+            setmEle(xm0, ym0, xm1, ym1)
+            scrollXY(e.pageX,e.pageY)
+        }
+        if (opMshow) {
+            MlineH.style.top=e.pageY + main.scrollTop-1+'px'
+            MlineV.style.left=e.pageX + main.scrollLeft-1+'px'
+        }
+        if(boolM){
+            xM1 = e.pageX + main.scrollLeft
+            yM1 = e.pageY + main.scrollTop
+            xM1 = xM1 > opMWidth ? opMWidth : xM1
+            yM1 = yM1 > opMHeight ? opMHeight : yM1
+            xM1 = xM1 < 0 ? 0 : xM1
+            yM1 = yM1 < 0 ? 0 : yM1
+            setMEle(xM0, yM0, xM1, yM1)
+            scrollXY(e.pageX,e.pageY)
+        }
+    }
+    document.onmouseup = e=>{
+        if (boolm) {
+            boolm = false
+            if(curmW>curmH){
+                ym1 = ym0+1
+            }else{
+                xm1 = xm0+1
+            }
+            setmEle(xm0, ym0, xm1, ym1)
+            stopScroll()
+            expand()
+        }
+        if(boolColor){
+            boolColor = false
+            let cc = ctx.getImageData(e.pageX+main.scrollLeft,e.pageY+main.scrollTop, 1, 1).data
+            if(!colorPut){
+                openColor(cc)
+            }else{
+                setCssC(parse16(cc))
+            }
+        }
+    }
+
+    //将框框撤销(ctrl+Z)或反撤销(ctrl+Y)
+    document.onkeydown = e => {
+        if (kkUndo && e.ctrlKey == true && e.keyCode == 90) {
+            e.preventDefault()
+            e.returnvalue = false
+            undo()
+        }
+        if (kkUndo && e.ctrlKey == true && e.keyCode == 89) {
+            e.preventDefault()
+            e.returnvalue = false
+            unBack()
+        }
+    }
+
+    //缓存如果有图片
+    if (sessionStorage.getItem('img')){
+        imgA.src=sessionStorage.getItem('img')
+        if (imgA.complete) {
+            begin()
+        } else {
+            imgA.onload = begin
+        }
+    }else{
+        beginEmpty()
+    }
+</script>
