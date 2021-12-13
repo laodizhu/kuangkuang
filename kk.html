@@ -5,11 +5,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>kk</title>
+    <style>
+        @charset "utf-8";
+        html{-webkit-font-smoothing:antialiased;height: 100%;touch-action: manipulation;font-size: calc(100vw / 1920 * 100);}
+        blockquote,body,code,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}
+        header, hgroup, nav, menu, main, section, article, summary, details, aside, figure, figcaption, footer{display: block;margin:0;padding:0}
+        dl,ol,ul{list-style-type:none}
+        a{text-decoration:none;color: inherit;}
+        a:hover{text-decoration:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;outline:none;blr:expression(this.onFocus=this.blur())}
+        textarea{resize:none;outline: none;font-family: Microsoft Yahei;}
+        img{vertical-align:middle;max-width: 100%;height: auto;}
+        button,input[type=submit],input[type=text],input[type=button]{-webkit-appearance:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;blr:expression(this.onFocus=this.blur())}
+        input{outline: 0;}
+        input::-webkit-input-safebox-button{display: none;}
+        body{color: rgba(255,0,0,0.8);font-family: Microsoft Yahei;background-color: #000;height: 100vh;font-size: .16rem;}
+        body *{box-sizing: border-box;line-height: 1;}
+
+        #cv{position: relative;z-index: 1;}
+        #rectList,
+        #rectListm,
+        #rectListM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;user-select: none;}
+        #rectList{z-index: 8;}
+        #rectList.show{z-index: 12345;}
+        #rectListm{z-index: 1;}
+        #rectListM{z-index: 1;}
+        
+        #op{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 10;cursor: crosshair;user-select: none;}
+        #opm,
+        #opM,
+        #opColorText,
+        #opColor,
+        #opB{display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 100;cursor: crosshair;user-select: none;}
+        #opM{cursor: default;}
+        #opB{cursor: default;}
+        #opm.show,
+        #opM.show,
+        #opColorText.show,
+        #opColor.show,
+        #opB.show{display: block;}
+        #opColorText{cursor: default;}
+
+        #main{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;font-size: 0;overflow: auto;}
+        #mainBox{width: auto;position: relative;display: inline-block;vertical-align: top;}
+        #imgA{max-width: none;opacity: 0;position: absolute;left: 0;top: 0;z-index: 0;}
+        .btn,
+        .opr{min-width: 1.3rem;line-height: 0.6rem;padding: 0 .2em;font-size: 0.2rem;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;background-color: #282923;}
+        .btn:hover,
+        .opr:hover{background-color: transparent;}
+        #pre{background-color: #282923;}
+        .btn.active{color: #f92472}
+        .opr.active,
+        .opr.selected{color: #f92472;}
+        input.opr{width: 100%;background-color: #282923;border: none;}
+        .opr.green{color: #f92472;}
+        .one:hover,
+        .one:focus{color: #f92472;transition: all .3s;}
+        .one{position: absolute;box-sizing: border-box;border: 1px solid #f92472;user-modify: read-write;-webkit-user-modify: read-write;font-size: 0.14rem;color: #f92472;cursor: text;line-height: 0.18rem;padding: 1px 0.03rem;outline: none;}
+        .one .w,
+        .one .h{display: none;font-size: 0.12rem;color: #fff;line-height: 0.14rem;background-color: rgba(255,0,0,0.8);padding: 0 0.02rem;position: absolute;}
+        .one .w{left: 50%;top: 0;transform: translate(-50%,0);}
+        .one .h{left: 0;top: 50%;transform: translate(0,-50%);}
+        .one-m{position: absolute;box-sizing: border-box;}
+        .one-m .w,
+        .one-m .h{font-size: 0.12rem;color: #fff;line-height: 0.14rem;background-color: rgba(255,0,0,0.8);padding: 0 0.02rem;position: absolute;}
+        .one-m .w{left: 50%;top: 0;transform: translate(-50%,0);}
+        .one-m .h{left: 0;top: 50%;transform: translate(0,-50%);}
+        .one-m.ve{background-color: transparent;border-left: 1px solid rgba(255,0,0,0.8);transition: height .3s;}
+        .one-m.ho{background-color: transparent;border-top: 1px solid rgba(255,0,0,0.8);transition: width .3s;}
+        .one-m.ve:before,
+        .one-m.ve:after{content: "";display: block;width: 0.07rem;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -0.04rem;top: 0;}
+        .one-m.ve:after{top: auto;bottom: 0;}
+        .one-m.ho:before,
+        .one-m.ho:after{content: "";display: block;width: 1px;height: 0.07rem;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -0.04rem;}
+        .one-m.ho:after{left: auto;right: 0;}
+        .one-m.bt{border-top: 1px solid rgba(255,0,0,0.8);}
+        .one-m.bl{border-left: 1px solid rgba(255,0,0,0.8);}
+
+        .one-M{position: absolute;box-sizing: border-box;}
+        .one-M .w,
+        .one-M .h{font-size: 0.12rem;color: #fff;line-height: 0.14rem;background-color: rgba(255,0,0,0.8);padding: 0 0.02rem;position: absolute;}
+        .one-M .w{left: 50%;top: 0;transform: translate(-50%,0);}
+        .one-M .h{left: 0;top: 50%;transform: translate(0,-50%);}
+        .one-M.bt{border-top: 1px solid rgba(255,0,0,0.8);}
+        .one-M.bt .h{display: none;}
+        .one-M.bt:before,
+        .one-M.bt:after{content: "";display: block;width: 1px;height: 0.19rem;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -0.1rem;}
+        .one-M.bt:after{left: auto;right: 0;}
+        .one-M.bl{border-left: 1px solid rgba(255,0,0,0.8);}
+        .one-M.bl .w{display: none;}
+        .one-M.bl:before,
+        .one-M.bl:after{content: "";display: block;width: 0.19rem;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -0.1rem;top: 0;}
+        .one-M.bl:after{top: auto;bottom: 0;}
+
+        #MlineH{width: 100%;border-top: 1px dashed rgba(255,0,0,0.8);position: absolute;left: 0;pointer-events: none;z-index: 1;display: none;}
+        #MlineV{height: 100%;border-left: 1px dashed rgba(255,0,0,0.8);position: absolute;top: 0;pointer-events: none;z-index: 1;display: none;}
+        #MlineH.show{display: block;}
+        #MlineV.show{display: block;}
+
+        #cssPop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.25rem;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
+        #cssPop.show{opacity: 1;left: 0;}
+        #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+        #cssPop dl{display: flex;width: 100%;}
+        #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;min-width: 0.8rem;width: auto;line-height: 0.38rem;padding-left: 0.1rem;padding-right: 0.1rem;transition: all .3s;transform-origin: right center;font-size: 0.16rem;color: #ddd;user-select: none;}
+        #cssPop dt.sp{cursor: pointer;}
+        #cssPop dt.sp:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
+        .css-t{height: 0.38rem;width: 0.5rem;flex: 1;border: none;background-color: transparent;font-size: 0.16rem;color: #ddd;padding: 0 0.05rem;outline: none;transition: all .3s;}
+        .css-t:hover{background-color: rgba(0,0,0,0.3);}
+        select.css-t:hover{background-color: #000;}
+        .css-group{position: absolute;background-color: rgba(40,41,35,0.8);z-index: 123;display: flex;flex-wrap: wrap;}
+        #cssPop dl.black dt{color: #f92472;}
+        #cssPop dl.black .css-t{color: #f92472;}
+        #cssPop .css-s1 dt{transform: scale(0.7);}
+        #cssPop .css-s2 dt{transform: scale(0.8);}
+        #cssPop .css-s3 dt{transform: scale(0.9);}
+
+        #opPop{width: 100vw;height: 100vh;position: fixed;left: -200vw;top: 0;opacity: 0;transition: opacity .3s;}
+        #opPop.show{opacity: 1;left: 0;}
+        #opMask{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+        .op-html{width: .6rem;height: 100vh;line-height: 100vh;position: absolute;right:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-left:1px solid #000;}
+        .op-class{width: 100vw;height: .6rem;line-height: .6rem;position: absolute;right:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:2;}
+        .op-css{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-bottom:1px solid #000;border-right:1px solid #000;}
+        .op-tool{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:50vh;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-right:1px solid #000;}
+
+        #htmlPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
+        #htmlPop.show{opacity: 1;left: 50%;}
+        #htmlM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+        .html-group{width: 1.3rem;z-index: 12;position: absolute;}
+
+        #toolPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
+        #toolPop.show{opacity: 1;left: 50%;}
+        #toolM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+        .tool-group{z-index: 12;position: absolute;top:1rem;width: 1.3rem;}
+
+        #classPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
+        #classPop.show{opacity: 1;left: 50%;}
+        #classM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+        #classPop dl{display: inline-block;vertical-align: top;width: 1rem;text-align: left;z-index: 10;position: absolute;font-size: 0;}
+        #classPop a{display: inline-block;vertical-align: top;z-index: 10;width: 1rem;line-height: 0.38rem;height: 0.38rem;padding: 0 0.05rem;font-size: 0.16rem;color: #ddd;cursor: pointer;transition: all .3s;background-color: rgba(40,41,35,0.8);position: relative;z-index: 10;}
+        #classPop a:hover{background-color: rgba(0,0,0,0.3);}
+        #classPop>a{position: absolute;text-align: center;}
+
+        #codePop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.25rem;z-index: 987654321;left: -200%;opacity: 0;}
+        #codePop.show{opacity: 1;left: 0;}
+        #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+        #codeBox{width: 39%;height: 7.6rem;position: absolute;left: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
+        #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 0.7rem 2em;outline: none;}
+        #copyCode{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
+        #cssBox{width: 39%;height: 7.6rem;position: absolute;right: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
+        #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 0.7rem 2em;outline: none;}
+        #copyCss{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
+        #copyCss:hover,
+        #copyCode:hover,
+        #copyCss.green,
+        #copyCode.green{color: #f92472;}
+        #colorPop{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;z-index: 1234567;left: -200%;opacity: 0;}
+        #colorPop.show{opacity: 1;left: 0;}
+        #colorM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
+        #colorCont{width: 11rem;height: 7.6rem;position: absolute;left: 50%;top: 50%;margin-left: -5.05rem;margin-top: -3.8rem;z-index: 2;border: none;background-color: #282923;padding: 0.3rem;}
+        #colorBox{width: 1rem;height: 1rem;border: 0.06rem solid #ddd;margin-bottom: 0.3rem;}
+        .color-row{width: 100%;display: flex;}
+        #color16,
+        #colorRGBA{flex: 1;height: 0.5rem;line-height: 0.5rem;font-size: 0.19rem;color: #ddd;outline: none;background-color: #282923;border: none;padding: 0 0.2rem;margin-bottom: 0.3rem;}
+        #copy16,
+        #copyRGBA{width: 1rem;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;color: #ddd;cursor: pointer;transition: all .3s;}
+        #copy16.green,
+        #copyRGBA.green{color: #f92472;}
+
+        #commonPop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.5rem;z-index: 1234567;left: -200%;opacity: 0;overflow: hidden;}
+        #commonPop.show{opacity: 1;left: 0;}
+        #commonM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
+        #commonCont{width: 16rem;height: 7.6rem;position: absolute;left: 50%;top: 50%;margin-left: -8rem;margin-top: -3.8rem;z-index: 2;border: none;background-color: #282923;padding: 0.3rem 0.14rem 0.3rem 0.3rem;font-size: 0;overflow: auto;}
+        #commonCont>dl{display: inline-block;vertical-align: top;margin-right: 0.16rem;margin-bottom: 0.16rem;}
+        #commonCont>dl>dt,
+        #commonCont>dl>a{display: inline-block;vertical-align: top;min-width: 1.95rem;height: 0.5rem;line-height: 0.5rem;padding: 0 1em;text-align: center;background-color: #111;font-size: 0.16rem;color: #ddd;cursor: pointer;transition: all .3s;position: relative;}
+        #commonCont>dl>dt:hover,
+        #commonCont>dl>a:hover{background-color: transparent;}
+        #commonCont>dl>dt:after,
+        #commonCont>dl>a:after{content: "已复制";display: none;width: 100%;line-height: 0.5rem;background-color: #111;font-size: 0.14rem;color: #f92472;text-align: center;position: absolute;left: 0;top: 0;}
+        #commonCont>dl>dt.green:after,
+        #commonCont>dl>a.green:after{display: inline-block;}
+        #commonCont>dl>textarea{width: 1px;height: 1px;position: absolute;left: -100vw;top: 0;}
+    </style>
 </head>
 <body onmouseleave="bodyMouseleave(event)" ondrop="event.preventDefault();imgC(event.dataTransfer);" ondragover="event.preventDefault();">
     <main id="main">
         <div id="mainBox">
-            <img id="imgA" src="" alt="" />
+            <img id="imgA" >
             <canvas id="cv"></canvas>
             <div id="rectList"></div>
             <div id="rectListm"></div>
@@ -35,31 +216,31 @@
 
     <div id="toolPop">
         <div id="toolM" onclick="toolPop.className=''"></div>
-        <div style="z-index: 12;position: absolute;left:4rem;top:1rem;width: 1.3rem;">
+        <div class="tool-group" style="left:4rem;">
             <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
             <a class="opr" title="查看html和css并识别文字" onclick="seeCode(true)">&lt;t/&gt;</a>
         </div>
-        <div style="z-index: 12;position: absolute;left:5.5rem;top:1rem;width: 1.3rem;">
+        <div class="tool-group" style="left:5.5rem;">
             <a class="opr" title="主测量" onclick="measure()" id="mBtn">m</a>
             <a class="opr" title="副测量" onclick="measure2()" id="MBtn">M</a>
         </div>
-        <div style="z-index: 12;position: absolute;left:7rem;top:1rem;width: 1.3rem;">
+        <div class="tool-group" style="left:7rem;">
             <a class="opr" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onclick="inColorText()" id="cBtn">c</a>
             <a class="opr" title="选中后，点击一个点复制这个点的颜色" onclick="inColor()" id="CBtn">C</a>
         </div>
-        <div style="z-index: 12;position: absolute;left:8.5rem;top:1rem;width: 1.3rem;">
+        <div class="tool-group" style="left:8.5rem;">
             <a class="opr" title="选中后，自动填入时单位用px，不选中则用rem" onclick="usePx(this)">px</a>
         </div>
-        <div style="z-index: 12;position: absolute;left:10rem;top:1rem;width: 1.3rem;">
+        <div class="tool-group" style="left:10rem;">
             <a class="opr" title="选中后，点击文字会为文字套上之前选中的html标签" onclick="bkr()">B</a>
         </div>
-        <div style="z-index: 12;position: absolute;left:11.5rem;top:1rem;width: 1.3rem;">
+        <div class="tool-group" style="left:11.5rem;">
             <input type="text" class="opr" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" onfocus="kkUndo=false" onblur="kkUndo=true" />
         </div>
-        <div style="z-index: 12;position: absolute;left:13rem;top:1rem;width: 1.3rem;">
+        <div class="tool-group" style="left:13rem;">
             <a class="opr" title="清除框框和线" onclick="empty()">clear</a>
         </div>
-        <div style="z-index: 12;position: absolute;left:14.5rem;top:1rem;width: 1.3rem;">
+        <div class="tool-group" style="left:14.5rem;">
             <a class="opr" title="常用代码块和网址" onclick="openCommon()">code</a>
         </div>
     </div>
@@ -85,7 +266,7 @@
     </div>
     <div id="htmlPop">
         <div id="htmlM" onclick="htmlPop.className=''"></div>
-        <div style="width: 1.3rem;z-index: 12;position: absolute;left:3.5rem;top:1rem;">
+        <div class="html-group" style="left:3.5rem;top:1rem;">
             <a class="btn" v='<header class="$-header"></header>' onclick="tagC(this)">header</a>
             <a class="btn" v='<footer class="$-footer"></footer>' onclick="tagC(this)">footer</a>
             <a class="btn" v='<main class="$-main"></main>' onclick="tagC(this)">main</a>
@@ -94,7 +275,7 @@
             <a class="btn" v='<section class="$-section"></section>' onclick="tagC(this)">section</a>
             <a class="btn" v='<article class="$-article"></article>' onclick="tagC(this)">article</a>
         </div>
-        <div style="width: 1.3rem;z-index: 12;position: absolute;left:5rem;top:1rem;">
+        <div class="html-group" style="left:5rem;top:1rem;">
             <a class="btn" v='<h1 class="$-h1"></h1>' onclick="tagC(this)">h1</a>
             <a class="btn" v='<h2 class="$-h2"></h2>' onclick="tagC(this)">h2</a>
             <a class="btn" v='<h3 class="$-h3"></h3>' onclick="tagC(this)">h3</a>
@@ -102,12 +283,12 @@
             <a class="btn" v='<h5 class="$-h5"></h5>' onclick="tagC(this)">h5</a>
             <a class="btn" v='<h6 class="$-h6"></h6>' onclick="tagC(this)">h6</a>
         </div>
-        <div style="width: 1.3rem;z-index: 12;position: absolute;left:6.5rem;top:1rem;">
+        <div class="html-group" style="left:6.5rem;top:1rem;">
             <a class="btn" v='<table class="$-tb"></table>' onclick="tagC(this)" title="table">table</a>
             <a class="btn" v='<tr class="$-tr"></tr>' onclick="tagC(this)">tr</a>
             <a class="btn" v='<td class="$-td"></td>' onclick="tagC(this)">td</a>
         </div>
-        <div style="width: 1.3rem;z-index: 12;position: absolute;left:8rem;top:1rem;">
+        <div class="html-group" style="left:8rem;top:1rem;">
             <a class="btn" v='<form class="$-form"></form>' onclick="tagC(this)" title="form">form</a>
             <a class="btn" v='<label class="$-lb"></label>' onclick="tagC(this)" title="label">lable</a>
             <a class="btn" v='<input class="$-txt" type="text" placeholder="">' onclick="tagC(this)" title="input[text]">text</a>
@@ -119,100 +300,100 @@
             <a class="btn" v='<option class="$-opt"></option>' onclick="tagC(this)" title="option">option</a>
             <a class="btn" v='<input class="$-sub" type="submit" value="提交">' onclick="tagC(this)" title="input[submit]">submit</a>
         </div>
-        <div style="width: 1.3rem;z-index: 12;position: absolute;left:9.5rem;top:1rem;">
+        <div class="html-group" style="left:9.5rem;top:1rem;">
             <a class="btn" v='<ul class="$-ul"></ul>' onclick="tagC(this)">ul</a>
             <a class="btn" v='<li class="$-li"></li>' onclick="tagC(this)">li</a>
         </div>
-        <div style="width: 1.3rem;z-index: 12;position: absolute;left:11rem;top:1rem;">
+        <div class="html-group" style="left:11rem;top:1rem;">
             <a class="btn" v='<dl class="$-dl"></dl>' onclick="tagC(this)">dl</a>
             <a class="btn" v='<dt class="$-dt"></dt>' onclick="tagC(this)">dt</a>
             <a class="btn" v='<dd class="$-dd"></dd>' onclick="tagC(this)">dd</a>
         </div>
-        <div style="width: 1.3rem;z-index: 12;position: absolute;left:12.5rem;top:1rem;">
+        <div class="html-group" style="left:12.5rem;top:1rem;">
             <a class="btn" v='<p class="$-p"></p>' onclick="tagC(this)">p</a>
             <a class="btn" v='<span class="$-span"></span>' onclick="tagC(this)">span</a>
             <a class="btn" v='<br>' onclick="tagC(this)">br</a>
         </div>
-        <div style="width: 1.3rem;z-index: 12;position: absolute;left:14rem;top:1rem;">
+        <div class="html-group" style="left:14rem;top:1rem;">
             <a class="btn" v='<a class="$-a" title=""></a>' onclick="tagC(this)">a</a>
             <a class="btn" v='<img class="$-img" src="images/" alt="">' onclick="tagC(this)">img</a>
         </div>
-        <div style="width: 1.3rem;z-index: 12;position: absolute;left:15.5rem;top:1rem;">
+        <div class="html-group" style="left:15.5rem;top:1rem;">
             <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)" title="选中后，点击屏幕上两个点，生成一个div">div</a>
         </div>
     </div>
     <div id="cssPop">
-        <div id="cssM" onclick="cssPop.className=''"></div>
-        <div class="css-left-top" style="display: flex;flex-wrap: wrap;width:6rem;margin-left: -9.6rem;">
+        <div id="cssM" onclick="cssPop.className='';leaveClose=true"></div>
+        <div class="css-group" style="width:6rem;left: 50%;top: 0.5rem;width:6rem;margin-left: -9.6rem;">
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt class="sp" onclick="distanceP('padding-top')">top</dt>
-                <input class="css-t" type="text" id="padding-top" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="padding-top" oninput="setCss()" />
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('padding-left')">left</dt>
-                <input class="css-t" type="text" id="padding-left" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="padding-left" oninput="setCss()" />
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('padding')">padding</dt>
-                <input class="css-t" type="text" id="padding" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="padding" oninput="setCss()" />
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('padding-right')">right</dt>
-                <input class="css-t" type="text" id="padding-right" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="padding-right" oninput="setCss()" />
             </dl>
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt class="sp" onclick="distanceP('padding-bottom')">bottom</dt>
-                <input class="css-t" type="text" id="padding-bottom" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="padding-bottom" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-right-top" style="display: flex;flex-wrap: wrap;width:6rem;margin-right: -9.6rem;">
+        <div class="css-group" style="width:6rem;right: 50%;top: 0.5rem;margin-right: -9.6rem;">
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt class="sp" onclick="colorP('border-top')">top</dt>
-                <input class="css-t" type="text" id="border-top" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="border-top" oninput="setCss()" />
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="colorP('border-left')">left</dt>
-                <input class="css-t" type="text" id="border-left" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="border-left" oninput="setCss()" />
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="colorP('border')">border</dt>
-                <input class="css-t" type="text" id="border" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="border" oninput="setCss()" />
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="colorP('border-right')">right</dt>
-                <input class="css-t" type="text" id="border-right" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="border-right" oninput="setCss()" />
             </dl>
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt class="sp" onclick="colorP('border-bottom')">bottom</dt>
-                <input class="css-t" type="text" id="border-bottom" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="border-bottom" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-top" style="display: flex;flex-wrap: wrap;width:6rem;">
+        <div class="css-group" style="width:6rem;left: 50%;top: 0.5rem;transform: translate(-50%,0);">
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt class="sp" onclick="distanceP('margin-top')">top</dt>
-                <input class="css-t" type="text" id="margin-top" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="margin-top" oninput="setCss()" />
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('margin-left')">left</dt>
-                <input class="css-t" type="text" id="margin-left" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="margin-left" oninput="setCss()" />
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('margin')">margin</dt>
-                <input class="css-t" type="text" id="margin" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="marginList" />
+                <input class="css-t" type="text" id="margin" oninput="setCss()" list="marginList" />
                 <datalist id="marginList" onmouseenter="alert('a')">
                     <option value="0 auto">
                 </datalist>
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('margin-right')">right</dt>
-                <input class="css-t" type="text" id="margin-right" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="margin-right" oninput="setCss()" />
             </dl>
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt class="sp" onclick="distanceP('margin-bottom')">bottom</dt>
-                <input class="css-t" type="text" id="margin-bottom" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="margin-bottom" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-bottom" style="width: 3rem;">
+        <div class="css-group" style="width: 4rem;left: 50%;bottom: 0.5rem;margin-left: -7rem;">
             <dl>
                 <dt>display</dt>
                 <select class="css-t" id="display" onchange="setCss()">
@@ -274,17 +455,17 @@
                 </select>
             </dl>
         </div>
-        <div class="css-center" style="width: 3rem;">
+        <div class="css-group" style="width: 4rem;left: 50%;bottom: 0.5rem;transform: translate(-50%,0);">
             <dl>
                 <dt class="sp" onclick="distanceP('font-size')">font-size</dt>
-                <input class="css-t" type="text" id="font-size" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="fontSizeList" />
+                <input class="css-t" type="text" id="font-size" oninput="setCss()" list="fontSizeList" />
                 <datalist id="fontSizeList" onmouseenter="alert('a')">
                     <option value="0">
                 </datalist>
             </dl>
             <dl>
                 <dt class="sp" onclick="colorTP('color')">color</dt>
-                <input class="css-t" type="text" id="color" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="colorList" />
+                <input class="css-t" type="text" id="color" oninput="setCss()" list="colorList" />
                 <datalist id="colorList" onmouseenter="alert('a')">
                     <option value="#fff">
                     <option value="#f00">
@@ -296,7 +477,7 @@
             </dl>
             <dl>
                 <dt class="sp" onclick="distanceP('line-height')">line-height</dt>
-                <input class="css-t" type="text" id="line-height" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="lineHeightList" />
+                <input class="css-t" type="text" id="line-height" oninput="setCss()" list="lineHeightList" />
                 <datalist id="lineHeightList">
                     <option value="1.1">
                     <option value="1.2">
@@ -358,11 +539,11 @@
                 </select>
             </dl>
         </div>
-        <div class="css-left" style="display: flex;flex-wrap: wrap;width:6rem;margin-left: -9.6rem;top:1.52rem;">
+        <div class="css-group" style="width:6rem;left: 50%;top:2.02rem;margin-left: -9.6rem;">
             
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt class="sp" onclick="distanceP('top')">top</dt>
-                <input class="css-t" type="text" id="top" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="topList" />
+                <input class="css-t" type="text" id="top" oninput="setCss()" list="topList" />
                 <datalist id="topList">
                     <option value="0">
                     <option value="50%">
@@ -370,7 +551,7 @@
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('left')">left</dt>
-                <input class="css-t" type="text" id="left" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="leftList" />
+                <input class="css-t" type="text" id="left" oninput="setCss()" list="leftList" />
                 <datalist id="leftList">
                     <option value="0">
                     <option value="50%">
@@ -388,7 +569,7 @@
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('right')">right</dt>
-                <input class="css-t" type="text" id="right" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="rightList" />
+                <input class="css-t" type="text" id="right" oninput="setCss()" list="rightList" />
                 <datalist id="rightList">
                     <option value="0">
                     <option value="50%">
@@ -396,7 +577,7 @@
             </dl>
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt class="sp" onclick="distanceP('bottom')">bottom</dt>
-                <input class="css-t" type="text" id="bottom" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="bottomList" />
+                <input class="css-t" type="text" id="bottom" oninput="setCss()" list="bottomList" />
                 <datalist id="bottomList">
                     <option value="0">
                     <option value="50%">
@@ -404,13 +585,13 @@
             </dl>
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt>z-index</dt>
-                <input class="css-t" type="text" id="z-index" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="z-index" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-right" style="width: 3rem;top:1.52rem;margin-right: -6.6rem;">
+        <div class="css-group" style="width: 4rem;right: 50%;top:2.02rem;margin-right: -7.6rem;">
             <dl>
                 <dt>transition</dt>
-                <input class="css-t" type="text" id="transition" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="transitionList" />
+                <input class="css-t" type="text" id="transition" oninput="setCss()" list="transitionList" />
                 <datalist id="transitionList">
                     <option value="all .3s">
                     <option value="all .4s">
@@ -419,7 +600,7 @@
             </dl>
             <dl>
                 <dt>transform</dt>
-                <input class="css-t" type="text" id="transform" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="transformList" />
+                <input class="css-t" type="text" id="transform" oninput="setCss()" list="transformList" />
                 <datalist id="transformList">
                     <option value="translate(-50%,-50%)">
                     <option value="translate(-50%,0)">
@@ -430,7 +611,7 @@
             </dl>
             <dl>
                 <dt>opacity</dt>
-                <input class="css-t" type="text" id="opacity" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="opacityList" />
+                <input class="css-t" type="text" id="opacity" oninput="setCss()" list="opacityList" />
                 <datalist id="opacityList">
                     <option value="0.1">
                     <option value="0.2">
@@ -462,10 +643,10 @@
                 </select>
             </dl>
         </div>
-        <div class="css-left-bottom" style="display: flex;flex-wrap: wrap;width:6rem;transform: translate(-50%,0);margin-left: 0;bottom:auto;top:1.52rem;">
+        <div class="css-group" style="width:6rem;left: 50%;top:2.02rem;transform: translate(-50%,0);">
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('width')">width</dt>
-                <input class="css-t" type="text" id="width" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="widthList" />
+                <input class="css-t" type="text" id="width" oninput="setCss()" list="widthList" />
                 <datalist id="widthList">
                     <option value="100%">
                     <option value="100vw">
@@ -473,18 +654,18 @@
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('max-width')">max-width</dt>
-                <input class="css-t" type="text" id="max-width" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="maxWidthList" />
+                <input class="css-t" type="text" id="max-width" oninput="setCss()" list="maxWidthList" />
                 <datalist id="maxWidthList">
                     <option value="100%">
                 </datalist>
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('min-width')">min-width</dt>
-                <input class="css-t" type="text" id="min-width" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="min-width" oninput="setCss()" />
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('height')">height</dt>
-                <input class="css-t" type="text" id="height" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="heightList" />
+                <input class="css-t" type="text" id="height" oninput="setCss()" list="heightList" />
                 <datalist id="heightList">
                     <option value="100%">
                     <option value="100vh">
@@ -492,44 +673,42 @@
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('max-height')">max-height</dt>
-                <input class="css-t" type="text" id="max-height" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="maxHeightList" />
+                <input class="css-t" type="text" id="max-height" oninput="setCss()" list="maxHeightList" />
                 <datalist id="maxHeightList">
                     <option value="100%">
                 </datalist>
             </dl>
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('min-height')">min-height</dt>
-                <input class="css-t" type="text" id="min-height" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="min-height" oninput="setCss()" />
             </dl>
-        </div>
-        <div style="display: flex;flex-wrap: wrap;width:6rem;transform: translate(-50%,0);position: absolute;left:50%;top:2.66rem;background-color: rgba(40,41,35,0.8);z-index: 123;">
             <dl style="width:33.33%;">
                 <dt class="sp" onclick="distanceP('border-radius')">border-radius</dt>
-                <input class="css-t" type="text" id="border-radius" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="borderRadiusList" />
+                <input class="css-t" type="text" id="border-radius" oninput="setCss()" list="borderRadiusList" />
                 <datalist id="borderRadiusList">
                     <option value="50%">
                 </datalist>
             </dl>
             <dl style="width:66.66%;">
                 <dt>box-shadow</dt>
-                <input class="css-t" type="text" id="box-shadow" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="box-shadow" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-right-bottom" style="width: 3rem;">
+        <div class="css-group" style="width: 4rem;right: 50%;bottom: 0.5rem;margin-right: -7rem;">
             <dl>
                 <dt class="sp" onclick="colorP('background-color')">background-color</dt>
-                <input class="css-t" type="text" id="background-color" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="backgroundColorList" />
+                <input class="css-t" type="text" id="background-color" oninput="setCss()" list="backgroundColorList" />
                 <datalist id="backgroundColorList">
                     <option value="#fff">
                 </datalist>
             </dl>
             <dl>
                 <dt>background-image</dt>
-                <input class="css-t" type="text" id="background-image" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" />
+                <input class="css-t" type="text" id="background-image" oninput="setCss()" />
             </dl>
             <dl>
                 <dt>background-size</dt>
-                <input class="css-t" type="text" id="background-size" oninput="setCss()" onfocus="leaveClose=false" onblur="leaveClose=true" list="backgroundSizeList" />
+                <input class="css-t" type="text" id="background-size" oninput="setCss()" list="backgroundSizeList" />
                 <datalist id="backgroundSizeList">
                     <option value="cover">
                     <option value="contain">
@@ -917,193 +1096,6 @@ $("html,body").animate({
 
 </body>
 </html>
-<style>
-    @charset "utf-8";
-    html{-webkit-font-smoothing:antialiased;height: 100%;touch-action: manipulation;font-size: calc(100vw / 1920 * 100);}
-    blockquote,body,code,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}
-    header, hgroup, nav, menu, main, section, article, summary, details, aside, figure, figcaption, footer{display: block;margin:0;padding:0}
-    dl,ol,ul{list-style-type:none}
-    a{text-decoration:none;color: inherit;}
-    a:hover{text-decoration:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;outline:none;blr:expression(this.onFocus=this.blur())}
-    textarea{resize:none;outline: none;font-family: Microsoft Yahei;}
-    img{vertical-align:middle;max-width: 100%;height: auto;}
-    button,input[type=submit],input[type=text],input[type=button]{-webkit-appearance:none;-webkit-tap-highlight-color:rgba(255,0,0,0);outline:0;blr:expression(this.onFocus=this.blur())}
-    input{outline: 0;}
-    input::-webkit-input-safebox-button{display: none;}
-    body{color: rgba(255,0,0,0.8);font-family: Microsoft Yahei;background-color: #000;height: 100vh;font-size: .16rem;}
-    body *{box-sizing: border-box;line-height: 1;}
-
-    #cv{position: relative;z-index: 1;}
-    #rectList,
-    #rectListm,
-    #rectListM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;user-select: none;}
-    #rectList{z-index: 8;}
-    #rectList.show{z-index: 12345;}
-    #rectListm{z-index: 1;}
-    #rectListM{z-index: 1;}
-    
-    #op{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 10;cursor: crosshair;user-select: none;}
-    #opm,
-    #opM,
-    #opColorText,
-    #opColor,
-    #opB{display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 100;cursor: crosshair;user-select: none;}
-    #opM{cursor: default;}
-    #opB{cursor: default;}
-    #opm.show,
-    #opM.show,
-    #opColorText.show,
-    #opColor.show,
-    #opB.show{display: block;}
-    #opColorText{cursor: default;}
-
-    #main{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;font-size: 0;overflow: auto;}
-    #mainBox{width: auto;position: relative;display: inline-block;vertical-align: top;}
-    #imgA{max-width: none;opacity: 0;position: absolute;left: 0;top: 0;z-index: 0;}
-    .btn,
-    .opr{min-width: 1.3rem;line-height: 0.6rem;padding: 0 .2em;font-size: 0.2rem;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;background-color: #282923;}
-    .btn:hover,
-    .opr:hover{background-color: transparent;}
-    #pre{background-color: #282923;}
-    .btn.active{color: #f92472}
-    .opr.active,
-    .opr.selected{color: #f92472;}
-    input.opr{width: 100%;background-color: #282923;border: none;}
-    .opr.green{color: #f92472;}
-    .one:hover,
-    .one:focus{color: #f92472;transition: all .3s;}
-    .one{position: absolute;box-sizing: border-box;border: 1px solid #f92472;user-modify: read-write;-webkit-user-modify: read-write;font-size: 0.14rem;color: #f92472;cursor: text;line-height: 0.18rem;padding: 1px 0.03rem;outline: none;}
-    .one .w,
-    .one .h{display: none;font-size: 0.12rem;color: #fff;line-height: 0.14rem;background-color: rgba(255,0,0,0.8);padding: 0 0.02rem;position: absolute;}
-    .one .w{left: 50%;top: 0;transform: translate(-50%,0);}
-    .one .h{left: 0;top: 50%;transform: translate(0,-50%);}
-    .one-m{position: absolute;box-sizing: border-box;}
-    .one-m .w,
-    .one-m .h{font-size: 0.12rem;color: #fff;line-height: 0.14rem;background-color: rgba(255,0,0,0.8);padding: 0 0.02rem;position: absolute;}
-    .one-m .w{left: 50%;top: 0;transform: translate(-50%,0);}
-    .one-m .h{left: 0;top: 50%;transform: translate(0,-50%);}
-    .one-m.ve{background-color: transparent;border-left: 1px solid rgba(255,0,0,0.8);transition: height .3s;}
-    .one-m.ho{background-color: transparent;border-top: 1px solid rgba(255,0,0,0.8);transition: width .3s;}
-    .one-m.ve:before,
-    .one-m.ve:after{content: "";display: block;width: 0.07rem;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -0.04rem;top: 0;}
-    .one-m.ve:after{top: auto;bottom: 0;}
-    .one-m.ho:before,
-    .one-m.ho:after{content: "";display: block;width: 1px;height: 0.07rem;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -0.04rem;}
-    .one-m.ho:after{left: auto;right: 0;}
-    .one-m.bt{border-top: 1px solid rgba(255,0,0,0.8);}
-    .one-m.bl{border-left: 1px solid rgba(255,0,0,0.8);}
-
-    .one-M{position: absolute;box-sizing: border-box;}
-    .one-M .w,
-    .one-M .h{font-size: 0.12rem;color: #fff;line-height: 0.14rem;background-color: rgba(255,0,0,0.8);padding: 0 0.02rem;position: absolute;}
-    .one-M .w{left: 50%;top: 0;transform: translate(-50%,0);}
-    .one-M .h{left: 0;top: 50%;transform: translate(0,-50%);}
-    .one-M.bt{border-top: 1px solid rgba(255,0,0,0.8);}
-    .one-M.bt .h{display: none;}
-    .one-M.bt:before,
-    .one-M.bt:after{content: "";display: block;width: 1px;height: 0.19rem;background-color: rgba(255,0,0,0.8);position: absolute;left: 0;top: -0.1rem;}
-    .one-M.bt:after{left: auto;right: 0;}
-    .one-M.bl{border-left: 1px solid rgba(255,0,0,0.8);}
-    .one-M.bl .w{display: none;}
-    .one-M.bl:before,
-    .one-M.bl:after{content: "";display: block;width: 0.19rem;height: 1px;background-color: rgba(255,0,0,0.8);position: absolute;left: -0.1rem;top: 0;}
-    .one-M.bl:after{top: auto;bottom: 0;}
-
-    #MlineH{width: 100%;border-top: 1px dashed rgba(255,0,0,0.8);position: absolute;left: 0;pointer-events: none;z-index: 1;display: none;}
-    #MlineV{height: 100%;border-left: 1px dashed rgba(255,0,0,0.8);position: absolute;top: 0;pointer-events: none;z-index: 1;display: none;}
-    #MlineH.show{display: block;}
-    #MlineV.show{display: block;}
-
-    #cssPop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.25rem;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
-    #cssPop.show{opacity: 1;left: 0;}
-    #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-    #cssPop dl{display: flex;}
-    #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;min-width: 0.8rem;width: auto;line-height: 0.38rem;padding-left: 0.1rem;padding-right: 0.1rem;transition: all .3s;transform-origin: right center;font-size: 0.16rem;color: #ddd;user-select: none;}
-    #cssPop dt.sp{cursor: pointer;}
-    #cssPop dt.sp:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
-    .css-t{height: 0.38rem;width: 0.5rem;flex: 1;border: none;background-color: transparent;font-size: 0.16rem;color: #ddd;padding: 0 0.05rem;outline: none;transition: all .3s;}
-    .css-t:hover{background-color: rgba(0,0,0,0.3);}
-    select.css-t:hover{background-color: #000;}
-    .css-left{position: absolute;left: 50%;margin-left: -6rem;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-right{position: absolute;right: 50%;margin-right: -6rem;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-top{position: absolute;left: 50%;top: 0;transform: translate(-50%,0);text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-bottom{position: absolute;left: 50%;bottom: 0;margin-left: -6rem;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-center{position: absolute;left: 50%;text-align: left;bottom: 0;transform: translate(-50%,0);background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-left-top{position: absolute;left: 50%;margin-left: -6rem;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;font-size: 0;}
-    .css-right-top{position: absolute;right: 50%;margin-right: -6rem;top: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-left-bottom{position: absolute;left: 50%;margin-left: -6rem;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    .css-right-bottom{position: absolute;right: 50%;margin-right: -6rem;bottom: 0;text-align: left;background-color: rgba(40,41,35,0.8);z-index: 123;}
-    #cssPop dl.black dt{color: #f92472;}
-    #cssPop dl.black .css-t{color: #f92472;}
-    #cssPop .css-s1 dt{transform: scale(0.7);}
-    #cssPop .css-s2 dt{transform: scale(0.8);}
-    #cssPop .css-s3 dt{transform: scale(0.9);}
-
-    #opPop{width: 100vw;height: 100vh;position: fixed;left: -200vw;top: 0;opacity: 0;transition: opacity .3s;}
-    #opPop.show{opacity: 1;left: 0;}
-    #opMask{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-    .op-html{width: .6rem;height: 100vh;line-height: 100vh;position: absolute;right:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-left:1px solid #000;}
-    .op-class{width: 100vw;height: .6rem;line-height: .6rem;position: absolute;right:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:2;}
-    .op-css{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-bottom:1px solid #000;border-right:1px solid #000;}
-    .op-tool{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:50vh;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-right:1px solid #000;}
-
-    #htmlPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
-    #htmlPop.show{opacity: 1;left: 50%;}
-    #htmlM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-
-    #toolPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
-    #toolPop.show{opacity: 1;left: 50%;}
-    #toolM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-
-    #classPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
-    #classPop.show{opacity: 1;left: 50%;}
-    #classM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-    #classPop dl{display: inline-block;vertical-align: top;width: 1rem;text-align: left;z-index: 10;position: absolute;font-size: 0;}
-    #classPop a{display: inline-block;vertical-align: top;z-index: 10;width: 1rem;line-height: 0.38rem;height: 0.38rem;padding: 0 0.05rem;font-size: 0.16rem;color: #ddd;cursor: pointer;transition: all .3s;background-color: rgba(40,41,35,0.8);position: relative;z-index: 10;}
-    #classPop a:hover{background-color: rgba(0,0,0,0.3);}
-    #classPop>a{position: absolute;text-align: center;}
-
-    #codePop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.25rem;z-index: 987654321;left: -200%;opacity: 0;}
-    #codePop.show{opacity: 1;left: 0;}
-    #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-    #codeBox{width: 39%;height: 7.6rem;position: absolute;left: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
-    #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 0.7rem 2em;outline: none;}
-    #copyCode{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
-    #cssBox{width: 39%;height: 7.6rem;position: absolute;right: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
-    #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 0.7rem 2em;outline: none;}
-    #copyCss{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
-    #copyCss:hover,
-    #copyCode:hover,
-    #copyCss.green,
-    #copyCode.green{color: #f92472;}
-    #colorPop{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;z-index: 1234567;left: -200%;opacity: 0;}
-    #colorPop.show{opacity: 1;left: 0;}
-    #colorM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
-    #colorCont{width: 11rem;height: 7.6rem;position: absolute;left: 50%;top: 50%;margin-left: -5.05rem;margin-top: -3.8rem;z-index: 2;border: none;background-color: #282923;padding: 0.3rem;}
-    #colorBox{width: 1rem;height: 1rem;border: 0.06rem solid #ddd;margin-bottom: 0.3rem;}
-    .color-row{width: 100%;display: flex;}
-    #color16,
-    #colorRGBA{flex: 1;height: 0.5rem;line-height: 0.5rem;font-size: 0.19rem;color: #ddd;outline: none;background-color: #282923;border: none;padding: 0 0.2rem;margin-bottom: 0.3rem;}
-    #copy16,
-    #copyRGBA{width: 1rem;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;color: #ddd;cursor: pointer;transition: all .3s;}
-    #copy16.green,
-    #copyRGBA.green{color: #f92472;}
-
-    #commonPop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.5rem;z-index: 1234567;left: -200%;opacity: 0;overflow: hidden;}
-    #commonPop.show{opacity: 1;left: 0;}
-    #commonM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
-    #commonCont{width: 16rem;height: 7.6rem;position: absolute;left: 50%;top: 50%;margin-left: -8rem;margin-top: -3.8rem;z-index: 2;border: none;background-color: #282923;padding: 0.3rem 0.14rem 0.3rem 0.3rem;font-size: 0;overflow: auto;}
-    #commonCont>dl{display: inline-block;vertical-align: top;margin-right: 0.16rem;margin-bottom: 0.16rem;}
-    #commonCont>dl>dt,
-    #commonCont>dl>a{display: inline-block;vertical-align: top;min-width: 1.95rem;height: 0.5rem;line-height: 0.5rem;padding: 0 1em;text-align: center;background-color: #111;font-size: 0.16rem;color: #ddd;cursor: pointer;transition: all .3s;position: relative;}
-    #commonCont>dl>dt:hover,
-    #commonCont>dl>a:hover{background-color: transparent;}
-    #commonCont>dl>dt:after,
-    #commonCont>dl>a:after{content: "已复制";display: none;width: 100%;line-height: 0.5rem;background-color: #111;font-size: 0.14rem;color: #f92472;text-align: center;position: absolute;left: 0;top: 0;}
-    #commonCont>dl>dt.green:after,
-    #commonCont>dl>a.green:after{display: inline-block;}
-    #commonCont>dl>textarea{width: 1px;height: 1px;position: absolute;left: -100vw;top: 0;}
-</style>
 <script>
     //获取dom对象
     const f = id=>{
@@ -2299,6 +2291,7 @@ $("html,body").animate({
                 b[attr]?item.parentNode.addClass('black'):item.parentNode.removeClass('black')
             }
             cssPop.addClass('show')
+            leaveClose = false
             dIndex = i
         }else if(writeClass){
             classPop.addClass('show')
