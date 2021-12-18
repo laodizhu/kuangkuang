@@ -510,6 +510,10 @@
                 </select>
             </dl>
             <dl>
+                <dt>font-family</dt>
+                <input class="css-t" type="text" id="font-family" oninput="setCss()" />
+            </dl>
+            <dl>
                 <dt>overflow</dt>
                 <select class="css-t" id="overflow" onchange="setCss()">
                     <option value=""></option>
@@ -738,6 +742,17 @@
                     <option value="repeat-x">repeat-x</option>
                     <option value="repeat-y">repeat-y</option>
                     <option value="repeat">repeat</option>
+                </select>
+            </dl>
+            <dl>
+                <dt>object-fit</dt>
+                <select class="css-t" id="object-fit" onchange="setCss()">
+                    <option value=""></option>
+                    <option value="cover">cover</option>
+                    <option value="contain">contain</option>
+                    <option value="fill">fill</option>
+                    <option value="scale-down">scale-down</option>
+                    <option value="none">none</option>
                 </select>
             </dl>
         </div>
@@ -1154,7 +1169,7 @@ $("html,body").animate({
         }
     }
     //识别文字的文档网址：https://cloud.baidu.com/product/ocr/general
-    const token = '24.3b0cf55a2acfefaa82af4296af0c8bfa.2592000.1639577632.282335-23477754',
+    const token = '24.2f493ad531a56cf4546dcc80436de77e.2592000.1642213664.282335-23477754',
     url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token,
     cv = f('cv'),
     ctx = cv.getContext('2d'),
