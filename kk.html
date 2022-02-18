@@ -122,10 +122,10 @@
         #opPop{width: 100vw;height: 100vh;position: fixed;left: -200vw;top: 0;opacity: 0;transition: opacity .3s;}
         #opPop.show{opacity: 1;left: 0;}
         #opMask{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-        .op-html{width: .6rem;height: 100vh;line-height: 100vh;position: absolute;right:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-left:1px solid #000;}
-        .op-class{width: 100vw;height: .6rem;line-height: .6rem;position: absolute;right:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:2;}
-        .op-css{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:0;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-bottom:1px solid #000;border-right:1px solid #000;}
-        .op-tool{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:50vh;background-color: #282923;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-right:1px solid #000;}
+        .op-html{width: .6rem;height: 100vh;line-height: 100vh;position: absolute;right:0;top:0;background-color: rgba(40,41,35,0.5);font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;}
+        .op-class{width: calc(100vw - 1.2rem);height: .6rem;line-height: .6rem;position: absolute;left: 0.6rem;top:0;background-color: rgba(40,41,35,0.5);font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:2;}
+        .op-css{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:0;background-color: rgba(40,41,35,0.5);font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-bottom:1px solid #000;border-bottom:1px solid #aaa;}
+        .op-tool{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:50vh;background-color: rgba(40,41,35,0.5);font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;}
 
         #htmlPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
         #htmlPop.show{opacity: 1;left: 50%;}
@@ -171,7 +171,7 @@
         #copy16.green,
         #copyRGBA.green{color: #f92472;}
 
-        #commonPop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.5rem;z-index: 1234567;left: -200%;opacity: 0;overflow: hidden;}
+        #commonPop{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;z-index: 1234567;left: -200%;opacity: 0;overflow: hidden;}
         #commonPop.show{opacity: 1;left: 0;}
         #commonM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
         #commonCont{width: 16rem;height: 7.6rem;position: absolute;left: 50%;top: 50%;margin-left: -8rem;margin-top: -3.8rem;z-index: 2;border: none;background-color: #282923;padding: 0.3rem 0.14rem 0.3rem 0.3rem;font-size: 0;overflow: auto;}
@@ -287,6 +287,7 @@
             <a class="btn" v='<table class="$-tb"></table>' onclick="tagC(this)" title="table">table</a>
             <a class="btn" v='<tr class="$-tr"></tr>' onclick="tagC(this)">tr</a>
             <a class="btn" v='<td class="$-td"></td>' onclick="tagC(this)">td</a>
+            <a class="btn" v='<th class="$-th"></th>' onclick="tagC(this)">th</a>
         </div>
         <div class="html-group" style="left:8rem;top:1rem;">
             <a class="btn" v='<form class="$-form"></form>' onclick="tagC(this)" title="form">form</a>
@@ -648,7 +649,7 @@
             </dl>
         </div>
         <div class="css-group" style="width:6rem;left: 50%;top:2.02rem;transform: translate(-50%,0);">
-            <dl style="width:33.33%;">
+            <dl style="width:50%;">
                 <dt class="sp" onclick="distanceP('width')">width</dt>
                 <input class="css-t" type="text" id="width" oninput="setCss()" list="widthList" />
                 <datalist id="widthList">
@@ -656,18 +657,7 @@
                     <option value="100vw">
                 </datalist>
             </dl>
-            <dl style="width:33.33%;">
-                <dt class="sp" onclick="distanceP('max-width')">max-width</dt>
-                <input class="css-t" type="text" id="max-width" oninput="setCss()" list="maxWidthList" />
-                <datalist id="maxWidthList">
-                    <option value="100%">
-                </datalist>
-            </dl>
-            <dl style="width:33.33%;">
-                <dt class="sp" onclick="distanceP('min-width')">min-width</dt>
-                <input class="css-t" type="text" id="min-width" oninput="setCss()" />
-            </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:50%;">
                 <dt class="sp" onclick="distanceP('height')">height</dt>
                 <input class="css-t" type="text" id="height" oninput="setCss()" list="heightList" />
                 <datalist id="heightList">
@@ -675,25 +665,36 @@
                     <option value="100vh">
                 </datalist>
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:50%;">
+                <dt class="sp" onclick="distanceP('max-width')">max-width</dt>
+                <input class="css-t" type="text" id="max-width" oninput="setCss()" list="maxWidthList" />
+                <datalist id="maxWidthList">
+                    <option value="100%">
+                </datalist>
+            </dl>
+            <dl style="width:50%;">
                 <dt class="sp" onclick="distanceP('max-height')">max-height</dt>
                 <input class="css-t" type="text" id="max-height" oninput="setCss()" list="maxHeightList" />
                 <datalist id="maxHeightList">
                     <option value="100%">
                 </datalist>
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:50%;">
+                <dt class="sp" onclick="distanceP('min-width')">min-width</dt>
+                <input class="css-t" type="text" id="min-width" oninput="setCss()" />
+            </dl>
+            <dl style="width:50%;">
                 <dt class="sp" onclick="distanceP('min-height')">min-height</dt>
                 <input class="css-t" type="text" id="min-height" oninput="setCss()" />
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:50%;">
                 <dt class="sp" onclick="distanceP('border-radius')">border-radius</dt>
                 <input class="css-t" type="text" id="border-radius" oninput="setCss()" list="borderRadiusList" />
                 <datalist id="borderRadiusList">
                     <option value="50%">
                 </datalist>
             </dl>
-            <dl style="width:66.66%;">
+            <dl style="width:50%;">
                 <dt>box-shadow</dt>
                 <input class="css-t" type="text" id="box-shadow" oninput="setCss()" />
             </dl>
@@ -814,7 +815,7 @@
             <a>topic</a>
             <a>subject</a>
         </dl>
-        <dl style="right: 5.30rem;top:0.76rem;">
+        <dl style="right: 7.30rem;top:0.76rem;">
             <a>describe</a>
             <a>desc</a>
             <a>des</a>
@@ -824,7 +825,7 @@
             <a>summary</a>
             <a>abstract</a>
         </dl>
-        <dl style="right: 4.20rem;top:0.76rem;">
+        <dl style="right: 6.20rem;top:0.76rem;">
             <a>content</a>
             <a>cont</a>
             <a>con</a>
@@ -974,6 +975,7 @@
 <dt>swiper的js</dt>
 <textarea>
 var bn = new Swiper('.banner',{
+    simulateTouch : false,
     preventClicks: false,
     slidesPerView: "auto",
     centeredSlides: true,
@@ -1083,6 +1085,15 @@ $('.banner').slick({
 <textarea>✕</textarea>
 </dl>
 
+<dl>
+<dt>调试用的视频1</dt>
+<textarea>https://www.w3cschool.cn/statics/demosource/mov_bbb.mp4</textarea>
+</dl>
+
+<dl>
+<dt>调试用的视频2</dt>
+<textarea>http://www.w3school.com.cn/i/movie.mp4</textarea>
+</dl>
 <br>
 
 <dl>
@@ -1118,58 +1129,20 @@ $("html,body").animate({
     }
     //增加类名
     HTMLElement.prototype.addClass=function(name){
-        let a = this.className.split(' ')
-        let b = []
-        for(let i=0;i<a.length;i++){
-            if(a[i]){
-                b.push(a[i].trim())
-            }
-        }
-        let c = name.split(' ')
-        for(let i=0;i<c.length;i++){
-            if(c[i] && b.indexOf(c[i])==-1){
-                b.push(c[i])
-            }
-        }
-        this.className=b.join(' ')
+        this.classList.add(name.trim().split(' ').join(','))
         return this
     }
     //删除类名
     HTMLElement.prototype.removeClass=function(name){
-        let a = this.className.split(' ')
-        let b = []
-        for(let i=0;i<a.length;i++){
-            if(a[i]){
-                b.push(a[i].trim())
-            }
-        }
-        let c = name.split(' ')
-        for(let i=0;i<c.length;i++){
-            let j=b.indexOf(c[i])
-            if(c[i] && j!=-1){
-                b.splice(j,1)
-            }
-        }
-        this.className=b.join(' ')
+        this.classList.remove(name.trim().split(' ').join(','))
         return this
     }
     //是否有此类名
     HTMLElement.prototype.hasClass=function(name){
-        let a = this.className.split(' ')
-        let b = []
-        for(let i=0;i<a.length;i++){
-            if(a[i]){
-                b.push(a[i].trim())
-            }
-        }
-        if(b.indexOf(name)==-1){
-            return false
-        }else{
-            return true
-        }
+        return this.classList.contains(name.trim())
     }
     //识别文字的文档网址：https://cloud.baidu.com/product/ocr/general
-    const token = '24.2f493ad531a56cf4546dcc80436de77e.2592000.1642213664.282335-23477754',
+    const token = '24.ef522f5795e7345b7b8447829ad38b21.2592000.1645083384.282335-23477754',
     url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=' + token,
     cv = f('cv'),
     ctx = cv.getContext('2d'),
@@ -1267,27 +1240,6 @@ $("html,body").animate({
             rectList.appendChild(curEle)
             setEle(x0, y0, x1, y1)
             setWH()
-        }else{
-            bool = false
-            if (Math.abs(x1 - x0) < 2 || Math.abs(y1 - y0) < 2) {
-                rectList.removeChild(curEle)
-                curEle = null
-            } else {
-                kkd.push([curL, curT, curL + curW, curT + curH, curTag, curV, kkd.length])
-                copyD = JSON.stringify(kkd)
-                let cArr = curV.match(/class="(.*?)"/)
-                if(cArr){
-                    curEle.innerText=cArr[1]
-                }
-                setTimeout(function(){
-                    setFocus(curEle)
-                    focusing = true
-                    setEvent(curEle)
-                },100)
-                curKK = curEle
-                backArr = []
-            }
-            stopScroll()
         }
     },
 
@@ -2103,7 +2055,7 @@ $("html,body").animate({
         t.oninput = function(){kkUndo=false}
         t.onblur = function(){focusing = false;kkUndo=true}
         t.onkeydown = function(){classPop.removeClass('show')}
-    }
+    },
 
     //设计图加载完后执行此函数
     begin = ()=>{
@@ -2118,12 +2070,6 @@ $("html,body").animate({
     beginEmpty = ()=>{
         cv.width = document.documentElement.clientWidth
         cv.height = document.documentElement.clientHeight-1
-        ctx.font='20px Arial'
-        ctx.fillStyle='#999'
-        ctx.textAlign='center'
-        ctx.textBaseline='middle'
-        ctx.fillText("拖动PNG到此",cv.width/2,cv.height/2)
-        ctx.fillText("光标向下移出网页打开操作弹窗",cv.width/2,cv.height/2-50)
     },
 
     //关闭所有
@@ -2141,6 +2087,7 @@ $("html,body").animate({
         htmlPop.removeClass('show')
         classPop.removeClass('show')
         cssPop.removeClass('show')
+        leaveClose = true
         toolPop.removeClass('show')
         opMshow = false
         MlineH.removeClass('show')
@@ -2156,6 +2103,7 @@ $("html,body").animate({
             closeAll()
             rectList.addClass('show')
             cssPop.addClass('show')
+            leaveClose = false
         }
     },
 
@@ -2172,6 +2120,7 @@ $("html,body").animate({
             closeAll()
             rectList.addClass('show')
             cssPop.addClass('show')
+            leaveClose = false
         }
     },
     //将取到的文字颜色设为当前的css属性值
@@ -2185,6 +2134,7 @@ $("html,body").animate({
             closeAll()
             rectList.addClass('show')
             cssPop.addClass('show')
+            leaveClose = false
         }
     },
 
@@ -2467,6 +2417,7 @@ $("html,body").animate({
     colorP = attr=>{
         drawAttr = attr
         cssPop.removeClass('show')
+        leaveClose = true
         rectList.removeClass('show')
         opColor.addClass('show')
         colorPut = true
@@ -2476,6 +2427,7 @@ $("html,body").animate({
     colorTP = attr=>{
         drawAttr = attr
         cssPop.removeClass('show')
+        leaveClose = true
         rectList.removeClass('show')
         opColorText.addClass('show')
         colorTextPut = true
@@ -2485,6 +2437,7 @@ $("html,body").animate({
     distanceP = attr=>{
         drawAttr = attr
         cssPop.removeClass('show')
+        leaveClose = true
         rectList.removeClass('show')
         opm.addClass('show')
         distancePut = true
@@ -2558,6 +2511,28 @@ $("html,body").animate({
         }
     }
     document.onmouseup = e=>{
+        if (bool){
+            bool = false
+            if (Math.abs(x1 - x0) < 2 || Math.abs(y1 - y0) < 2) {
+                rectList.removeChild(curEle)
+                curEle = null
+            } else {
+                kkd.push([curL, curT, curL + curW, curT + curH, curTag, curV, kkd.length])
+                copyD = JSON.stringify(kkd)
+                let cArr = curV.match(/class="(.*?)"/)
+                if(cArr){
+                    curEle.innerText=cArr[1]
+                }
+                setTimeout(function(){
+                    setFocus(curEle)
+                    focusing = true
+                    setEvent(curEle)
+                },100)
+                curKK = curEle
+                backArr = []
+            }
+            stopScroll()
+        }
         if (boolm) {
             boolm = false
             if(curmW>curmH){
