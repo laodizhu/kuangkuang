@@ -49,14 +49,17 @@
         #mainBox{width: auto;position: relative;display: inline-block;vertical-align: top;}
         #imgA{max-width: none;opacity: 0;position: absolute;left: 0;top: 0;z-index: 0;}
         .btn,
-        .opr{min-width: 1.3rem;line-height: 0.6rem;padding: 0 .2em;font-size: 0.2rem;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;background-color: #282923;}
+        .opr{width: 1.3rem;line-height: 0.3rem;padding: 0 .2em;font-size: 0.2rem;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;background-color: #282923;}
         .btn:hover,
         .opr:hover{background-color: transparent;}
+        .btn{margin-bottom: .1rem;margin-right: .1rem;vertical-align: top;}
+        .html-v .btn{width: 100%;line-height: 0.5rem;}
+        .opr{position: absolute;z-index: 12;}
         #pre{background-color: #282923;}
         .btn.active{color: #f92472}
         .opr.active,
         .opr.selected{color: #f92472;}
-        input.opr{width: 100%;background-color: #282923;border: none;}
+        input.opr{width: 100%;background-color: #282923;border: none;width: 1.3rem;}
         .opr.green{color: #f92472;}
         .one:hover,
         .one:focus{color: #f92472;transition: all .3s;}
@@ -102,9 +105,9 @@
         #MlineH.show{display: block;}
         #MlineV.show{display: block;}
 
-        #cssPop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.25rem;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
+        #cssPop{width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
         #cssPop.show{opacity: 1;left: 0;}
-        #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+        #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;background-color: rgba(0, 0, 0, 0.5);}
         #cssPop dl{display: flex;width: 100%;}
         #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;min-width: 0.8rem;width: auto;line-height: 0.38rem;padding-left: 0.1rem;padding-right: 0.1rem;transition: all .3s;transform-origin: right center;font-size: 0.16rem;color: #ddd;user-select: none;}
         #cssPop dt.sp{cursor: pointer;}
@@ -119,45 +122,39 @@
         #cssPop .css-s2 dt{transform: scale(0.8);}
         #cssPop .css-s3 dt{transform: scale(0.9);}
 
-        #opPop{width: 100vw;height: 100vh;position: fixed;left: -200vw;top: 0;opacity: 0;transition: opacity .3s;}
-        #opPop.show{opacity: 1;left: 0;}
         #opMask{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-        .op-html{width: .6rem;height: 100vh;line-height: 100vh;position: absolute;right:0;top:0;background-color: rgba(40,41,35,0.5);font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;}
-        .op-class{width: calc(100vw - 1.2rem);height: .6rem;line-height: .6rem;position: absolute;left: 0.6rem;top:0;background-color: rgba(40,41,35,0.5);font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:2;}
-        .op-css{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:0;background-color: rgba(40,41,35,0.5);font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;border-bottom:1px solid #000;border-bottom:1px solid #aaa;}
-        .op-tool{width: .6rem;height: 50vh;line-height: 50vh;position: absolute;left:0;top:50vh;background-color: rgba(40,41,35,0.5);font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:3;}
+        .op-html{width: 3px;height: 49.5%;position: fixed;right:0;top:50.5%;background-color: #f92472;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:9876543210;}
+        .op-class{width: 3px;height: 49.5%;position: fixed;right: 0;top:0;background-color: #f92472;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:9876543210;}
+        .op-css{width: 3px;height: 49.5%;position: fixed;left:0;top:0;background-color: #f92472;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:9876543210;border-bottom:1px solid #000;border-bottom:1px solid #aaa;}
+        .op-tool{width: 3px;height: 49.5%;position: fixed;left:0;top:50.5%;background-color: #f92472;font-size: .2rem;color: #ddd;text-align: center;cursor: default;z-index:9876543210;}
+        .op-line.active{background-color: #a6e22b;}
 
-        #htmlPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
+        #htmlPop{width: 19.2rem;height: 100%;position: fixed;left: -200%;top: 0;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
         #htmlPop.show{opacity: 1;left: 50%;}
-        #htmlM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-        .html-group{width: 1.3rem;z-index: 12;position: absolute;}
+        #htmlM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;background-color: rgba(0, 0, 0, 0.5);}
+        .html-group{z-index: 12;position: absolute;display: inline-block;font-size: 0;}
 
-        #toolPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
+        #toolPop{width: 19.2rem;height: 100%;position: fixed;left: -200%;top: 0;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
         #toolPop.show{opacity: 1;left: 50%;}
-        #toolM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-        .tool-group{z-index: 12;position: absolute;top:1rem;width: 1.3rem;}
+        #toolM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;background-color: rgba(0, 0, 0, 0.5);}
 
-        #classPop{width: 19.2rem;height: calc(100vh - 0.5rem);position: fixed;left: -200%;top: 0.25rem;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
+        #classPop{width: 19.2rem;height: 100%;position: fixed;left: -200%;top: 0;margin-left: -9.6rem;z-index: 1234567;transition: opacity .3s;opacity: 0;text-align: center;font-size: 0;}
         #classPop.show{opacity: 1;left: 50%;}
-        #classM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+        #classM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;background-color: rgba(0, 0, 0, 0.5);}
         #classPop dl{display: inline-block;vertical-align: top;width: 1rem;text-align: left;z-index: 10;position: absolute;font-size: 0;}
         #classPop a{display: inline-block;vertical-align: top;z-index: 10;width: 1rem;line-height: 0.38rem;height: 0.38rem;padding: 0 0.05rem;font-size: 0.16rem;color: #ddd;cursor: pointer;transition: all .3s;background-color: rgba(40,41,35,0.8);position: relative;z-index: 10;}
         #classPop a:hover{background-color: rgba(0,0,0,0.3);}
         #classPop>a{position: absolute;text-align: center;}
 
-        #codePop{width: 100%;height: calc(100vh - 0.5rem);position: fixed;left: 0;top: 0.25rem;z-index: 987654321;left: -200%;opacity: 0;}
+        #codePop{width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 987654321;left: -200%;opacity: 0;}
         #codePop.show{opacity: 1;left: 0;}
         #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
-        #codeBox{width: 39%;height: 7.6rem;position: absolute;left: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
-        #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 0.7rem 2em;outline: none;}
-        #copyCode{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
-        #cssBox{width: 39%;height: 7.6rem;position: absolute;right: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
-        #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 0.7rem 2em;outline: none;}
-        #copyCss{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;cursor: pointer;transition: all .3s;}
-        #copyCss:hover,
-        #copyCode:hover,
-        #copyCss.green,
-        #copyCode.green{color: #f92472;}
+        #codeBox{width: 39%;height: 6rem;position: absolute;left: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
+        #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 2em;outline: none;}
+        #copyCode{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;transition: all .3s;}
+        #cssBox{width: 39%;height: 6rem;position: absolute;right: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
+        #cssTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 2em;outline: none;}
+        #copyCss{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;transition: all .3s;}
         #colorPop{width: 100%;height: 100vh;position: fixed;left: 0;top: 0;z-index: 1234567;left: -200%;opacity: 0;}
         #colorPop.show{opacity: 1;left: 0;}
         #colorM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background-color: rgba(0,0,0,0.3);z-index: 1;cursor: pointer;}
@@ -187,7 +184,7 @@
         #commonCont>dl>textarea{width: 1px;height: 1px;position: absolute;left: -100vw;top: 0;}
     </style>
 </head>
-<body onmouseleave="bodyMouseleave(event)" ondrop="event.preventDefault();imgC(event.dataTransfer);" ondragover="event.preventDefault();">
+<body ondrop="event.preventDefault();imgC(event.dataTransfer);" ondragover="event.preventDefault();">
     <main id="main">
         <div id="mainBox">
             <img id="imgA" >
@@ -205,126 +202,105 @@
             <div id="opB" onclick="opBClick(event)"></div>
         </div>
     </main>
-    
-    <div id="opPop">
-        <div id="opMask" onclick="opPop.className=''"></div>
-        <div class="op-html" title="鼠标移动到此打开html标签弹窗" onmouseenter="opHtmlMouseenter()">html</div>
-        <div class="op-class" title="鼠标移到此或者向上离开网页进入编辑类名状态" onmouseenter="classIng()">class</div>
-        <div class="op-css" title="鼠标移动到此进入编辑css状态" onmouseenter="cssIng()">css</div>
-        <div class="op-tool" title="鼠标移动到此打开工具弹窗" onmouseenter="toolIng()">tool</div>
-    </div>
-
+    <div class="op-line op-html" title="鼠标移动到此打开html标签弹窗" onmouseenter="opHtmlMouseenter(this)"></div>
+    <div class="op-line op-class" title="鼠标移到此或者向上离开网页进入编辑类名状态" onmouseenter="classIng(this)"></div>
+    <div class="op-line op-css" title="鼠标移动到此进入编辑css状态" onmouseenter="cssIng(this)"></div>
+    <div class="op-line op-tool" title="鼠标移动到此打开工具弹窗" onmouseenter="toolIng(this)"></div>
     <div id="toolPop">
         <div id="toolM" onclick="toolPop.className=''"></div>
-        <div class="tool-group" style="left:4rem;">
-            <a class="opr" title="查看html和css" onclick="seeCode()">&lt;/&gt;</a>
-            <a class="opr" title="查看html和css并识别文字" onclick="seeCode(true)">&lt;t/&gt;</a>
-        </div>
-        <div class="tool-group" style="left:5.5rem;">
-            <a class="opr" title="主测量" onclick="measure()" id="mBtn">m</a>
-            <a class="opr" title="副测量" onclick="measure2()" id="MBtn">M</a>
-        </div>
-        <div class="tool-group" style="left:7rem;">
-            <a class="opr" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onclick="inColorText()" id="cBtn">c</a>
-            <a class="opr" title="选中后，点击一个点复制这个点的颜色" onclick="inColor()" id="CBtn">C</a>
-        </div>
-        <div class="tool-group" style="left:8.5rem;">
-            <a class="opr" title="选中后，自动填入时单位用px，不选中则用rem" onclick="usePx(this)">px</a>
-        </div>
-        <div class="tool-group" style="left:10rem;">
-            <a class="opr" title="选中后，点击文字会为文字套上之前选中的html标签" onclick="bkr()">B</a>
-        </div>
-        <div class="tool-group" style="left:11.5rem;">
-            <input type="text" class="opr" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" onfocus="kkUndo=false" onblur="kkUndo=true" />
-        </div>
-        <div class="tool-group" style="left:13rem;">
-            <a class="opr" title="清除框框和线" onclick="empty()">clear</a>
-        </div>
-        <div class="tool-group" style="left:14.5rem;">
-            <a class="opr" title="常用代码块和网址" onclick="openCommon()">code</a>
+            <a class="opr" style="left: 1rem;top: 50%;width: 2.3rem;" title="查看html和css" onmouseenter="seeCode()">&lt;/&gt;</a>
+            <a class="opr" style="left: 5rem;top: 50%;" title="主测量" onmouseenter="measure()" id="mBtn">m</a>
+            <a class="opr" style="left: 6.5rem;top: 50%;" title="副测量" onmouseenter="measure2()" id="MBtn">M</a>
+            <a class="opr" style="left: 8rem;top: 50%;" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onmouseenter="inColorText()" id="cBtn">c</a>
+            <a class="opr" style="left: 9.5rem;top: 50%;" title="选中后，点击一个点复制这个点的颜色" onmouseenter="inColor()" id="CBtn">C</a>
+            <a class="opr" style="left: 4rem;bottom: 0.5rem;" title="清除框框和线" onclick="empty()">clear</a>
+            <a class="opr" style="left: 3.5rem;top: 50%;" title="查看html和css并识别文字" onmouseenter="seeCode(true)">&lt;t/&gt;</a>
+            <a class="opr" style="left: 1rem;bottom: 0.5rem;" title="选中后，点击文字会为文字套上之前选中的html标签" onmouseenter="bkr()">B</a>
+            <input type="text" class="opr" style="left: 2.5rem;bottom: 0.5rem;" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" onfocus="kkUndo=false" onblur="kkUndo=true" />
+            <a class="opr" style="left: 11rem;top: 50%;" title="选中后，自动填入时单位用px，不选中则用rem" onmouseenter="usePx(this)">px</a>
+            <a class="opr" style="left: 5.5rem;bottom: 0.5rem;" title="常用代码块和网址" onmouseenter="openCommon()">code</a>
+
         </div>
     </div>
 
     <div id="codePop">
-        <div id="codeM" onclick="codePop.className='';leaveClose=true"></div>
+        <div id="codeM" onclick="codePop.className=''"></div>
         <div id="codeBox">
-            <textarea id="codeTextArea"></textarea>
-            <a id="copyCode" onclick="copyCode()">复制</a>
+            <textarea id="codeTextArea" onclick="copyCode()"></textarea>
         </div>
         <div id="cssBox">
-            <textarea id="cssTextArea"></textarea>
-            <a id="copyCss" onclick="copyCss()">复制</a>
+            <textarea id="cssTextArea" onclick="copyCss()"></textarea>
         </div>
     </div>
     <div id="colorPop">
         <div id="colorM" onclick="colorPop.className=''"></div>
         <div id="colorCont">
             <div id="colorBox"></div>
-            <div class="color-row"><a id="copy16" onclick="copy16()">复制</a><textarea id="color16"></textarea></div>
-            <div class="color-row"><a id="copyRGBA" onclick="copyRGBA()">复制</a><textarea id="colorRGBA"></textarea></div>
+            <div class="color-row"><a id="copy16" onmouseenter="copy16()">复制</a><textarea id="color16"></textarea></div>
+            <div class="color-row"><a id="copyRGBA" onmouseenter="copyRGBA()">复制</a><textarea id="colorRGBA"></textarea></div>
         </div>
     </div>
     <div id="htmlPop">
         <div id="htmlM" onclick="htmlPop.className=''"></div>
-        <div class="html-group" style="left:3.5rem;top:1rem;">
-            <a class="btn" v='<header class="$-header"></header>' onclick="tagC(this)">header</a>
-            <a class="btn" v='<footer class="$-footer"></footer>' onclick="tagC(this)">footer</a>
-            <a class="btn" v='<main class="$-main"></main>' onclick="tagC(this)">main</a>
-            <a class="btn" v='<nav class="$-nav"></nav>' onclick="tagC(this)">nav</a>
-            <a class="btn" v='<aside class="$-aside"></aside>' onclick="tagC(this)">aside</a>
-            <a class="btn" v='<section class="$-section"></section>' onclick="tagC(this)">section</a>
-            <a class="btn" v='<article class="$-article"></article>' onclick="tagC(this)">article</a>
+        <div class="html-group html-v" style="left:0;top:0rem;width: 0.8rem;">
+            <a class="btn" v='<header class="$-header"></header>' onmouseenter="tagC(this)">header</a>
+            <a class="btn" v='<footer class="$-footer"></footer>' onmouseenter="tagC(this)">footer</a>
+            <a class="btn" v='<main class="$-main"></main>' onmouseenter="tagC(this)">main</a>
+            <a class="btn" v='<nav class="$-nav"></nav>' onmouseenter="tagC(this)">nav</a>
+            <a class="btn" v='<aside class="$-aside"></aside>' onmouseenter="tagC(this)">aside</a>
+            <a class="btn" v='<section class="$-section"></section>' onmouseenter="tagC(this)">section</a>
+            <a class="btn" v='<article class="$-article"></article>' onmouseenter="tagC(this)">article</a>
         </div>
-        <div class="html-group" style="left:5rem;top:1rem;">
-            <a class="btn" v='<h1 class="$-h1"></h1>' onclick="tagC(this)">h1</a>
-            <a class="btn" v='<h2 class="$-h2"></h2>' onclick="tagC(this)">h2</a>
-            <a class="btn" v='<h3 class="$-h3"></h3>' onclick="tagC(this)">h3</a>
-            <a class="btn" v='<h4 class="$-h4"></h4>' onclick="tagC(this)">h4</a>
-            <a class="btn" v='<h5 class="$-h5"></h5>' onclick="tagC(this)">h5</a>
-            <a class="btn" v='<h6 class="$-h6"></h6>' onclick="tagC(this)">h6</a>
+        <div class="html-group" style="right:6.8rem;top: 0.5rem;">
+            <a class="btn" v='<h6 class="$-h6"></h6>' onmouseenter="tagC(this)">h6</a>
+            <a class="btn" v='<h5 class="$-h5"></h5>' onmouseenter="tagC(this)">h5</a>
+            <a class="btn" v='<h4 class="$-h4"></h4>' onmouseenter="tagC(this)">h4</a>
+            <a class="btn" v='<h3 class="$-h3"></h3>' onmouseenter="tagC(this)">h3</a>
+            <a class="btn" v='<h2 class="$-h2"></h2>' onmouseenter="tagC(this)">h2</a>
+            <a class="btn" v='<h1 class="$-h1"></h1>' onmouseenter="tagC(this)">h1</a>
         </div>
-        <div class="html-group" style="left:6.5rem;top:1rem;">
-            <a class="btn" v='<table class="$-tb"></table>' onclick="tagC(this)" title="table">table</a>
-            <a class="btn" v='<tr class="$-tr"></tr>' onclick="tagC(this)">tr</a>
-            <a class="btn" v='<td class="$-td"></td>' onclick="tagC(this)">td</a>
-            <a class="btn" v='<th class="$-th"></th>' onclick="tagC(this)">th</a>
+        <div class="html-group" style="right:1rem;top:0.5rem;">
+            <a class="btn" v='<table class="$-tb"></table>' onmouseenter="tagC(this)" title="table">table</a>
+            <a class="btn" v='<tr class="$-tr"></tr>' onmouseenter="tagC(this)">tr</a>
+            <a class="btn" v='<td class="$-td"></td>' onmouseenter="tagC(this)">td</a>
+            <a class="btn" v='<th class="$-th"></th>' onmouseenter="tagC(this)">th</a>
         </div>
-        <div class="html-group" style="left:8rem;top:1rem;">
-            <a class="btn" v='<form class="$-form"></form>' onclick="tagC(this)" title="form">form</a>
-            <a class="btn" v='<label class="$-lb"></label>' onclick="tagC(this)" title="label">lable</a>
-            <a class="btn" v='<input class="$-txt" type="text" placeholder="">' onclick="tagC(this)" title="input[text]">text</a>
-            <a class="btn" v='<input class="$-psd" type="password" placeholder="">' onclick="tagC(this)" title="input[password]">password</a>
-            <a class="btn" v='<input class="$-ckb" type="checkbox" value="">' onclick="tagC(this)" title="input[checkbox]">checkbox</a>
-            <a class="btn" v='<input class="$-rad" type="radio" value="">' onclick="tagC(this)" title="input[radio]">radio</a>
-            <a class="btn" v='<textarea class="$-area" placeholder=""></textarea>' onclick="tagC(this)" title="textarea">textarea</a>
-            <a class="btn" v='<select class="$-sel"></select>' onclick="tagC(this)" title="select">select</a>
-            <a class="btn" v='<option class="$-opt"></option>' onclick="tagC(this)" title="option">option</a>
-            <a class="btn" v='<input class="$-sub" type="submit" value="提交">' onclick="tagC(this)" title="input[submit]">submit</a>
+        <div class="html-group" style="right:1rem;bottom:0.5rem;">
+            <a class="btn" v='<form class="$-form"></form>' onmouseenter="tagC(this)" title="form">form</a>
+            <a class="btn" v='<input class="$-sub" type="submit" value="提交">' onmouseenter="tagC(this)" title="input[submit]">submit</a>
+            <a class="btn" v='<input class="$-psd" type="password" placeholder="">' onmouseenter="tagC(this)" title="input[password]">password</a>
+            <a class="btn" v='<option class="$-opt"></option>' onmouseenter="tagC(this)" title="option">option</a>
+            <a class="btn" v='<select class="$-sel"></select>' onmouseenter="tagC(this)" title="select">select</a>
+            <a class="btn" v='<input class="$-rad" type="radio" value="">' onmouseenter="tagC(this)" title="input[radio]">radio</a>
+            <a class="btn" v='<input class="$-ckb" type="checkbox" value="">' onmouseenter="tagC(this)" title="input[checkbox]">checkbox</a>
+            <a class="btn" v='<textarea class="$-area" placeholder=""></textarea>' onmouseenter="tagC(this)" title="textarea">textarea</a>
+            <a class="btn" v='<label class="$-lb"></label>' onmouseenter="tagC(this)" title="label">lable</a>
+            <a class="btn" v='<input class="$-txt" type="text" placeholder="">' onmouseenter="tagC(this)" title="input[text]">text</a>
         </div>
-        <div class="html-group" style="left:9.5rem;top:1rem;">
-            <a class="btn" v='<ul class="$-ul"></ul>' onclick="tagC(this)">ul</a>
-            <a class="btn" v='<li class="$-li"></li>' onclick="tagC(this)">li</a>
+        <div class="html-group" style="right:14.1rem;top:50%;">
+            <a class="btn" v='<dd class="$-dd"></dd>' onmouseenter="tagC(this)">dd</a>
+            <a class="btn" v='<dt class="$-dt"></dt>' onmouseenter="tagC(this)">dt</a>
+            <a class="btn" v='<dl class="$-dl"></dl>' onmouseenter="tagC(this)">dl</a>
         </div>
-        <div class="html-group" style="left:11rem;top:1rem;">
-            <a class="btn" v='<dl class="$-dl"></dl>' onclick="tagC(this)">dl</a>
-            <a class="btn" v='<dt class="$-dt"></dt>' onclick="tagC(this)">dt</a>
-            <a class="btn" v='<dd class="$-dd"></dd>' onclick="tagC(this)">dd</a>
+        <div class="html-group" style="right:11.1rem;top:50%;">
+            <a class="btn" v='<li class="$-li"></li>' onmouseenter="tagC(this)">li</a>
+            <a class="btn" v='<ul class="$-ul"></ul>' onmouseenter="tagC(this)">ul</a>
         </div>
-        <div class="html-group" style="left:12.5rem;top:1rem;">
-            <a class="btn" v='<p class="$-p"></p>' onclick="tagC(this)">p</a>
-            <a class="btn" v='<span class="$-span"></span>' onclick="tagC(this)">span</a>
-            <a class="btn" v='<br>' onclick="tagC(this)">br</a>
+        <div class="html-group" style="right:6.6rem;top:50%;">
+            <a class="btn" v='<br>' onmouseenter="tagC(this)">br</a>
+            <a class="btn" v='<span class="$-span"></span>' onmouseenter="tagC(this)">span</a>
+            <a class="btn" v='<p class="$-p"></p>' onmouseenter="tagC(this)">p</a>
         </div>
-        <div class="html-group" style="left:14rem;top:1rem;">
-            <a class="btn" v='<a class="$-a" title=""></a>' onclick="tagC(this)">a</a>
-            <a class="btn" v='<img class="$-img" src="images/" alt="">' onclick="tagC(this)">img</a>
+        <div class="html-group" style="right: 3.6rem;top:50%;white-space: nowrap;">
+            <a class="btn" v='<img class="$-img" src="images/" alt="">' onmouseenter="tagC(this)">img</a>
+            <a class="btn" v='<a class="$-a" title=""></a>' onmouseenter="tagC(this)">a</a>
         </div>
-        <div class="html-group" style="left:15.5rem;top:1rem;">
-            <a class="btn active" v='<div class="$-"></div>' onclick="tagC(this)" title="选中后，点击屏幕上两个点，生成一个div">div</a>
+        <div class="html-group" style="right: 2rem;top:50%;">
+            <a class="btn active" v='<div class="$-"></div>' onmouseenter="tagC(this)">div</a>
         </div>
     </div>
     <div id="cssPop">
-        <div id="cssM" onclick="cssPop.className='';leaveClose=true"></div>
+        <div id="cssM" onclick="cssPop.className=''"></div>
         <div class="css-group" style="width:6rem;left: 50%;top: 0.5rem;width:6rem;margin-left: -9.6rem;">
             <dl style="padding-left: 33.33%;width:100%;">
                 <dt class="sp" onclick="distanceP('padding-top')">top</dt>
@@ -1174,7 +1150,6 @@ $("html,body").animate({
         'opacity': '0.'
     },
     cssObjV = Object.values(cssObj),
-    opPop = f('opPop'),
     htmlPop = f('htmlPop'),
     classPop = f('classPop'),
     cssPop = f('cssPop'),
@@ -1221,8 +1196,7 @@ $("html,body").animate({
     curKK = {},
     focusing = false,
     writeClass = false,
-    writeCss = false,
-    leaveClose = true;
+    writeCss = false;
 
     //画框框
     const opMousedown = e=>{
@@ -2083,11 +2057,9 @@ $("html,body").animate({
         opM.removeClass('show')
         opB.removeClass('show')
         codePop.removeClass('show')
-        opPop.removeClass('show')
         htmlPop.removeClass('show')
         classPop.removeClass('show')
         cssPop.removeClass('show')
-        leaveClose = true
         toolPop.removeClass('show')
         opMshow = false
         MlineH.removeClass('show')
@@ -2103,7 +2075,6 @@ $("html,body").animate({
             closeAll()
             rectList.addClass('show')
             cssPop.addClass('show')
-            leaveClose = false
         }
     },
 
@@ -2120,7 +2091,6 @@ $("html,body").animate({
             closeAll()
             rectList.addClass('show')
             cssPop.addClass('show')
-            leaveClose = false
         }
     },
     //将取到的文字颜色设为当前的css属性值
@@ -2134,7 +2104,6 @@ $("html,body").animate({
             closeAll()
             rectList.addClass('show')
             cssPop.addClass('show')
-            leaveClose = false
         }
     },
 
@@ -2183,7 +2152,6 @@ $("html,body").animate({
 
     //查看html和css，让这个弹窗层级最高，打开时不要关闭其它
     seeCode = (recognize) => {
-        leaveClose = false
         codePop.addClass('show')
         setClass()
         sortD()
@@ -2198,28 +2166,12 @@ $("html,body").animate({
     copyCode = ()=>{
         codeTextArea.select()
         document.execCommand('copy')
-        codeTextArea.blur()
-        let btn = f('copyCode')
-        btn.innerText='已复制'
-        btn.addClass('green')
-        setTimeout(function(){
-            btn.innerText='复制'
-            btn.removeClass('green')
-        },2000)
     },
 
     //复制css
     copyCss = ()=>{
         cssTextArea.select()
         document.execCommand('copy')
-        cssTextArea.blur()
-        let btn = f('copyCss')
-        btn.innerText='已复制'
-        btn.addClass('green')
-        setTimeout(function(){
-            btn.innerText='复制'
-            btn.removeClass('green')
-        },2000)
     },
 
     //将选中的类输入框框
@@ -2256,36 +2208,22 @@ $("html,body").animate({
                 b[attr]?item.parentNode.addClass('black'):item.parentNode.removeClass('black')
             }
             cssPop.addClass('show')
-            leaveClose = false
             dIndex = i
         }else if(writeClass){
             classPop.addClass('show')
         }
     },
 
-    //鼠标离开body
-    bodyMouseleave = (e)=>{
-        if(leaveClose){
-            if(focusing && e.pageY<100){
-                htmlPop.removeClass('show')
-                cssPop.removeClass('show')
-                toolPop.removeClass('show')
-                classPop.addClass('show')
-            }else if(e.pageY>=main.getBoundingClientRect().height/2 && !bool){
-                closeAll()
-                opPop.addClass('show')
-            }
-        }
-    },
-
     //鼠标进入op-html
-    opHtmlMouseenter = ()=>{
+    opHtmlMouseenter = t=>{
         closeAll()
         htmlPop.addClass('show')
+        setOpLine()
+        t.addClass("active")
     },
 
     //进入编辑类名的状态
-    classIng = ()=>{
+    classIng = t=>{
         closeAll()
         if(kkd.length){
             setZIndex()
@@ -2296,10 +2234,12 @@ $("html,body").animate({
                 showEdit(curKK)
             }
         }
+        setOpLine()
+        t.addClass("active")
     },
 
     //进入编辑css的状态
-    cssIng = ()=>{
+    cssIng = t=>{
         closeAll()
         if(kkd.length){
             setZIndex()
@@ -2310,15 +2250,26 @@ $("html,body").animate({
                 showEdit(curKK)
             }
         }
+        setOpLine()
+        t.addClass("active")
     },
 
     //打开工具弹窗
-    toolIng = ()=>{
+    toolIng = t=>{
         closeAll()
         toolPop.addClass('show')
+        setOpLine()
+        t.addClass("active")
+    },
+
+    //设置操作线样式
+    setOpLine = ()=>{
+        var list = document.querySelectorAll('.op-line')
+        for(var k=0;k<list.length;k++){
+            list[k].removeClass("active")
+        }
     },
     
-
     //进入测量模式
     measure = ()=>{
         closeAll()
@@ -2417,7 +2368,6 @@ $("html,body").animate({
     colorP = attr=>{
         drawAttr = attr
         cssPop.removeClass('show')
-        leaveClose = true
         rectList.removeClass('show')
         opColor.addClass('show')
         colorPut = true
@@ -2427,7 +2377,6 @@ $("html,body").animate({
     colorTP = attr=>{
         drawAttr = attr
         cssPop.removeClass('show')
-        leaveClose = true
         rectList.removeClass('show')
         opColorText.addClass('show')
         colorTextPut = true
@@ -2437,7 +2386,6 @@ $("html,body").animate({
     distanceP = attr=>{
         drawAttr = attr
         cssPop.removeClass('show')
-        leaveClose = true
         rectList.removeClass('show')
         opm.addClass('show')
         distancePut = true
