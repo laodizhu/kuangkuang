@@ -52,7 +52,7 @@
         .opr{width: 1.3rem;line-height: 0.3rem;padding: 0 .2em;font-size: 0.2rem;color: #ddd;text-align: center;cursor: pointer;user-select: none;white-space: nowrap;transition: all .3s;display: inline-block;background-color: #282923;}
         .btn:hover,
         .opr:hover{background-color: transparent;}
-        .btn{margin-bottom: .1rem;margin-right: .1rem;vertical-align: top;}
+        .btn{margin-right: .1rem;vertical-align: top;}
         .html-v .btn{width: 100%;line-height: 0.5rem;}
         .opr{position: absolute;z-index: 12;}
         #pre{background-color: #282923;}
@@ -108,14 +108,14 @@
         #cssPop{width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
         #cssPop.show{opacity: 1;left: 0;}
         #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;background-color: rgba(0, 0, 0, 0.5);}
-        #cssPop dl{display: flex;width: 100%;}
+        #cssPop dl{display: flex;width: 100%;background-color: rgba(40,41,35,0.8);margin-bottom: .1rem;}
         #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;min-width: 0.8rem;width: auto;line-height: 0.38rem;padding-left: 0.1rem;padding-right: 0.1rem;transition: all .3s;transform-origin: right center;font-size: 0.16rem;color: #ddd;user-select: none;}
         #cssPop dt.sp{cursor: pointer;}
         #cssPop dt.sp:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
         .css-t{height: 0.38rem;width: 0.5rem;flex: 1;border: none;background-color: transparent;font-size: 0.16rem;color: #ddd;padding: 0 0.05rem;outline: none;transition: all .3s;}
         .css-t:hover{background-color: rgba(0,0,0,0.3);}
         select.css-t:hover{background-color: #000;}
-        .css-group{position: absolute;background-color: rgba(40,41,35,0.8);z-index: 123;display: flex;flex-wrap: wrap;}
+        .css-group{position: absolute;z-index: 123;display: flex;flex-wrap: wrap;}
         #cssPop dl.black dt{color: #f92472;}
         #cssPop dl.black .css-t{color: #f92472;}
         #cssPop .css-s1 dt{transform: scale(0.7);}
@@ -208,17 +208,17 @@
     <div class="op-line op-tool" title="鼠标移动到此打开工具弹窗" onmouseenter="toolIng(this)"></div>
     <div id="toolPop">
         <div id="toolM" onclick="toolPop.className=''"></div>
-            <a class="opr" style="left: 1rem;top: 50%;width: 2.3rem;" title="查看html和css" onmouseenter="seeCode()">&lt;/&gt;</a>
-            <a class="opr" style="left: 5rem;top: 50%;" title="主测量" onmouseenter="measure()" id="mBtn">m</a>
-            <a class="opr" style="left: 6.5rem;top: 50%;" title="副测量" onmouseenter="measure2()" id="MBtn">M</a>
-            <a class="opr" style="left: 8rem;top: 50%;" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onmouseenter="inColorText()" id="cBtn">c</a>
-            <a class="opr" style="left: 9.5rem;top: 50%;" title="选中后，点击一个点复制这个点的颜色" onmouseenter="inColor()" id="CBtn">C</a>
-            <a class="opr" style="left: 4rem;bottom: 0.5rem;" title="清除框框和线" onclick="empty()">clear</a>
-            <a class="opr" style="left: 3.5rem;top: 50%;" title="查看html和css并识别文字" onmouseenter="seeCode(true)">&lt;t/&gt;</a>
-            <a class="opr" style="left: 1rem;bottom: 0.5rem;" title="选中后，点击文字会为文字套上之前选中的html标签" onmouseenter="bkr()">B</a>
-            <input type="text" class="opr" style="left: 2.5rem;bottom: 0.5rem;" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" onfocus="kkUndo=false" onblur="kkUndo=true" />
-            <a class="opr" style="left: 11rem;top: 50%;" title="选中后，自动填入时单位用px，不选中则用rem" onmouseenter="usePx(this)">px</a>
-            <a class="opr" style="left: 5.5rem;bottom: 0.5rem;" title="常用代码块和网址" onmouseenter="openCommon()">code</a>
+            <a class="opr" style="left: 1rem;top: 66.66%;width: 2.3rem;" title="查看html和css" onmouseenter="seeCode()">&lt;/&gt;</a>
+            <a class="opr" style="left: 5rem;top: 66.66%;" title="主测量" onmouseenter="measure()" id="mBtn">m</a>
+            <a class="opr" style="left: 6.5rem;top: 66.66%;" title="副测量" onmouseenter="measure2()" id="MBtn">M</a>
+            <a class="opr" style="left: 8rem;top: 66.66%;" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onmouseenter="inColorText()" id="cBtn">c</a>
+            <a class="opr" style="left: 9.5rem;top: 66.66%;" title="选中后，点击一个点复制这个点的颜色" onmouseenter="inColor()" id="CBtn">C</a>
+            <a class="opr" style="left: 3.5rem;top: 66.66%;" title="查看html和css并识别文字" onmouseenter="seeCode(true)">&lt;t/&gt;</a>
+            <a class="opr" style="left: 11rem;top: 66.66%;" title="选中后，自动填入时单位用px，不选中则用rem" onmouseenter="usePx(this)">px</a>
+            <a class="opr" style="left: 4rem;bottom: 0;" title="清除框框和线" onclick="empty()">clear</a>
+            <a class="opr" style="left: 1rem;bottom: 0;" title="选中后，点击文字会为文字套上之前选中的html标签" onmouseenter="bkr()">B</a>
+            <input type="text" class="opr" style="left: 2.5rem;bottom: 0;" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" onfocus="kkUndo=false" onblur="kkUndo=true" />
+            <a class="opr" style="left: 5.5rem;bottom: 0;" title="常用代码块和网址" onmouseenter="openCommon()">code</a>
 
         </div>
     </div>
@@ -242,7 +242,7 @@
     </div>
     <div id="htmlPop">
         <div id="htmlM" onclick="htmlPop.className=''"></div>
-        <div class="html-group html-v" style="left:0;top:0rem;width: 0.8rem;">
+        <div class="html-group" style="right:2rem;top:0;">
             <a class="btn" v='<header class="$-header"></header>' onmouseenter="tagC(this)">header</a>
             <a class="btn" v='<footer class="$-footer"></footer>' onmouseenter="tagC(this)">footer</a>
             <a class="btn" v='<main class="$-main"></main>' onmouseenter="tagC(this)">main</a>
@@ -251,7 +251,7 @@
             <a class="btn" v='<section class="$-section"></section>' onmouseenter="tagC(this)">section</a>
             <a class="btn" v='<article class="$-article"></article>' onmouseenter="tagC(this)">article</a>
         </div>
-        <div class="html-group" style="right:6.8rem;top: 0.5rem;">
+        <div class="html-group" style="right:7.8rem;top: 33.33%;">
             <a class="btn" v='<h6 class="$-h6"></h6>' onmouseenter="tagC(this)">h6</a>
             <a class="btn" v='<h5 class="$-h5"></h5>' onmouseenter="tagC(this)">h5</a>
             <a class="btn" v='<h4 class="$-h4"></h4>' onmouseenter="tagC(this)">h4</a>
@@ -259,13 +259,13 @@
             <a class="btn" v='<h2 class="$-h2"></h2>' onmouseenter="tagC(this)">h2</a>
             <a class="btn" v='<h1 class="$-h1"></h1>' onmouseenter="tagC(this)">h1</a>
         </div>
-        <div class="html-group" style="right:1rem;top:0.5rem;">
+        <div class="html-group" style="right:2rem;top:33.33%;">
             <a class="btn" v='<table class="$-tb"></table>' onmouseenter="tagC(this)" title="table">table</a>
             <a class="btn" v='<tr class="$-tr"></tr>' onmouseenter="tagC(this)">tr</a>
             <a class="btn" v='<td class="$-td"></td>' onmouseenter="tagC(this)">td</a>
             <a class="btn" v='<th class="$-th"></th>' onmouseenter="tagC(this)">th</a>
         </div>
-        <div class="html-group" style="right:1rem;bottom:0.5rem;">
+        <div class="html-group" style="right:2rem;bottom:0;">
             <a class="btn" v='<form class="$-form"></form>' onmouseenter="tagC(this)" title="form">form</a>
             <a class="btn" v='<input class="$-sub" type="submit" value="提交">' onmouseenter="tagC(this)" title="input[submit]">submit</a>
             <a class="btn" v='<input class="$-psd" type="password" placeholder="">' onmouseenter="tagC(this)" title="input[password]">password</a>
@@ -277,36 +277,36 @@
             <a class="btn" v='<label class="$-lb"></label>' onmouseenter="tagC(this)" title="label">lable</a>
             <a class="btn" v='<input class="$-txt" type="text" placeholder="">' onmouseenter="tagC(this)" title="input[text]">text</a>
         </div>
-        <div class="html-group" style="right:14.1rem;top:50%;">
+        <div class="html-group" style="right:14.1rem;top:66.66%;">
             <a class="btn" v='<dd class="$-dd"></dd>' onmouseenter="tagC(this)">dd</a>
             <a class="btn" v='<dt class="$-dt"></dt>' onmouseenter="tagC(this)">dt</a>
             <a class="btn" v='<dl class="$-dl"></dl>' onmouseenter="tagC(this)">dl</a>
         </div>
-        <div class="html-group" style="right:11.1rem;top:50%;">
+        <div class="html-group" style="right:11.1rem;top:66.66%;">
             <a class="btn" v='<li class="$-li"></li>' onmouseenter="tagC(this)">li</a>
             <a class="btn" v='<ul class="$-ul"></ul>' onmouseenter="tagC(this)">ul</a>
         </div>
-        <div class="html-group" style="right:6.6rem;top:50%;">
+        <div class="html-group" style="right:6.6rem;top:66.66%;">
             <a class="btn" v='<br>' onmouseenter="tagC(this)">br</a>
             <a class="btn" v='<span class="$-span"></span>' onmouseenter="tagC(this)">span</a>
             <a class="btn" v='<p class="$-p"></p>' onmouseenter="tagC(this)">p</a>
         </div>
-        <div class="html-group" style="right: 3.6rem;top:50%;white-space: nowrap;">
+        <div class="html-group" style="right: 3.6rem;top:66.66%;white-space: nowrap;">
             <a class="btn" v='<img class="$-img" src="images/" alt="">' onmouseenter="tagC(this)">img</a>
             <a class="btn" v='<a class="$-a" title=""></a>' onmouseenter="tagC(this)">a</a>
         </div>
-        <div class="html-group" style="right: 2rem;top:50%;">
+        <div class="html-group" style="right: 2rem;top:66.66%;">
             <a class="btn active" v='<div class="$-"></div>' onmouseenter="tagC(this)">div</a>
         </div>
     </div>
     <div id="cssPop">
         <div id="cssM" onclick="cssPop.className=''"></div>
-        <div class="css-group" style="width:6rem;left: 50%;top: 0.5rem;width:6rem;margin-left: -9.6rem;">
-            <dl style="padding-left: 33.33%;width:100%;">
+        <div class="css-group" style="width:6rem;left: 50%;top: 0;width:6rem;margin-left: -9.6rem;">
+            <dl style="margin-left: 33.33%;width:33.33%;margin-right: 33.33%;">
                 <dt class="sp" onclick="distanceP('padding-top')">top</dt>
                 <input class="css-t" type="text" id="padding-top" oninput="setCss()" />
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:31.33%;margin-right: 2%;">
                 <dt class="sp" onclick="distanceP('padding-left')">left</dt>
                 <input class="css-t" type="text" id="padding-left" oninput="setCss()" />
             </dl>
@@ -314,21 +314,21 @@
                 <dt class="sp" onclick="distanceP('padding')">padding</dt>
                 <input class="css-t" type="text" id="padding" oninput="setCss()" />
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:31.33%;margin-left: 2%;">
                 <dt class="sp" onclick="distanceP('padding-right')">right</dt>
                 <input class="css-t" type="text" id="padding-right" oninput="setCss()" />
             </dl>
-            <dl style="padding-left: 33.33%;width:100%;">
+            <dl style="margin-left: 33.33%;width:33.33%;margin-right: 33.33%;">
                 <dt class="sp" onclick="distanceP('padding-bottom')">bottom</dt>
                 <input class="css-t" type="text" id="padding-bottom" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-group" style="width:6rem;right: 50%;top: 0.5rem;margin-right: -9.6rem;">
-            <dl style="padding-left: 33.33%;width:100%;">
+        <div class="css-group" style="width:6rem;right: 50%;top: 0;margin-right: -9.6rem;">
+            <dl style="margin-left: 33.33%;width:33.33%;margin-right: 33.33%;">
                 <dt class="sp" onclick="colorP('border-top')">top</dt>
                 <input class="css-t" type="text" id="border-top" oninput="setCss()" />
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:31.33%;margin-right: 2%;">
                 <dt class="sp" onclick="colorP('border-left')">left</dt>
                 <input class="css-t" type="text" id="border-left" oninput="setCss()" />
             </dl>
@@ -336,21 +336,21 @@
                 <dt class="sp" onclick="colorP('border')">border</dt>
                 <input class="css-t" type="text" id="border" oninput="setCss()" />
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:31.33%;margin-left: 2%;">
                 <dt class="sp" onclick="colorP('border-right')">right</dt>
                 <input class="css-t" type="text" id="border-right" oninput="setCss()" />
             </dl>
-            <dl style="padding-left: 33.33%;width:100%;">
+            <dl style="margin-left: 33.33%;width:33.33%;margin-right: 33.33%;">
                 <dt class="sp" onclick="colorP('border-bottom')">bottom</dt>
                 <input class="css-t" type="text" id="border-bottom" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-group" style="width:6rem;left: 50%;top: 0.5rem;transform: translate(-50%,0);">
-            <dl style="padding-left: 33.33%;width:100%;">
+        <div class="css-group" style="width:6rem;left: 50%;top: 0;transform: translate(-50%,0);">
+            <dl style="margin-left: 33.33%;width:33.33%;margin-right: 33.33%;">
                 <dt class="sp" onclick="distanceP('margin-top')">top</dt>
                 <input class="css-t" type="text" id="margin-top" oninput="setCss()" />
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:31.33%;margin-right: 2%;">
                 <dt class="sp" onclick="distanceP('margin-left')">left</dt>
                 <input class="css-t" type="text" id="margin-left" oninput="setCss()" />
             </dl>
@@ -361,16 +361,16 @@
                     <option value="0 auto">
                 </datalist>
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:31.33%;margin-left: 2%;">
                 <dt class="sp" onclick="distanceP('margin-right')">right</dt>
                 <input class="css-t" type="text" id="margin-right" oninput="setCss()" />
             </dl>
-            <dl style="padding-left: 33.33%;width:100%;">
+            <dl style="margin-left: 33.33%;width:33.33%;margin-right: 33.33%;">
                 <dt class="sp" onclick="distanceP('margin-bottom')">bottom</dt>
                 <input class="css-t" type="text" id="margin-bottom" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-group" style="width: 4rem;left: 50%;bottom: 0.5rem;margin-left: -7rem;">
+        <div class="css-group" style="width: 4rem;left: 50%;bottom: 0;margin-left: -7rem;">
             <dl>
                 <dt>display</dt>
                 <select class="css-t" id="display" onchange="setCss()">
@@ -432,7 +432,7 @@
                 </select>
             </dl>
         </div>
-        <div class="css-group" style="width: 4rem;left: 50%;bottom: 0.5rem;transform: translate(-50%,0);">
+        <div class="css-group" style="width: 4rem;left: 50%;bottom: 0;transform: translate(-50%,0);">
             <dl>
                 <dt class="sp" onclick="distanceP('font-size')">font-size</dt>
                 <input class="css-t" type="text" id="font-size" oninput="setCss()" list="fontSizeList" />
@@ -522,7 +522,7 @@
         </div>
         <div class="css-group" style="width:6rem;left: 50%;top:2.02rem;margin-left: -9.6rem;">
             
-            <dl style="padding-left: 33.33%;width:100%;">
+            <dl style="margin-left: 33.33%;width:33.33%;margin-right: 33.33%;">
                 <dt class="sp" onclick="distanceP('top')">top</dt>
                 <input class="css-t" type="text" id="top" oninput="setCss()" list="topList" />
                 <datalist id="topList">
@@ -530,7 +530,7 @@
                     <option value="50%">
                 </datalist>
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:31.33%;margin-right: 2%;">
                 <dt class="sp" onclick="distanceP('left')">left</dt>
                 <input class="css-t" type="text" id="left" oninput="setCss()" list="leftList" />
                 <datalist id="leftList">
@@ -548,7 +548,7 @@
                     <option value="static">static</option>
                 </select>
             </dl>
-            <dl style="width:33.33%;">
+            <dl style="width:31.33%;margin-left: 2%;">
                 <dt class="sp" onclick="distanceP('right')">right</dt>
                 <input class="css-t" type="text" id="right" oninput="setCss()" list="rightList" />
                 <datalist id="rightList">
@@ -556,7 +556,7 @@
                     <option value="50%">
                 </datalist>
             </dl>
-            <dl style="padding-left: 33.33%;width:100%;">
+            <dl style="margin-left: 33.33%;width:33.33%;margin-right: 33.33%;">
                 <dt class="sp" onclick="distanceP('bottom')">bottom</dt>
                 <input class="css-t" type="text" id="bottom" oninput="setCss()" list="bottomList" />
                 <datalist id="bottomList">
@@ -564,7 +564,7 @@
                     <option value="50%">
                 </datalist>
             </dl>
-            <dl style="padding-left: 33.33%;width:100%;">
+            <dl style="margin-left: 33.33%;width:33.33%;margin-right: 33.33%;">
                 <dt>z-index</dt>
                 <input class="css-t" type="text" id="z-index" oninput="setCss()" />
             </dl>
@@ -625,7 +625,7 @@
             </dl>
         </div>
         <div class="css-group" style="width:6rem;left: 50%;top:2.02rem;transform: translate(-50%,0);">
-            <dl style="width:50%;">
+            <dl style="width:48%;margin-right: 2%;">
                 <dt class="sp" onclick="distanceP('width')">width</dt>
                 <input class="css-t" type="text" id="width" oninput="setCss()" list="widthList" />
                 <datalist id="widthList">
@@ -641,7 +641,7 @@
                     <option value="100vh">
                 </datalist>
             </dl>
-            <dl style="width:50%;">
+            <dl style="width:48%;margin-right: 2%;">
                 <dt class="sp" onclick="distanceP('max-width')">max-width</dt>
                 <input class="css-t" type="text" id="max-width" oninput="setCss()" list="maxWidthList" />
                 <datalist id="maxWidthList">
@@ -655,7 +655,7 @@
                     <option value="100%">
                 </datalist>
             </dl>
-            <dl style="width:50%;">
+            <dl style="width:48%;margin-right: 2%;">
                 <dt class="sp" onclick="distanceP('min-width')">min-width</dt>
                 <input class="css-t" type="text" id="min-width" oninput="setCss()" />
             </dl>
@@ -663,7 +663,7 @@
                 <dt class="sp" onclick="distanceP('min-height')">min-height</dt>
                 <input class="css-t" type="text" id="min-height" oninput="setCss()" />
             </dl>
-            <dl style="width:50%;">
+            <dl style="width:48%;margin-right: 2%;">
                 <dt class="sp" onclick="distanceP('border-radius')">border-radius</dt>
                 <input class="css-t" type="text" id="border-radius" oninput="setCss()" list="borderRadiusList" />
                 <datalist id="borderRadiusList">
@@ -675,7 +675,7 @@
                 <input class="css-t" type="text" id="box-shadow" oninput="setCss()" />
             </dl>
         </div>
-        <div class="css-group" style="width: 4rem;right: 50%;bottom: 0.5rem;margin-right: -7rem;">
+        <div class="css-group" style="width: 4rem;right: 50%;bottom: 0;margin-right: -7rem;">
             <dl>
                 <dt class="sp" onclick="colorP('background-color')">background-color</dt>
                 <input class="css-t" type="text" id="background-color" oninput="setCss()" list="backgroundColorList" />
