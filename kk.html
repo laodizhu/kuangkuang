@@ -108,11 +108,11 @@
         #cssPop{width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 1234567;transition: opacity .3s;left: -200%;opacity: 0;}
         #cssPop.show{opacity: 1;left: 0;}
         #cssM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;background-color: rgba(0, 0, 0, 0.5);}
-        #cssPop dl{display: flex;width: 100%;background-color: rgba(40,41,35,0.8);margin-bottom: .1rem;}
-        #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;min-width: 0.8rem;width: auto;line-height: 0.38rem;padding-left: 0.1rem;padding-right: 0.1rem;transition: all .3s;transform-origin: right center;font-size: 0.16rem;color: #ddd;user-select: none;}
+        #cssPop dl{display: flex;width: 100%;margin-bottom: .1rem;}
+        #cssPop dt{display: inline-block;vertical-align: top;white-space: nowrap;min-width: 0.8rem;width: auto;line-height: 0.38rem;padding-left: 0.1rem;padding-right: 0.1rem;transition: all .3s;transform-origin: right center;font-size: 0.16rem;color: #ddd;user-select: none;background-color: rgba(40,41,35,0.8);margin-right: 0.05rem;}
         #cssPop dt.sp{cursor: pointer;}
         #cssPop dt.sp:hover{background-color: rgba(0,0,0,0.3);cursor: pointer;}
-        .css-t{height: 0.38rem;width: 0.5rem;flex: 1;border: none;background-color: transparent;font-size: 0.16rem;color: #ddd;padding: 0 0.05rem;outline: none;transition: all .3s;}
+        .css-t{height: 0.38rem;width: 0.5rem;flex: 1;border: none;background-color: rgba(40,41,35,0.8);font-size: 0.16rem;color: #ddd;padding: 0 0.05rem;outline: none;transition: all .3s;}
         .css-t:hover{background-color: rgba(0,0,0,0.3);}
         select.css-t:hover{background-color: #000;}
         .css-group{position: absolute;z-index: 123;display: flex;flex-wrap: wrap;}
@@ -142,13 +142,13 @@
         #classPop.show{opacity: 1;left: 50%;}
         #classM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;background-color: rgba(0, 0, 0, 0.5);}
         #classPop dl{display: inline-block;vertical-align: top;width: 1rem;text-align: left;z-index: 10;position: absolute;font-size: 0;}
-        #classPop a{display: inline-block;vertical-align: top;z-index: 10;width: 1rem;line-height: 0.38rem;height: 0.38rem;padding: 0 0.05rem;font-size: 0.16rem;color: #ddd;cursor: pointer;transition: all .3s;background-color: rgba(40,41,35,0.8);position: relative;z-index: 10;}
+        #classPop a{display: inline-block;vertical-align: top;z-index: 10;width: 1rem;line-height: 0.38rem;height: 0.38rem;padding: 0 0.05rem;font-size: 0.16rem;color: #ddd;cursor: pointer;transition: all .3s;background-color: rgba(40,41,35,0.8);position: relative;z-index: 10;margin-bottom: 0.05rem;margin-right: 0.05rem;}
         #classPop a:hover{background-color: rgba(0,0,0,0.3);}
         #classPop>a{position: absolute;text-align: center;}
 
         #codePop{width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 987654321;left: -200%;opacity: 0;}
         #codePop.show{opacity: 1;left: 0;}
-        #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;}
+        #codeM{width: 100%;height: 100%;position: absolute;left: 0;top: 0;z-index: 1;background-color: rgba(0,0,0,0.5);}
         #codeBox{width: 39%;height: 6rem;position: absolute;left: 10%;top: 50%;margin-top: -3.8rem;z-index: 2;}
         #codeTextArea{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border: none;background-color: #282923;font-size: 0.17rem;color: #ddd;line-height: 1.5;padding: 2em;outline: none;}
         #copyCode{width: 100%;height: 0.5rem;line-height: 0.5rem;text-align: center;background-color: #111;font-size: .16rem;color: #ddd;position: absolute;left: 0;top: 0;z-index: 10;transition: all .3s;}
@@ -208,13 +208,13 @@
     <div class="op-line op-tool" title="鼠标移动到此打开工具弹窗" onmouseenter="toolIng(this)"></div>
     <div id="toolPop">
         <div id="toolM" onclick="toolPop.className=''"></div>
-            <a class="opr" style="left: 1rem;top: 66.66%;width: 2.3rem;" title="查看html和css" onmouseenter="seeCode()">&lt;/&gt;</a>
-            <a class="opr" style="left: 5rem;top: 66.66%;" title="主测量" onmouseenter="measure()" id="mBtn">m</a>
-            <a class="opr" style="left: 6.5rem;top: 66.66%;" title="副测量" onmouseenter="measure2()" id="MBtn">M</a>
-            <a class="opr" style="left: 8rem;top: 66.66%;" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onmouseenter="inColorText()" id="cBtn">c</a>
-            <a class="opr" style="left: 9.5rem;top: 66.66%;" title="选中后，点击一个点复制这个点的颜色" onmouseenter="inColor()" id="CBtn">C</a>
-            <a class="opr" style="left: 3.5rem;top: 66.66%;" title="查看html和css并识别文字" onmouseenter="seeCode(true)">&lt;t/&gt;</a>
-            <a class="opr" style="left: 11rem;top: 66.66%;" title="选中后，自动填入时单位用px，不选中则用rem" onmouseenter="usePx(this)">px</a>
+            <a class="opr" style="left: 1rem;top: 66.66%;width: 3.3rem;" title="查看html和css" onmouseenter="seeCode()">&lt;/&gt;</a>
+            <a class="opr" style="left: 4.5rem;top: 66.66%;" title="主测量" onmouseenter="measure()" id="mBtn">m</a>
+            <a class="opr" style="left: 6rem;top: 66.66%;" title="副测量" onmouseenter="measure2()" id="MBtn">M</a>
+            <a class="opr" style="left: 7.5rem;top: 66.66%;" title="选中后，点击文字复制文字颜色，只适用于纯色背景" onmouseenter="inColorText()" id="cBtn">c</a>
+            <a class="opr" style="left: 9rem;top: 66.66%;" title="选中后，点击一个点复制这个点的颜色" onmouseenter="inColor()" id="CBtn">C</a>
+            <a class="opr" style="left: 10.5rem;top: 66.66%;" title="选中后，自动填入时单位用px，不选中则用rem" onmouseenter="usePx(this)">px</a>
+            <a class="opr" style="left: 12rem;top: 66.66%;" title="查看html和css并识别文字" onmouseenter="seeCode(true)">&lt;t/&gt;</a>
             <a class="opr" style="left: 4rem;bottom: 0;" title="清除框框和线" onclick="empty()">clear</a>
             <a class="opr" style="left: 1rem;bottom: 0;" title="选中后，点击文字会为文字套上之前选中的html标签" onmouseenter="bkr()">B</a>
             <input type="text" class="opr" style="left: 2.5rem;bottom: 0;" id="pre" title="设置类名前缀" placeholder="$" value="" oninput="preC(this)" onfocus="kkUndo=false" onblur="kkUndo=true" />
@@ -243,27 +243,27 @@
     <div id="htmlPop">
         <div id="htmlM" onclick="htmlPop.className=''"></div>
         <div class="html-group" style="right:2rem;top:0;">
-            <a class="btn" v='<header class="$-header"></header>' onmouseenter="tagC(this)">header</a>
-            <a class="btn" v='<footer class="$-footer"></footer>' onmouseenter="tagC(this)">footer</a>
-            <a class="btn" v='<main class="$-main"></main>' onmouseenter="tagC(this)">main</a>
-            <a class="btn" v='<nav class="$-nav"></nav>' onmouseenter="tagC(this)">nav</a>
-            <a class="btn" v='<aside class="$-aside"></aside>' onmouseenter="tagC(this)">aside</a>
-            <a class="btn" v='<section class="$-section"></section>' onmouseenter="tagC(this)">section</a>
             <a class="btn" v='<article class="$-article"></article>' onmouseenter="tagC(this)">article</a>
+            <a class="btn" v='<section class="$-section"></section>' onmouseenter="tagC(this)">section</a>
+            <a class="btn" v='<aside class="$-aside"></aside>' onmouseenter="tagC(this)">aside</a>
+            <a class="btn" v='<nav class="$-nav"></nav>' onmouseenter="tagC(this)">nav</a>
+            <a class="btn" v='<main class="$-main"></main>' onmouseenter="tagC(this)">main</a>
+            <a class="btn" v='<footer class="$-footer"></footer>' onmouseenter="tagC(this)">footer</a>
+            <a class="btn" v='<header class="$-header"></header>' onmouseenter="tagC(this)">header</a>
         </div>
         <div class="html-group" style="right:7.8rem;top: 33.33%;">
-            <a class="btn" v='<h6 class="$-h6"></h6>' onmouseenter="tagC(this)">h6</a>
-            <a class="btn" v='<h5 class="$-h5"></h5>' onmouseenter="tagC(this)">h5</a>
-            <a class="btn" v='<h4 class="$-h4"></h4>' onmouseenter="tagC(this)">h4</a>
-            <a class="btn" v='<h3 class="$-h3"></h3>' onmouseenter="tagC(this)">h3</a>
-            <a class="btn" v='<h2 class="$-h2"></h2>' onmouseenter="tagC(this)">h2</a>
-            <a class="btn" v='<h1 class="$-h1"></h1>' onmouseenter="tagC(this)">h1</a>
+            <a class="btn" v='<h6 class="$-topic"></h6>' onmouseenter="tagC(this)">h6</a>
+            <a class="btn" v='<h5 class="$-heading"></h5>' onmouseenter="tagC(this)">h5</a>
+            <a class="btn" v='<h4 class="$-headline"></h4>' onmouseenter="tagC(this)">h4</a>
+            <a class="btn" v='<h3 class="$-t"></h3>' onmouseenter="tagC(this)">h3</a>
+            <a class="btn" v='<h2 class="$-tit"></h2>' onmouseenter="tagC(this)">h2</a>
+            <a class="btn" v='<h1 class="$-title"></h1>' onmouseenter="tagC(this)">h1</a>
         </div>
         <div class="html-group" style="right:2rem;top:33.33%;">
-            <a class="btn" v='<table class="$-tb"></table>' onmouseenter="tagC(this)" title="table">table</a>
-            <a class="btn" v='<tr class="$-tr"></tr>' onmouseenter="tagC(this)">tr</a>
-            <a class="btn" v='<td class="$-td"></td>' onmouseenter="tagC(this)">td</a>
             <a class="btn" v='<th class="$-th"></th>' onmouseenter="tagC(this)">th</a>
+            <a class="btn" v='<td class="$-td"></td>' onmouseenter="tagC(this)">td</a>
+            <a class="btn" v='<tr class="$-tr"></tr>' onmouseenter="tagC(this)">tr</a>
+            <a class="btn" v='<table class="$-tb"></table>' onmouseenter="tagC(this)" title="table">table</a>
         </div>
         <div class="html-group" style="right:2rem;bottom:0;">
             <a class="btn" v='<form class="$-form"></form>' onmouseenter="tagC(this)" title="form">form</a>
@@ -277,25 +277,25 @@
             <a class="btn" v='<label class="$-lb"></label>' onmouseenter="tagC(this)" title="label">lable</a>
             <a class="btn" v='<input class="$-txt" type="text" placeholder="">' onmouseenter="tagC(this)" title="input[text]">text</a>
         </div>
-        <div class="html-group" style="right:14.1rem;top:66.66%;">
+        <div class="html-group" style="right:15.4rem;top:66.66%;">
+            <a class="btn" v='<br class="$-br">' onmouseenter="tagC(this)">br</a>
+            <a class="btn" v='<p class="$-p"></p>' onmouseenter="tagC(this)">p</a>
+        </div>
+        <div class="html-group" style="right:12.4rem;top:66.66%;">
+            <a class="btn" v='<li class="$-item"></li>' onmouseenter="tagC(this)">li</a>
+            <a class="btn" v='<ul class="$-list"></ul>' onmouseenter="tagC(this)">ul</a>
+        </div>
+        <div class="html-group" style="right:8rem;top:66.66%;">
             <a class="btn" v='<dd class="$-dd"></dd>' onmouseenter="tagC(this)">dd</a>
             <a class="btn" v='<dt class="$-dt"></dt>' onmouseenter="tagC(this)">dt</a>
             <a class="btn" v='<dl class="$-dl"></dl>' onmouseenter="tagC(this)">dl</a>
         </div>
-        <div class="html-group" style="right:11.1rem;top:66.66%;">
-            <a class="btn" v='<li class="$-li"></li>' onmouseenter="tagC(this)">li</a>
-            <a class="btn" v='<ul class="$-ul"></ul>' onmouseenter="tagC(this)">ul</a>
-        </div>
-        <div class="html-group" style="right:6.6rem;top:66.66%;">
-            <a class="btn" v='<br class="$-br">' onmouseenter="tagC(this)">br</a>
+        <div class="html-group" style="right: 5rem;top:66.66%;white-space: nowrap;">
             <a class="btn" v='<span class="$-span"></span>' onmouseenter="tagC(this)">span</a>
-            <a class="btn" v='<p class="$-p"></p>' onmouseenter="tagC(this)">p</a>
-        </div>
-        <div class="html-group" style="right: 3.6rem;top:66.66%;white-space: nowrap;">
-            <a class="btn" v='<img class="$-img" src="images/" alt="">' onmouseenter="tagC(this)">img</a>
             <a class="btn" v='<a class="$-a" title=""></a>' onmouseenter="tagC(this)">a</a>
         </div>
         <div class="html-group" style="right: 2rem;top:66.66%;">
+            <a class="btn" v='<img class="$-img" src="images/" alt="">' onmouseenter="tagC(this)">img</a>
             <a class="btn active" v='<div class="$-"></div>' onmouseenter="tagC(this)">div</a>
         </div>
     </div>
@@ -736,11 +736,11 @@
     </div>
     <div id="classPop" onclick="putClass(event)">
         <div id="classM" onclick="classPop.className=''"></div>
-        <dl style="width:2rem;left:2.2rem;top:0.76rem;">
+        <dl style="width:2.1rem;left:2.2rem;top:0.76rem;">
             <a>main</a>
             <a>layout</a><br>
-            <a>container</a>
             <a>contain</a>
+            <a>box</a>
             <a>wrapper</a>
             <a>wrap</a>
             <a>outer</a>
@@ -748,13 +748,11 @@
             <a>inner</a>
             <a>in</a>
         </dl>
-        <dl style="width:2rem;left: 4.30rem;top:0.76rem;">
+        <dl style="width:2.1rem;left: 4.50rem;top:0.76rem;">
             <a>list</a>
-            <a>one</a>
-            <a>items</a>
             <a>item</a>
-            <a>boxes</a>
-            <a>box</a>
+            <a>items</a>
+            <a>one</a>
             <a>links</a>
             <a>link</a>
             <a>cards</a>
@@ -811,7 +809,7 @@
             <a>article</a>
             <a>essay</a>
         </dl>
-        <dl style="width:3rem;right:1.10rem;top: 1.14rem;">
+        <dl style="width:3.15rem;right:1.10rem;top: 1.14rem;">
             <a>image</a>
             <a>img</a>
             <a>icon</a>
@@ -826,7 +824,7 @@
             <a>avatar</a>
             <a>bg</a>
         </dl>
-        <dl style="left:4.30rem;bottom:0.76rem;width:13.20rem;">
+        <dl style="left:4.50rem;bottom:0.76rem;width:13.20rem;">
             <a style="text-align: center;">button</a>
             <a style="text-align: center;">btn</a>
             <a style="text-align: center;">push</a>
@@ -836,7 +834,7 @@
             <a style="text-align: center;">submit</a>
             <a style="text-align: center;">sub</a>
         </dl>
-        <dl style="width:3rem;right:1.10rem;bottom:1.90rem;">
+        <dl style="width:3.15rem;right:1.10rem;bottom:1.90rem;">
             <a>number</a>
             <a>num</a>
             <a>count</a>
@@ -850,7 +848,7 @@
             <a>mobile</a>
             <a>email</a>
         </dl>
-        <dl style="width:3rem;right:1.10rem;top:0;">
+        <dl style="width:3.15rem;right:1.10rem;top:0;">
             <a>large</a>
             <a>lg</a>
             <a>big</a>
@@ -858,7 +856,7 @@
             <a>sm</a>
             <a>little</a>
         </dl>
-        <dl style="width:3rem;right:1.10rem;bottom:0;">
+        <dl style="width:3.15rem;right:1.10rem;bottom:0;">
             <a>date</a>
             <a>time</a>
             <br>
@@ -2150,8 +2148,9 @@ $("html,body").animate({
         curV = curTagEle.getAttribute('v').replace(preV?'$':'$-',preV)
     },
 
-    //查看html和css，让这个弹窗层级最高，打开时不要关闭其它
+    //查看html和css，让这个弹窗层级最高
     seeCode = (recognize) => {
+        closeAll()
         codePop.addClass('show')
         setClass()
         sortD()
