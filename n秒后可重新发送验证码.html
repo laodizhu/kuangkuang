@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .cd-box{width: 100px;text-align: center;}
+        .cd-btn,
+        .cd-str{width: 100%;line-height: 32px;font-size: 14px;color: #333;background-color: #eee;}
+        .cd-btn{cursor: pointer;}
+        .cd-str{display: none;cursor: default;}
+        .cd-box.show .cd-btn{display: none;}
+        .cd-box.show .cd-str{display: block;}
+    </style>
+</head>
+<body>
+	<div class="cd-box">
+		<div class="cd-btn">获取验证码</div>
+		<div class="cd-str"></div>
+	</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $(function(){
+        $(".cd-btn").click(function(){
+        	//ajax获取验证码成功后执行函数cd
+            cd()
+        })
+        function cd(){
+            var n = 5
+            var box = $(".cd-box").addClass("show")
+            var cd = $(".cd-str").text(n+"s")
+            var s = setInterval(function(){
+                n--
+                if(n>0){
+                    cd.text(n+"s")
+                }else{
+                    box.removeClass("show")
+                    clearInterval(s)
+                }
+            },1000)
+        }
+    })
+</script>

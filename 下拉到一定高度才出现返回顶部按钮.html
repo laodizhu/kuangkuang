@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{height: 10000px;}
+        .back-top{position: fixed;right: 0;bottom: 100px;background-color: #eee;visibility: hidden;opacity: 0;transition: all .3s;cursor: pointer;}
+        .back-top.show{visibility: visible;opacity: 1;}
+    </style>
+</head>
+<body>
+    <div class="back-top">返回顶部</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $(function(){
+        var go = true
+        var t = 300
+        $(window).scroll(function(){
+            var a = $(this).scrollTop()
+            if(a>=t && go){
+                go = false
+                $(".back-top").addClass("show")
+            }
+            if(a<t && !go){
+                go = true
+                $(".back-top").removeClass("show")
+            }
+        })
+    })
+</script>
